@@ -62,8 +62,8 @@
 
 \`\`\`bash
 # 克隆项目
-git clone https://github.com/your-org/enterprise-management-system.git
-cd enterprise-management-system
+git clone https://github.com/YY-Nexus/yyc3-mana.git
+
 
 # 安装依赖
 npm install
