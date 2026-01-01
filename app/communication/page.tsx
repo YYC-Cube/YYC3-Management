@@ -10,21 +10,18 @@ import { MessageSquare, Users, Send, Phone, Video, Plus, Search, Paperclip } fro
 
 export default function CommunicationPage() {
   return (
-    <PageContainer>
+    <PageContainer title="团队沟通" description="与团队成员实时沟通协作">
       <div className="space-y-6">
-        {/* 页面标题 */}
+        {/* 页面操作区 */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">团队沟通</h1>
-            <p className="text-slate-600 mt-1">与团队成员实时沟通协作</p>
-          </div>
+          <div></div>
           <div className="flex gap-2">
             <EnhancedButton variant="outline">
               <Video className="w-4 h-4 mr-2" />
               视频会议
             </EnhancedButton>
-            <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-              <Plus className="w-4 h-4 mr-2" />
+            <EnhancedButton className="bg-purple-600 hover:bg-purple-700 border-r-4 border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)]">
+              <Plus className="w-4 h-4 mr-2 text-white" />
               新建群组
             </EnhancedButton>
           </div>
@@ -32,46 +29,46 @@ export default function CommunicationPage() {
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)] hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">活跃群组</p>
                 <p className="text-2xl font-bold text-slate-800">12</p>
-                <p className="text-xs text-sky-600 mt-1">正在使用</p>
+                <p className="text-xs text-purple-600 mt-1">正在使用</p>
               </div>
-              <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                <Users className="w-6 h-6 text-sky-600" />
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-purple-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)] hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">今日消息</p>
                 <p className="text-2xl font-bold text-slate-800">156</p>
-                <p className="text-xs text-green-600 mt-1">↑ 23% 较昨日</p>
+                <p className="text-xs text-purple-600 mt-1">↑ 23% 较昨日</p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <MessageSquare className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <MessageSquare className="w-6 h-6 text-purple-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-yellow-500">
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)] hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">在线成员</p>
                 <p className="text-2xl font-bold text-slate-800">28</p>
-                <p className="text-xs text-yellow-600 mt-1">当前在线</p>
+                <p className="text-xs text-purple-600 mt-1">当前在线</p>
               </div>
-              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <Users className="w-6 h-6 text-yellow-600" />
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-purple-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-purple-500">
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)] hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">未读消息</p>
@@ -88,7 +85,7 @@ export default function CommunicationPage() {
         {/* 沟通界面 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 群组列表 */}
-          <EnhancedCard>
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(168,85,247,0.15)]">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-slate-800">群组列表</h2>
               <EnhancedButton size="sm" variant="outline">

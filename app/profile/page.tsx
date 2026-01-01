@@ -10,7 +10,6 @@ export default function ProfilePage() {
       <PageContainer title="个人中心" description="管理您的个人信息和账户设置">
         {/* 现有内容 */}
         <div>
-          <h1>个人中心</h1>
           <p>欢迎来到您的个人中心！</p>
         </div>
       </PageContainer>

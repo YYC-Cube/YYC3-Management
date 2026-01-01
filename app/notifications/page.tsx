@@ -132,10 +132,10 @@ export default function NotificationsPage() {
 
   return (
     <PageContainer title="通知中心" description="查看和管理您的所有通知消息">
-      <NotificationReminderSystem />
+      <NotificationReminderSystem showTitle={false} />
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -147,7 +147,7 @@ export default function NotificationsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-red-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-red-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -159,7 +159,7 @@ export default function NotificationsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-orange-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-orange-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -171,7 +171,7 @@ export default function NotificationsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>

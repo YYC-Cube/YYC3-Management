@@ -12,15 +12,11 @@ import { TrendingUp, Target, Award, Users, BarChart3, Star, Plus } from "lucide-
 
 export default function PerformancePage() {
   return (
-    <PageContainer>
+    <PageContainer title="绩效管理" description="员工绩效评估和跟踪管理">
       <PerformanceOptimization />
       <div className="space-y-6">
-        {/* 页面标题 */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">绩效跟踪</h1>
-            <p className="text-slate-600 mt-1">员工绩效评估和跟踪管理</p>
-          </div>
+        {/* 页面操作区 */}
+        <div className="flex items-center justify-end">
           <div className="flex gap-2">
             <EnhancedButton variant="outline">
               <BarChart3 className="w-4 h-4 mr-2" />
@@ -35,7 +31,7 @@ export default function PerformancePage() {
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-sky-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">平均绩效</p>
@@ -48,7 +44,7 @@ export default function PerformancePage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">优秀员工</p>
@@ -61,7 +57,7 @@ export default function PerformancePage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-yellow-500">
+          <EnhancedCard className="border-r-[5px] border-r-yellow-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">目标达成率</p>
@@ -74,7 +70,7 @@ export default function PerformancePage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-purple-500">
+          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">参评人数</p>

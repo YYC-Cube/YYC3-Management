@@ -1,3 +1,14 @@
+/**
+ * @fileoverview 侧边栏导航组件
+ * @description 应用主导航菜单，支持多级菜单和主题切换
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -41,32 +52,33 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { getThemeForPath } from "@/lib/theme-colors"
+import { useAIWidget } from "@/components/ai-floating-widget"
 
 const navigationItems = [
   {
     title: "运营中心",
     items: [
-      { name: "仪表板", href: "/dashboard", icon: LayoutDashboard },
-      { name: "客户管理", href: "/customers", icon: Users },
-      { name: "任务管理", href: "/tasks", icon: CheckSquare },
-      { name: "沟通协作", href: "/communication", icon: MessageSquare },
-      { name: "数据分析", href: "/analytics", icon: BarChart3 },
-      { name: "财务管理", href: "/finance", icon: DollarSign },
-      { name: "项目管理", href: "/projects", icon: FolderOpen },
-      { name: "OKR管理", href: "/okr", icon: Target },
-      { name: "通知中心", href: "/notifications", icon: Bell },
-      { name: "团队协作", href: "/collaboration", icon: UserPlus },
+      { name: "仪表板", href: "/dashboard", icon: LayoutDashboard, color: "blue" },
+      { name: "客户管理", href: "/customers", icon: Users, color: "green" },
+      { name: "任务管理", href: "/tasks", icon: CheckSquare, color: "orange" },
+      { name: "沟通协作", href: "/communication", icon: MessageSquare, color: "purple" },
+      { name: "数据分析", href: "/analytics", icon: BarChart3, color: "cyan" },
+      { name: "财务管理", href: "/finance", icon: DollarSign, color: "emerald" },
+      { name: "项目管理", href: "/projects", icon: FolderOpen, color: "indigo" },
+      { name: "OKR管理", href: "/okr", icon: Target, color: "pink" },
+      { name: "通知中心", href: "/notifications", icon: Bell, color: "amber" },
+      { name: "团队协作", href: "/collaboration", icon: UserPlus, color: "sky" },
     ],
   },
   {
     title: "系统管理",
     items: [
-      { name: "系统设置", href: "/system-settings", icon: Settings },
-      { name: "用户管理", href: "/user-management", icon: UserCog },
-      { name: "权限管理", href: "/permission-management", icon: Shield },
-      { name: "日志管理", href: "/log-management", icon: FileText },
-      { name: "系统监控", href: "/system-monitor", icon: Monitor },
-      { name: "备份恢复", href: "/backup-recovery", icon: Archive },
+      { name: "系统设置", href: "/system-settings", icon: Settings, color: "slate" },
+      { name: "用户管理", href: "/user-management", icon: UserCog, color: "violet" },
+      { name: "权限管理", href: "/permission-management", icon: Shield, color: "rose" },
+      { name: "日志管理", href: "/log-management", icon: FileText, color: "teal" },
+      { name: "系统监控", href: "/system-monitor", icon: Monitor, color: "lime" },
+      { name: "备份恢复", href: "/backup-recovery", icon: Archive, color: "fuchsia" },
       { name: "帮助中心", href: "/help-center", icon: HelpCircle },
     ],
   },
@@ -100,6 +112,7 @@ const navigationItems = [
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const pathname = usePathname()
+  const { toggleWidget } = useAIWidget()
 
   return (
     <TooltipProvider>
@@ -113,9 +126,15 @@ export function Sidebar() {
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           {!isCollapsed && (
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Image src="/images/jinlan-logo-main.png" alt="Logo" width={20} height={20} className="rounded" />
-              </div>
+              <button
+                type="button"
+                onClick={() => toggleWidget()}
+                aria-label="打开AI浮窗"
+                title="打开AI浮窗"
+                className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                <Image src="/yyc3-white.png" alt="YYC³ Logo" width={20} height={20} className="rounded" />
+              </button>
               <div>
                 <h1 className="text-lg font-bold text-gray-900">企业管理</h1>
                 <p className="text-xs text-gray-500">Management System</p>
@@ -146,6 +165,7 @@ export function Sidebar() {
                   {section.items.map((item) => {
                     const isActive = pathname === item.href || (pathname === "/" && item.href === "/dashboard")
                     const theme = getThemeForPath(item.href)
+                    const colorClass = item.color || "blue"
 
                     const NavItem = (
                       <div key={item.name} className="relative">
@@ -154,9 +174,11 @@ export function Sidebar() {
                           className={cn(
                             "w-full justify-start h-10 transition-all duration-200",
                             isCollapsed ? "px-2" : "px-3",
+                            // 右侧彩色边线
+                            `border-r-4 border-r-${colorClass}-500`,
                             isActive
-                              ? "text-white hover:opacity-90"
-                              : "text-gray-700 hover:bg-gray-50 hover:text-gray-900",
+                              ? `text-white hover:opacity-90 border-r-${colorClass}-600 shadow-[2px_0_8px_rgba(var(--color-${colorClass}-500),0.3)]`
+                              : `text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:border-r-${colorClass}-400`,
                           )}
                           style={
                             isActive
@@ -168,16 +190,24 @@ export function Sidebar() {
                           asChild
                         >
                           <Link href={item.href}>
-                            <item.icon className={cn("h-4 w-4", isCollapsed ? "mx-auto" : "mr-3")} />
+                            <item.icon 
+                              className={cn(
+                                "h-4 w-4", 
+                                isCollapsed ? "mx-auto" : "mr-3",
+                                // 图标颜色与边线一致
+                                isActive ? "text-white" : `text-${colorClass}-500`
+                              )} 
+                            />
                             {!isCollapsed && <span className="truncate">{item.name}</span>}
                           </Link>
                         </Button>
                         <div
                           className="absolute right-0 top-0 bottom-0 w-[3px] rounded-r transition-all duration-200"
                           style={{
-                            backgroundColor: isActive ? theme.shadow : "transparent",
-                            boxShadow: isActive ? `0 0 8px ${theme.shadow}80` : "none",
-                          }}
+                            ['--theme-shadow' as any]: theme.shadow,
+                            backgroundColor: isActive ? 'var(--theme-shadow)' : 'transparent',
+                            boxShadow: isActive ? '0 0 8px var(--theme-shadow)80' : 'none',
+                          } as React.CSSProperties}
                         />
                       </div>
                     )

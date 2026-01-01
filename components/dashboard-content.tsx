@@ -1,3 +1,14 @@
+/**
+ * @fileoverview 仪表板内容组件
+ * @description 展示业务数据、KPI指标和实时统计信息
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -27,12 +38,13 @@ import { PerformanceChart } from "@/components/charts/performance-chart"
 import { usePathname } from "next/navigation"
 import { getThemeForPath } from "@/lib/theme-colors"
 
-export function DashboardContent() {
-  const [currentTime, setCurrentTime] = useState(new Date())
+export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) {
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
   const pathname = usePathname()
   const theme = getThemeForPath(pathname)
 
   useEffect(() => {
+    setCurrentTime(new Date())
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
@@ -110,28 +122,28 @@ export function DashboardContent() {
       action: "创建了新客户",
       target: "ABC公司",
       time: "5分钟前",
-      avatar: "/images/avatar-1.png",
+      avatar: "/avatar/avatar_user/avatar_user_001.png",
     },
     {
       user: "李四",
       action: "完成了任务",
       target: "系统测试报告",
       time: "15分钟前",
-      avatar: "/images/avatar-2.png",
+      avatar: "/avatar/avatar_user/avatar_user_002.png",
     },
     {
       user: "王五",
       action: "更新了项目进度",
       target: "移动端开发",
       time: "30分钟前",
-      avatar: "/images/avatar-3.png",
+      avatar: "/avatar/avatar_user/avatar_user_004.png",
     },
     {
       user: "赵六",
       action: "发布了公告",
       target: "系统维护通知",
       time: "1小时前",
-      avatar: "/images/avatar-4.png",
+      avatar: "/avatar/avatar_user/avatar_user_005.png",
     },
   ]
 
@@ -147,20 +159,22 @@ export function DashboardContent() {
       {/* 页面标题和时间 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">运营中心</h1>
+          {showTitle && (
+            <h1 className="text-3xl font-bold text-gray-900">运营中心</h1>
+          )}
           <p className="text-gray-600 mt-1">欢迎回来，这里是您的企业管理控制台</p>
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-gray-900">
-            {currentTime.toLocaleTimeString("zh-CN", { hour12: false })}
+            {currentTime ? currentTime.toLocaleTimeString("zh-CN", { hour12: false }) : "--:--:--"}
           </div>
           <div className="text-sm text-gray-500">
-            {currentTime.toLocaleDateString("zh-CN", {
+            {currentTime ? currentTime.toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
               day: "numeric",
               weekday: "long",
-            })}
+            }) : "加载中..."}
           </div>
         </div>
       </div>
@@ -272,9 +286,11 @@ export function DashboardContent() {
                     key={project.name}
                     className="flex items-center justify-between p-4 rounded-lg transition-all duration-200 relative"
                     style={{
-                      borderLeft: `4px solid ${projectTheme.border}`,
-                      backgroundColor: projectTheme.bg,
-                    }}
+                      ['--project-border' as any]: projectTheme.border,
+                      ['--project-bg' as any]: projectTheme.bg,
+                      borderLeft: '4px solid var(--project-border)',
+                      backgroundColor: 'var(--project-bg)',
+                    } as React.CSSProperties}
                   >
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
@@ -335,7 +351,7 @@ export function DashboardContent() {
               {recentActivities.map((activity, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={activity.avatar || "/placeholder.svg"} alt={activity.user} />
+                    <AvatarImage src={activity.avatar || "/placeholder-user.jpg"} alt={activity.user} />
                     <AvatarFallback>{activity.user[0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview user-training.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -271,7 +282,7 @@ export function UserTraining() {
 
       {/* 学习进度概览 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">总体进度</p>
@@ -287,7 +298,7 @@ export function UserTraining() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">已完成模块</p>
@@ -297,7 +308,7 @@ export function UserTraining() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">学习时长</p>
@@ -309,7 +320,7 @@ export function UserTraining() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">获得证书</p>
@@ -332,7 +343,7 @@ export function UserTraining() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-orange-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-orange-500 p-6">
               <h3 className="text-lg font-semibold mb-4">推荐学习</h3>
               <div className="space-y-4">
                 {trainingModules
@@ -359,7 +370,7 @@ export function UserTraining() {
               </div>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-orange-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-orange-500 p-6">
               <h3 className="text-lg font-semibold mb-4">最新公告</h3>
               <div className="space-y-4">
                 <div className="p-3 bg-orange-50 border border-orange-200 rounded-lg">
@@ -381,7 +392,7 @@ export function UserTraining() {
             </Card>
           </div>
 
-          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-orange-500 p-6">
+          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-orange-500 p-6">
             <h3 className="text-lg font-semibold mb-4">培训统计</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
@@ -409,7 +420,7 @@ export function UserTraining() {
             {trainingModules.map((module) => (
               <Card
                 key={module.id}
-                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4 group"
+                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -485,7 +496,7 @@ export function UserTraining() {
             {trainingPaths.map((path) => (
               <Card
                 key={path.id}
-                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-6 group"
+                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-6 group"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -546,7 +557,7 @@ export function UserTraining() {
             {userProgress.map((user) => (
               <Card
                 key={user.userId}
-                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-orange-500 p-4 group"
+                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -587,7 +598,7 @@ export function UserTraining() {
             ))}
           </div>
 
-          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-orange-500 p-6">
+          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-orange-500 p-6">
             <h3 className="text-lg font-semibold mb-4">培训效果分析</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>

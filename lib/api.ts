@@ -1,3 +1,14 @@
+/**
+ * @fileoverview API客户端
+ * @description 封装API请求，提供统一的接口调用方式
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 // API服务类 - 统一管理所有API调用
 class ApiService {
   private baseURL = "https://api.zy.baby"
@@ -38,7 +49,7 @@ class ApiService {
 
     // 添加认证头
     if (this.token) {
-      headers.Authorization = `Bearer ${this.token}`
+      (headers as Record<string, string>).Authorization = `Bearer ${this.token}`
     }
 
     try {

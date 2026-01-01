@@ -5,7 +5,8 @@ const OFFLINE_URL = "/offline"
 const STATIC_CACHE_URLS = [
   "/",
   "/offline",
-  "/images/jinlan-logo-new.png",
+  "/yyc3-logo-blue.png",
+  "/yyc3-pwa-icon.png",
   "/manifest.json",
   "/ai-assistant",
   "/customers",
@@ -212,10 +213,10 @@ self.addEventListener("push", (event) => {
   console.log("收到推送消息:", event)
 
   let notificationData = {
-    title: "JINLAN 企业管理系统",
+    title: "YYC³ 企业智能管理系统",
     body: "您有新的消息",
-    icon: "/images/jinlan-logo-new.png",
-    badge: "/images/jinlan-logo-new.png",
+    icon: "/yyc3-pwa-icon.png",
+    badge: "/yyc3-pwa-icon.png",
   }
 
   if (event.data) {
@@ -241,12 +242,12 @@ self.addEventListener("push", (event) => {
       {
         action: "explore",
         title: "查看详情",
-        icon: "/images/jinlan-logo-new.png",
+        icon: "/yyc3-pwa-icon.png",
       },
       {
         action: "close",
         title: "关闭",
-        icon: "/images/jinlan-logo-new.png",
+        icon: "/yyc3-pwa-icon.png",
       },
     ],
     requireInteraction: true,

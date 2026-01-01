@@ -1,3 +1,14 @@
+/**
+ * @fileoverview permission-management.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -188,7 +199,7 @@ export function PermissionManagement() {
 
       {/* 权限统计 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-indigo-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-indigo-400 hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>

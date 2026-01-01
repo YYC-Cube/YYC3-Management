@@ -5,7 +5,7 @@ export default function OfflinePage() {
     <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
         <div className="w-20 h-20 bg-gradient-to-r from-sky-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-          <img src="/images/zuoyou-logo.png" alt="ZUOYOU" className="w-12 h-12 object-contain" />
+          <img src="/yyc3-logo-blue.png" alt="YYC³" className="w-12 h-12 object-contain" />
         </div>
 
         <h1 className="text-2xl font-bold text-slate-800 mb-4">离线模式</h1>

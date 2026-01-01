@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { PageContainer } from "@/components/layout/page-container"
 import {
   BarChart3,
   Users,
@@ -18,23 +19,17 @@ import {
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      {/* 页面标题 */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">仪表板</h1>
-          <p className="text-muted-foreground">欢迎回到企业管理系统</p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm">
-            <Calendar className="mr-2 h-4 w-4" />
-            今天
-          </Button>
-          <Button size="sm">
-            <BarChart3 className="mr-2 h-4 w-4" />
-            查看报告
-          </Button>
-        </div>
+    <PageContainer title="仪表板" description="欢迎回到企业管理系统">
+      {/* 页面操作按钮 */}
+      <div className="flex items-center justify-end space-x-2">
+        <Button variant="outline" size="sm">
+          <Calendar className="mr-2 h-4 w-4" />
+          今天
+        </Button>
+        <Button size="sm">
+          <BarChart3 className="mr-2 h-4 w-4" />
+          查看报告
+        </Button>
       </div>
 
       {/* 统计卡片 */}
@@ -253,6 +248,6 @@ export default function DashboardPage() {
           </Card>
         </div>
       </div>
-    </div>
+    </PageContainer>
   )
 }

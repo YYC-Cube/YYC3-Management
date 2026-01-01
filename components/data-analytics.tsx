@@ -1,3 +1,14 @@
+/**
+ * @fileoverview data-analytics.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -24,7 +35,7 @@ import {
 } from "recharts"
 import { TrendingUp, BarChart3, PieChartIcon, Activity, Download } from "lucide-react"
 
-export function DataAnalytics() {
+export function DataAnalytics({ showTitle = true }: { showTitle?: boolean }) {
   const [selectedPeriod, setSelectedPeriod] = useState("month")
   const [selectedMetric, setSelectedMetric] = useState("sales")
 
@@ -75,7 +86,9 @@ export function DataAnalytics() {
       {/* 页面头部 - 统一风格 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">数据分析中心</h1>
+          {showTitle && (
+            <h1 className="text-2xl font-bold text-gray-900">数据分析中心</h1>
+          )}
           <p className="text-gray-600 mt-1">深度业务数据分析与洞察</p>
         </div>
         <div className="flex items-center space-x-3">
@@ -90,7 +103,7 @@ export function DataAnalytics() {
               <SelectItem value="year">本年度</SelectItem>
             </SelectContent>
           </Select>
-          <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+          <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white border-r-4 border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
             <Download className="w-4 h-4 mr-2" />
             导出报告
           </Button>
@@ -99,12 +112,12 @@ export function DataAnalytics() {
 
       {/* 统计卡片区域 - 严格执行统一规范 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-cyan-500 hover:border-r-cyan-600 shadow-[4px_0_12px_rgba(6,182,212,0.15)] transition-all">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">总收入</p>
-                <p className="text-3xl font-bold text-green-600">¥2,847,392</p>
+                <p className="text-3xl font-bold text-cyan-600">¥2,847,392</p>
                 <p className="text-xs text-gray-500 mt-1">+12.5% 较上月</p>
               </div>
               <TrendingUp className="w-8 h-8 text-green-400" />
@@ -112,7 +125,7 @@ export function DataAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -125,7 +138,7 @@ export function DataAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -138,7 +151,7 @@ export function DataAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -175,7 +188,7 @@ export function DataAnalytics() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip formatter={(value) => [`¥${value.toLocaleString()}`, "销售额"]} />
+                    <Tooltip formatter={(value) => [`¥${(value ?? 0).toLocaleString()}`, "销售额"]} />
                     <Area type="monotone" dataKey="sales" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -252,7 +265,7 @@ export function DataAnalytics() {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value) => `¥${value.toLocaleString()}`} />
+                    <Tooltip formatter={(value) => `¥${(value ?? 0).toLocaleString()}`} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -300,7 +313,7 @@ export function DataAnalytics() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" />
                   <YAxis dataKey="product" type="category" width={80} />
-                  <Tooltip formatter={(value) => `¥${value.toLocaleString()}`} />
+                  <Tooltip formatter={(value) => `¥${(value ?? 0).toLocaleString()}`} />
                   <Bar dataKey="sales" fill="#3b82f6" />
                 </BarChart>
               </ResponsiveContainer>

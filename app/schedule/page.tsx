@@ -114,7 +114,7 @@ export default function SchedulePage() {
 
         {/* 今日概览 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+          <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -126,7 +126,7 @@ export default function SchedulePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-l-green-400 hover:shadow-md transition-shadow">
+          <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -138,7 +138,7 @@ export default function SchedulePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-shadow">
+          <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>

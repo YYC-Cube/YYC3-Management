@@ -1,0 +1,44 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: yyc3-app-pdb
+  namespace: yyc3
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: yyc3
+      component: app
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: yyc3-service-account
+  namespace: yyc3
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: yyc3-role
+  namespace: yyc3
+rules:
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: yyc3-role-binding
+  namespace: yyc3
+subjects:
+- kind: ServiceAccount
+  name: yyc3-service-account
+  namespace: yyc3
+roleRef:
+  kind: Role
+  name: yyc3-role
+  apiGroup: rbac.authorization.k8s.io

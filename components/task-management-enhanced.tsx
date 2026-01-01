@@ -1,3 +1,14 @@
+/**
+ * @fileoverview task-management-enhanced.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -128,7 +139,7 @@ export function TaskManagementEnhanced() {
         {taskStats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <EnhancedCard key={index} variant="glass">
+            <EnhancedCard key={index} variant="glass" className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 mb-1">{stat.label}</p>
@@ -182,7 +193,7 @@ export function TaskManagementEnhanced() {
               <EnhancedButton variant="secondary" icon={Filter}>
                 筛选
               </EnhancedButton>
-              <EnhancedButton icon={Plus}>新建任务</EnhancedButton>
+              <EnhancedButton icon={Plus} className="border-r-4 border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">新建任务</EnhancedButton>
             </div>
           </div>
 
@@ -273,7 +284,7 @@ export function TaskManagementEnhanced() {
                     .map((task) => (
                       <div
                         key={task.id}
-                        className={`${commonStyles.card} p-4 hover:scale-[1.02] cursor-pointer border-l-4 border-l-blue-400`}
+                        className={`${commonStyles.card} p-4 hover:scale-[1.02] cursor-pointer border-r-[5px] border-r-blue-400`}
                       >
                         <div className="space-y-3">
                           <div className="flex items-start justify-between">

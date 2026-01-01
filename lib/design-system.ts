@@ -1,3 +1,14 @@
+/**
+ * @fileoverview design-system.ts
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 // 企业管理系统设计系统配置
 export const colors = {
   primary: {
@@ -169,10 +180,11 @@ export const statusConfig = {
     completed: { label: "已完成", color: "bg-emerald-100 text-emerald-800", icon: "Check" },
   },
   approval: {
-    pending: { label: "待审批", color: "bg-amber-100 text-amber-800", icon: "Clock" },
-    approved: { label: "已批准", color: "bg-emerald-100 text-emerald-800", icon: "Check" },
-    rejected: { label: "已拒绝", color: "bg-red-100 text-red-800", icon: "X" },
-    cancelled: { label: "已取消", color: "bg-slate-100 text-slate-800", icon: "Ban" },
+    pending: { label: "待审批", color: "bg-amber-100 text-amber-800", icon: "Clock", bgColor: "bg-amber-100" },
+    approved: { label: "已批准", color: "bg-emerald-100 text-emerald-800", icon: "Check", bgColor: "bg-emerald-100" },
+    rejected: { label: "已拒绝", color: "bg-red-100 text-red-800", icon: "X", bgColor: "bg-red-100" },
+    cancelled: { label: "已取消", color: "bg-slate-100 text-slate-800", icon: "Ban", bgColor: "bg-slate-100" },
+    draft: { label: "草稿", color: "bg-blue-100 text-blue-800", icon: "FileText", bgColor: "bg-blue-100" },
   },
   customer: {
     active: { label: "活跃", color: "bg-emerald-100 text-emerald-800", icon: "UserCheck" },
@@ -199,13 +211,14 @@ export const notificationConfig = {
 
 // 工具函数
 export const getStatusStyle = (type: string, status: string) => {
-  return (
-    statusConfig[type as keyof typeof statusConfig]?.[status as keyof typeof statusConfig.task] || {
-      label: status,
-      color: "bg-slate-100 text-slate-800",
-      icon: "Circle",
-    }
-  )
+  const config = statusConfig[type as keyof typeof statusConfig];
+  const result = config?.[status as keyof typeof config] || {
+    label: status,
+    color: "bg-slate-100 text-slate-800",
+    icon: "Circle",
+    bgColor: "bg-slate-100",
+  };
+  return result as { label: string; color: string; icon: string; bgColor?: string };
 }
 
 export const getPriorityStyle = (priority: string) => {

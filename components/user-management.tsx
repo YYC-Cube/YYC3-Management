@@ -1,3 +1,14 @@
+/**
+ * @fileoverview user-management.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import type React from "react"
@@ -93,7 +104,7 @@ interface UserStats {
   avgSessionTime: number
 }
 
-export default function UserManagement() {
+export default function UserManagement({ showTitle = true }: { showTitle?: boolean }) {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
@@ -110,7 +121,7 @@ export default function UserManagement() {
       email: "admin@jinlan.com",
       phone: "13800138000",
       realName: "系统管理员",
-      avatar: "/admin-interface.png",
+      avatar: "/avatar/avatar_user/avatar_user_001.png",
       status: "active",
       role: "超级管理员",
       department: "技术部",
@@ -129,7 +140,7 @@ export default function UserManagement() {
       email: "manager@jinlan.com",
       phone: "13800138001",
       realName: "张经理",
-      avatar: "/diverse-team-manager.png",
+      avatar: "/avatar/avatar_user/avatar_user_002.png",
       status: "active",
       role: "部门经理",
       department: "销售部",
@@ -148,7 +159,7 @@ export default function UserManagement() {
       email: "employee@jinlan.com",
       phone: "13800138002",
       realName: "李员工",
-      avatar: "/diverse-office-employee.png",
+      avatar: "/avatar/avatar_user/avatar_user_004.png",
       status: "active",
       role: "普通员工",
       department: "市场部",
@@ -167,7 +178,7 @@ export default function UserManagement() {
       email: "guest@jinlan.com",
       phone: "13800138003",
       realName: "访客用户",
-      avatar: "/welcoming-guest.png",
+      avatar: "/avatar/avatar_user/avatar_user_005.png",
       status: "inactive",
       role: "访客",
       department: "外部",
@@ -186,7 +197,7 @@ export default function UserManagement() {
       email: "locked@jinlan.com",
       phone: "13800138004",
       realName: "被锁定用户",
-      avatar: "/locked-padlock.png",
+      avatar: "/avatar/avatar_user/avatar_user_006.png",
       status: "locked",
       role: "普通员工",
       department: "财务部",
@@ -205,7 +216,7 @@ export default function UserManagement() {
       email: "pending@jinlan.com",
       phone: "13800138005",
       realName: "待审核用户",
-      avatar: "/placeholder-r9g33.png",
+      avatar: "/avatar/avatar_user/avatar_user_010.png",
       status: "pending",
       role: "普通员工",
       department: "人事部",
@@ -569,10 +580,12 @@ export default function UserManagement() {
       {/* 页面标题和控制 */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="responsive-title flex items-center">
-            <Users className="w-6 h-6 sm:w-8 sm:h-8 mr-3 text-blue-600" />
-            用户管理
-          </h1>
+          {showTitle && (
+            <h1 className="responsive-title flex items-center">
+              <Users className="w-6 h-6 sm:w-8 sm:h-8 mr-3 text-blue-600" />
+              用户管理
+            </h1>
+          )}
           <p className="responsive-text mt-2">用户权限和角色管理</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -599,7 +612,7 @@ export default function UserManagement() {
 
       {/* 用户统计概览 */}
       <div className="responsive-grid-4">
-        <Card className="responsive-card border-l-4 border-l-blue-500">
+        <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -614,7 +627,7 @@ export default function UserManagement() {
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-l-4 border-l-green-500">
+        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -635,7 +648,7 @@ export default function UserManagement() {
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-l-4 border-l-purple-500">
+        <Card className="responsive-card border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -650,7 +663,7 @@ export default function UserManagement() {
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-l-4 border-l-orange-500">
+        <Card className="responsive-card border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -667,7 +680,7 @@ export default function UserManagement() {
       </div>
 
       {/* 搜索和筛选 */}
-      <Card className="responsive-card border-l-4 border-l-indigo-500">
+      <Card className="responsive-card border-r-[5px] border-r-indigo-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
@@ -736,7 +749,7 @@ export default function UserManagement() {
             {filteredUsers.map((user) => (
               <Card
                 key={user.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-blue-500"
+                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
@@ -921,7 +934,7 @@ export default function UserManagement() {
             {roles.map((role) => (
               <Card
                 key={role.id}
-                className="responsive-card hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-purple-500"
+                className="responsive-card hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -997,7 +1010,7 @@ export default function UserManagement() {
 
         {/* 权限管理 */}
         <TabsContent value="permissions" className="responsive-spacing">
-          <Card className="responsive-card border-l-4 border-l-green-500">
+          <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <CardHeader>
               <CardTitle className="text-base sm:text-lg flex items-center">
                 <Key className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />

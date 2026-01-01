@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yyc3-config
+  namespace: yyc3
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+  LOG_LEVEL: "info"
+  ENABLE_ANALYTICS: "true"
+  ENABLE_AI_FEATURES: "true"
+  ENABLE_REALTIME: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: yyc3-secrets
+  namespace: yyc3
+type: Opaque
+stringData:
+  DATABASE_URL: "postgresql://yyc3user:$(POSTGRES_PASSWORD)@postgres:5432/yyc3db"
+  REDIS_URL: "redis://redis:6379"
+  JWT_SECRET: "your-jwt-secret-here"
+  ENCRYPTION_KEY: "your-encryption-key-here"
+  AI_API_KEY: "your-api-key-here"
+  SENTRY_DSN: "your-sentry-dsn-here"
+  POSTGRES_PASSWORD: "yyc3password"
+  REDIS_PASSWORD: "redis-password"

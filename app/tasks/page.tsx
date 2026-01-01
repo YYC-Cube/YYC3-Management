@@ -10,36 +10,32 @@ import { CheckSquare, Plus, Clock, AlertCircle, CheckCircle, User } from "lucide
 
 export default function TasksPage() {
   return (
-    <PageContainer>
+    <PageContainer title="任务管理" description="跟踪和管理团队任务进度">
       <div className="space-y-6">
-        {/* 页面标题 */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">任务管理</h1>
-            <p className="text-slate-600 mt-1">跟踪和管理团队任务进度</p>
-          </div>
-          <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-            <Plus className="w-4 h-4 mr-2" />
+        {/* 页面操作区 */}
+        <div className="flex items-center justify-end">
+          <EnhancedButton className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
+            <Plus className="w-4 h-4 mr-2 text-white" />
             新建任务
           </EnhancedButton>
         </div>
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总任务数</p>
                 <p className="text-2xl font-bold text-slate-800">156</p>
-                <p className="text-xs text-sky-600 mt-1">本月任务</p>
+                <p className="text-xs text-orange-600 mt-1">本月任务</p>
               </div>
-              <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                <CheckSquare className="w-6 h-6 text-sky-600" />
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <CheckSquare className="w-6 h-6 text-orange-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
@@ -52,20 +48,20 @@ export default function TasksPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-yellow-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">进行中</p>
                 <p className="text-2xl font-bold text-slate-800">45</p>
-                <p className="text-xs text-yellow-600 mt-1">正在处理</p>
+                <p className="text-xs text-orange-600 mt-1">正在处理</p>
               </div>
-              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <Clock className="w-6 h-6 text-yellow-600" />
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Clock className="w-6 h-6 text-orange-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-red-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">逾期任务</p>
@@ -131,7 +127,7 @@ export default function TasksPage() {
                 status: "逾期",
               },
             ].map((task, index) => (
-              <div key={index} className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+              <div key={index} className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-[2px_0_8px_rgba(249,115,22,0.1)]">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <h3 className="font-medium text-slate-800">{task.title}</h3>

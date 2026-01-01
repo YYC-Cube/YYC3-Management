@@ -1,3 +1,14 @@
+/**
+ * @fileoverview performance-optimization.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
@@ -288,10 +299,7 @@ export function PerformanceOptimization() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">性能优化中心</h1>
-          <p className="text-slate-600 mt-2">系统性能监控和优化管理</p>
-        </div>
+        <div></div>
         <div className="flex gap-2">
           <Button variant="outline">
             <Monitor className="w-4 h-4 mr-2" />
@@ -315,7 +323,7 @@ export function PerformanceOptimization() {
 
       {/* 优化进度 */}
       {isOptimizing && (
-        <Card className="bg-green-50 border-green-200 border-l-4 border-l-green-500 p-4">
+        <Card className="bg-green-50 border-green-200 border-r-[5px] border-r-green-500 p-4">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-green-900">正在优化系统性能</h3>
@@ -336,7 +344,7 @@ export function PerformanceOptimization() {
         {performanceMetrics.map((metric, index) => (
           <Card
             key={index}
-            className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4"
+            className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4"
           >
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-medium text-slate-900">{metric.name}</h3>
@@ -364,7 +372,7 @@ export function PerformanceOptimization() {
 
         <TabsContent value="metrics" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-2">
                   <Clock className="w-5 h-5 text-green-600" />
@@ -384,7 +392,7 @@ export function PerformanceOptimization() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-2">
                   <MemoryStick className="w-5 h-5 text-green-600" />
@@ -407,22 +415,22 @@ export function PerformanceOptimization() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4 text-center">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4 text-center">
               <Cpu className="w-8 h-8 text-green-500 mx-auto mb-2" />
               <h3 className="font-semibold">CPU使用率</h3>
               <p className="text-2xl font-bold text-green-600">45%</p>
             </Card>
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4 text-center">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4 text-center">
               <MemoryStick className="w-8 h-8 text-green-500 mx-auto mb-2" />
               <h3 className="font-semibold">内存使用</h3>
               <p className="text-2xl font-bold text-green-600">68%</p>
             </Card>
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4 text-center">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4 text-center">
               <HardDrive className="w-8 h-8 text-green-500 mx-auto mb-2" />
               <h3 className="font-semibold">磁盘使用</h3>
               <p className="text-2xl font-bold text-green-600">32%</p>
             </Card>
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4 text-center">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4 text-center">
               <Wifi className="w-8 h-8 text-green-500 mx-auto mb-2" />
               <h3 className="font-semibold">网络延迟</h3>
               <p className="text-2xl font-bold text-green-600">85ms</p>
@@ -435,7 +443,7 @@ export function PerformanceOptimization() {
             {optimizationFeatures.map((feature) => (
               <Card
                 key={feature.id}
-                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-green-500 p-4 group"
+                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 p-4 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -462,7 +470,7 @@ export function PerformanceOptimization() {
 
         <TabsContent value="monitoring" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
               <h3 className="text-lg font-semibold mb-4">实时性能监控</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -484,7 +492,7 @@ export function PerformanceOptimization() {
               </div>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
               <h3 className="text-lg font-semibold mb-4">错误监控</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -510,7 +518,7 @@ export function PerformanceOptimization() {
 
         <TabsContent value="analysis" className="space-y-4">
           <div className="grid gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
               <h3 className="text-lg font-semibold mb-4">性能分析报告</h3>
               <div className="space-y-4">
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg">

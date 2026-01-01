@@ -1,3 +1,14 @@
+/**
+ * @fileoverview touch-gestures.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
@@ -44,7 +55,7 @@ export function TouchGestures({
     const container = containerRef.current
     if (!container) return
 
-    let animationFrame: number
+    let animationFrame: number = 0
 
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0]

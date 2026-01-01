@@ -1,3 +1,14 @@
+/**
+ * @fileoverview 工具函数库
+ * @description 提供常用的工具函数和辅助方法
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -158,7 +169,8 @@ export function sanitizeHtml(html: string): string {
 export function parseQueryString(queryString: string): Record<string, string> {
   const params = new URLSearchParams(queryString)
   const result: Record<string, string> = {}
-  for (const [key, value] of params) {
+  // 使用Array.from()将URLSearchParams转换为数组进行迭代，避免downlevelIteration问题
+  for (const [key, value] of Array.from(params.entries())) {
     result[key] = value
   }
   return result

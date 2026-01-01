@@ -1,3 +1,14 @@
+/**
+ * @fileoverview store-management.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -61,7 +72,7 @@ export function StoreManagement() {
       monthlyRevenue: 850000,
       createdAt: new Date("2023-01-15"),
       lastActive: new Date(),
-      logo: "/images/jinlan-logo.png",
+      logo: "/yyc3-logo-blue.png",
     },
     {
       id: "2",
@@ -198,16 +209,16 @@ export function StoreManagement() {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="store-name">门店名称</Label>
-                <Input id="store-name" placeholder="输入门店名称" className="border-l-4 border-l-blue-500" />
+                <Input id="store-name" placeholder="输入门店名称" className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]" />
               </div>
               <div>
                 <Label htmlFor="store-address">门店地址</Label>
-                <Input id="store-address" placeholder="输入门店地址" className="border-l-4 border-l-blue-500" />
+                <Input id="store-address" placeholder="输入门店地址" className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]" />
               </div>
               <div>
                 <Label htmlFor="store-type">门店类型</Label>
                 <Select>
-                  <SelectTrigger className="border-l-4 border-l-blue-500">
+                  <SelectTrigger className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                     <SelectValue placeholder="选择门店类型" />
                   </SelectTrigger>
                   <SelectContent>
@@ -248,7 +259,7 @@ export function StoreManagement() {
                 placeholder="搜索门店名称或地址..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 border-l-4 border-l-blue-500"
+                className="pl-10 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
               />
             </div>
           </div>
@@ -257,7 +268,7 @@ export function StoreManagement() {
             {filteredStores.map((store) => (
               <Card
                 key={store.id}
-                className="p-4 border-l-4 border-l-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+                className="p-4 border-r-[5px] border-r-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -334,7 +345,7 @@ export function StoreManagement() {
             {employees.map((employee) => (
               <Card
                 key={employee.id}
-                className="p-4 border-l-4 border-l-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+                className="p-4 border-r-[5px] border-r-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -375,7 +386,7 @@ export function StoreManagement() {
 
         <TabsContent value="analytics" className="space-y-4">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="p-6 border-l-4 border-l-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <Card className="p-6 border-r-[5px] border-r-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">总门店数</p>
@@ -393,7 +404,7 @@ export function StoreManagement() {
               </div>
             </Card>
 
-            <Card className="p-6 border-l-4 border-l-blue-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <Card className="p-6 border-r-[5px] border-r-blue-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">总员工数</p>
@@ -411,7 +422,7 @@ export function StoreManagement() {
               </div>
             </Card>
 
-            <Card className="p-6 border-l-4 border-l-purple-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <Card className="p-6 border-r-[5px] border-r-purple-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">月总营收</p>
@@ -429,7 +440,7 @@ export function StoreManagement() {
               </div>
             </Card>
 
-            <Card className="p-6 border-l-4 border-l-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <Card className="p-6 border-r-[5px] border-r-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">营业门店</p>

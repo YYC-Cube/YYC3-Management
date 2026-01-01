@@ -1,9 +1,20 @@
+/**
+ * @fileoverview global-search.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import {
-  CommandDialog,
+  Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
@@ -11,6 +22,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Search, Users, CheckSquare, DollarSign, Target, Calendar, FileText, Zap } from "lucide-react"
 
@@ -147,69 +159,73 @@ export function GlobalSearch() {
         />
       </div>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="搜索功能、客户、任务..." value={query} onValueChange={setQuery} />
-        <CommandList>
-          <CommandEmpty>
-            <div className="py-6 text-center text-sm">
-              <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              {query ? "未找到相关结果" : "输入关键词开始搜索"}
-            </div>
-          </CommandEmpty>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="p-0 overflow-hidden">
+          <Command className="w-full max-w-2xl">
+            <CommandInput placeholder="搜索功能、客户、任务..." value={query} onValueChange={setQuery} />
+            <CommandList>
+              <CommandEmpty>
+                <div className="py-6 text-center text-sm">
+                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  {query ? "未找到相关结果" : "输入关键词开始搜索"}
+                </div>
+              </CommandEmpty>
 
-          {results.length > 0 && (
-            <>
-              <CommandGroup heading="搜索结果">
-                {results.map((result) => (
-                  <CommandItem
-                    key={result.id}
-                    value={result.title}
-                    onSelect={() => {
-                      setOpen(false)
-                      // 这里可以添加导航逻辑
-                      console.log("Navigate to:", result.url)
-                    }}
-                    className="flex items-center gap-3 p-3"
-                  >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100 text-sky-600">
-                      {getIcon(result.type)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">{result.title}</span>
-                        <Badge variant="secondary" className={`text-xs ${getTypeColor(result.type)}`}>
-                          {result.category}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground truncate">{result.description}</p>
-                    </div>
-                  </CommandItem>
-                ))}
+              {results.length > 0 && (
+                <>
+                  <CommandGroup heading="搜索结果">
+                    {results.map((result) => (
+                      <CommandItem
+                        key={result.id}
+                        value={result.title}
+                        onSelect={() => {
+                          setOpen(false)
+                          // 这里可以添加导航逻辑
+                          console.log("Navigate to:", result.url)
+                        }}
+                        className="flex items-center gap-3 p-3"
+                      >
+                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100 text-sky-600">
+                          {getIcon(result.type)}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">{result.title}</span>
+                            <Badge variant="secondary" className={`text-xs ${getTypeColor(result.type)}`}>
+                              {result.category}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground truncate">{result.description}</p>
+                        </div>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                  <CommandSeparator />
+                </>
+              )}
+
+              <CommandGroup heading="快速操作">
+                <CommandItem onSelect={() => setOpen(false)}>
+                  <Users className="mr-2 h-4 w-4" />
+                  <span>客户管理</span>
+                </CommandItem>
+                <CommandItem onSelect={() => setOpen(false)}>
+                  <CheckSquare className="mr-2 h-4 w-4" />
+                  <span>任务管理</span>
+                </CommandItem>
+                <CommandItem onSelect={() => setOpen(false)}>
+                  <DollarSign className="mr-2 h-4 w-4" />
+                  <span>财务管理</span>
+                </CommandItem>
+                <CommandItem onSelect={() => setOpen(false)}>
+                  <Target className="mr-2 h-4 w-4" />
+                  <span>OKR管理</span>
+                </CommandItem>
               </CommandGroup>
-              <CommandSeparator />
-            </>
-          )}
-
-          <CommandGroup heading="快速操作">
-            <CommandItem onSelect={() => setOpen(false)}>
-              <Users className="mr-2 h-4 w-4" />
-              <span>客户管理</span>
-            </CommandItem>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <CheckSquare className="mr-2 h-4 w-4" />
-              <span>任务管理</span>
-            </CommandItem>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <DollarSign className="mr-2 h-4 w-4" />
-              <span>财务管理</span>
-            </CommandItem>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <Target className="mr-2 h-4 w-4" />
-              <span>OKR管理</span>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
+            </CommandList>
+          </Command>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

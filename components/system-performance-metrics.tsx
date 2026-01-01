@@ -1,3 +1,14 @@
+/**
+ * @fileoverview system-performance-metrics.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -173,7 +184,7 @@ export function SystemPerformanceMetrics() {
       {/* 系统状态概览 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* CPU 使用率 */}
-        <Card className="border-l-4 border-l-blue-400">
+        <Card className="border-r-[5px] border-r-blue-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
@@ -200,7 +211,7 @@ export function SystemPerformanceMetrics() {
         </Card>
 
         {/* 内存使用率 */}
-        <Card className="border-l-4 border-l-green-400">
+        <Card className="border-r-[5px] border-r-green-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
@@ -227,7 +238,7 @@ export function SystemPerformanceMetrics() {
         </Card>
 
         {/* 磁盘使用率 */}
-        <Card className="border-l-4 border-l-orange-400">
+        <Card className="border-r-[5px] border-r-orange-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
@@ -254,7 +265,7 @@ export function SystemPerformanceMetrics() {
         </Card>
 
         {/* 网络流量 */}
-        <Card className="border-l-4 border-l-purple-400">
+        <Card className="border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">

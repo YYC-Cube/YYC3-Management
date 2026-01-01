@@ -1,3 +1,14 @@
+/**
+ * @fileoverview finance-module.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -112,7 +123,7 @@ export function FinanceModule() {
             <Download className="w-4 h-4 mr-2" />
             导出报表
           </Button>
-          <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+          <Button className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-r-4 border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)]">
             <Plus className="w-4 h-4 mr-2" />
             新增记录
           </Button>
@@ -121,7 +132,7 @@ export function FinanceModule() {
 
       {/* 财务概览卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-emerald-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-[4px_0_12px_rgba(16,185,129,0.15)] transition-all">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -129,12 +140,12 @@ export function FinanceModule() {
                 <p className="text-3xl font-bold text-emerald-600">¥{financeData.revenue.toLocaleString()}</p>
                 <p className="text-xs text-emerald-600 mt-1">+{financeData.growth}% vs 上月</p>
               </div>
-              <DollarSign className="w-8 h-8 text-emerald-400" />
+              <DollarSign className="w-8 h-8 text-emerald-500" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-red-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-[4px_0_12px_rgba(16,185,129,0.15)] transition-all">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -147,7 +158,7 @@ export function FinanceModule() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-sky-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -160,7 +171,7 @@ export function FinanceModule() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>

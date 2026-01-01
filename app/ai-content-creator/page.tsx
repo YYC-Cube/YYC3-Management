@@ -10,12 +10,14 @@ import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import Image from "next/image"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import {
   Wand2,
   Send,
   RefreshCw,
   Download,
-  Image,
+  Image as ImageIcon,
   Video,
   Globe,
   Settings,
@@ -29,6 +31,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
+import { PageContainer } from "@/components/layout/page-container"
 
 export default function AIContentCreatorPage() {
   const [activeTab, setActiveTab] = useState("create")
@@ -38,14 +41,14 @@ export default function AIContentCreatorPage() {
   const [platforms, setPlatforms] = useState(["wechat", "workwechat", "feishu", "dingtalk", "redbook"])
   const [isGenerating, setIsGenerating] = useState(false)
   const [isPublishing, setIsPublishing] = useState(false)
-  const [publishStatus, setPublishStatus] = useState({})
+  const [publishStatus, setPublishStatus] = useState<Record<string, { status: string; views?: number }>>({})
   const [history, setHistory] = useState([
     { id: 1, title: "夏季防晒指南", date: "2023-11-15", platforms: ["wechat", "redbook"], views: 2450 },
     { id: 2, title: "智能家居选购攻略", date: "2023-11-12", platforms: ["workwechat", "dingtalk"], views: 1870 },
     { id: 3, title: "冬季养生食谱", date: "2023-11-08", platforms: ["wechat", "redbook", "feishu"], views: 3120 },
   ])
 
-  const fileInputRef = useRef(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleGenerate = () => {
     if (!title.trim()) {
@@ -112,7 +115,10 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
     setPublishStatus({})
 
     // 模拟发布过程
-    const statusUpdates = {}
+    interface PublishStatus {
+      [platform: string]: { status: "processing" | "published" | "failed"; url?: string; views?: number }
+    }
+    const statusUpdates: PublishStatus = {}
     const platformNames = {
       wechat: "微信公众号",
       workwechat: "企业微信",
@@ -165,7 +171,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
     })
   }
 
-  const togglePlatform = (platform) => {
+  const togglePlatform = (platform: string) => {
     if (platforms.includes(platform)) {
       setPlatforms(platforms.filter((p) => p !== platform))
     } else {
@@ -177,60 +183,50 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
     fileInputRef.current?.click()
   }
 
-  const PlatformIcon = ({ platform, size = 24 }) => {
-    const iconProps = { size }
-
-    switch (platform) {
-      case "wechat":
-        return <Wechat {...iconProps} />
-      case "workwechat":
-        return <Wechat {...iconProps} />
-      case "feishu":
-        return <MessageSquare {...iconProps} />
-      case "dingtalk":
-        return <Smartphone {...iconProps} />
-      case "redbook":
-        return <Instagram {...iconProps} />
-      case "douyin":
-        return <Video {...iconProps} />
-      default:
-        return <Globe {...iconProps} />
-    }
-  }
-
-  const PlatformBadge = ({ platform }) => (
-    <Badge
-      variant={platforms.includes(platform) ? "default" : "outline"}
-      className="cursor-pointer hover:bg-primary/80"
-      onClick={() => togglePlatform(platform)}
-    >
-      <PlatformIcon platform={platform} size={16} className="mr-1" />
-      {platform === "wechat" && "公众号"}
-      {platform === "workwechat" && "企业微信"}
-      {platform === "feishu" && "飞书"}
-      {platform === "dingtalk" && "钉钉"}
-      {platform === "redbook" && "小红书"}
-      {platform === "douyin" && "抖音"}
-    </Badge>
+  const PlatformIcon = ({ platform, size = 20, className = "" }: { platform: string; size?: number; className?: string }) => (
+    <Image src={`/platforms/${platform}.png`} alt={platform} width={size} height={size} className={className || `w-${size/4} h-${size/4}`} />
   )
 
-  return (
-    <>
-      <div className="p-6 space-y-6">
-        {/* 页面标题 */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent flex items-center">
-              <Wand2 className="w-8 h-8 mr-3 text-indigo-600" />
-              AI创作助手
-            </h1>
-            <p className="text-slate-600 mt-2">
-              一键生成高质量内容，并同步推送到微信公众号、企业微信、飞书、小红书等平台
-            </p>
-          </div>
-        </div>
+  const PlatformBadge = ({ platform }: { platform: string }) => {
+    const name =
+      platform === "wechat"
+        ? "公众号"
+        : platform === "workwechat"
+          ? "企业微信"
+          : platform === "feishu"
+            ? "飞书"
+            : platform === "dingtalk"
+              ? "钉钉"
+              : platform === "redbook"
+                ? "小红书"
+                : platform === "douyin"
+                  ? "抖音"
+                  : platform
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+    const selected = platforms.includes(platform)
+
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Badge
+              variant={selected ? "default" : "outline"}
+              className={`group cursor-pointer transition-colors flex items-center gap-1 ${selected ? "hover:bg-primary/80" : "hover:bg-indigo-50"}`}
+              onClick={() => togglePlatform(platform)}
+            >
+              <PlatformIcon platform={platform} />
+              <span className={`${selected ? "ml-1" : "sr-only group-hover:not-sr-only ml-1"}`}>{name}</span>
+            </Badge>
+          </TooltipTrigger>
+          <TooltipContent>{name}</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  }
+
+  return (
+    <PageContainer title="AI创作助手" description="一键生成高质量内容，并同步推送到微信公众号、企业微信、飞书、小红书等平台">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="create" className="flex items-center gap-2">
               <Wand2 className="w-4 h-4" />
@@ -284,37 +280,48 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                     </div>
 
                     <div>
-                      <Label>内容类型</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-                          科普文章
-                        </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-                          产品评测
-                        </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-                          使用指南
-                        </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-                          行业分析
-                        </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-                          新闻资讯
-                        </Badge>
-                      </div>
+                    <Label>内容类型</Label>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
+                        科普文章
+                      </Badge>
+                      <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
+                        产品评测
+                      </Badge>
+                      <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
+                        使用指南
+                      </Badge>
+                      <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
+                        行业分析
+                      </Badge>
+                      <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
+                        新闻资讯
+                      </Badge>
                     </div>
+                  </div>
 
                     <div>
                       <Label>添加素材</Label>
                       <div className="flex gap-4 mt-2">
-                        <Button variant="outline" onClick={handleImageUpload}>
-                          <Image className="w-4 h-4 mr-2" /> 添加图片
+                        <Button
+                          variant="outline"
+                          className="py-3 px-4 border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200"
+                          aria-label="添加图片"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          <ImageIcon className="w-4 h-4 mr-2" />
+                          添加图片
                         </Button>
                         <input
                           ref={fileInputRef}
                           type="file"
                           accept="image/*"
                           className="hidden"
+                          id="image-upload"
+                          aria-hidden="true"
+                          aria-label="选择图片"
+                          title="选择图片"
+                          tabIndex={-1}
                           onChange={(e) => {
                             if (e.target.files?.[0]) {
                               toast({
@@ -324,8 +331,9 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                             }
                           }}
                         />
-                        <Button variant="outline">
-                          <Video className="w-4 h-4 mr-2" /> 添加视频
+                        <Button variant="outline" className="py-3 px-4 border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200">
+                          <Video className="w-4 h-4 mr-2" />
+                          添加视频
                         </Button>
                       </div>
                     </div>
@@ -333,16 +341,16 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                     <div>
                       <Label>内容风格</Label>
                       <div className="flex flex-wrap gap-2 mt-2">
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                        <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
                           专业严谨
                         </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                        <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
                           轻松活泼
                         </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                        <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
                           简洁明了
                         </Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                        <Badge variant="outline" className="cursor-pointer hover:bg-indigo-50 transition-colors">
                           情感丰富
                         </Badge>
                       </div>
@@ -350,7 +358,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
 
                     <div>
                       <Label>目标平台</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
+                      <div className="flex flex-wrap gap-2 mt-2 items-center">
                         {["wechat", "workwechat", "feishu", "dingtalk", "redbook", "douyin"].map((platform) => (
                           <PlatformBadge key={platform} platform={platform} />
                         ))}
@@ -359,7 +367,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
 
                     <Button
                       onClick={handleGenerate}
-                      className="w-full py-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
+                      className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"
                       disabled={isGenerating}
                     >
                       {isGenerating ? (
@@ -446,10 +454,10 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                     </div>
 
                     <div className="flex space-x-2">
-                      <Button variant="outline" className="flex-1 bg-transparent">
+                      <Button variant="outline" className="flex-1 py-3 px-4 border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200">
                         <Download className="w-4 h-4 mr-2" /> 导出为Markdown
                       </Button>
-                      <Button variant="outline" className="flex-1 bg-transparent">
+                      <Button variant="outline" className="flex-1 py-3 px-4 border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200">
                         <Download className="w-4 h-4 mr-2" /> 导出为PDF
                       </Button>
                     </div>
@@ -459,7 +467,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
               <CardFooter className="flex justify-end">
                 <Button
                   onClick={() => setActiveTab("publish")}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
+                  className="py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"
                 >
                   下一步：发布设置 <Send className="w-4 h-4 ml-2" />
                 </Button>
@@ -485,14 +493,14 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
                         {["wechat", "workwechat", "feishu", "dingtalk", "redbook", "douyin"].map((platform) => (
                           <div
-                            key={platform}
-                            className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                              platforms.includes(platform)
-                                ? "border-indigo-300 bg-indigo-50"
-                                : "border-gray-200 hover:bg-gray-50"
-                            }`}
-                            onClick={() => togglePlatform(platform)}
-                          >
+                          key={platform}
+                          className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                            platforms.includes(platform)
+                              ? "border-indigo-300 bg-indigo-50"
+                              : "border-gray-200 hover:bg-indigo-50"
+                          }`}
+                          onClick={() => togglePlatform(platform)}
+                        >
                             <div className="flex items-center space-x-3">
                               <div
                                 className={`p-2 rounded-full ${
@@ -605,7 +613,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                                 </div>
 
                                 {isPublished && (
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" size="sm" className="border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200">
                                     查看
                                   </Button>
                                 )}
@@ -618,7 +626,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       <div className="mt-6">
                         <Button
                           onClick={handlePublish}
-                          className="w-full py-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
+                          className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"
                           disabled={isPublishing || platforms.length === 0}
                         >
                           {isPublishing ? (
@@ -698,10 +706,12 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                           </div>
                         </CardContent>
                         <CardFooter className="flex justify-between">
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="py-2 px-3 border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-medium transition-all duration-200">
                             查看详情
                           </Button>
-                          <Button size="sm">再次发布</Button>
+                          <Button size="sm" className="py-2 px-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium transition-all duration-200">
+                            再次发布
+                          </Button>
                         </CardFooter>
                       </Card>
                     ))}
@@ -722,15 +732,14 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
               <p className="text-gray-600 mt-2">一键生成专业内容，多平台同步发布，提升你的内容影响力</p>
             </div>
             <Button
-              className="mt-4 md:mt-0 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
+              className="mt-4 md:mt-0 py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"
               onClick={() => setActiveTab("create")}
             >
               <Wand2 className="w-4 h-4 mr-2" /> 立即开始创作
             </Button>
           </div>
         </div>
-      </div>
       <FloatingNavButtons />
-    </>
+    </PageContainer>
   )
 }

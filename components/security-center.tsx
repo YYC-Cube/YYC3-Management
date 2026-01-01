@@ -1,3 +1,14 @@
+/**
+ * @fileoverview security-center.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -99,7 +110,7 @@ interface ThreatIntelligence {
   source: string
 }
 
-export function SecurityCenter() {
+export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   const [securityScore, setSecurityScore] = useState(85)
   const [events, setEvents] = useState<SecurityEvent[]>([])
   const [policies, setPolicies] = useState<SecurityPolicy[]>([])
@@ -455,7 +466,9 @@ export function SecurityCenter() {
       {/* 页面标题和操作 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">安全中心</h1>
+          {showTitle && (
+            <h1 className="text-3xl font-bold text-slate-900">安全中心</h1>
+          )}
           <p className="text-slate-600 mt-2">监控和管理系统安全状态</p>
         </div>
         <div className="flex items-center gap-3">
@@ -472,7 +485,7 @@ export function SecurityCenter() {
 
       {/* 安全概览 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-green-500">
+        <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -497,7 +510,7 @@ export function SecurityCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-red-500">
+        <Card className="border-r-[5px] border-r-red-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -517,7 +530,7 @@ export function SecurityCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-blue-500">
+        <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -535,7 +548,7 @@ export function SecurityCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-orange-500">
+        <Card className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -621,7 +634,7 @@ export function SecurityCenter() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"

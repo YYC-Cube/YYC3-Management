@@ -313,7 +313,7 @@ export default function SystemMonitorPage() {
           {systemMetrics.map((metric, index) => (
             <Card
               key={index}
-              className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-blue-500"
+              className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
             >
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
@@ -357,7 +357,7 @@ export default function SystemMonitorPage() {
         </div>
 
         {/* 自动刷新控制 */}
-        <Card className="responsive-card border-l-4 border-l-green-500">
+        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardHeader>
             <CardTitle className="text-base sm:text-lg flex items-center gap-2">
               <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
@@ -417,7 +417,7 @@ export default function SystemMonitorPage() {
               {systemServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-purple-500"
+                  className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                 >
                   <CardHeader>
                     <div className="flex items-center justify-between">
@@ -505,7 +505,7 @@ export default function SystemMonitorPage() {
           {/* 性能监控 */}
           <TabsContent value="performance" className="responsive-spacing">
             <div className="responsive-grid-2">
-              <Card className="responsive-card border-l-4 border-l-blue-500">
+              <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <Cpu className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
@@ -529,7 +529,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-green-500">
+              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <MemoryStick className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
@@ -553,7 +553,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-orange-500">
+              <Card className="responsive-card border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <HardDrive className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-600" />
@@ -577,7 +577,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-purple-500">
+              <Card className="responsive-card border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <Wifi className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-600" />
@@ -606,7 +606,7 @@ export default function SystemMonitorPage() {
           {/* 安全状态 */}
           <TabsContent value="security" className="responsive-spacing">
             <div className="responsive-grid-3">
-              <Card className="responsive-card border-l-4 border-l-green-500">
+              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
@@ -631,7 +631,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-yellow-500">
+              <Card className="responsive-card border-r-[5px] border-r-yellow-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-600" />
@@ -656,7 +656,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-blue-500">
+              <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
@@ -685,7 +685,7 @@ export default function SystemMonitorPage() {
 
           {/* 系统日志 */}
           <TabsContent value="logs" className="responsive-spacing">
-            <Card className="responsive-card border-l-4 border-l-indigo-500">
+            <Card className="responsive-card border-r-[5px] border-r-indigo-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-indigo-600" />
@@ -740,7 +740,7 @@ export default function SystemMonitorPage() {
           {/* 监控报告 */}
           <TabsContent value="reports" className="responsive-spacing">
             <div className="responsive-grid-2">
-              <Card className="responsive-card border-l-4 border-l-green-500">
+              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
@@ -774,7 +774,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-l-4 border-l-purple-500">
+              <Card className="responsive-card border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-600" />
@@ -807,7 +807,7 @@ export default function SystemMonitorPage() {
         </Tabs>
 
         {/* 告警信息 */}
-        <Card className="responsive-card border-l-4 border-l-red-500">
+        <Card className="responsive-card border-r-[5px] border-r-red-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardHeader>
             <CardTitle className="text-base sm:text-lg flex items-center">
               <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-600" />

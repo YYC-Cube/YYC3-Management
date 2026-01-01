@@ -9,7 +9,7 @@ export default function AIAssistantPage() {
     <>
       <PageContainer title="AI智能助手" description="智能业务助手，提供数据分析和决策支持">
         <div className="min-h-screen">
-          <AIAssistant />
+          <AIAssistant showTitle={false} />
         </div>
       </PageContainer>
       <FloatingNavButtons />

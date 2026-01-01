@@ -1,12 +1,37 @@
 {
-  "name": "enterprise-management-system",
+  "name": "yyc3-mana",
   "version": "1.0.0",
+  "description": "YYC³ - 企业智能管理系统，集成AI助手、客户管理、任务管理等功能",
+  "author": "YYC³ <admin@0379.email>",
+  "license": "MIT",
   "private": true,
+  "homepage": "https://github.com/yyc3/yyc3-mana#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yyc3/yyc3-mana.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yyc3/yyc3-mana/issues"
+  },
+  "keywords": [
+    "yyc3",
+    "enterprise",
+    "management",
+    "ai-assistant",
+    "crm",
+    "typescript",
+    "nextjs"
+  ],
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 3200",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start -p 3200",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "latest",
@@ -22,7 +47,7 @@
     "@radix-ui/react-select": "latest",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slider": "latest",
-    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-switch": "latest",
     "@radix-ui/react-tabs": "latest",
     "@radix-ui/react-toast": "latest",
@@ -34,28 +59,44 @@
     "date-fns": "^3.6.0",
     "framer-motion": "^11.0.24",
     "lucide-react": "^0.454.0",
-    "next": "14.2.32",
+    "next": "^14.2.35",
     "next-themes": "latest",
+    "pg": "^8.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
     "recharts": "latest",
+    "redis": "^5.10.0",
     "sonner": "^1.4.41",
+    "sucrase": "^3.35.1",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "ts-interface-checker": "^1.0.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/benchmark": "^2.1.5",
     "@types/node": "^22",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.22",
+    "@types/testing-library__react": "^10.0.1",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "autoprefixer": "^10.4.19",
+    "benchmark": "^2.1.4",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.1.4",
+    "eslint-config-next": "^16.1.1",
+    "jsdom": "^27.3.0",
     "postcss": "^8.5",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.16"
   }
 }

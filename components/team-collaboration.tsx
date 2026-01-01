@@ -1,3 +1,14 @@
+/**
+ * @fileoverview team-collaboration.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -272,7 +283,7 @@ export function TeamCollaboration() {
 
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -285,7 +296,7 @@ export function TeamCollaboration() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -298,7 +309,7 @@ export function TeamCollaboration() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -313,7 +324,7 @@ export function TeamCollaboration() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-amber-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-amber-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>

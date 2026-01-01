@@ -1,3 +1,14 @@
+/**
+ * @fileoverview dashboard-realtime-data.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -31,6 +42,7 @@ interface ChartData {
   orders?: number
   customers?: number
   growth?: number
+  [key: string]: any
 }
 
 export function DashboardRealtimeData() {
@@ -107,7 +119,7 @@ export function DashboardRealtimeData() {
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
           <p className="font-medium">{label}</p>
           {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-sm" style={{ color: entry.color }}>
+            <p key={index} className="text-sm" style={{ ['--entry-color' as any]: entry.color, color: 'var(--entry-color)' } as React.CSSProperties}>
               {entry.name}: {typeof entry.value === "number" ? entry.value.toLocaleString() : entry.value}
             </p>
           ))}
@@ -118,7 +130,7 @@ export function DashboardRealtimeData() {
   }
 
   return (
-    <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+    <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
       <CardHeader>
         <CardTitle className="text-lg flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -180,7 +192,7 @@ export function DashboardRealtimeData() {
               </div>
             </div>
 
-            <div className="h-80">
+            <div className="h-80 min-w-0">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={realtimeData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -210,7 +222,7 @@ export function DashboardRealtimeData() {
           </TabsContent>
 
           <TabsContent value="sales" className="space-y-4">
-            <div className="h-80">
+            <div className="h-80 min-w-0">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={salesData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -239,7 +251,7 @@ export function DashboardRealtimeData() {
           </TabsContent>
 
           <TabsContent value="customers" className="space-y-4">
-            <div className="h-80">
+            <div className="h-80 min-w-0">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={customerData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -273,7 +285,7 @@ export function DashboardRealtimeData() {
 
           <TabsContent value="categories" className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="h-80">
+              <div className="h-80 min-w-0">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -281,7 +293,7 @@ export function DashboardRealtimeData() {
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="value"
@@ -302,7 +314,7 @@ export function DashboardRealtimeData() {
                     <div className="flex items-center gap-3">
                       <div
                         className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                        style={{ ['--category-color' as any]: COLORS[index % COLORS.length], backgroundColor: 'var(--category-color)' } as React.CSSProperties}
                       ></div>
                       <span className="font-medium">{item.name}</span>
                     </div>

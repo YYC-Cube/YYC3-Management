@@ -10,21 +10,18 @@ import { DollarSign, TrendingUp, TrendingDown, Wallet, Receipt, Plus } from "luc
 
 export default function FinancePage() {
   return (
-    <PageContainer>
+    <PageContainer title="财务管理" description="管理企业财务收支和预算">
       <div className="space-y-6">
-        {/* 页面标题 */}
+        {/* 页面操作区 */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">财务管理</h1>
-            <p className="text-slate-600 mt-1">管理企业财务收支和预算</p>
-          </div>
+          <div></div>
           <div className="flex gap-2">
             <EnhancedButton variant="outline">
               <Receipt className="w-4 h-4 mr-2" />
               生成报表
             </EnhancedButton>
-            <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-              <Plus className="w-4 h-4 mr-2" />
+            <EnhancedButton className="bg-emerald-600 hover:bg-emerald-700 border-r-4 border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)]">
+              <Plus className="w-4 h-4 mr-2 text-white" />
               新增记录
             </EnhancedButton>
           </div>
@@ -32,20 +29,20 @@ export default function FinancePage() {
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)] hover:border-r-emerald-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总收入</p>
                 <p className="text-2xl font-bold text-slate-800">¥2,456,789</p>
-                <p className="text-xs text-green-600 mt-1">↑ 12% 较上月</p>
+                <p className="text-xs text-emerald-600 mt-1">↑ 12% 较上月</p>
               </div>
-              <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-sky-600" />
+              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-6 h-6 text-emerald-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-red-500">
+          <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)] hover:border-r-emerald-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总支出</p>
@@ -58,35 +55,35 @@ export default function FinancePage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)] hover:border-r-emerald-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">净利润</p>
                 <p className="text-2xl font-bold text-slate-800">¥1,222,222</p>
-                <p className="text-xs text-green-600 mt-1">↑ 15% 较上月</p>
+                <p className="text-xs text-emerald-600 mt-1">↑ 15% 较上月</p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                <DollarSign className="w-6 h-6 text-emerald-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-purple-500">
+          <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)] hover:border-r-emerald-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">账户余额</p>
                 <p className="text-2xl font-bold text-slate-800">¥3,456,789</p>
-                <p className="text-xs text-purple-600 mt-1">可用资金</p>
+                <p className="text-xs text-emerald-600 mt-1">可用资金</p>
               </div>
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Wallet className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                <Wallet className="w-6 h-6 text-emerald-600" />
               </div>
             </div>
           </EnhancedCard>
         </div>
 
         {/* 财务图表 */}
-        <EnhancedCard>
+        <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)]">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-800">收支趋势</h2>
             <div className="flex gap-2">
@@ -106,7 +103,7 @@ export default function FinancePage() {
 
         {/* 最近交易 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <EnhancedCard>
+          <EnhancedCard className="border-r-[5px] border-r-emerald-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)]">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-slate-800">最近收入</h2>
               <EnhancedButton variant="outline" size="sm">

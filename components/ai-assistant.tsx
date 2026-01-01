@@ -1,3 +1,14 @@
+/**
+ * @fileoverview AI智能助手组件
+ * @description 提供多模型AI对话、业务分析、智能洞察等功能
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useRef, useEffect } from "react"
@@ -47,7 +58,11 @@ interface QuickAction {
   action: () => void
 }
 
-export function AIAssistant() {
+interface AIAssistantProps {
+  showTitle?: boolean
+}
+
+export function AIAssistant({ showTitle = true }: AIAssistantProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -283,7 +298,9 @@ export function AIAssistant() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-sky-50/30 p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">AI智能助手</h1>
+          {showTitle && (
+            <h1 className="text-2xl font-bold text-slate-900">AI智能助手</h1>
+          )}
           <p className="text-slate-600 mt-2">支持本地和云端多种大模型的智能业务分析系统</p>
         </div>
         <div className="flex items-center gap-2">
@@ -309,7 +326,7 @@ export function AIAssistant() {
         <TabsContent value="chat" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             <div className="lg:col-span-3">
-              <Card className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 h-[600px] flex flex-col">
+              <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 h-[600px] flex flex-col">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2">
                     <Bot className="w-5 h-5 text-purple-600" />
@@ -418,7 +435,7 @@ export function AIAssistant() {
             </div>
 
             <div className="space-y-4">
-              <Card className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
+              <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
                 <h3 className="font-semibold text-slate-900 mb-3">模型选择</h3>
                 <Select value={selectedModel} onValueChange={setSelectedModel}>
                   <SelectTrigger className="border-purple-200 focus:ring-purple-500">
@@ -445,7 +462,7 @@ export function AIAssistant() {
                 )}
               </Card>
 
-              <Card className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
+              <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
                 <h3 className="font-semibold text-slate-900 mb-3">快速设置</h3>
                 <div className="space-y-4">
                   <div>
@@ -493,7 +510,7 @@ export function AIAssistant() {
             {insights.map((insight) => (
               <Card
                 key={insight.id}
-                className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 group"
+                className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 group"
               >
                 <div className="flex items-start gap-3">
                   <div
@@ -530,7 +547,7 @@ export function AIAssistant() {
             {quickActions.map((action) => (
               <Card
                 key={action.id}
-                className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 cursor-pointer group"
+                className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 cursor-pointer group"
               >
                 <div className="flex items-start gap-3" onClick={action.action}>
                   <div className="p-2 bg-purple-100 rounded-lg">
@@ -552,7 +569,7 @@ export function AIAssistant() {
 
         <TabsContent value="settings" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="border-l-4 border-l-green-400 bg-white/80 backdrop-blur-sm border border-green-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+            <Card className="border-r-[5px] border-r-green-400 bg-white/80 backdrop-blur-sm border border-green-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-4">本地模型</h3>
               <div className="space-y-4">
                 {getModelsByType("local").map((model) => (
@@ -577,7 +594,7 @@ export function AIAssistant() {
               </div>
             </Card>
 
-            <Card className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+            <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-4">云端模型</h3>
               <div className="space-y-4">
                 {getModelsByType("cloud").map((model) => (
@@ -603,7 +620,7 @@ export function AIAssistant() {
             </Card>
           </div>
 
-          <Card className="border-l-4 border-l-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+          <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
             <h3 className="text-lg font-semibold text-slate-900 mb-4">模型能力对比</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">

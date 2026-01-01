@@ -29,7 +29,7 @@ export default function HelpLoading() {
       </Card>
 
       {/* 快速链接骨架 */}
-      <div className={cn(commonStyles.layout.grid.cols4, "mb-8")}>
+      <div className={cn(commonStyles.layout.grid, "grid-cols-4", "mb-8")}>
         {Array.from({ length: 4 }).map((_, index) => (
           <Card key={index} className={commonStyles.card.base}>
             <CardHeader className="pb-3">

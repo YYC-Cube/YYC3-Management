@@ -28,7 +28,7 @@ export default function ApprovalPage() {
 
           {/* 统计卡片 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <EnhancedCard className="border-l-4 border-l-sky-500">
+            <EnhancedCard className="border-r-[5px] border-r-sky-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">待审批</p>
@@ -41,7 +41,7 @@ export default function ApprovalPage() {
               </div>
             </EnhancedCard>
 
-            <EnhancedCard className="border-l-4 border-l-green-500">
+            <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">已通过</p>
@@ -54,7 +54,7 @@ export default function ApprovalPage() {
               </div>
             </EnhancedCard>
 
-            <EnhancedCard className="border-l-4 border-l-red-500">
+            <EnhancedCard className="border-r-[5px] border-r-red-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">已拒绝</p>
@@ -67,7 +67,7 @@ export default function ApprovalPage() {
               </div>
             </EnhancedCard>
 
-            <EnhancedCard className="border-l-4 border-l-purple-500">
+            <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">总申请</p>

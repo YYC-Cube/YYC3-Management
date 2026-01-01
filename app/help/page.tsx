@@ -209,7 +209,7 @@ export default function HelpPage() {
         </div>
 
         {/* 搜索框 */}
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500 p-6">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
           <div className="flex items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
@@ -229,7 +229,7 @@ export default function HelpPage() {
           {quickLinks.map((link, index) => (
             <Card
               key={index}
-              className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-blue-500 cursor-pointer group"
+              className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 cursor-pointer group"
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -272,7 +272,7 @@ export default function HelpPage() {
 
           {/* 常见问题 */}
           <TabsContent value="faq">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader className="p-6 border-b border-sky-100">
                 <CardTitle className="flex items-center gap-2 text-slate-800">
                   <HelpCircle className="h-5 w-5 text-blue-600" />
@@ -285,7 +285,7 @@ export default function HelpPage() {
                   {faqData.map((faq, index) => (
                     <Card
                       key={index}
-                      className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500"
+                      className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                     >
                       <CardContent className="p-4">
                         <div className="space-y-3">
@@ -316,7 +316,7 @@ export default function HelpPage() {
           {/* 使用指南 */}
           <TabsContent value="guides">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+              <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader className="p-6 border-b border-sky-100">
                   <CardTitle className="flex items-center gap-2 text-slate-800">
                     <BookOpen className="h-5 w-5 text-blue-600" />
@@ -365,7 +365,7 @@ export default function HelpPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+              <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
                 <CardHeader className="p-6 border-b border-sky-100">
                   <CardTitle className="flex items-center gap-2 text-slate-800">
                     <Settings className="h-5 w-5 text-blue-600" />
@@ -407,7 +407,7 @@ export default function HelpPage() {
 
           {/* 资源下载 */}
           <TabsContent value="resources">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader className="p-6 border-b border-sky-100">
                 <CardTitle className="flex items-center gap-2 text-slate-800">
                   <Download className="h-5 w-5 text-blue-600" />
@@ -420,7 +420,7 @@ export default function HelpPage() {
                   {resources.map((resource, index) => (
                     <Card
                       key={index}
-                      className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-blue-500 group"
+                      className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 group"
                     >
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
@@ -466,7 +466,7 @@ export default function HelpPage() {
               {contactMethods.map((method, index) => (
                 <Card
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-l-4 border-l-blue-500"
+                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                 >
                   <CardHeader className="text-center">
                     <div
@@ -485,7 +485,7 @@ export default function HelpPage() {
             </div>
 
             {/* 反馈表单 */}
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-l-4 border-l-blue-500">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader className="p-6 border-b border-sky-100">
                 <CardTitle className="text-slate-800">意见反馈</CardTitle>
                 <CardDescription className="text-slate-600">如果您有任何建议或问题，请告诉我们</CardDescription>

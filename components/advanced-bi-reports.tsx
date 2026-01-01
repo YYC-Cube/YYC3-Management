@@ -1,3 +1,14 @@
+/**
+ * @fileoverview advanced-bi-reports.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -37,6 +48,40 @@ interface ReportTemplate {
   isCustom: boolean
 }
 
+// 销售趋势图数据接口
+interface SalesTrendData {
+  name: string
+  sales: number
+  target: number
+  growth: number
+}
+
+// 产品分类数据接口
+interface CategoryData {
+  name: string
+  value: number
+  sales: number
+  growth: number
+  color: string
+}
+
+// 客户满意度数据接口
+interface SatisfactionData {
+  subject: string
+  A: number
+  B: number
+  fullMark: number
+}
+
+// 财务数据接口
+interface FinanceData {
+  name: string
+  revenue: number
+  cost: number
+  profit: number
+}
+
+// 通用图表数据接口
 interface ChartData {
   name: string
   value: number
@@ -83,7 +128,7 @@ export function AdvancedBIReports() {
   ]
 
   // 销售数据
-  const salesData: ChartData[] = [
+  const salesData: SalesTrendData[] = [
     { name: "1月", sales: 65000, target: 60000, growth: 8.3 },
     { name: "2月", sales: 72000, target: 65000, growth: 10.8 },
     { name: "3月", sales: 68000, target: 70000, growth: -2.9 },
@@ -102,7 +147,7 @@ export function AdvancedBIReports() {
   ]
 
   // 客户满意度数据
-  const satisfactionData: ChartData[] = [
+  const satisfactionData: SatisfactionData[] = [
     { subject: "产品质量", A: 85, B: 90, fullMark: 100 },
     { subject: "服务态度", A: 92, B: 88, fullMark: 100 },
     { subject: "配送速度", A: 78, B: 85, fullMark: 100 },
@@ -112,7 +157,7 @@ export function AdvancedBIReports() {
   ]
 
   // 财务数据
-  const financeData: ChartData[] = [
+  const financeData: FinanceData[] = [
     { name: "1月", revenue: 850000, cost: 620000, profit: 230000 },
     { name: "2月", revenue: 920000, cost: 680000, profit: 240000 },
     { name: "3月", revenue: 880000, cost: 650000, profit: 230000 },
@@ -246,7 +291,7 @@ export function AdvancedBIReports() {
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                     >
                       {categoryData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />

@@ -1,6 +1,17 @@
+/**
+ * @fileoverview wechat-menu-sync.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -37,7 +48,7 @@ interface WeChatMenuConfig {
   id: string
   name: string
   url: string
-  type: "click" | "view"
+  type: "click" | "view" | "miniprogram" | "scancode_push" | "scancode_waitmsg" | "pic_sysphoto" | "pic_photo_or_album" | "pic_weixin" | "location_select"
   parentId?: string
   sort: number
   isActive: boolean
@@ -355,7 +366,7 @@ export function WeChatMenuSync() {
   }
 
   // 编辑表单输入变化
-  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setEditedMenu((prev) => ({ ...prev, [name]: value }))
   }
@@ -405,7 +416,7 @@ export function WeChatMenuSync() {
                     placeholder="输入微信公众号AppID"
                     value={wechatConfig.appId}
                     onChange={(e) => setWechatConfig({ ...wechatConfig, appId: e.target.value })}
-                    className="border-l-4 border-l-green-500"
+                    className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                   />
                 </div>
                 <div>
@@ -416,7 +427,7 @@ export function WeChatMenuSync() {
                     placeholder="输入微信公众号AppSecret"
                     value={wechatConfig.appSecret}
                     onChange={(e) => setWechatConfig({ ...wechatConfig, appSecret: e.target.value })}
-                    className="border-l-4 border-l-green-500"
+                    className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                   />
                 </div>
                 <div className="flex items-center space-x-2">
@@ -448,7 +459,7 @@ export function WeChatMenuSync() {
       </div>
 
       {/* 同步状态卡片 */}
-      <Card className="p-6 border-l-4 border-l-green-500">
+      <Card className="p-6 border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
@@ -490,7 +501,7 @@ export function WeChatMenuSync() {
         </div>
 
         {!wechatConfig.isConfigured && (
-          <Alert className="border-l-4 border-l-orange-500">
+          <Alert className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>请先配置微信公众号信息才能使用同步功能</AlertDescription>
           </Alert>
@@ -507,7 +518,7 @@ export function WeChatMenuSync() {
 
         <TabsContent value="menu-config" className="space-y-6">
           {/* 添加新菜单项 */}
-          <Card className="p-6 border-l-4 border-l-blue-500">
+          <Card className="p-6 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <h3 className="text-lg font-semibold mb-4">添加菜单项</h3>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
@@ -517,7 +528,7 @@ export function WeChatMenuSync() {
                   placeholder="最多4个字符（一级菜单）"
                   value={newMenuItem.name}
                   onChange={(e) => setNewMenuItem({ ...newMenuItem, name: e.target.value.substring(0, 4) })}
-                  className="border-l-4 border-l-blue-500"
+                  className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                 />
                 <p className="text-xs text-slate-500 mt-1">仅支持中英文和数字，字数不超过4个</p>
               </div>
@@ -528,7 +539,7 @@ export function WeChatMenuSync() {
                   placeholder="请带上http头"
                   value={newMenuItem.url}
                   onChange={(e) => setNewMenuItem({ ...newMenuItem, url: e.target.value })}
-                  className="border-l-4 border-l-blue-500"
+                  className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                 />
               </div>
             </div>
@@ -545,7 +556,7 @@ export function WeChatMenuSync() {
           </Card>
 
           {/* 菜单列表 */}
-          <Card className="p-6 border-l-4 border-l-purple-500">
+          <Card className="p-6 border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <h3 className="text-lg font-semibold mb-4">当前菜单配置</h3>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
@@ -582,7 +593,7 @@ export function WeChatMenuSync() {
                                 name="name"
                                 value={editedMenu.name || ""}
                                 onChange={handleEditChange}
-                                className="w-full border-l-4 border-l-purple-500"
+                                className="w-full border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                               />
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
@@ -590,7 +601,7 @@ export function WeChatMenuSync() {
                                 name="type"
                                 value={editedMenu.type || "view"}
                                 onChange={handleEditChange}
-                                className="w-full border-l-4 border-l-purple-500"
+                                className="w-full border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                               >
                                 <option value="view">链接</option>
                                 <option value="click">点击</option>
@@ -601,7 +612,7 @@ export function WeChatMenuSync() {
                                 name="url"
                                 value={editedMenu.url || ""}
                                 onChange={handleEditChange}
-                                className="w-full border-l-4 border-l-purple-500"
+                                className="w-full border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
                               />
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
@@ -693,7 +704,7 @@ export function WeChatMenuSync() {
         </TabsContent>
 
         <TabsContent value="preview">
-          <Card className="p-6 border-l-4 border-l-amber-500">
+          <Card className="p-6 border-r-[5px] border-r-amber-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <h3 className="text-lg font-semibold mb-4">微信菜单预览</h3>
             <WeChatMenuPreview />
             <div className="mt-4 text-center text-sm text-gray-500">

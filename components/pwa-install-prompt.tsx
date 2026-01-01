@@ -1,3 +1,14 @@
+/**
+ * @fileoverview pwa-install-prompt.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -42,7 +53,7 @@ export function PWAInstallPrompt() {
       if ("serviceWorker" in navigator && "Notification" in window) {
         new Notification("JINLAN 企业管理系统", {
           body: "应用已成功安装到您的设备！",
-          icon: "/images/jinlan-logo-new.png",
+          icon: "/yyc3-pwa-icon.png",
         })
       }
     }
@@ -106,7 +117,7 @@ export function PWAInstallPrompt() {
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <img src="/images/jinlan-logo-new.png" alt="锦澜家居" className="w-8 h-8 object-contain" />
+              <img src="/yyc3-pwa-icon.png" alt="YYC³" className="w-8 h-8 object-contain" />
               <div>
                 <CardTitle className="text-sm font-semibold text-slate-800">安装应用</CardTitle>
                 <CardDescription className="text-xs text-slate-600">获得更好的使用体验</CardDescription>

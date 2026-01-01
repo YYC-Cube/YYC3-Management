@@ -24,6 +24,10 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
+    --success: 120 61% 50%;
+    --success-foreground: 210 40% 98%;
+    --warning: 45 92% 50%;
+    --warning-foreground: 222.2 84% 4.9%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -791,3 +795,43 @@
     max-width: 300px;
   }
 }
+
+/* 自定义动画延迟类 */
+.animate-bounce-0 {
+  animation: bounce 1s infinite;
+  animation-delay: 0ms;
+}
+
+.animate-bounce-150 {
+  animation: bounce 1s infinite;
+  animation-delay: 150ms;
+}
+
+.animate-bounce-300 {
+  animation: bounce 1s infinite;
+  animation-delay: 300ms;
+}
+
+/* 调整大小手柄样式 */
+.resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.1) 50%);
+}
+
+/* 支持动态 CSS 变量的样式 */
+[style*="--widget-"] {
+  /* AI Widget 动态定位 */
+}
+
+[style*="--project-"] {
+  /* Project 卡片动态主题 */
+}
+
+[style*="--theme-shadow"] {
+  /* Sidebar 动态阴影 */
+}
+
+[style*="--entry-color"],
+[style*="--category-color"] {
+  /* Chart 动态颜色 */
+}
+

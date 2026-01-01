@@ -10,36 +10,32 @@ import { Users, UserPlus, Search, Filter, TrendingUp, Star, Phone, Mail } from "
 
 export default function CustomersPage() {
   return (
-    <PageContainer>
+    <PageContainer title="客户管理" description="管理和维护客户关系">
       <div className="space-y-6">
-        {/* 页面标题 */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">客户管理</h1>
-            <p className="text-slate-600 mt-1">管理和维护客户关系</p>
-          </div>
-          <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-            <UserPlus className="w-4 h-4 mr-2" />
+        {/* 页面操作区 */}
+        <div className="flex items-center justify-end">
+          <EnhancedButton className="bg-green-600 hover:bg-green-700 border-r-4 border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)]">
+            <UserPlus className="w-4 h-4 mr-2 text-white" />
             新增客户
           </EnhancedButton>
         </div>
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总客户数</p>
                 <p className="text-2xl font-bold text-slate-800">1,234</p>
                 <p className="text-xs text-green-600 mt-1">↑ 12% 较上月</p>
               </div>
-              <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                <Users className="w-6 h-6 text-sky-600" />
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-green-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">活跃客户</p>
@@ -52,7 +48,7 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-yellow-500">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">VIP客户</p>
@@ -65,15 +61,15 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-purple-500">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">新增客户</p>
                 <p className="text-2xl font-bold text-slate-800">45</p>
-                <p className="text-xs text-purple-600 mt-1">本月新增</p>
+                <p className="text-xs text-green-600 mt-1">本月新增</p>
               </div>
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <UserPlus className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <UserPlus className="w-6 h-6 text-green-600" />
               </div>
             </div>
           </EnhancedCard>
@@ -122,7 +118,7 @@ export default function CustomersPage() {
             ].map((customer, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+                className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-green-500 shadow-[2px_0_8px_rgba(34,197,94,0.1)]"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">

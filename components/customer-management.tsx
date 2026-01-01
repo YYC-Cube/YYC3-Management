@@ -1,3 +1,14 @@
+/**
+ * @fileoverview 客户管理组件
+ * @description 客户信息管理、生命周期跟踪等功能
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -148,7 +159,7 @@ export function CustomerManagement() {
           </div>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700">
+              <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 border-r-4 border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)]">
                 <Plus className="w-4 h-4 mr-2" />
                 添加客户
               </Button>
@@ -219,54 +230,54 @@ export function CustomerManagement() {
 
       {/* 客户统计卡片 - 严格执行统一规范 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-emerald-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)] transition-all">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">客户总数</p>
-                <p className="text-3xl font-bold text-emerald-600">{totalCustomers}</p>
+                <p className="text-3xl font-bold text-green-600">{totalCustomers}</p>
                 <p className="text-xs text-gray-500 mt-1">全部客户数量</p>
               </div>
-              <Users className="w-8 h-8 text-emerald-400" />
+              <Users className="w-8 h-8 text-green-500" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-sky-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)] transition-all">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">活跃客户</p>
-                <p className="text-3xl font-bold text-sky-600">{activeCustomers}</p>
+                <p className="text-3xl font-bold text-green-600">{activeCustomers}</p>
                 <p className="text-xs text-gray-500 mt-1">正在合作的客户</p>
               </div>
-              <UserPlus className="w-8 h-8 text-sky-400" />
+              <UserPlus className="w-8 h-8 text-green-500" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)] transition-all">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">潜在客户</p>
-                <p className="text-3xl font-bold text-purple-600">{potentialCustomers}</p>
+                <p className="text-3xl font-bold text-green-600">{potentialCustomers}</p>
                 <p className="text-xs text-gray-500 mt-1">有合作意向的客户</p>
               </div>
-              <TrendingUp className="w-8 h-8 text-purple-400" />
+              <TrendingUp className="w-8 h-8 text-green-500" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-amber-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)] transition-all">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">客户总价值</p>
-                <p className="text-3xl font-bold text-amber-600">¥{totalValue.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-green-600">¥{totalValue.toLocaleString()}</p>
                 <p className="text-xs text-gray-500 mt-1">预估总价值</p>
               </div>
-              <DollarSign className="w-8 h-8 text-amber-400" />
+              <DollarSign className="w-8 h-8 text-green-500" />
             </div>
           </CardContent>
         </Card>
@@ -275,13 +286,13 @@ export function CustomerManagement() {
       {/* 客户列表和详情 - 蓝色分区边线 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <Card className="border-t-4 border-t-blue-400">
+          <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)]">
             <CardHeader>
               <CardTitle>客户列表</CardTitle>
               <CardDescription>管理您的客户信息</CardDescription>
             </CardHeader>
             <CardContent>
-              <Card className="border-t-4 border-t-blue-400 mb-4">
+              <Card className="border-r-4 border-r-green-500 shadow-[2px_0_8px_rgba(34,197,94,0.1)] mb-4">
                 <CardContent className="p-4">
                   <div className="flex items-center space-x-4">
                     <Select>

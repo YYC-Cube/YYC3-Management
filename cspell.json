@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "CCPA",
+    "ccpa",
+    "psychographics",
+    "touchpoints",
+    "dropoff",
+    "hotspots",
+    "coldspots",
+    "Hotjar",
+    "ZHIPU",
+    "zhipu",
+    "NEXTAUTH",
+    "nextauth"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    ".next",
+    "dist",
+    "build",
+    ".git",
+    "*.lock",
+    "*.log"
+  ],
+  "dictionaries": [
+    "en-US"
+  ]
+}

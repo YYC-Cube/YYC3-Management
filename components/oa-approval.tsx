@@ -1,3 +1,14 @@
+/**
+ * @fileoverview oa-approval.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -258,7 +269,7 @@ export function OAApproval() {
         {stats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <Card key={index} className="border-l-4 border-l-sky-400 hover:shadow-md transition-shadow">
+            <Card key={index} className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -281,7 +292,7 @@ export function OAApproval() {
       </div>
 
       {/* 主要内容区域 */}
-      <Card className={commonStyles.card}>
+      <Card className={commonStyles.card.base}>
         <CardHeader className="border-b border-sky-100 bg-gradient-to-r from-sky-50/50 to-blue-50/30">
           <div className="flex items-center justify-between">
             <div>
@@ -433,9 +444,7 @@ export function OAApproval() {
                               <Badge variant="outline" className={getPriorityColor(item.priority)}>
                                 {getPriorityLabel(item.priority)}
                               </Badge>
-                              <Badge
-                                className={`${statusStyle.bgColor} ${statusStyle.color} border ${statusStyle.borderColor}`}
-                              >
+                              <Badge className={statusStyle.color}>
                                 {statusStyle.label}
                               </Badge>
                             </div>
@@ -542,7 +551,7 @@ export function OAApproval() {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {["pending", "approved", "rejected", "draft"].map((status) => {
                   const statusItems = filteredApprovals.filter((item) => item.status === status)
-                  const statusStyle = getStatusStyle("approval", status)
+                  const statusStyle = getStatusStyle("approval", status as "pending" | "approved" | "rejected" | "cancelled" | "draft")
 
                   return (
                     <div key={status} className="space-y-4">

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview config.ts
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 // 应用配置
 export const config = {
   // 应用基本信息
@@ -10,7 +21,7 @@ export const config = {
     description: "Professional enterprise management system for Jin Lan Home Furnishing",
     descriptionChinese: "锦澜家居专业的企业管理系统",
     url: "https://manage.jinlan.com",
-    logo: "/images/jinlan-logo-main.png",
+    logo: "/yyc3-logo-blue.png",
     favicon: "/favicon.ico",
   },
 

@@ -36,7 +36,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
     location: "上海市浦东新区",
     joinDate: "2023-01-15",
     bio: "负责企业管理系统的维护和优化，确保系统稳定运行。",
-    avatar: "/placeholder.svg?height=100&width=100",
+    avatar: "/placeholder-user.jpg",
   })
 
   const handleSave = async () => {
@@ -97,7 +97,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                 <div className="flex items-center gap-4">
                   <div className="relative">
                     <Avatar className="w-20 h-20">
-                      <AvatarImage src={profile.avatar || "/placeholder.svg"} alt="头像" />
+                      <AvatarImage src={profile.avatar || "/placeholder-user.jpg"} alt="头像" onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder-user.jpg' }} />
                       <AvatarFallback className="bg-gradient-to-br from-sky-400 to-blue-500 text-white text-xl">
                         管理
                       </AvatarFallback>

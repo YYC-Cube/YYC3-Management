@@ -10,36 +10,32 @@ import { Briefcase, Plus, Users, Calendar, CheckCircle, Clock, AlertTriangle } f
 
 export default function ProjectsPage() {
   return (
-    <PageContainer>
+    <PageContainer title="项目管理" description="跟踪和管理项目进度">
       <div className="space-y-6">
-        {/* 页面标题 */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">项目管理</h1>
-            <p className="text-slate-600 mt-1">跟踪和管理项目进度</p>
-          </div>
-          <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-            <Plus className="w-4 h-4 mr-2" />
+        {/* 页面操作区 */}
+        <div className="flex items-center justify-end">
+          <EnhancedButton className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
+            <Plus className="w-4 h-4 mr-2 text-white" />
             新建项目
           </EnhancedButton>
         </div>
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-l-4 border-l-sky-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总项目数</p>
                 <p className="text-2xl font-bold text-slate-800">18</p>
-                <p className="text-xs text-sky-600 mt-1">活跃项目</p>
+                <p className="text-xs text-orange-600 mt-1">活跃项目</p>
               </div>
-              <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                <Briefcase className="w-6 h-6 text-sky-600" />
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Briefcase className="w-6 h-6 text-orange-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-green-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
@@ -52,20 +48,20 @@ export default function ProjectsPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-yellow-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">进行中</p>
                 <p className="text-2xl font-bold text-slate-800">5</p>
-                <p className="text-xs text-yellow-600 mt-1">正在执行</p>
+                <p className="text-xs text-orange-600 mt-1">正在执行</p>
               </div>
-              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <Clock className="w-6 h-6 text-yellow-600" />
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Clock className="w-6 h-6 text-orange-600" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-l-4 border-l-red-500">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">延期项目</p>
@@ -143,7 +139,7 @@ export default function ProjectsPage() {
                 budget: "¥200,000",
               },
             ].map((project, index) => (
-              <div key={index} className="border border-slate-200 rounded-lg p-6 hover:bg-slate-50 transition-colors">
+              <div key={index} className="border border-slate-200 rounded-lg p-6 hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-[2px_0_8px_rgba(249,115,22,0.1)]">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <h3 className="text-lg font-semibold text-slate-800">{project.name}</h3>

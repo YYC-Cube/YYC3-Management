@@ -23,7 +23,7 @@ export function EnhancedCard({
   variant = "default",
 }: EnhancedCardProps) {
   const cardVariants = {
-    default: commonStyles.card,
+    default: commonStyles.card.base,
     gradient:
       "bg-gradient-to-br from-white to-sky-50/50 border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200",
     glass:
@@ -33,12 +33,12 @@ export function EnhancedCard({
   return (
     <Card className={cn(cardVariants[variant], className)}>
       {(title || description) && (
-        <CardHeader className={cn(commonStyles.cardHeader, "rounded-t-xl", headerClassName)}>
+        <CardHeader className={cn(commonStyles.card.header, "rounded-t-xl", headerClassName)}>
           {title && <CardTitle className="text-slate-800 font-semibold">{title}</CardTitle>}
           {description && <CardDescription className="text-sky-600">{description}</CardDescription>}
         </CardHeader>
       )}
-      <CardContent className={cn("p-6", contentClassName)}>{children}</CardContent>
+      <CardContent className={cn("p-4 sm:p-6", contentClassName)}>{children}</CardContent>
     </Card>
   )
 }

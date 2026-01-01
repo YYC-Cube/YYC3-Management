@@ -1,0 +1,120 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+
+      - name: Run Prettier check
+        run: npx prettier --check "**/*.{ts,tsx,js,jsx,json,md}"
+
+      - name: Run TypeScript type check
+        run: npm run type-check
+
+      - name: Check for TODO comments
+        run: |
+          TODO_COUNT=$(grep -r "TODO\|FIXME\|HACK" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . | wc -l)
+          echo "Found $TODO_COUNT TODO/FIXME/HACK comments"
+          if [ $TODO_COUNT -gt 50 ]; then
+            echo "Too many TODO comments. Please address them."
+            exit 1
+          fi
+
+      - name: Check for console.log
+        run: |
+          CONSOLE_COUNT=$(grep -r "console\.log\|console\.debug" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . | grep -v "node_modules" | wc -l)
+          echo "Found $CONSOLE_COUNT console.log/debug statements"
+          if [ $CONSOLE_COUNT -gt 10 ]; then
+            echo "Too many console.log statements. Please remove them."
+            exit 1
+          fi
+
+      - name: Check file sizes
+        run: |
+          LARGE_FILES=$(find . -type f -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" | grep -v node_modules | grep -v ".next" | while read file; do
+            SIZE=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+            if [ "$SIZE" -gt 51200 ]; then
+              echo "$file: $SIZE bytes"
+            fi
+          done)
+          if [ -n "$LARGE_FILES" ]; then
+            echo "Large files found (>50KB):"
+            echo "$LARGE_FILES"
+            exit 1
+          fi
+
+      - name: Check for duplicate code
+        run: |
+          npm install -g jscpd
+          npx jscpd ./ --threshold 5 --format "ts,tsx,js,jsx" --ignore "node_modules,.next,dist,build"
+
+      - name: Check for security vulnerabilities
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Check for outdated dependencies
+        run: npm outdated || true
+
+      - name: Run cSpell
+        run: npx cspell "**/*.{ts,tsx,js,jsx,md}"
+
+  complexity-analysis:
+    name: Complexity Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install complexity analysis tools
+        run: npm install -g eslint-plugin-complexity
+
+      - name: Run complexity analysis
+        run: |
+          npx eslint . --ext .ts,.tsx,.js,.jsx \
+            --format json \
+            --output-file complexity-report.json \
+            --no-eslintrc \
+            --parser @typescript-eslint/parser \
+            --plugin eslint-plugin-complexity \
+            --rule 'complexity: ["error", 15]'
+
+      - name: Upload complexity report
+        uses: actions/upload-artifact@v4
+        with:
+          name: complexity-report
+          path: complexity-report.json

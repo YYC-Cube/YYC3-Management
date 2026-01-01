@@ -1,3 +1,14 @@
+/**
+ * @fileoverview okr-management-enhanced.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useCallback } from "react"
@@ -427,12 +438,9 @@ export function OKRManagementEnhanced() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* 页面头部 */}
+      {/* 页面操作区 */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">OKR目标管理</h1>
-          <p className="text-slate-600 mt-1">目标与关键结果管理系统 - 通知协作增强版</p>
-        </div>
+        <div></div>
         <div className="flex items-center space-x-3">
           <Button
             variant="outline"
@@ -529,7 +537,7 @@ export function OKRManagementEnhanced() {
 
           {/* 统计卡片区域 */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Card className="border-l-4 border-l-purple-400 hover:shadow-md transition-all duration-200 hover:scale-105">
+            <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-all duration-200 hover:scale-105">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -542,7 +550,7 @@ export function OKRManagementEnhanced() {
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-sky-400 hover:shadow-md transition-all duration-200 hover:scale-105">
+            <Card className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-all duration-200 hover:scale-105">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -557,7 +565,7 @@ export function OKRManagementEnhanced() {
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-emerald-400 hover:shadow-md transition-all duration-200 hover:scale-105">
+            <Card className="border-r-[5px] border-r-emerald-400 hover:shadow-md transition-all duration-200 hover:scale-105">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -572,7 +580,7 @@ export function OKRManagementEnhanced() {
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-amber-400 hover:shadow-md transition-all duration-200 hover:scale-105">
+            <Card className="border-r-[5px] border-r-amber-400 hover:shadow-md transition-all duration-200 hover:scale-105">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>

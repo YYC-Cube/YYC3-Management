@@ -1,3 +1,14 @@
+/**
+ * @fileoverview AI服务接口
+ * @description 统一的AI模型调用接口，支持多种AI模型
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 import { type AIModel, getModelById } from "./ai-models"
 
 export interface ChatMessage {

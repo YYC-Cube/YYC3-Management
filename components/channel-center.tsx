@@ -1,3 +1,14 @@
+/**
+ * @fileoverview channel-center.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -193,7 +204,7 @@ export function ChannelCenter() {
             name: "微信公众号",
             type: "wechat",
             description: "连接微信公众号，同步用户数据和消息",
-            icon: "/images/platforms/wechat.png",
+            icon: "/platforms/wechat.png",
             fields: [
               { key: "appId", label: "应用ID", type: "text", required: true },
               { key: "appSecret", label: "应用密钥", type: "password", required: true },
@@ -206,7 +217,7 @@ export function ChannelCenter() {
             name: "抖音小店",
             type: "douyin",
             description: "连接抖音小店，同步商品和订单数据",
-            icon: "/images/platforms/douyin.png",
+            icon: "/platforms/douyin.png",
             fields: [
               { key: "appId", label: "应用ID", type: "text", required: true },
               { key: "appSecret", label: "应用密钥", type: "password", required: true },
@@ -218,7 +229,7 @@ export function ChannelCenter() {
             name: "小红书",
             type: "xiaohongshu",
             description: "连接小红书平台，同步内容和用户数据",
-            icon: "/images/platforms/xiaohongshu.png",
+            icon: "/platforms/xiaohongshu.png",
             fields: [
               { key: "apiKey", label: "API密钥", type: "password", required: true },
               { key: "webhookUrl", label: "回调地址", type: "url", required: false },
@@ -286,11 +297,11 @@ export function ChannelCenter() {
 
   const getPlatformIcon = (type: string) => {
     const iconMap: Record<string, string> = {
-      wechat: "/images/platforms/wechat.png",
-      douyin: "/images/platforms/douyin.png",
-      xiaohongshu: "/images/platforms/xiaohongshu.png",
-      alipay: "/images/platforms/alipay.png",
-      feishu: "/images/platforms/feishu.png",
+      wechat: "/platforms/wechat.png",
+      douyin: "/platforms/douyin.png",
+      xiaohongshu: "/platforms/xiaohongshu.png",
+      alipay: "/platforms/alipay.png",
+      feishu: "/platforms/feishu.png",
       dingtalk: "/images/platforms/dingtalk.png",
     }
     return iconMap[type] || "/placeholder.svg"
@@ -503,7 +514,7 @@ export function ChannelCenter() {
 
       {/* 总览指标 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <Card className="border-l-4 border-l-blue-500">
+        <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -515,7 +526,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-green-500">
+        <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -527,7 +538,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-orange-500">
+        <Card className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -539,7 +550,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-500">
+        <Card className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -551,7 +562,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-red-500">
+        <Card className="border-r-[5px] border-r-red-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>

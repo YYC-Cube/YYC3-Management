@@ -1,3 +1,14 @@
+/**
+ * @fileoverview 页面头部组件
+ * @description 包含搜索、通知、用户信息等功能
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -166,7 +177,7 @@ export function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-9 w-9 rounded-full">
               <Avatar className="h-9 w-9">
-                <AvatarImage src="/images/avatar-placeholder.png" alt="用户头像" />
+                <AvatarImage src="/placeholder-user.jpg" alt="用户头像" onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder-user.jpg' }} />
                 <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">管</AvatarFallback>
               </Avatar>
             </Button>

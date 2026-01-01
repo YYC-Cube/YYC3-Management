@@ -1,3 +1,14 @@
+/**
+ * @fileoverview system-settings.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import type React from "react"
@@ -130,7 +141,11 @@ interface SystemStatus {
   errorRate: number
 }
 
-export default function SystemSettings() {
+interface SystemSettingsProps {
+  showTitle?: boolean
+}
+
+export default function SystemSettings({ showTitle = true }: SystemSettingsProps) {
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [showPasswords, setShowPasswords] = useState(false)
@@ -198,7 +213,7 @@ export default function SystemSettings() {
     appearance: {
       theme: "light",
       primaryColor: "#3b82f6",
-      logoUrl: "/images/jinlan-logo-main.png",
+      logoUrl: "/yyc3-logo-blue.png",
       faviconUrl: "/favicon.ico",
       customCss: "",
       showBranding: true,
@@ -334,10 +349,12 @@ export default function SystemSettings() {
       {/* 页面标题和控制 */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="responsive-title flex items-center">
-            <Settings className="w-6 h-6 sm:w-8 sm:h-8 mr-3 text-blue-600" />
-            系统设置
-          </h1>
+          {showTitle && (
+            <h1 className="responsive-title flex items-center">
+              <Settings className="w-6 h-6 sm:w-8 sm:h-8 mr-3 text-blue-600" />
+              系统设置
+            </h1>
+          )}
           <p className="responsive-text mt-2">全局系统配置管理</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -367,7 +384,7 @@ export default function SystemSettings() {
       </div>
 
       {/* 系统状态概览 */}
-      <Card className="responsive-card border-l-4 border-l-blue-500">
+      <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
         <CardHeader>
           <CardTitle className="text-base sm:text-lg flex items-center">
             <Activity className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
@@ -549,10 +566,10 @@ export default function SystemSettings() {
         {/* 基本设置 */}
         <TabsContent value="basic" className="responsive-spacing">
           <div className="responsive-grid-2">
-            <Card className="responsive-card border-l-4 border-l-blue-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
-                  <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
+                  <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-slate-600" />
                   站点信息
                 </CardTitle>
               </CardHeader>
@@ -622,10 +639,10 @@ export default function SystemSettings() {
               </CardContent>
             </Card>
 
-            <Card className="responsive-card border-l-4 border-l-green-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-slate-600" />
                   公司信息
                 </CardTitle>
               </CardHeader>
@@ -699,10 +716,10 @@ export default function SystemSettings() {
 
         {/* 数据库设置 */}
         <TabsContent value="database" className="responsive-spacing">
-          <Card className="responsive-card border-l-4 border-l-purple-500">
+          <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
             <CardHeader>
               <CardTitle className="text-base sm:text-lg flex items-center">
-                <Database className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-600" />
+                <Database className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-slate-600" />
                 数据库配置
               </CardTitle>
               <div className="flex items-center gap-2">
@@ -861,10 +878,10 @@ export default function SystemSettings() {
 
         {/* 缓存设置 */}
         <TabsContent value="cache" className="responsive-spacing">
-          <Card className="responsive-card border-l-4 border-l-orange-500">
+          <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
             <CardHeader>
               <CardTitle className="text-base sm:text-lg flex items-center">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-600" />
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-slate-600" />
                 缓存配置
               </CardTitle>
               <div className="flex items-center gap-2">
@@ -994,7 +1011,7 @@ export default function SystemSettings() {
         {/* 安全设置 */}
         <TabsContent value="security" className="responsive-spacing">
           <div className="responsive-grid-2">
-            <Card className="responsive-card border-l-4 border-l-red-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-600" />
@@ -1063,7 +1080,7 @@ export default function SystemSettings() {
               </CardContent>
             </Card>
 
-            <Card className="responsive-card border-l-4 border-l-yellow-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <Lock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-600" />
@@ -1125,7 +1142,7 @@ export default function SystemSettings() {
         {/* 通知设置 */}
         <TabsContent value="notification" className="responsive-spacing">
           <div className="responsive-grid-2">
-            <Card className="responsive-card border-l-4 border-l-green-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
@@ -1224,7 +1241,7 @@ export default function SystemSettings() {
               </CardContent>
             </Card>
 
-            <Card className="responsive-card border-l-4 border-l-blue-500">
+            <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-[4px_0_12px_rgba(100,116,139,0.15)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
@@ -1348,7 +1365,7 @@ export default function SystemSettings() {
         {/* 外观设置 */}
         <TabsContent value="appearance" className="responsive-spacing">
           <div className="responsive-grid-2">
-            <Card className="responsive-card border-l-4 border-l-pink-500">
+            <Card className="responsive-card border-r-[5px] border-r-pink-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <Palette className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-pink-600" />
@@ -1422,7 +1439,7 @@ export default function SystemSettings() {
               </CardContent>
             </Card>
 
-            <Card className="responsive-card border-l-4 border-l-indigo-500">
+            <Card className="responsive-card border-r-[5px] border-r-indigo-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
                   <Monitor className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-indigo-600" />

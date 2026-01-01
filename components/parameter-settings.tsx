@@ -1,3 +1,14 @@
+/**
+ * @fileoverview parameter-settings.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState } from "react"
@@ -281,7 +292,7 @@ export function ParameterSettings() {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/images/platforms/wechat.png" alt="微信" width={24} height={24} className="mr-2" />
+                  <Image src="/platforms/wechat.png" alt="微信" width={24} height={24} className="mr-2" />
                   微信公众号
                 </div>
                 <div className="flex items-center space-x-2">
@@ -356,7 +367,7 @@ export function ParameterSettings() {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/images/platforms/dingtalk.png" alt="钉钉" width={24} height={24} className="mr-2" />
+                  <Image src="/platforms/dingtalk.png" alt="钉钉" width={24} height={24} className="mr-2" />
                   钉钉企业应用
                 </div>
                 <div className="flex items-center space-x-2">
@@ -410,7 +421,7 @@ export function ParameterSettings() {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/images/platforms/feishu.png" alt="飞书" width={24} height={24} className="mr-2" />
+                  <Image src="/platforms/feishu.png" alt="飞书" width={24} height={24} className="mr-2" />
                   飞书企业应用
                 </div>
                 <div className="flex items-center space-x-2">

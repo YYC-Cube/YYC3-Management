@@ -1,0 +1,11 @@
+# Docker相关文件
+Dockerfile
+docker-compose.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
+.dockerignore
+.env.docker
+nginx.conf
+
+# Docker数据目录
+docker-data/

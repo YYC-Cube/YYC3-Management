@@ -1,3 +1,14 @@
+/**
+ * @fileoverview ai-customer-data.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -237,7 +248,7 @@ export function AiCustomerData() {
       {/* 核心指标卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* 总客户数 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-l-4 border-l-purple-400">
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -262,7 +273,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 转化率 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-l-4 border-l-purple-400">
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -287,7 +298,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 平均客单价 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-l-4 border-l-purple-400">
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -312,7 +323,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* AI预测准确率 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-l-4 border-l-purple-400">
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -348,7 +359,7 @@ export function AiCustomerData() {
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 客户分布图 */}
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-l-4 border-l-purple-400">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <PieChart className="w-5 h-5 text-purple-600" />
@@ -405,7 +416,7 @@ export function AiCustomerData() {
             </Card>
 
             {/* 客户价值分析 */}
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-l-4 border-l-purple-400">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-purple-600" />
@@ -478,7 +489,7 @@ export function AiCustomerData() {
             {customerStages.map((stage, index) => (
               <Card
                 key={index}
-                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-l-4 border-l-purple-400 cursor-pointer hover:scale-105`}
+                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-6">
@@ -504,7 +515,7 @@ export function AiCustomerData() {
           </div>
 
           {/* 阶段转化漏斗 */}
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-l-4 border-l-purple-400">
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -538,7 +549,7 @@ export function AiCustomerData() {
             {aiInsights.map((insight, index) => (
               <Card
                 key={index}
-                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-l-4 border-l-purple-400 cursor-pointer hover:scale-105`}
+                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-6">
@@ -583,7 +594,7 @@ export function AiCustomerData() {
             {recentActivities.map((activity) => (
               <Card
                 key={activity.id}
-                className="border-0 shadow-lg bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-400 cursor-pointer"
+                className="border-0 shadow-lg bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-xl transition-all duration-300 border-r-[5px] border-r-purple-400 cursor-pointer"
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-4">

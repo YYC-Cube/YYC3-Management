@@ -1,3 +1,14 @@
+/**
+ * @fileoverview notification-reminder-system.tsx
+ * @description 自动生成的组件或模块
+ * @author YYC³
+ * @version 1.0.0
+ * @created 2025-01-30
+ * @modified 2025-12-08
+ * @copyright Copyright (c) 2025 YYC³
+ * @license MIT
+ */
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -48,7 +59,11 @@ interface ReminderSettings {
   alertThreshold: number
 }
 
-export function NotificationReminderSystem() {
+interface NotificationReminderSystemProps {
+  showTitle?: boolean
+}
+
+export function NotificationReminderSystem({ showTitle = true }: NotificationReminderSystemProps) {
   const { toast } = useToast()
   const [notifications, setNotifications] = useState<Notification[]>([
     {
@@ -161,7 +176,7 @@ export function NotificationReminderSystem() {
     const config = notificationConfig.priorities[priority as keyof typeof notificationConfig.priorities]
     if (!config) return "bg-slate-100 text-slate-800 border-slate-200"
 
-    return `${config.bgColor} ${config.color} ${config.borderColor}`
+    return config.color
   }
 
   const markAsRead = (id: string) => {
@@ -196,7 +211,9 @@ export function NotificationReminderSystem() {
       {/* 页面头部 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">通知提醒中心</h1>
+          {showTitle && (
+            <h1 className="text-2xl font-bold text-slate-900">通知提醒中心</h1>
+          )}
           <p className="text-slate-600 mt-1">智能提醒系统，确保目标按时完成</p>
         </div>
         <div className="flex items-center space-x-3">
@@ -220,7 +237,7 @@ export function NotificationReminderSystem() {
 
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-l-4 border-l-red-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-red-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -233,7 +250,7 @@ export function NotificationReminderSystem() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-amber-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-amber-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -246,7 +263,7 @@ export function NotificationReminderSystem() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -259,7 +276,7 @@ export function NotificationReminderSystem() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
