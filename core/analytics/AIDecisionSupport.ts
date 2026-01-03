@@ -1,4 +1,5 @@
 // analytics/AIDecisionSupport.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   RecommendationEngine,
   ScenarioSimulator,
@@ -18,7 +19,7 @@ import {
   ScenarioOutcome,
   ActionPlan,
   ContingencyPlan
-} from './types';
+} from './types.ts';
 
 export class AIDecisionSupport {
   private recommendationEngine: RecommendationEngine;

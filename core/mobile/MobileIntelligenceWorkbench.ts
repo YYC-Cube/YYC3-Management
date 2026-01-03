@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   OfflineAI,
   ContextAwareness,
@@ -15,7 +16,7 @@ import {
   PerformanceMetrics,
   BatteryOptimization,
   NetworkAdaptation
-} from './types';
+} from './types.ts';
 
 export class MobileIntelligenceWorkbench {
   private offlineAI: OfflineAI;

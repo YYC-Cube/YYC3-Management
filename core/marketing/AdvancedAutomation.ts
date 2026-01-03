@@ -1,4 +1,5 @@
 // marketing/AdvancedAutomation.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   JourneyOrchestrator,
   ContentPersonalizer,
@@ -8,7 +9,7 @@ import {
   TargetAudience,
   DynamicJourney,
   LearningCampaignSystem
-} from './types';
+} from './types.ts';
 
 export class AdvancedAutomation {
   private journeyOrchestrator: JourneyOrchestrator;

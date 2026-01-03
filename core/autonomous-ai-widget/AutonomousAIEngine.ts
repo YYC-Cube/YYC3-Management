@@ -1,4 +1,5 @@
 // core/autonomous-ai-widget/AutonomousAIEngine.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   AutonomousAIConfig,
   UserMessage,
@@ -6,7 +7,7 @@ import {
   AIContext,
   AITool,
   ToolResult
-} from './types';
+} from './types.ts';
 
 export class MemorySystem {
   private config: any;

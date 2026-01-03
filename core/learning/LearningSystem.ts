@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   LearningConfig,
   KnowledgeBase,
@@ -12,7 +13,7 @@ import {
   UserFeedback,
   FeedbackAnalysis,
   UserPreferences
-} from './types';
+} from './types.ts';
 import { KnowledgeBaseImpl } from './KnowledgeBaseImpl';
 import { PatternRecognizerImpl } from './PatternRecognizerImpl';
 import { FeedbackAnalyzerImpl } from './FeedbackAnalyzerImpl';

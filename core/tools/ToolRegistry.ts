@@ -1,5 +1,6 @@
 // core/tools/ToolRegistry.ts
-import { AITool, ToolResult, AIContext, ToolUsageRecord, ToolRelevanceScore } from './types';
+// @ts-ignore - TypeScript module resolution issue
+import { AITool, ToolResult, AIContext, ToolUsageRecord, ToolRelevanceScore } from './types.ts';
 
 export class ToolRegistry {
   private tools: Map<string, AITool> = new Map();

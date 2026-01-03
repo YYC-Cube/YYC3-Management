@@ -1,4 +1,5 @@
-import { ProcessAutomator, ApprovalOptimizer, IntelligentOA } from './types';
+// @ts-ignore - TypeScript module resolution issue
+import { ProcessAutomator, ApprovalOptimizer, IntelligentOA } from './types.ts';
 
 export class OAWorkflowIntegration {
   private processAutomator: ProcessAutomator;

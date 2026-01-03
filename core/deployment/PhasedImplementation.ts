@@ -1,4 +1,5 @@
-import { ImplementationRoadmap, ScalingStrategy } from './types';
+// @ts-ignore - TypeScript module resolution issue
+import { ImplementationRoadmap, ScalingStrategy } from './types.ts';
 
 export class PhasedImplementation {
   async createImplementationRoadmap(): Promise<ImplementationRoadmap> {

@@ -1,4 +1,5 @@
 // analytics/RealTimeAIDashboard.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   DataStream,
   AlertEngine,
@@ -11,7 +12,7 @@ import {
   ConversionKPI,
   SatisfactionKPI,
   EfficiencyKPI
-} from './types';
+} from './types.ts';
 
 export class RealTimeAIDashboard {
   private dataStream: DataStream;

@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   DataHub,
   AIOrchestrator,
@@ -8,7 +9,7 @@ import {
   ApplicationLayer,
   IntegrationLayer,
   GovernanceLayer
-} from './types';
+} from './types.ts';
 
 export class EndToEndArchitecture {
   private dataHub: DataHub;

@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "target": "ES2018",
     "skipLibCheck": true,
@@ -9,6 +13,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -21,12 +26,58 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    // ============================================
+    // 类型定义
+    // ============================================
+    // TypeScript 自动加载 node_modules/@types 中的所有类型定义
+    // 使用 skipLibCheck: true 跳过库文件的详细类型检查
+    // 这样可以避免测试库类型警告，同时保持核心库的类型支持
+    // ============================================
+    // 严格类型检查选项
+    // ============================================
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    // ============================================
+    // 额外检查选项
+    // ============================================
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    // ============================================
+    // 模块解析选项
+    // ============================================
+    "allowUmdGlobalAccess": true,
+    "moduleSuffixes": [
+      ".ts",
+      ".tsx",
+      ".json",
+      ".node"
+    ],
+    // ============================================
+    // 完整性检查
+    // ============================================
+    "skipDefaultLibCheck": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
+    ".next",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/__tests__/**/*"

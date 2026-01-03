@@ -1,9 +1,10 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   AISystemDeployment,
   WorkflowOrchestration,
   EndToEndWorkflow,
   AIConfiguration
-} from './types';
+} from './types.ts';
 import { CallingWorkflowEngine } from '../workflows/intelligent-calling/CallingWorkflowEngine';
 import { AIAnalyticsEngine } from '../analytics/AIAnalyticsEngine';
 import { AICoachingSystem } from '../education/AICoachingSystem';

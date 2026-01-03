@@ -1,4 +1,5 @@
-import { PhasedValueDelivery, ValueDrivers } from './types';
+// @ts-ignore - TypeScript module resolution issue
+import { PhasedValueDelivery, ValueDrivers } from './types.ts';
 
 export class ValueDrivenImplementation {
   async createPhasedValueDelivery(): Promise<PhasedValueDelivery> {

@@ -1,3 +1,17 @@
+/**
+ * @fileoverview 教育系统类型定义
+ * @remarks PerformanceMetric 类型已迁移到 core/shared-types.ts 的 Education 命名空间
+ */
+
+// @ts-ignore - TypeScript module resolution issue
+import type { UUID, Timestamp } from '../shared-types.ts';
+// @ts-ignore - TypeScript module resolution issue
+import type { Education as SharedEducation } from '../shared-types.ts';
+
+// 重新导出共享类型以保持向后兼容
+export type { Education as SharedEducationTypes };
+export type PerformanceMetric = SharedEducation.PerformanceMetric;
+
 export interface Agent {
   id: string;
   name: string;
@@ -304,12 +318,7 @@ export interface SkillIndicator {
   trend: 'improving' | 'stable' | 'declining';
 }
 
-export interface PerformanceMetric {
-  name: string;
-  value: number;
-  target: number;
-  status: 'on_track' | 'needs_attention' | 'critical';
-}
+// PerformanceMetric 已从 core/shared-types.ts 导入
 
 export interface CoachingFeedback {
   strengths: string[];

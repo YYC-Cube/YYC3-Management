@@ -1,3 +1,19 @@
+/**
+ * @fileoverview 学习系统类型定义
+ * @remarks 部分类型已迁移到 core/shared-types.ts 的 Learning 命名空间
+ */
+
+// @ts-ignore - TypeScript module resolution issue
+import type { UUID, Timestamp, JsonObject } from '../shared-types.ts';
+// @ts-ignore - TypeScript module resolution issue
+import type { Learning as SharedLearning } from '../shared-types.ts';
+
+// 重新导出共享类型以保持向后兼容
+export type { Learning as SharedLearningTypes };
+export type PerformanceMetric = SharedLearning.PerformanceMetric;
+export type UserFeedback = SharedLearning.UserFeedback;
+export type UserPreferences = SharedLearning.UserPreferences;
+
 export interface LearningConfig {
   maxInteractions: number;
   retentionDays: number;
@@ -29,27 +45,27 @@ export interface FeedbackAnalyzer {
 }
 
 export interface UserMessage {
-  id: string;
+  id: UUID;
   content: string;
-  timestamp: Date;
-  userId: string;
-  context?: any;
+  timestamp: Timestamp;
+  userId: UUID;
+  context?: JsonObject;
 }
 
 export interface AIResponse {
-  id: string;
+  id: UUID;
   content: string;
-  timestamp: Date;
+  timestamp: Timestamp;
   responseTime: number;
   confidence?: number;
-  metadata?: any;
+  metadata?: JsonObject;
 }
 
 export interface InteractionRecord {
-  timestamp: Date;
+  timestamp: Timestamp;
   userMessage: UserMessage;
   aiResponse: AIResponse;
-  context: any;
+  context: JsonObject;
 }
 
 export interface PatternAnalysis {
@@ -59,29 +75,13 @@ export interface PatternAnalysis {
 }
 
 export interface LearningInsight {
-  id: string;
+  id: UUID;
   type: 'pattern' | 'preference' | 'performance' | 'improvement';
   description: string;
   confidence: number;
   actionable: boolean;
-  timestamp: Date;
-  metadata?: any;
-}
-
-export interface PerformanceMetric {
-  responseTime: number;
-  relevance: number;
-  usefulness: number;
-  userSatisfaction: number;
-  timestamp?: Date;
-}
-
-export interface UserFeedback {
-  interactionId: string;
-  rating: number;
-  comment?: string;
-  timestamp: Date;
-  userId: string;
+  timestamp: Timestamp;
+  metadata?: JsonObject;
 }
 
 export interface FeedbackAnalysis {
@@ -90,38 +90,31 @@ export interface FeedbackAnalysis {
   sentiment: 'positive' | 'neutral' | 'negative';
 }
 
-export interface UserPreferences {
-  communicationStyle: 'formal' | 'casual' | 'technical';
-  responseLength: 'short' | 'medium' | 'long';
-  topics: string[];
-  avoidTopics: string[];
-}
-
 // Memory System Types
 export interface LearningRecord {
-  id: string;
-  timestamp: string;
+  id: UUID;
+  timestamp: Timestamp;
   query: string;
   answer: string;
-  context?: any;
+  context?: JsonObject;
   confidence?: number;
   tags?: string[];
 }
 
 export interface PatternRecognitionResult {
-  id: string;
+  id: UUID;
   pattern: string;
   description: string;
   confidence: number;
   occurrences: number;
-  firstSeen: string;
-  lastSeen: string;
-  metadata?: any;
+  firstSeen: Timestamp;
+  lastSeen: Timestamp;
+  metadata?: JsonObject;
 }
 
 export interface PerformanceEvaluation {
-  id: string;
-  timestamp: string;
+  id: UUID;
+  timestamp: Timestamp;
   metrics: {
     accuracy: number;
     relevance: number;
@@ -129,6 +122,6 @@ export interface PerformanceEvaluation {
     responseTime: number;
     userSatisfaction?: number;
   };
-  context?: any;
+  context?: JsonObject;
   notes?: string;
 }

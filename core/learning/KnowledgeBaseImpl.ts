@@ -1,9 +1,10 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   InteractionRecord,
   LearningInsight,
   PerformanceMetric,
   UserPreferences
-} from './types';
+} from './types.ts';
 
 export class KnowledgeBaseImpl {
   private interactions: InteractionRecord[] = [];

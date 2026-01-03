@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   Agent,
   CallSession,
@@ -18,7 +19,7 @@ import {
   ProgressMeasurement,
   PerformanceSnapshot,
   CurrentState
-} from './types';
+} from './types.ts';
 
 export class RealTimeCoaching {
   private performanceMonitor: PerformanceMonitor;

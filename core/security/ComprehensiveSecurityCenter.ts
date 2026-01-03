@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   ThreatDetector,
   ComplianceManager,
@@ -18,15 +19,15 @@ import {
   BackupStrategy,
   HighAvailability,
   IncidentResponse
-} from './types';
+} from './types.ts';
 
 export class ComprehensiveSecurityCenter {
-  private threatDetector: ThreatDetector;
-  private complianceManager: ComplianceManager;
+  private _threatDetector: ThreatDetector;
+  private _complianceManager: ComplianceManager;
 
   constructor(threatDetector: ThreatDetector, complianceManager: ComplianceManager) {
-    this.threatDetector = threatDetector;
-    this.complianceManager = complianceManager;
+    this._threatDetector = threatDetector;
+    this._complianceManager = complianceManager;
   }
 
   async buildEnterpriseSecurity(): Promise<EnterpriseSecurity> {

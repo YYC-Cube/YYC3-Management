@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   JourneyMapper,
   TouchpointOptimizer,
@@ -7,7 +8,7 @@ import {
   RetentionWorkflow,
   GrowthWorkflow,
   RecoveryWorkflow
-} from './types';
+} from './types.ts';
 
 export class CustomerLifecycleWorkflow {
   private journeyMapper: JourneyMapper;

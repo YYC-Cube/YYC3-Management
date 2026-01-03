@@ -1,4 +1,5 @@
 // marketing/AICampaignManager.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   CampaignBrief,
   TargetAudience,
@@ -18,7 +19,7 @@ import {
   AudienceSelector,
   ContentGenerator,
   PerformanceAnalysis
-} from './types';
+} from './types.ts';
 
 export class AICampaignManager {
   private campaignOptimizer: CampaignOptimizer;

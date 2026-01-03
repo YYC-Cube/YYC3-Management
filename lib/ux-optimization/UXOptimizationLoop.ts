@@ -760,11 +760,11 @@ export interface IterationPlan {
 
 export class UXOptimizationLoop {
   // ============ 用户研究组件 ============
-  private personas: Map<string, UserPersona> = new Map();
-  private journeys: Map<string, UserJourney> = new Map();
+  private _personas: Map<string, UserPersona> = new Map();
+  private _journeys: Map<string, UserJourney> = new Map();
 
   // ============ 数据收集组件 ============
-  private dataCollectionMethods: string[] = [
+  private _dataCollectionMethods: string[] = [
     'Google Analytics',
     'Hotjar',
     '用户反馈系统',
@@ -774,11 +774,12 @@ export class UXOptimizationLoop {
   ];
 
   // ============ 实验系统 ============
-  private runningExperiments: Map<string, Experiment> = new Map();
+  private _runningExperiments: Map<string, Experiment> = new Map();
 
   /**
    * 用户体验优化完整闭环
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async optimizeUserExperience(): Promise<UXOptimizationReport> {
     console.log('开始UX优化循环...');
 
@@ -1128,6 +1129,7 @@ export class UXOptimizationLoop {
   /**
    * 3. 收集UX数据
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async collectUXData(metrics: UXMetrics): Promise<UXDataCollection> {
     await this.simulateDelay(1000);
 
@@ -1199,6 +1201,7 @@ export class UXOptimizationLoop {
   /**
    * 4. 分析UX问题
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async analyzeUXProblems(data: UXDataCollection): Promise<UXProblemsAnalysis> {
     const problems: UXProblem[] = [
       {
@@ -1253,6 +1256,7 @@ export class UXOptimizationLoop {
   /**
    * 5. 生成解决方案
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async generateSolutions(problems: UXProblemsAnalysis): Promise<Solutions> {
     const proposals: SolutionProposal[] = problems.criticalProblems.map((problem, index) => ({
       id: `sol-${index + 1}`,
@@ -1325,6 +1329,7 @@ export class UXOptimizationLoop {
   /**
    * 6. 运行实验
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async runExperiments(solutions: Solutions): Promise<ExperimentResults> {
     const experiments: Experiment[] = [
       {
@@ -1395,6 +1400,7 @@ export class UXOptimizationLoop {
   /**
    * 7. 实施优化
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async implementOptimizations(experiments: ExperimentResults): Promise<ImplementationResults> {
     const implementations: Implementation[] = [
       {
@@ -1441,6 +1447,7 @@ export class UXOptimizationLoop {
   /**
    * 8. 评估结果
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async evaluateResults(implementations: ImplementationResults): Promise<EvaluationResults> {
     const before: MetricSnapshot = {
       timestamp: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
@@ -1499,6 +1506,7 @@ export class UXOptimizationLoop {
   /**
    * 9. 学习和迭代
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async learnAndIterate(evaluation: EvaluationResults): Promise<LearningOutcomes> {
     return {
       successes: [

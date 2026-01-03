@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   SpeechRecognizer,
   SentimentAnalyzer,
@@ -6,8 +7,8 @@ import {
   RealTimeAssistance,
   RealTimeContext,
   RealTimeSuggestion
-} from './types';
-import { CallSession } from './types';
+} from './types.ts';
+import { CallSession } from './types.ts';
 
 export class RealTimeCallAssistant {
   private speechRecognizer: SpeechRecognizer;

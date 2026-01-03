@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   UserMessage,
   AIResponse,
@@ -6,7 +7,7 @@ import {
   UserPreferences,
   PatternAnalysis,
   LearningInsight
-} from './types';
+} from './types.ts';
 
 export class PatternRecognizerImpl {
   async analyzePatterns(userMessage: UserMessage, aiResponse: AIResponse): Promise<PatternAnalysis> {

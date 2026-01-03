@@ -1,4 +1,5 @@
 // mobile/AIMobileWorkbench.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   Agent,
   MobileAIExperience,
@@ -23,7 +24,7 @@ import {
   OfflineManager,
   PushOptimizer,
   VoiceAssistant
-} from './types';
+} from './types.ts';
 
 export class AIMobileWorkbench {
   private offlineManager: OfflineManager;

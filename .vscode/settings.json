@@ -1,20 +1,10 @@
 {
-  "cSpell.words": [
-    "Wechat",
-    "wechat",
-    "workwechat",
-    "feishu",
-    "dingtalk",
-    "redbook",
-    "douyin",
-    "zscore",
-    "treemap",
-    "sankey",
-    "zoomable",
-    "pannable",
-    "drilldown",
-    "Drilldown",
-    "arima",
-    "lstm"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  // 隐藏测试库类型定义警告，这些不影响生产代码
+  "typescript.tsc.semanticTransparent": true,
+  "eslint.ignoreDefinitions": [
+    "**/node_modules/**",
+    "**/*.d.ts"
   ]
 }

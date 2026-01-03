@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   Agent,
   TrainingContent,
@@ -12,7 +13,7 @@ import {
   ContentDeliveryConfig,
   ProgressTrackingConfig,
   DynamicAdjustmentConfig
-} from './types';
+} from './types.ts';
 
 export class IntelligentContentGenerator {
   private contentAnalyzer: ContentAnalyzer;

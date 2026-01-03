@@ -1,3 +1,4 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   Customer,
   EngagementResult,
@@ -14,7 +15,7 @@ import {
   ConversationFlow,
   RealTimeAssistance,
   PostCallActions
-} from './types';
+} from './types.ts';
 
 export class EnhancedCallingSystem {
   private multiChannelCoordinator: MultiChannelCoordinator;

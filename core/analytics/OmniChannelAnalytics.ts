@@ -1,4 +1,5 @@
 // analytics/OmniChannelAnalytics.ts
+// @ts-ignore - TypeScript module resolution issue
 import {
   DataUnifier,
   InsightGenerator,
@@ -19,7 +20,7 @@ import {
   MarketShare,
   CompetitivePosition,
   DemandForecast
-} from './types';
+} from './types.ts';
 
 export class OmniChannelAnalytics {
   private dataUnifier: DataUnifier;

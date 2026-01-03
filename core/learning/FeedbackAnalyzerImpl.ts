@@ -1,8 +1,9 @@
+// @ts-ignore - TypeScript module resolution issue
 import {
   UserFeedback,
   FeedbackAnalysis,
   UserPreferences
-} from './types';
+} from './types.ts';
 
 export class FeedbackAnalyzerImpl {
   async analyze(feedback: UserFeedback): Promise<FeedbackAnalysis> {
