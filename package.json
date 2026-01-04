@@ -31,7 +31,14 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:lib": "vitest run --dir lib",
+    "test:components": "vitest run --dir components",
+    "test:fast": "vitest run --no-coverage --reporter=verbose",
+    "test:debug": "vitest run --no-coverage --reporter=verbose --logHeapUsage",
+    "security:scan": "./scripts/security-scan.sh",
+    "security:audit": "bun audit",
+    "security:fix": "bun audit fix"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "latest",
@@ -73,7 +80,8 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "ts-interface-checker": "^1.0.2",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",

@@ -2,20 +2,24 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+/**
+ * Vitest配置 - 覆盖率专用
+ *
+ * 此配置专门用于生成测试覆盖率报告
+ * 排除大型目录以避免内存问题
+ */
 export default defineConfig({
   plugins: [react()],
 
   test: {
-    // 测试环境配置
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
-    isolate: false, // 禁用隔离以提高性能
+    isolate: false,
 
-    // 覆盖率配置 - 使用 istanbul 替代 v8 (更稳定)
     coverage: {
-      provider: 'istanbul', // 切换到 istanbul
-      reporter: ['text', 'json', 'html', 'lcov'],
+      provider: 'istanbul',
+      reporter: ['text', 'json', 'html'],
       exclude: [
         'node_modules/',
         'vitest.setup.ts',
@@ -27,55 +31,41 @@ export default defineConfig({
         '**/.next/',
         '**/coverage/',
         '**/*.d.ts',
-        'core/**/*', // 暂时排除 core 目录以减少扫描范围
+        'core/**/*', // 排除 core 目录
+        'scripts/**/*',
+        '**/*.test.{ts,tsx}',
       ],
-      // 覆盖率目标
       lines: 60,
       functions: 60,
       branches: 60,
       statements: 60,
-      // 降低内存使用
       maxConcurrency: 2,
     },
 
-    // 测试文件匹配模式
     include: [
-      '**/__tests__/**/*.{test,spec}.{js,jsx,ts,tsx}',
-      '**/*.{test,spec}.{js,jsx,ts,tsx}',
+      'lib/**/*.{test,spec}.{ts,tsx}',
+      'components/**/*.{test,spec}.{ts,tsx}',
     ],
     exclude: [
       'node_modules/',
       'dist/',
       'build/',
       '.next/',
-      'core/**', // 暂时排除 core 目录
+      'core/**',
+      'scripts/**',
     ],
 
-    // 超时配置
     testTimeout: 10000,
     hookTimeout: 10000,
-
-    // 并行配置 - 减少线程数
-    threads: false, // 禁用多线程以减少 EPIPE 错误
-    maxThreads: 2,
+    threads: false,
+    maxThreads: 1,
     minThreads: 1,
-
-    // 报告器
     reporters: ['default'],
+    watch: false,
 
-    // 监听模式配置
-    watch: false, // 禁用监听以避免内存问题
-
-    // 优化选项
-    benchmark: {
-      include: ['**/*.{bench,benchmark}.{js,jsx,ts,tsx}'],
-    },
-
-    // 限制文件扫描
     includeSource: ['lib/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
   },
 
-  // 路径别名配置
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './'),
@@ -88,18 +78,14 @@ export default defineConfig({
     },
   },
 
-  // esbuild 优化
   esbuild: {
     target: 'esnext',
-    // 降低内存使用
     jsx: 'automatic',
-    // 优化选项
     minify: false,
     sourcemap: true,
   },
 
-  // 优化依赖预构建
   optimizeDeps: {
-    disabled: true, // 禁用依赖预构建以减少初始加载时间
+    disabled: true,
   },
 });
