@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "dev": "next dev -p 3200",
     "lint": "next lint",
     "start": "next start -p 3200",
@@ -34,11 +35,15 @@
     "test:ui": "vitest --ui",
     "test:lib": "vitest run --dir lib",
     "test:components": "vitest run --dir components",
+    "test:performance": "vitest run lib/performance/",
     "test:fast": "vitest run --no-coverage --reporter=verbose",
     "test:debug": "vitest run --no-coverage --reporter=verbose --logHeapUsage",
     "security:scan": "./scripts/security-scan.sh",
     "security:audit": "bun audit",
-    "security:fix": "bun audit fix"
+    "security:fix": "bun audit fix",
+    "perf:apply-config": "cp next.config.optimized.mjs next.config.mjs",
+    "perf:backup-config": "cp next.config.mjs next.config.mjs.backup",
+    "perf:monitor": "node scripts/performance-monitor.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "latest",
@@ -80,6 +85,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "ts-interface-checker": "^1.0.2",
+    "web-vitals": "^5.1.0",
     "zod": "^3.22.4",
     "zustand": "^5.0.9"
   },
