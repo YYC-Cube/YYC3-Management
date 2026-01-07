@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Settings, Shield, Database, Users, Save, RefreshCw, Download, Upload } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
+import { PageContainer } from "@/components/layout/page-container"
 
 export default function SettingsPage() {
   const [loading, setLoading] = useState(false)
@@ -74,13 +75,13 @@ export default function SettingsPage() {
   }
 
   return (
-    <>
-      <div className="p-6 space-y-6">
+    <PageContainer
+      title="系统设置"
+      description="管理系统配置和偏好设置"
+      className="p-6"
+    >
+      <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900">系统设置</h1>
-            <p className="text-slate-600 mt-2">管理系统配置和偏好设置</p>
-          </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={handleExport}>
               <Download className="w-4 h-4 mr-2" />
@@ -382,6 +383,6 @@ export default function SettingsPage() {
         </div>
       </div>
       <FloatingNavButtons />
-    </>
+    </PageContainer>
   )
 }

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import {
@@ -210,17 +211,21 @@ export default function HelpPage() {
 
         {/* 搜索框 */}
         <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
-          <div className="flex items-center gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input
-                placeholder="搜索帮助内容..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
+          <div className="space-y-2">
+            <Label htmlFor="help-search" className="sr-only">搜索帮助内容</Label>
+            <div className="flex items-center gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                <Input
+                  id="help-search"
+                  placeholder="搜索帮助内容..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <Button className="bg-blue-600 hover:bg-blue-700">搜索</Button>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">搜索</Button>
           </div>
         </Card>
 
@@ -491,22 +496,35 @@ export default function HelpPage() {
                 <CardDescription className="text-slate-600">如果您有任何建议或问题，请告诉我们</CardDescription>
               </CardHeader>
               <CardContent className="p-6">
-                <div className="space-y-4">
+                <form onSubmit={(e) => { e.preventDefault(); }} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input placeholder="您的姓名" />
-                    <Input placeholder="联系邮箱" />
+                    <div className="space-y-2">
+                      <Label htmlFor="feedback-name">您的姓名</Label>
+                      <Input id="feedback-name" placeholder="您的姓名" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="feedback-email">联系邮箱</Label>
+                      <Input id="feedback-email" type="email" placeholder="联系邮箱" />
+                    </div>
                   </div>
-                  <Input placeholder="问题标题" />
-                  <textarea
-                    className="w-full p-3 border border-sky-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200"
-                    rows={4}
-                    placeholder="详细描述您的问题或建议..."
-                  />
+                  <div className="space-y-2">
+                    <Label htmlFor="feedback-title">问题标题</Label>
+                    <Input id="feedback-title" placeholder="问题标题" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="feedback-content">详细描述</Label>
+                    <textarea
+                      id="feedback-content"
+                      className="w-full p-3 border border-sky-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200"
+                      rows={4}
+                      placeholder="详细描述您的问题或建议..."
+                    />
+                  </div>
                   <div className="flex items-center gap-2">
-                    <Button className="bg-blue-600 hover:bg-blue-700">提交反馈</Button>
-                    <Button variant="outline">重置</Button>
+                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">提交反馈</Button>
+                    <Button type="button" variant="outline">重置</Button>
                   </div>
-                </div>
+                </form>
               </CardContent>
             </Card>
           </TabsContent>

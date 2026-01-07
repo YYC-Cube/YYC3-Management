@@ -12,8 +12,7 @@
  * 5. 生产环境性能监控
  */
 
-import createNextConfig from 'next/dist/server/config-shared';
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   // ==========================================
   // TypeScript 配置

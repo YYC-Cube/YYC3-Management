@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -315,14 +316,18 @@ export default function CreativeCollaborationPage() {
             <TabsContent value="projects" className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <Input
-                      placeholder="搜索项目..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 w-64"
-                    />
+                  <div className="space-y-2">
+                    <Label htmlFor="project-search" className="sr-only">搜索项目</Label>
+                    <div className="relative">
+                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <Input
+                        id="project-search"
+                        placeholder="搜索项目..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10 w-64"
+                      />
+                    </div>
                   </div>
                   <select
                     value={filterStatus}

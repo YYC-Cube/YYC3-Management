@@ -6,6 +6,7 @@ import { EnhancedCard } from "@/components/ui/enhanced-card"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { MessageSquare, Users, Send, Phone, Video, Plus, Search, Paperclip } from "lucide-react"
 
 export default function CommunicationPage() {
@@ -172,14 +173,21 @@ export default function CommunicationPage() {
 
               {/* 输入区域 */}
               <div className="p-4 border-t border-slate-200">
-                <div className="flex items-center gap-2">
-                  <EnhancedButton size="sm" variant="outline">
-                    <Paperclip className="w-4 h-4" />
-                  </EnhancedButton>
-                  <Input placeholder="输入消息..." className="flex-1" />
-                  <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
-                    <Send className="w-4 h-4" />
-                  </EnhancedButton>
+                <div className="space-y-2">
+                  <Label htmlFor="message-input" className="sr-only">输入消息</Label>
+                  <div className="flex items-center gap-2">
+                    <EnhancedButton size="sm" variant="outline">
+                      <Paperclip className="w-4 h-4" />
+                    </EnhancedButton>
+                    <Input
+                      id="message-input"
+                      placeholder="输入消息..."
+                      className="flex-1"
+                    />
+                    <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
+                      <Send className="w-4 h-4" />
+                    </EnhancedButton>
+                  </div>
                 </div>
               </div>
             </EnhancedCard>

@@ -6,6 +6,7 @@ import { EnhancedCard } from "@/components/ui/enhanced-card"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Users, UserPlus, Search, Filter, TrendingUp, Star, Phone, Mail } from "lucide-react"
 
 export default function CustomersPage() {
@@ -77,15 +78,24 @@ export default function CustomersPage() {
 
         {/* 搜索和筛选 */}
         <EnhancedCard>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex-1 relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
-              <Input placeholder="搜索客户姓名、公司或联系方式..." className="pl-10" />
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="flex-1 space-y-2">
+                <Label htmlFor="customer-search" className="sr-only">搜索客户</Label>
+                <div className="relative">
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                  <Input
+                    id="customer-search"
+                    placeholder="搜索客户姓名、公司或联系方式..."
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              <EnhancedButton variant="outline">
+                <Filter className="w-4 h-4 mr-2" />
+                筛选
+              </EnhancedButton>
             </div>
-            <EnhancedButton variant="outline">
-              <Filter className="w-4 h-4 mr-2" />
-              筛选
-            </EnhancedButton>
           </div>
 
           {/* 客户列表 */}

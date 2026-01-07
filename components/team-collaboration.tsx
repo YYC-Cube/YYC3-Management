@@ -36,6 +36,10 @@ import {
   Target,
 } from "lucide-react"
 
+interface TeamCollaborationProps {
+  showTitle?: boolean
+}
+
 interface TeamMember {
   id: string
   name: string
@@ -78,7 +82,7 @@ interface SharedOKR {
   priority: "high" | "medium" | "low"
 }
 
-export function TeamCollaboration() {
+export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) {
   const { toast } = useToast()
   const [activeTab, setActiveTab] = useState("dashboard")
   const [newComment, setNewComment] = useState("")
@@ -259,27 +263,31 @@ export function TeamCollaboration() {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      {/* 页面头部 */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">团队协作中心</h1>
-          <p className="text-slate-600 mt-1">共享目标，协同合作，共同成长</p>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Button
-            variant="outline"
-            className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white border-0"
-          >
-            <Share2 className="w-4 h-4 mr-2" />
-            分享目标
-          </Button>
-          <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
-            <Plus className="w-4 h-4 mr-2" />
-            邀请成员
-          </Button>
-        </div>
-      </div>
+    <div className="space-y-6">
+      {showTitle && (
+        <>
+          {/* 页面头部 */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900">团队协作中心</h1>
+              <p className="text-slate-600 mt-1">共享目标，协同合作，共同成长</p>
+            </div>
+            <div className="flex items-center space-x-3">
+              <Button
+                variant="outline"
+                className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white border-0"
+              >
+                <Share2 className="w-4 h-4 mr-2" />
+                分享目标
+              </Button>
+              <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+                <Plus className="w-4 h-4 mr-2" />
+                邀请成员
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

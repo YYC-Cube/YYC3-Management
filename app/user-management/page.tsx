@@ -9,8 +9,14 @@ export const metadata: Metadata = {
 
 export default function UserManagementPage() {
   return (
-    <PageContainer title="用户管理" description="用户权限和角色管理">
-      <UserManagement showTitle={false} />
+    <PageContainer
+      title="用户管理"
+      description="用户权限和角色管理"
+      className="p-6"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <UserManagement showTitle={false} />
+      </div>
     </PageContainer>
   )
 }
