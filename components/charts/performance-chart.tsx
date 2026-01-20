@@ -25,7 +25,7 @@ export function PerformanceChart() {
       }}
       className="h-[300px]"
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer>
         <AreaChart data={performanceData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="week" />

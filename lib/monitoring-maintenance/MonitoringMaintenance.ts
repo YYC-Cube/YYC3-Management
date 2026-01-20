@@ -51,7 +51,7 @@ export class MonitoringAndMaintenance extends EventEmitter {
   private maintenanceTasks: MaintenanceTask[];
   private monitoringInterval: NodeJS.Timeout | null;
 
-  constructor(config: any = {}) {
+  constructor(_config: any = {}) {
     super();
     this.healthChecks = new Map();
     this.alerts = [];

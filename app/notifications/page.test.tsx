@@ -61,7 +61,7 @@ describe('NotificationsPage', () => {
     if (unreadTab) {
       fireEvent.click(unreadTab)
       await waitFor(() => {
-        let notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
+        const notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
         expect(notificationItems.length).toBe(2)
       })
     }
@@ -70,7 +70,7 @@ describe('NotificationsPage', () => {
     if (importantTab) {
       fireEvent.click(importantTab)
       await waitFor(() => {
-        let notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
+        const notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
         expect(notificationItems.length).toBe(1)
       })
     }
@@ -79,7 +79,7 @@ describe('NotificationsPage', () => {
     if (allTab) {
       fireEvent.click(allTab)
       await waitFor(() => {
-        let notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
+        const notificationItems = document.querySelectorAll('.space-y-4 > .flex.items-start.gap-4.p-4.border.rounded-lg')
         expect(notificationItems.length).toBe(5)
       })
     }

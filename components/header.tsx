@@ -88,12 +88,12 @@ export function Header() {
       {/* 右侧：操作按钮 */}
       <div className="flex items-center space-x-3">
         {/* 快捷操作 */}
-        <Button variant="ghost" size="sm" className="hidden md:flex">
+        <Button variant="ghost" size="sm" className="hidden md:flex text-purple-500 hover:text-purple-600 hover:bg-purple-50">
           <Calendar className="h-4 w-4 mr-2" />
           日程
         </Button>
 
-        <Button variant="ghost" size="sm" className="hidden md:flex">
+        <Button variant="ghost" size="sm" className="hidden md:flex text-green-500 hover:text-green-600 hover:bg-green-50">
           <MessageSquare className="h-4 w-4 mr-2" />
           消息
         </Button>
@@ -103,17 +103,17 @@ export function Header() {
           variant="ghost"
           size="sm"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="h-9 w-9 p-0"
+          className="h-9 w-9 p-0 text-amber-500 hover:text-amber-600 hover:bg-amber-50"
         >
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-indigo-500" />
           <span className="sr-only">切换主题</span>
         </Button>
 
         {/* 通知 */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="sm" className="relative h-9 w-9 p-0">
+            <Button variant="ghost" size="sm" className="relative h-9 w-9 p-0 text-blue-500 hover:text-blue-600 hover:bg-blue-50">
               <Bell className="h-4 w-4" />
               {unreadCount > 0 && (
                 <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500 hover:bg-red-600">
@@ -150,7 +150,7 @@ export function Header() {
         {/* 设置 */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="sm" className="h-9 w-9 p-0">
+            <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-green-500 hover:text-green-600 hover:bg-green-50">
               <Settings className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -158,15 +158,15 @@ export function Header() {
             <DropdownMenuLabel>系统设置</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Globe className="mr-2 h-4 w-4" />
+              <Globe className="mr-2 h-4 w-4 text-blue-500" />
               语言设置
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Bell className="mr-2 h-4 w-4" />
+              <Bell className="mr-2 h-4 w-4 text-blue-500" />
               通知设置
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HelpCircle className="mr-2 h-4 w-4" />
+              <HelpCircle className="mr-2 h-4 w-4 text-blue-500" />
               帮助中心
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -175,7 +175,7 @@ export function Header() {
         {/* 用户菜单 */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+            <Button variant="ghost" className="relative h-9 w-9 rounded-full text-purple-500 hover:text-purple-600 hover:bg-purple-50">
               <Avatar className="h-9 w-9">
                 <AvatarImage src="/placeholder-user.jpg" alt="用户头像" onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder-user.jpg' }} />
                 <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">管</AvatarFallback>

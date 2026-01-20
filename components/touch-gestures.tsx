@@ -55,7 +55,7 @@ export function TouchGestures({
     const container = containerRef.current
     if (!container) return
 
-    let animationFrame: number = 0
+    let animationFrame: number | null = null
 
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0]

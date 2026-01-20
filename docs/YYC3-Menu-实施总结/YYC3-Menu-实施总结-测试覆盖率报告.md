@@ -1,14 +1,3 @@
----
-@file: YYC3-Menu-实施总结-测试覆盖率报告.md
-@description: 本文档总结了YYC3项目的测试覆盖率现状与提升建议。
-@author: YYC3团队
-@version: v1.0.0
-@created: 2025-12-28
-@updated: 2025-12-28
-@status: published
-@tags: 测试,覆盖率,总结
----
-
 # 测试覆盖率报告
 
 ## 执行摘要
@@ -49,4 +38,124 @@
 
 #### 2.2 增强AI功能
 
-...（后续内容略，原文档内容完整迁移）
+- **情感分析**：用户情绪识别和响应调整
+- **自主学习**：基于用户交互的自动学习功能
+- **消息操作**：消息再生、复制、反馈、收藏功能
+- **上下文管理**：对话上下文维护和利用
+
+#### 2.3 系统集成功能
+
+- **Agentic AI集成**：与AI代理核心的交互
+- **实时通信**：WebSocket/SSE消息传递
+- **权限控制**：基于角色的访问控制
+- **API调用**：与后端服务的交互
+
+## 覆盖率对比分析
+
+### 与目标的差距
+
+根据项目需求，我们的目标是实现70%以上的测试覆盖率。当前覆盖率（平均约14%）与目标存在显著差距，需要大幅提升。
+
+### 与规划文档的对比
+
+对照`智枢服务化平台规划AI.md`文档，以下关键功能未被测试覆盖：
+
+| 规划功能 | 实现状态 | 测试覆盖 | 差距分析 |
+|---------|---------|---------|---------|
+| 多模态交互 | 已实现 | 未覆盖 | 需添加语音、图像交互测试 |
+| 情感智能 | 已实现 | 未覆盖 | 需添加情感分析测试用例 |
+| 自主学习 | 已实现 | 未覆盖 | 需添加学习功能测试 |
+| 微服务架构 | 部分实现 | 未覆盖 | 需添加服务交互测试 |
+| 实时通信 | 部分实现 | 未覆盖 | 需添加WebSocket测试 |
+| 权限控制 | 设计阶段 | 未覆盖 | 需添加权限管理测试 |
+
+## 改进建议
+
+### 1. 测试策略调整
+
+- **优先测试核心功能**：首先覆盖IntelligentAIWidget等核心组件
+- **分层测试**：
+  - 单元测试：覆盖工具函数、服务层
+  - 集成测试：覆盖组件间交互
+  - E2E测试：覆盖完整用户流程
+
+### 2. 具体测试任务
+
+#### 2.1 核心组件测试
+
+```typescript
+// 示例：IntelligentAIWidget测试框架
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { IntelligentAIWidget } from '@/components/ai-floating-widget/IntelligentAIWidget';
+
+describe('IntelligentAIWidget', () => {
+  it('should render the widget with default state', () => {
+    render(<IntelligentAIWidget />);
+    
+    // 验证组件渲染
+    expect(screen.getByRole('button', { name: /AI助手/i })).toBeInTheDocument();
+  });
+
+  it('should handle message sending and receiving', async () => {
+    // 模拟API响应
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ content: '测试响应' }),
+    });
+
+    render(<IntelligentAIWidget />);
+    
+    // 打开组件
+    fireEvent.click(screen.getByRole('button', { name: /AI助手/i }));
+    
+    // 输入消息
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: '你好' } });
+    
+    // 发送消息
+    fireEvent.click(screen.getByRole('button', { name: /发送/i }));
+    
+    // 验证响应
+    await waitFor(() => {
+      expect(screen.getByText('测试响应')).toBeInTheDocument();
+    });
+  });
+
+  // 添加更多测试用例...
+});
+```
+
+#### 2.2 增强功能测试
+
+- **情感分析测试**：验证情绪识别和响应调整
+- **自主学习测试**：验证基于用户反馈的学习功能
+- **多模态测试**：验证语音和图像输入处理
+
+### 3. 覆盖率提升计划
+
+| 阶段 | 覆盖目标 | 主要任务 | 时间估计 |
+|-----|---------|---------|---------|
+| 第一阶段 | 30% | 核心组件基础测试 | 2-3天 |
+| 第二阶段 | 50% | 增强功能测试 | 3-4天 |
+| 第三阶段 | 70% | 系统集成测试 | 4-5天 |
+| 持续优化 | >80% | 边缘情况和性能测试 | 持续 |
+
+## 结论
+
+当前项目测试覆盖率极低（平均约14%），远未达到目标的70%。大部分核心功能和增强AI功能都缺乏测试覆盖。
+
+为了提高代码质量和系统稳定性，建议立即实施上述测试改进计划，优先覆盖核心功能模块，逐步提升整体覆盖率。
+
+## 后续步骤
+
+1. **制定详细测试计划**：基于本报告制定具体的测试任务和时间表
+2. **配置测试环境**：确保Vitest配置正确，支持覆盖率报告
+3. **编写核心测试用例**：优先覆盖IntelligentAIWidget等核心组件
+4. **实施持续测试**：将测试集成到CI/CD流程中
+5. **定期审查覆盖率**：每周生成覆盖率报告，跟踪改进进度
+
+---
+
+**报告生成日期**：2025-12-21
+**测试框架**：Vitest
+**项目名称**：YYC³ Mana
+**报告作者**：测试自动化工具

@@ -27,7 +27,7 @@ export function SalesChart() {
       }}
       className="h-[300px]"
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer>
         <LineChart data={salesData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />

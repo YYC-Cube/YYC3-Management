@@ -28,7 +28,6 @@ import type {
   SuggestedReply,
   ExportFormat,
   ExportedConversation,
-  MessageType,
   MessageStatus,
   ChatTheme,
   ChatLayout,
@@ -549,8 +548,6 @@ export class ChatInterface extends EventEmitter implements IChatInterface, Lifec
   // ============ 消息管理 ============
 
   async sendMessage(message: ChatMessage): Promise<string> {
-    const startTime = Date.now();
-    
     try {
       // 验证和预处理
       const validated = this.validateMessage(message);
@@ -647,7 +644,7 @@ export class ChatInterface extends EventEmitter implements IChatInterface, Lifec
 
   // ============ 交互功能 ============
 
-  async suggestReplies(context: ReplyContext): Promise<SuggestedReply[]> {
+  async suggestReplies(_context: ReplyContext): Promise<SuggestedReply[]> {
     // 模拟智能回复生成
     return [
       { text: '好的，我明白了', type: 'quick', confidence: 0.9, icon: '👍' },

@@ -22,45 +22,45 @@ import {
   PolarRadiusAxis,
   Radar,
 } from "recharts"
+import { useMemo } from "react"
 
 export function OKRAnalyticsCharts() {
-  // 模拟数据
-  const departmentProgress = [
+  const departmentProgress = useMemo(() => [
     { department: "技术部", progress: 72, target: 80, okrCount: 5 },
     { department: "销售部", progress: 85, target: 80, okrCount: 4 },
     { department: "客服部", progress: 78, target: 80, okrCount: 3 },
     { department: "市场部", progress: 65, target: 80, okrCount: 3 },
     { department: "财务部", progress: 90, target: 80, okrCount: 2 },
-  ]
+  ], [])
 
-  const quarterlyTrend = [
+  const quarterlyTrend = useMemo(() => [
     { quarter: "2024-Q3", completed: 12, inProgress: 8, atRisk: 3 },
     { quarter: "2024-Q4", completed: 15, inProgress: 6, atRisk: 2 },
     { quarter: "2025-Q1", completed: 18, inProgress: 7, atRisk: 1 },
     { quarter: "2025-Q2", completed: 14, inProgress: 9, atRisk: 2 },
-  ]
+  ], [])
 
-  const priorityDistribution = [
+  const priorityDistribution = useMemo(() => [
     { name: "高优先级", value: 8, color: "#ef4444" },
     { name: "中优先级", value: 12, color: "#f59e0b" },
     { name: "低优先级", value: 5, color: "#22c55e" },
-  ]
+  ], [])
 
-  const teamPerformance = [
+  const teamPerformance = useMemo(() => [
     { member: "张经理", efficiency: 85, quality: 90, collaboration: 88 },
     { member: "李工程师", efficiency: 78, quality: 85, collaboration: 82 },
     { member: "王主管", efficiency: 92, quality: 88, collaboration: 95 },
     { member: "陈专员", efficiency: 70, quality: 75, collaboration: 80 },
-  ]
+  ], [])
 
-  const milestoneCompletion = [
+  const milestoneCompletion = useMemo(() => [
     { month: "1月", planned: 20, completed: 18 },
     { month: "2月", planned: 25, completed: 23 },
     { month: "3月", planned: 30, completed: 28 },
     { month: "4月", planned: 22, completed: 20 },
     { month: "5月", planned: 28, completed: 26 },
     { month: "6月", planned: 24, completed: 22 },
-  ]
+  ], [])
 
   return (
     <div className="space-y-6">
@@ -85,7 +85,7 @@ export function OKRAnalyticsCharts() {
               }}
               className="h-80"
             >
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <BarChart data={departmentProgress}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                   <XAxis dataKey="department" stroke="#64748b" />
@@ -132,7 +132,7 @@ export function OKRAnalyticsCharts() {
               }}
               className="h-80"
             >
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <AreaChart data={quarterlyTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                   <XAxis dataKey="quarter" stroke="#64748b" />
@@ -191,7 +191,7 @@ export function OKRAnalyticsCharts() {
               }}
               className="h-80"
             >
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <PieChart>
                   <Pie
                     data={priorityDistribution}
@@ -236,7 +236,7 @@ export function OKRAnalyticsCharts() {
               }}
               className="h-80"
             >
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <RadarChart data={teamPerformance}>
                   <PolarGrid stroke="#e2e8f0" />
                   <PolarAngleAxis dataKey="member" tick={{ fontSize: 12, fill: "#64748b" }} />
@@ -293,7 +293,7 @@ export function OKRAnalyticsCharts() {
             }}
             className="h-80"
           >
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer>
               <LineChart data={milestoneCompletion}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="month" stroke="#64748b" />

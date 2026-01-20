@@ -18,6 +18,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Sidebar } from "@/components/sidebar"
 import { Header } from "@/components/header"
 import { AIWidgetProvider } from "@/components/ai-floating-widget"
+import { PageTitleProvider } from "@/contexts/page-title-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -57,24 +58,26 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
-          <AIWidgetProvider autoInit={true}>
-            <div className="flex h-screen bg-gray-50">
-              {/* 侧边栏 */}
-              <Sidebar />
+        <PageTitleProvider>
+          <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+            <AIWidgetProvider autoInit={true}>
+              <div className="flex h-screen bg-gray-50">
+                {/* 侧边栏 */}
+                <Sidebar />
 
-              {/* 主内容区域 */}
-              <div className="flex-1 flex flex-col overflow-hidden">
-                {/* 头部 */}
-                <Header />
+                {/* 主内容区域 */}
+                <div className="flex-1 flex flex-col overflow-hidden">
+                  {/* 头部 */}
+                  <Header />
 
-                {/* 页面内容 */}
-                <main className="flex-1 overflow-auto">{children}</main>
+                  {/* 页面内容 */}
+                  <main className="flex-1 overflow-auto">{children}</main>
+                </div>
               </div>
-            </div>
-            <Toaster />
-          </AIWidgetProvider>
-        </ThemeProvider>
+              <Toaster />
+            </AIWidgetProvider>
+          </ThemeProvider>
+        </PageTitleProvider>
       </body>
     </html>
   )

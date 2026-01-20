@@ -1,0 +1,14 @@
+{
+  "name": "run-migrations",
+  "version": "1.0.0",
+  "description": "Database migration runner",
+  "main": "run-migrations.ts",
+  "scripts": {
+    "migrate": "bun run scripts/run-migrations.ts",
+    "migrate:down": "echo 'Rollback not implemented yet'",
+    "migrate:status": "echo 'Status check not implemented yet'"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
+  }
+}

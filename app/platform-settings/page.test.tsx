@@ -27,7 +27,7 @@ Object.assign(navigator, {
 
 // 模拟window.open
 vi.spyOn(window, 'open').mockImplementation(() => ({
-  // @ts-ignore
+  // @ts-expect-error - Mocking window.open return value
 } as Window))
 
 describe('PlatformSettingsPage', () => {

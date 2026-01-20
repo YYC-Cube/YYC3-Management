@@ -12,9 +12,24 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     isolate: false, // 禁用隔离以提高性能
 
+    // 并行执行配置
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        singleThread: false,
+        minThreads: 2,
+        maxThreads: 4, // 增加线程数以支持并行执行
+        useAtomics: true,
+      },
+    },
+
+    // 测试文件并行执行
+    fileParallelism: true,
+    maxConcurrency: 4, // 增加并发数
+
     // 覆盖率配置 - 使用 istanbul 替代 v8 (更稳定)
     coverage: {
-      provider: 'istanbul', // 切换到 istanbul
+      provider: 'istanbul',
       reporter: ['text', 'json', 'html', 'lcov'],
       exclude: [
         'node_modules/',
@@ -27,13 +42,16 @@ export default defineConfig({
         '**/.next/',
         '**/coverage/',
         '**/*.d.ts',
-        'core/**/*', // 暂时排除 core 目录以减少扫描范围
+        'core/**/*',
       ],
       // 覆盖率目标
       lines: 60,
       functions: 60,
       branches: 60,
       statements: 60,
+      // 并行覆盖率收集
+      cleanOnRerun: true,
+      all: false, // 只测试覆盖到的文件
       // 降低内存使用
       maxConcurrency: 2,
     },
@@ -51,17 +69,17 @@ export default defineConfig({
       'core/**', // 暂时排除 core 目录
     ],
 
-    // 超时配置
-    testTimeout: 10000,
-    hookTimeout: 10000,
+    // 超时配置 - 优化超时时间
+    testTimeout: 5000, // 减少超时时间
+    hookTimeout: 5000,
 
-    // 并行配置 - 减少线程数
-    threads: false, // 禁用多线程以减少 EPIPE 错误
-    maxThreads: 2,
-    minThreads: 1,
+    // 并行配置 - 启用多线程以提高性能
+    threads: true,
+    maxThreads: 4,
+    minThreads: 2,
 
-    // 报告器
-    reporters: ['default'],
+    // 报告器 - 添加性能报告
+    reporters: ['default', 'json'],
 
     // 监听模式配置
     watch: false, // 禁用监听以避免内存问题

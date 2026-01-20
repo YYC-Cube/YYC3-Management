@@ -18,7 +18,7 @@ export interface DataSource {
   id: string;
   name: string;
   type: 'database' | 'api' | 'file' | 'stream' | 'sensor';
-  connection: any;
+  connection: Record<string, unknown>;
   schema?: DataSchema;
   metadata: {
     owner: string;
@@ -44,7 +44,7 @@ export interface Field {
   name: string;
   type: string;
   nullable: boolean;
-  defaultValue?: any;
+  defaultValue?: unknown;
   description?: string;
 }
 

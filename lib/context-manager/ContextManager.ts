@@ -331,7 +331,7 @@ export class ContextManager extends EventEmitter implements LifecycleComponent {
     updates: Partial<Pick<ContextEntry, 'content' | 'metadata'>>
   ): Promise<void> {
     // 尝试从各个记忆层查找
-    let entry = this.shortTermMemory.get(entryId)
+    const entry = this.shortTermMemory.get(entryId)
       || this.longTermMemory.get(entryId)
       || this.workingMemory.get(entryId);
     
@@ -370,7 +370,7 @@ export class ContextManager extends EventEmitter implements LifecycleComponent {
    * 获取上下文
    */
   public getContext(entryId: string): ContextEntry | undefined {
-    let entry = this.shortTermMemory.get(entryId)
+    const entry = this.shortTermMemory.get(entryId)
       || this.longTermMemory.get(entryId)
       || this.workingMemory.get(entryId);
     
@@ -749,7 +749,7 @@ export class ContextManager extends EventEmitter implements LifecycleComponent {
   /**
    * 初始化组件
    */
-  public async initialize(config: ComponentConfig): Promise<void> {
+  public async initialize(_config: ComponentConfig): Promise<void> {
     this.status = 'initializing';
     try {
       this.status = 'ready';

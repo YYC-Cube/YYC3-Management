@@ -1,7 +1,6 @@
 import { render, renderHook, screen } from '@testing-library/react';
 import { ReactElement } from 'react';
 
-// 自定义渲染函数（包含UI主题提供者）
 export function renderWithProviders(
   ui: ReactElement,
   options = {}
@@ -13,10 +12,8 @@ export function renderWithProviders(
   return render(ui, { wrapper: Wrapper, ...options });
 }
 
-// 重新导出常用测试工具
 export { render, renderHook, screen };
 
-// 测试数据生成器
 export const mockData = {
   user: {
     id: 'user_123',
@@ -47,7 +44,6 @@ export const mockData = {
   },
 };
 
-// Mock API 响应
 export const mockApiResponse = {
   success: true,
   data: {},
@@ -55,7 +51,6 @@ export const mockApiResponse = {
   timestamp: new Date().toISOString(),
 };
 
-// 等待条件满足
 export const waitForCondition = async (
   condition: () => boolean,
   timeout = 5000

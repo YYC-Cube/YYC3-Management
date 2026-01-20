@@ -96,11 +96,11 @@ export class ContinuousLearning extends EventEmitter {
     }
   }
 
-  private async simulateTraining(data: TrainingData): Promise<void> {
+  private async simulateTraining(_data: TrainingData): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 2000));
   }
 
-  async evaluateModel(modelId: string, testData: TrainingData): Promise<{
+  async evaluateModel(modelId: string, _testData: TrainingData): Promise<{
     accuracy: number;
     precision: number;
     recall: number;

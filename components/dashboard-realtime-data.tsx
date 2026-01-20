@@ -193,7 +193,7 @@ export function DashboardRealtimeData() {
             </div>
 
             <div className="h-80 min-w-0">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <AreaChart data={realtimeData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -223,7 +223,7 @@ export function DashboardRealtimeData() {
 
           <TabsContent value="sales" className="space-y-4">
             <div className="h-80 min-w-0">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <BarChart data={salesData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -252,7 +252,7 @@ export function DashboardRealtimeData() {
 
           <TabsContent value="customers" className="space-y-4">
             <div className="h-80 min-w-0">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer>
                 <LineChart data={customerData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -286,7 +286,7 @@ export function DashboardRealtimeData() {
           <TabsContent value="categories" className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="h-80 min-w-0">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer>
                   <PieChart>
                     <Pie
                       data={categoryData}

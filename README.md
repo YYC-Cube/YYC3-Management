@@ -85,6 +85,13 @@ YYC³企业智能管理系统是一个全面的企业数字化转型解决方案
 - **React 18** - 用户界面库，支持并发特性
 - **TypeScript** - 静态类型检查，提升开发体验
 
+### 后端框架
+
+- **Next.js API Routes** - 服务端API路由
+- **PostgreSQL** - 关系型数据库
+- **Redis** - 缓存和会话存储
+- **Repository Pattern** - 数据访问层抽象
+
 ### UI组件库
 
 - **Tailwind CSS** - 原子化CSS框架
@@ -98,6 +105,12 @@ YYC³企业智能管理系统是一个全面的企业数字化转型解决方案
 - **React Hooks** - 组件状态和副作用管理
 - **Local Storage** - 本地数据持久化
 
+### 数据库
+
+- **PostgreSQL** - 主数据库，存储业务数据
+- **Redis** - 缓存层，提升查询性能
+- **Database Migrations** - 数据库版本管理和迁移
+
 ### AI集成
 
 - **AI SDK** - Vercel AI SDK，统一AI模型接口
@@ -110,6 +123,7 @@ YYC³企业智能管理系统是一个全面的企业数字化转型解决方案
 - **Prettier** - 代码格式化
 - **Husky** - Git钩子管理
 - **TypeScript** - 静态类型检查
+- **Vitest** - 单元测试框架
 
 ## 🛠️ 安装和运行
 
@@ -164,6 +178,14 @@ enterprise-management-system/
 ├── app/                          # Next.js 14 App Router
 │   ├── (auth)/                   # 认证相关页面
 │   │   └── login/                # 登录页面
+│   ├── api/                      # API路由
+│   │   ├── health/               # 健康检查
+│   │   ├── users/                # 用户管理API
+│   │   ├── customers/            # 客户管理API
+│   │   ├── tasks/                # 任务管理API
+│   │   ├── projects/             # 项目管理API
+│   │   ├── notifications/         # 通知管理API
+│   │   └── system/              # 系统设置API
 │   ├── dashboard/                # 仪表板
 │   ├── customers/                # 客户管理
 │   ├── tasks/                    # 任务管理
@@ -186,17 +208,61 @@ enterprise-management-system/
 ├── hooks/                        # 自定义Hooks
 │   └── use-toast.ts              # Toast通知Hook
 ├── lib/                          # 工具库
-│   ├── api.ts                    # API服务
+│   ├── api/                      # API工具
+│   │   ├── response-handler.ts    # 响应处理
+│   │   ├── validation.ts         # 数据验证
+│   │   ├── logger.ts            # 日志记录
+│   │   └── middleware.ts       # 中间件
+│   ├── db/                       # 数据库
+│   │   ├── client.ts            # 数据库客户端
+│   │   ├── redis.ts             # Redis客户端
+│   │   ├── models/              # 数据模型
+│   │   │   ├── user.ts
+│   │   │   ├── customer.ts
+│   │   │   ├── task.ts
+│   │   │   ├── project.ts
+│   │   │   ├── notification.ts
+│   │   │   └── system.ts
+│   │   └── repositories/        # 数据仓库
+│   │       ├── user.repository.ts
+│   │       ├── customer.repository.ts
+│   │       ├── task.repository.ts
+│   │       ├── project.repository.ts
+│   │       ├── notification.repository.ts
+│   │       └── system.repository.ts
 │   ├── ai-service.ts             # AI服务
 │   ├── ai-models.ts              # AI模型配置
 │   ├── design-system.ts          # 设计系统
 │   └── utils.ts                  # 工具函数
+├── migrations/                   # 数据库迁移
+│   ├── 001_create_users_table.sql
+│   ├── 002_create_customers_table.sql
+│   ├── 003_create_tasks_table.sql
+│   ├── 004_create_projects_table.sql
+│   ├── 005_create_notifications_table.sql
+│   ├── 006_create_system_settings_table.sql
+│   ├── 007_create_system_logs_table.sql
+│   ├── 008_create_finance_records_table.sql
+│   ├── 009_create_okr_objectives_table.sql
+│   ├── 010_create_okr_key_results_table.sql
+│   ├── 011_create_updated_at_triggers.sql
+│   └── 012_create_migrations_table.sql
+├── scripts/                      # 脚本工具
+│   ├── run-migrations.ts        # 运行迁移
+│   └── seed.ts                  # 数据种子
+├── tests/                        # 测试文件
+│   ├── api/                     # API测试
+│   │   ├── repositories.test.ts
+│   │   ├── validation.test.ts
+│   │   └── integration.test.ts
+│   └── ...
 ├── public/                       # 静态资源
 │   ├── images/                   # 图片资源
 │   ├── icons/                    # 图标资源
 │   ├── manifest.json             # PWA配置
 │   └── sw.js                     # Service Worker
 ├── docs/                         # 文档
+│   ├── API-Documentation.md    # API文档
 │   ├── navigation-analysis-report.tsx  # 导航分析报告
 │   ├── optimization-report.tsx         # 优化报告
 │   └── application-analysis-report.tsx # 应用分析报告

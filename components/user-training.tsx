@@ -527,14 +527,14 @@ export function UserTraining() {
                   <h4 className="font-medium">包含模块:</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {path.modules.map((moduleId) => {
-                      const module = trainingModules.find((m) => m.id === moduleId)
+                      const moduleItem = trainingModules.find((m) => m.id === moduleId)
                       return (
                         <div key={moduleId} className="flex items-center gap-2 text-sm">
-                          {module && (
+                          {moduleItem && (
                             <>
-                              {getTypeIcon(module.type)}
-                              <span>{module.title}</span>
-                              {module.completed && <CheckCircle className="w-3 h-3 text-green-600" />}
+                              {getTypeIcon(moduleItem.type)}
+                              <span>{moduleItem.title}</span>
+                              {moduleItem.completed && <CheckCircle className="w-3 h-3 text-green-600" />}
                             </>
                           )}
                         </div>

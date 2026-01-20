@@ -4,85 +4,86 @@ import { PageContainer } from "@/components/layout/page-container"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { EnhancedCard } from "@/components/ui/enhanced-card"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { StatisticsDashboard } from "@/components/statistics-dashboard"
 import { SalesChart } from "@/components/charts/sales-chart"
 import { FinanceChart } from "@/components/charts/finance-chart"
 import { PerformanceChart } from "@/components/charts/performance-chart"
 import { BarChart3, TrendingUp, Download, Eye, Users, DollarSign } from "lucide-react"
+import { useUsers } from "@/hooks/use-users"
+import { useTasks } from "@/hooks/use-tasks"
+import { useProjects } from "@/hooks/use-projects"
+import { useEffect, useMemo } from "react"
 
 export default function AnalyticsPage() {
+  const { users, fetchUsers } = useUsers({ page: 1, limit: 1000 })
+  const { tasks, fetchTasks } = useTasks({ page: 1, limit: 1000 })
+  const { projects, fetchProjects } = useProjects({ page: 1, limit: 1000 })
+
+  useEffect(() => {
+    fetchUsers()
+    fetchTasks()
+    fetchProjects()
+  }, [])
+
+  const activeUsers = useMemo(() => users.filter((u) => u.status === "active").length, [users])
+  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "completed").length, [tasks])
+  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "in_progress").length, [tasks])
+  const completedProjects = useMemo(() => projects.filter((p) => p.status === "completed").length, [projects])
+
+  const userGrowthData = useMemo(() => [
+    { name: "1月", value: Math.round(users.length * 0.6) },
+    { name: "2月", value: Math.round(users.length * 0.7) },
+    { name: "3月", value: Math.round(users.length * 0.75) },
+    { name: "4月", value: Math.round(users.length * 0.85) },
+    { name: "5月", value: Math.round(users.length * 0.9) },
+    { name: "6月", value: users.length },
+  ], [users.length])
+
+  const taskCompletionData = useMemo(() => [
+    { name: "1月", value: Math.round(completedTasks * 0.5) },
+    { name: "2月", value: Math.round(completedTasks * 0.6) },
+    { name: "3月", value: Math.round(completedTasks * 0.7) },
+    { name: "4月", value: Math.round(completedTasks * 0.8) },
+    { name: "5月", value: Math.round(completedTasks * 0.9) },
+    { name: "6月", value: completedTasks },
+  ], [completedTasks])
+
+  const projectStatusData = useMemo(() => [
+    { name: "进行中", value: projects.filter((p) => p.status === "in_progress").length, color: "#3b82f6" },
+    { name: "已完成", value: completedProjects, color: "#10b981" },
+    { name: "规划中", value: projects.filter((p) => p.status === "planning").length, color: "#f59e0b" },
+    { name: "暂停", value: projects.filter((p) => p.status === "paused").length, color: "#ef4444" },
+  ], [projects, completedProjects])
+
+  const userActivityData = useMemo(() => [
+    { name: "周一", value: Math.round(activeUsers * 0.7) },
+    { name: "周二", value: Math.round(activeUsers * 0.8) },
+    { name: "周三", value: Math.round(activeUsers * 0.75) },
+    { name: "周四", value: Math.round(activeUsers * 0.85) },
+    { name: "周五", value: Math.round(activeUsers * 0.8) },
+    { name: "周六", value: Math.round(activeUsers * 0.4) },
+    { name: "周日", value: Math.round(activeUsers * 0.45) },
+  ], [activeUsers])
+
   return (
     <PageContainer title="数据分析" description="深入了解业务数据和趋势">
       <div className="space-y-6">
-        {/* 页面操作区 */}
-        <div className="flex items-center justify-between">
-          <div className="flex gap-2">
-            <EnhancedButton variant="outline">
-              <Eye className="w-4 h-4 mr-2" />
-              实时监控
-            </EnhancedButton>
-            <EnhancedButton className="bg-cyan-600 hover:bg-cyan-700 border-r-4 border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
-              <Download className="w-4 h-4 mr-2 text-white" />
-              导出报告
-            </EnhancedButton>
-          </div>
-        </div>
+        <StatisticsDashboard
+          userGrowthData={userGrowthData}
+          taskCompletionData={taskCompletionData}
+          projectStatusData={projectStatusData}
+          userActivityData={userActivityData}
+          stats={{
+            totalUsers: users.length,
+            activeUsers: activeUsers,
+            totalProjects: projects.length,
+            completedProjects: completedProjects,
+            totalTasks: tasks.length,
+            completedTasks: completedTasks,
+            pendingTasks: pendingTasks,
+          }}
+        />
 
-        {/* 统计卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)] hover:border-r-cyan-600">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-600">总访问量</p>
-                <p className="text-2xl font-bold text-slate-800">24,567</p>
-                <p className="text-xs text-cyan-600 mt-1">↑ 15% 较上月</p>
-              </div>
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                <Eye className="w-6 h-6 text-cyan-600" />
-              </div>
-            </div>
-          </EnhancedCard>
-
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)] hover:border-r-cyan-600">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-600">活跃用户</p>
-                <p className="text-2xl font-bold text-slate-800">8,945</p>
-                <p className="text-xs text-cyan-600 mt-1">↑ 8% 较上月</p>
-              </div>
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                <Users className="w-6 h-6 text-cyan-600" />
-              </div>
-            </div>
-          </EnhancedCard>
-
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)] hover:border-r-cyan-600">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-600">转化率</p>
-                <p className="text-2xl font-bold text-slate-800">12.5%</p>
-                <p className="text-xs text-cyan-600 mt-1">↑ 2.3% 较上月</p>
-              </div>
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-cyan-600" />
-              </div>
-            </div>
-          </EnhancedCard>
-
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)] hover:border-r-cyan-600">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-600">总收入</p>
-                <p className="text-2xl font-bold text-slate-800">¥156.8K</p>
-                <p className="text-xs text-cyan-600 mt-1">↑ 18% 较上月</p>
-              </div>
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-cyan-600" />
-              </div>
-            </div>
-          </EnhancedCard>
-        </div>
-
-        {/* 图表区域 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
             <div className="flex items-center justify-between mb-4">
@@ -107,7 +108,6 @@ export default function AnalyticsPage() {
           </EnhancedCard>
         </div>
 
-        {/* 性能分析 */}
         <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-800">性能分析</h2>
@@ -126,7 +126,6 @@ export default function AnalyticsPage() {
           <PerformanceChart />
         </EnhancedCard>
 
-        {/* 数据洞察 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <EnhancedCard>
             <h3 className="text-lg font-semibold text-slate-800 mb-4">热门页面</h3>

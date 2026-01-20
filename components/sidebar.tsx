@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { usePageTitle } from "@/contexts/page-title-context"
 import {
   LayoutDashboard,
   Users,
@@ -58,7 +59,7 @@ const navigationItems = [
   {
     title: "运营中心",
     items: [
-      { name: "仪表板", href: "/dashboard", icon: LayoutDashboard, color: "blue" },
+      { name: "数据中心", href: "/dashboard", icon: LayoutDashboard, color: "blue" },
       { name: "客户管理", href: "/customers", icon: Users, color: "green" },
       { name: "任务管理", href: "/tasks", icon: CheckSquare, color: "orange" },
       { name: "沟通协作", href: "/communication", icon: MessageSquare, color: "purple" },
@@ -112,6 +113,7 @@ const navigationItems = [
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const pathname = usePathname()
+  const { title } = usePageTitle()
   const { toggleWidget } = useAIWidget()
 
   return (
@@ -140,6 +142,18 @@ export function Sidebar() {
                 <p className="text-xs text-gray-500">Management System</p>
               </div>
             </div>
+          )}
+          {isCollapsed && title && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer mx-auto">
+                  <Image src="/yyc3-white.png" alt="YYC³ Logo" width={20} height={20} className="rounded" />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="right">
+                <div className="text-sm font-medium">{title}</div>
+              </TooltipContent>
+            </Tooltip>
           )}
           <Button
             variant="ghost"
@@ -194,9 +208,9 @@ export function Sidebar() {
                               className={cn(
                                 "h-4 w-4", 
                                 isCollapsed ? "mx-auto" : "mr-3",
-                                // 图标颜色与边线一致
-                                isActive ? "text-white" : `text-${colorClass}-500`
+                                isActive ? "text-white" : ""
                               )} 
+                              style={!isActive ? { color: theme.primary } : undefined}
                             />
                             {!isCollapsed && <span className="truncate">{item.name}</span>}
                           </Link>

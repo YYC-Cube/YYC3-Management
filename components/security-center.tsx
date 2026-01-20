@@ -589,7 +589,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer>
                     <LineChart data={securityTrendData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="date" />
@@ -627,7 +627,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer>
                     <PieChart>
                       <Pie
                         data={eventTypeData}

@@ -71,6 +71,10 @@
   },
   "include": [
     "next-env.d.ts",
+    "components.d.ts",
+    "global.d.ts",
+    "types.d.ts",
+    "types-declarations.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
