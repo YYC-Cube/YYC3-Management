@@ -2,11 +2,18 @@ import { NextRequest, NextResponse } from 'next/server'
 import { ApiErrorHandler, successResponse, createdResponse, messageResponse } from './response-handler'
 import { ApiLogger, logApiRequest, logApiError, extractRequestInfo } from './logger'
 import { UnauthorizedError, ForbiddenError, NotFoundError } from './validation'
+import { verifyToken as verifyJwtToken } from './auth-guard'
+
+export interface AuthUser {
+  id: string | number
+  role: string
+  permissions?: string[]
+}
 
 export interface ApiMiddlewareContext {
   request: NextRequest
-  user?: any
-  userId?: number
+  user?: AuthUser
+  userId?: string | number
 }
 
 export type ApiMiddleware = (
@@ -54,7 +61,7 @@ export async function withAuth(
     const user = await verifyToken(token)
     context.user = user
     context.userId = user.id
-  } catch (error) {
+  } catch {
     return ApiErrorHandler.unauthorized('认证失败')
   }
 }
@@ -123,10 +130,14 @@ export async function withErrorHandler(
   }
 }
 
-async function verifyToken(token: string): Promise<any> {
+async function verifyToken(token: string): Promise<AuthUser> {
+  const payload = verifyJwtToken(token)
+  if (!payload) {
+    throw new Error('认证令牌无效或已过期')
+  }
   return {
-    id: 1,
-    username: 'admin',
+    id: payload.userId,
+    role: payload.role,
     permissions: ['*'],
   }
 }

@@ -1,7 +1,7 @@
 export interface SearchFilter {
   field: string
   operator: "equals" | "contains" | "startsWith" | "endsWith" | "greaterThan" | "lessThan" | "between" | "in" | "notIn"
-  value: any
+  value: unknown
   label?: string
 }
 
@@ -46,7 +46,7 @@ export class AdvancedSearch<T> {
     if (!searchTerm) return true
 
     const term = searchTerm.toLowerCase()
-    const itemValues = Object.values(item as any)
+    const itemValues = Object.values(item as unknown)
 
     return itemValues.some((value) => {
       if (value === null || value === undefined) return false
@@ -58,12 +58,12 @@ export class AdvancedSearch<T> {
     if (filters.length === 0) return true
 
     return filters.every((filter) => {
-      const itemValue = (item as any)[filter.field]
+      const itemValue = (item as unknown)[filter.field]
       return this.applyFilter(itemValue, filter)
     })
   }
 
-  private applyFilter(value: any, filter: SearchFilter): boolean {
+  private applyFilter(value: unknown, filter: SearchFilter): boolean {
     const filterValue = filter.value
 
     switch (filter.operator) {
@@ -151,8 +151,8 @@ export class AdvancedSearch<T> {
     }
   }
 
-  debounce(func: Function, wait: number): (...args: any[]) => void {
-    return (...args: any[]) => {
+  debounce(func: Function, wait: number): (...args: unknown[]) => void {
+    return (...args: unknown[]) => {
       if (this.debounceTimer) {
         clearTimeout(this.debounceTimer)
       }
@@ -170,7 +170,7 @@ export class AdvancedSearch<T> {
     const suggestions = new Set<string>()
 
     data.forEach((item) => {
-      const value = String((item as any)[field] || "")
+      const value = String((item as unknown)[field] || "")
       if (value.toLowerCase().includes(term)) {
         suggestions.add(value)
       }
@@ -194,7 +194,7 @@ export class AdvancedSearch<T> {
   }
 }
 
-export function createSearchFilter(field: string, operator: SearchFilter["operator"], value: any, label?: string): SearchFilter {
+export function createSearchFilter(field: string, operator: SearchFilter["operator"], value: unknown, label?: string): SearchFilter {
   return { field, operator, value, label }
 }
 

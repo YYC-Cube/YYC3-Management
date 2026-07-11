@@ -2,7 +2,7 @@
  * @fileoverview tenant-management.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -70,7 +70,7 @@ export function TenantManagement() {
       maxUsers: 100,
       createdAt: new Date("2024-01-15"),
       lastActive: new Date(),
-      logo: "/yyc3-logo-blue.png",
+      logo: "/yyc3-icons/pwa/icon-512x512.png",
     },
     {
       id: "2",
@@ -159,7 +159,7 @@ export function TenantManagement() {
       case "basic":
         return "bg-green-100 text-green-800 border-green-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -172,7 +172,7 @@ export function TenantManagement() {
       case "suspended":
         return "bg-red-100 text-red-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -244,7 +244,7 @@ export function TenantManagement() {
         <TabsContent value="tenants" className="space-y-4">
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
               <Input
                 placeholder="搜索租户名称或域名..."
                 value={searchTerm}
@@ -329,7 +329,7 @@ export function TenantManagement() {
                         </Badge>
                         <Badge
                           className={
-                            user.status === "active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"
+                            user.status === "active" ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"
                           }
                         >
                           {user.status === "active" ? "活跃" : "非活跃"}

@@ -7,6 +7,11 @@ import type {
   ProjectListResponse,
 } from '../models/project'
 
+const ALLOWED_UPDATE_COLUMNS = [
+  'name', 'description', 'manager_id', 'team_size', 'progress',
+  'status', 'priority', 'start_date', 'end_date', 'budget', 'type',
+] as const
+
 export class ProjectRepository {
   async findAll(params: ProjectSearchParams = {}): Promise<ProjectListResponse> {
     const {
@@ -22,7 +27,7 @@ export class ProjectRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (search) {
@@ -128,12 +133,12 @@ export class ProjectRepository {
 
   async update(id: number, data: UpdateProjectData): Promise<Project | null> {
     const updates: string[] = []
-    const values: any[] = []
+    const values: unknown[] = []
     let paramIndex = 1
 
     Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined) {
-        updates.push(`${key} = $${paramIndex}`)
+      if (value !== undefined && (ALLOWED_UPDATE_COLUMNS as readonly string[]).includes(key)) {
+        updates.push(`"${key}" = $${paramIndex}`)
         values.push(value)
         paramIndex++
       }

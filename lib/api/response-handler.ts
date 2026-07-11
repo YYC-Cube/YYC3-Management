@@ -4,7 +4,7 @@ import { ZodError } from 'zod'
 export interface ApiError {
   success: false
   error: string
-  details?: any
+  details?: unknown
   code?: string
 }
 
@@ -73,7 +73,7 @@ export class ApiErrorHandler {
     return errorMessages[error.name] || 500
   }
 
-  static validation(message: string, details?: any): NextResponse<ApiError> {
+  static validation(message: string, details?: unknown): NextResponse<ApiError> {
     return NextResponse.json(
       {
         success: false,

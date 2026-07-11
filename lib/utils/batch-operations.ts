@@ -37,7 +37,7 @@ export class BatchOperations<T> {
           try {
             const createResult = await createFn(item)
             if (createResult.success) {
-              result.succeeded.push(item as any)
+              result.succeeded.push(item as unknown)
             } else {
               result.failed.push({ item, error: createResult.error || "创建失败" })
               result.errors.push(createResult.error || "创建失败")
@@ -92,14 +92,14 @@ export class BatchOperations<T> {
           try {
             const updateResult = await updateFn(id, data)
             if (updateResult.success) {
-              result.succeeded.push(data as any)
+              result.succeeded.push(data as unknown)
             } else {
-              result.failed.push({ item: data as any, error: updateResult.error || "更新失败" })
+              result.failed.push({ item: data as unknown, error: updateResult.error || "更新失败" })
               result.errors.push(updateResult.error || "更新失败")
             }
           } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "未知错误"
-            result.failed.push({ item: data as any, error: errorMessage })
+            result.failed.push({ item: data as unknown, error: errorMessage })
             result.errors.push(errorMessage)
           }
 
@@ -147,14 +147,14 @@ export class BatchOperations<T> {
           try {
             const deleteResult = await deleteFn(id)
             if (deleteResult.success) {
-              result.succeeded.push(id as any)
+              result.succeeded.push(id as unknown)
             } else {
-              result.failed.push({ item: id as any, error: deleteResult.error || "删除失败" })
+              result.failed.push({ item: id as unknown, error: deleteResult.error || "删除失败" })
               result.errors.push(deleteResult.error || "删除失败")
             }
           } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "未知错误"
-            result.failed.push({ item: id as any, error: errorMessage })
+            result.failed.push({ item: id as unknown, error: errorMessage })
             result.errors.push(errorMessage)
           }
 

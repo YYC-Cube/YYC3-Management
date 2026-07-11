@@ -3,9 +3,7 @@
  * @remarks 部分类型已迁移到 core/shared-types.ts 的 Learning 命名空间
  */
 
-// @ts-ignore - TypeScript module resolution issue
 import type { UUID, Timestamp, JsonObject } from '../shared-types.ts';
-// @ts-ignore - TypeScript module resolution issue
 import type { Learning as SharedLearning } from '../shared-types.ts';
 
 // 重新导出共享类型以保持向后兼容

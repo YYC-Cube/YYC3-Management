@@ -11,5 +11,7 @@
   "eslint.ignoreDefinitions": [
     "**/node_modules/**",
     "**/*.d.ts"
-  ]
+  ],
+  "markdown.extension.completion.enabled": false,
+  "markdown.extension.tableFormatter.enabled": false
 }

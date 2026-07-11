@@ -1,0 +1,17 @@
+export const de = {
+  common: {
+    health: "Gesundheit",
+    online: "Online",
+    offline: "Offline",
+    welcome: "Willkommen",
+    save: "Speichern",
+    cancel: "Abbrechen",
+    loading: "Laden...",
+    error: "Fehler",
+    success: "Erfolg",
+    version: "v2.0.0",
+  },
+  nav: { home: "Startseite", about: "Über uns", contact: "Kontakt" },
+  overview: { stats: { cronNext: "Nächster Weckruf {time}" } },
+  welcome: { message: "Hallo {name}", title: "Willkommen bei YYC³ i18n Core" },
+} as const;

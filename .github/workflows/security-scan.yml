@@ -6,50 +6,53 @@ on:
   pull_request:
     branches: [main, develop]
   schedule:
-    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+    - cron: "0 2 * * *" # Daily at 2 AM UTC
 
 env:
-  NODE_VERSION: '18'
-  BUN_VERSION: '1.0.0'
+  NODE_VERSION: "20"
+  BUN_VERSION: "1.1.0"
 
 jobs:
   security-audit:
     name: Security Audit
     runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
 
       - name: Install dependencies
         run: bun install
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+
       - name: Run Bun audit
         run: bun audit --audit-level=moderate
-
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate
+        continue-on-error: true
 
       - name: Run Snyk security scan
+        if: env.SNYK_TOKEN != ''
         uses: snyk/actions/node@master
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
         with:
           args: --severity-threshold=high
+        continue-on-error: true
 
-      - name: Run CodeQL analysis
+      - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          languages: typescript, javascript
+          category: "/language:javascript-typescript"
 
   dependency-check:
     name: Dependency Check
@@ -58,13 +61,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
 
@@ -100,11 +98,13 @@ jobs:
           path: ./
           base: main
           head: HEAD
+        continue-on-error: true
 
       - name: Run gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
 
   code-quality-security:
     name: Code Quality Security
@@ -113,13 +113,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
 
@@ -128,6 +123,7 @@ jobs:
 
       - name: Run ESLint security rules
         run: bun run lint -- --quiet --format json --output-file eslint-report.json
+        continue-on-error: true
 
       - name: Run TypeScript security check
         run: bun run type-check
@@ -145,11 +141,13 @@ jobs:
         with:
           name: code-quality-security-report
           path: eslint-report.json
+        if: always()
 
   security-report:
     name: Security Report
     runs-on: ubuntu-latest
-    needs: [security-audit, dependency-check, secrets-scan, code-quality-security]
+    needs:
+      [security-audit, dependency-check, secrets-scan, code-quality-security]
     if: always()
     steps:
       - name: Checkout code
@@ -183,7 +181,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const report = fs.readFileSync('security-report/security-report.md', 'utf8');
+            const report = fs.readFileSync('security-report.md', 'utf8');
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

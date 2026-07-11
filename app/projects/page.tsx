@@ -2,7 +2,7 @@
  * @fileoverview projects.tsx
  * @description 项目管理组件 - 集成真实API
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -213,7 +213,7 @@ export default function ProjectsPage() {
       case "low":
         return "text-green-600 bg-green-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -224,13 +224,13 @@ export default function ProjectsPage() {
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "planning":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       case "on_hold":
         return "text-orange-600 bg-orange-50"
       case "cancelled":
         return "text-red-600 bg-red-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -370,7 +370,7 @@ export default function ProjectsPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">全部项目</option>
                 <option value="planning">规划中</option>
@@ -452,7 +452,7 @@ export default function ProjectsPage() {
               {[
                 { status: "进行中", count: projectStats.inProgressProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.inProgressProjects / projectStats.totalProjects) * 100) : 0, color: "bg-blue-500" },
                 { status: "已完成", count: projectStats.completedProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
-                { status: "规划中", count: projects.filter((p) => p.status === "planning").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "planning").length / projectStats.totalProjects) * 100) : 0, color: "bg-gray-500" },
+                { status: "规划中", count: projects.filter((p) => p.status === "planning").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "planning").length / projectStats.totalProjects) * 100) : 0, color: "bg-slate-500" },
                 { status: "暂停", count: projects.filter((p) => p.status === "on_hold").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "on_hold").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">

@@ -2,7 +2,7 @@
  * @fileoverview env.ts
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -75,7 +75,7 @@ interface EnvironmentVariables {
 
 // 环境变量验证函数
 function validateEnv(): EnvironmentVariables {
-  const env = process.env as any
+  const env = process.env as unknown
 
   // 必需的环境变量
   const required = ["NEXT_PUBLIC_APP_NAME", "NEXT_PUBLIC_API_BASE_URL", "JWT_SECRET", "NEXTAUTH_SECRET"]

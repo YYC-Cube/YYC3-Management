@@ -1,5 +1,4 @@
 // core/tools/ToolRegistry.ts
-// @ts-ignore - TypeScript module resolution issue
 import { AITool, ToolResult, AIContext, ToolUsageRecord, ToolRelevanceScore } from './types.ts';
 
 export class ToolRegistry {

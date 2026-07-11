@@ -98,13 +98,11 @@ describe('PlatformSettingsPage', () => {
     const appIdField = screen.getByLabelText(/AppID/i).closest('.relative')
     const appSecretField = appSecretInput.closest('.relative')
     
-    if (appSecretField) {
-      const eyeButton = appSecretField.querySelectorAll('button')[0]
-      await userEvent.click(eyeButton)
-      
-      // 验证输入框类型变为文本
-      expect(appSecretInput).toHaveAttribute('type', 'text')
-    }
+    expect(appSecretField).not.toBeNull()
+    const eyeButton = appSecretField!.querySelectorAll('button')[0]
+    expect(eyeButton).toBeDefined()
+    await userEvent.click(eyeButton)
+    expect(appSecretInput).toHaveAttribute('type', 'text')
   })
 
   it('should copy text to clipboard correctly', async () => {
@@ -113,15 +111,11 @@ describe('PlatformSettingsPage', () => {
     // 获取AppID字段的复制按钮
     const appIdField = screen.getByLabelText(/AppID/i).closest('.relative')
     
-    if (appIdField) {
-      const copyButton = appIdField.querySelector('button')
-      if (copyButton) {
-        await userEvent.click(copyButton)
-        
-        // 验证clipboard.writeText被调用
-        expect(navigator.clipboard.writeText).toHaveBeenCalled()
-      }
-    }
+    expect(appIdField).not.toBeNull()
+    const copyButton = appIdField!.querySelector('button')
+    expect(copyButton).toBeDefined()
+    await userEvent.click(copyButton!)
+    expect(navigator.clipboard.writeText).toHaveBeenCalled()
   })
 
   it('should test connection correctly', async () => {
@@ -162,23 +156,16 @@ describe('PlatformSettingsPage', () => {
     const toggleElements = screen.queryAllByRole('button', { name: /启用/i })
     
     // 如果找到了符合条件的元素
+    const toggleElements = screen.queryAllByRole('switch')
     if (toggleElements.length > 0) {
-      const firstToggle = toggleElements[0]
-      await userEvent.click(firstToggle)
-      // 只验证点击事件被触发，不检查状态属性
-      expect(true).toBe(true)
+      await userEvent.click(toggleElements[0])
+      expect(toggleElements[0]).toBeInTheDocument()
     } else {
-      // 如果没有找到，检查是否有其他类型的开关
-      const checkboxInputs = screen.queryAllByRole('checkbox')
-      if (checkboxInputs.length > 0) {
-        const firstCheckbox = checkboxInputs[0]
-        const initialState = firstCheckbox.checked
-        await userEvent.click(firstCheckbox)
-        expect(firstCheckbox.checked).toBe(!initialState)
-      } else {
-        // 如果都没有找到，标记测试为通过（跳过）
-        expect(true).toBe(true)
-      }
+      const checkboxInputs = screen.getAllByRole('checkbox')
+      expect(checkboxInputs.length).toBeGreaterThan(0)
+      const initialState = checkboxInputs[0].checked
+      await userEvent.click(checkboxInputs[0])
+      expect(checkboxInputs[0].checked).toBe(!initialState)
     }
   })
 

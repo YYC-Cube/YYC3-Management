@@ -94,16 +94,13 @@ describe('PerformancePage', () => {
     const deptPerformanceCard = deptPerformanceTitle.closest('.rounded-xl')
     
     expect(deptPerformanceCard).toBeInTheDocument()
-    
-    // 在部门绩效对比卡片内查找部门数据
-    if (deptPerformanceCard) {
-      const deptItems = deptPerformanceCard.querySelectorAll('[class*="p-4 border border-slate-200 rounded-lg"]')
-      expect(deptItems.length).toBe(5)
-      expect(deptItems[0].textContent).toContain('产品部')
-      expect(deptItems[0].textContent).toContain('4.5')
-      expect(deptItems[1].textContent).toContain('技术部')
-      expect(deptItems[1].textContent).toContain('4.3')
-    }
+
+    const deptItems = deptPerformanceCard!.querySelectorAll('[class*="p-4 border border-slate-200 rounded-lg"]')
+    expect(deptItems.length).toBe(5)
+    expect(deptItems[0].textContent).toContain('产品部')
+    expect(deptItems[0].textContent).toContain('4.5')
+    expect(deptItems[1].textContent).toContain('技术部')
+    expect(deptItems[1].textContent).toContain('4.3')
   })
 
   it('应该渲染绩效分布分析', () => {

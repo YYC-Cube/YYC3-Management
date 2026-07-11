@@ -1,5 +1,4 @@
 // analytics/OmniChannelAnalytics.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   DataUnifier,
   InsightGenerator,

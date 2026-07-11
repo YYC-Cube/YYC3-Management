@@ -2,7 +2,7 @@
  * @fileoverview security-center.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -361,7 +361,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       case "low":
         return "bg-blue-100 text-blue-800 border-blue-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -374,9 +374,9 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       case "resolved":
         return "bg-green-100 text-green-800"
       case "ignored":
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -398,7 +398,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   }
 
   const handleEventStatusChange = (eventId: string, newStatus: string) => {
-    setEvents((prev) => prev.map((event) => (event.id === eventId ? { ...event, status: newStatus as any } : event)))
+    setEvents((prev) => prev.map((event) => (event.id === eventId ? { ...event, status: newStatus as unknown } : event)))
     toast({
       title: "状态已更新",
       description: `事件状态已更改为${newStatus}`,
@@ -447,16 +447,16 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <div className="h-8 bg-gray-200 rounded w-48 animate-pulse"></div>
-            <div className="h-4 bg-gray-200 rounded w-64 mt-2 animate-pulse"></div>
+            <div className="h-8 bg-slate-200 rounded w-48 animate-pulse"></div>
+            <div className="h-4 bg-slate-200 rounded w-64 mt-2 animate-pulse"></div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-32 bg-gray-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-32 bg-slate-200 rounded-xl animate-pulse"></div>
           ))}
         </div>
-        <div className="h-96 bg-gray-200 rounded-xl animate-pulse"></div>
+        <div className="h-96 bg-slate-200 rounded-xl animate-pulse"></div>
       </div>
     )
   }
@@ -476,7 +476,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
             <Download className="w-4 h-4 mr-2" />
             导出报告
           </Button>
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button className="bg-primary hover:bg-primary/90">
             <RefreshCw className="w-4 h-4 mr-2" />
             刷新数据
           </Button>
@@ -662,7 +662,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                 {events.slice(0, 5).map((event) => (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-slate-50 cursor-pointer"
                     onClick={() => {
                       setSelectedEvent(event)
                       setIsEventDialogOpen(true)
@@ -672,8 +672,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                       <div className={`p-2 rounded-full ${getLevelColor(event.level)}`}>{getTypeIcon(event.type)}</div>
                       <div>
                         <h4 className="font-medium">{event.title}</h4>
-                        <p className="text-sm text-gray-600">{event.description}</p>
-                        <p className="text-xs text-gray-500 mt-1">{event.timestamp}</p>
+                        <p className="text-sm text-slate-600">{event.description}</p>
+                        <p className="text-xs text-slate-500 mt-1">{event.timestamp}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -691,7 +691,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           {/* 搜索和筛选 */}
           <div className="flex items-center gap-4">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
               <Input
                 placeholder="搜索安全事件..."
                 value={searchQuery}
@@ -724,7 +724,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                 {filteredEvents.map((event) => (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-slate-50"
                   >
                     <div className="flex items-center gap-4 flex-1">
                       <div className={`p-2 rounded-full ${getLevelColor(event.level)}`}>{getTypeIcon(event.type)}</div>
@@ -734,8 +734,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                           <Badge className={getLevelColor(event.level)}>{event.level}</Badge>
                           <Badge className={getStatusColor(event.status)}>{event.status}</Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">{event.description}</p>
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <p className="text-sm text-slate-600 mb-2">{event.description}</p>
+                        <div className="flex items-center gap-4 text-xs text-slate-500">
                           <span>来源: {event.source}</span>
                           <span>时间: {event.timestamp}</span>
                           {event.details.ip && <span>IP: {event.details.ip}</span>}
@@ -786,13 +786,13 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <h4 className="font-medium">{policy.name}</h4>
-                        <p className="text-sm text-gray-600">{policy.description}</p>
+                        <p className="text-sm text-slate-600">{policy.description}</p>
                       </div>
                       <Switch checked={policy.enabled} onCheckedChange={() => handlePolicyToggle(policy.id)} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {policy.rules.map((rule) => (
-                        <div key={rule.id} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                        <div key={rule.id} className="flex items-center justify-between p-2 bg-slate-50 rounded">
                           <span className="text-sm">{rule.name}</span>
                           <div className="flex items-center gap-2">
                             {typeof rule.value === "boolean" ? (
@@ -826,9 +826,9 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                         <h4 className="font-medium">{threat.title}</h4>
                         <Badge className={getLevelColor(threat.severity)}>{threat.severity}</Badge>
                       </div>
-                      <span className="text-sm text-gray-500">{threat.timestamp}</span>
+                      <span className="text-sm text-slate-500">{threat.timestamp}</span>
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">{threat.description}</p>
+                    <p className="text-sm text-slate-600 mb-3">{threat.description}</p>
                     <div className="space-y-2">
                       <div>
                         <span className="text-sm font-medium">威胁指标:</span>
@@ -842,7 +842,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                       </div>
                       <div>
                         <span className="text-sm font-medium">缓解措施:</span>
-                        <p className="text-sm text-gray-600 mt-1">{threat.mitigation}</p>
+                        <p className="text-sm text-slate-600 mt-1">{threat.mitigation}</p>
                       </div>
                     </div>
                   </div>
@@ -986,31 +986,31 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                   <div className="mt-2 space-y-2">
                     {selectedEvent.details.ip && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">IP地址:</span>
+                        <span className="text-sm text-slate-600">IP地址:</span>
                         <span className="text-sm">{selectedEvent.details.ip}</span>
                       </div>
                     )}
                     {selectedEvent.details.user && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">用户:</span>
+                        <span className="text-sm text-slate-600">用户:</span>
                         <span className="text-sm">{selectedEvent.details.user}</span>
                       </div>
                     )}
                     {selectedEvent.details.location && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">位置:</span>
+                        <span className="text-sm text-slate-600">位置:</span>
                         <span className="text-sm">{selectedEvent.details.location}</span>
                       </div>
                     )}
                     {selectedEvent.details.device && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">设备:</span>
+                        <span className="text-sm text-slate-600">设备:</span>
                         <span className="text-sm">{selectedEvent.details.device}</span>
                       </div>
                     )}
                     {selectedEvent.details.action && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">操作:</span>
+                        <span className="text-sm text-slate-600">操作:</span>
                         <span className="text-sm">{selectedEvent.details.action}</span>
                       </div>
                     )}

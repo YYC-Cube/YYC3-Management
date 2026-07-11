@@ -1,7 +1,7 @@
 /**
  * @fileoverview index.ts
  * @description YYC³ 性能优化模块统一导出
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2026-01-05
  *
  * 此文件提供了性能优化模块的统一入口点
@@ -119,7 +119,7 @@ export default PerformanceToolkit;
 // ==========================================
 
 if (process.env.NODE_ENV === 'development') {
-  console.log(
+  // console.log(
     '[YYC³ Performance]',
     '性能优化模块已加载',
     '\n- 性能监控: initPerformanceMonitoring()',

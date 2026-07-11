@@ -19,8 +19,8 @@ interface DataImportExportProps<T> {
     sheetName?: string
   }
   importOptions?: {
-    validateRow?: (row: any) => boolean
-    transformRow?: (row: any) => any
+    validateRow?: (row: unknown) => boolean
+    transformRow?: (row: unknown) => any
   }
   disabled?: boolean
   title?: string

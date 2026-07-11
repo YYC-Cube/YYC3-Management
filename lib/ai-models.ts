@@ -2,7 +2,7 @@
  * @fileoverview AI模型配置
  * @description 定义支持的AI模型列表和配置信息
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -101,7 +101,7 @@ export const AI_MODELS: AIModel[] = [
     name: "Moonshot Kimi",
     provider: "Moonshot",
     type: "cloud",
-    endpoint: "https://api.moonshot.cn/v1/chat/completions",
+    endpoint: process.env.MOONSHOT_API_BASE_URL || "https://api.moonshot.cn/v1/chat/completions",
     apiKey: process.env.MOONSHOT_API_KEY,
     maxTokens: 16000,
     temperature: 0.7,
@@ -113,7 +113,7 @@ export const AI_MODELS: AIModel[] = [
     name: "DeepSeek Chat",
     provider: "DeepSeek",
     type: "cloud",
-    endpoint: "https://api.deepseek.com/v1/chat/completions",
+    endpoint: process.env.DEEPSEEK_API_BASE_URL || "https://api.deepseek.com/v1/chat/completions",
     apiKey: process.env.DEEPSEEK_API_KEY,
     maxTokens: 4000,
     temperature: 0.7,

@@ -1,5 +1,4 @@
 // analytics/RealTimeAIDashboard.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   DataStream,
   AlertEngine,

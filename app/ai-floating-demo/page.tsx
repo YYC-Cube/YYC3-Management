@@ -2,7 +2,7 @@
  * @fileoverview AI智能浮窗演示页面
  * @description 展示智能插拔式可移动AI系统的使用方法
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -11,11 +11,11 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Code, Zap, Brain, MessageSquare } from 'lucide-react';
+import { Sparkles, Code, Zap, Brain, MessageSquare } from "lucide-react";
 import { IntelligentAIWidget } from '@/components/ai-floating-widget/IntelligentAIWidget';
 import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/AgenticCore';
 
@@ -274,7 +274,7 @@ export default function AIFloatingDemoPage() {
             <CardDescription>如何在你的项目中集成AI智能浮窗</CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto text-sm">
+            <pre className="bg-slate-900 text-slate-100 p-6 rounded-lg overflow-x-auto text-sm">
 {`import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/AgenticCore';
 import { IntelligentAIWidget } from '@/components/ai-floating-widget/IntelligentAIWidget';
 

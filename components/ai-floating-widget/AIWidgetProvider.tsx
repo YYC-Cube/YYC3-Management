@@ -2,7 +2,7 @@
  * @fileoverview AI浮窗全局提供者
  * @description 在应用全局提供AI智能浮窗功能
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³

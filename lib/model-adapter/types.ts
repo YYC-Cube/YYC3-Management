@@ -2,7 +2,7 @@
  * @fileoverview AI模型适配器类型定义
  * @description 统一的AI模型接口和类型定义
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³

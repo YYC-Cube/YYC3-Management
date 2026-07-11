@@ -25,7 +25,7 @@ export async function checkDatabaseConnection(): Promise<boolean> {
     const client = await pool.connect()
     await client.query('SELECT 1')
     client.release()
-    console.log('Database connection successful')
+    // console.log('Database connection successful')
     return true
   } catch (error) {
     console.error('Database connection failed:', error)
@@ -33,12 +33,12 @@ export async function checkDatabaseConnection(): Promise<boolean> {
   }
 }
 
-export async function query<T = any>(text: string, params?: any[]): Promise<T[]> {
+export async function query<T = any>(text: string, params?: unknown[]): Promise<T[]> {
   const start = Date.now()
   try {
     const result = await pool.query(text, params)
     const duration = Date.now() - start
-    console.log('Executed query', { text, duration, rows: result.rowCount })
+    // console.log('Executed query', { text, duration, rows: result.rowCount })
     return result.rows
   } catch (error) {
     console.error('Database query error:', error)
@@ -51,7 +51,7 @@ export async function getClient() {
   const query = client.query.bind(client)
   const release = client.release.bind(client)
 
-  client.query = async (text: string, params?: any[]) => {
+  client.query = async (text: string, params?: unknown[]) => {
     try {
       const result = await query(text, params)
       return result

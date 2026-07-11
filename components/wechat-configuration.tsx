@@ -2,7 +2,7 @@
  * @fileoverview wechat-configuration.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -76,11 +76,11 @@ export function WechatConfiguration() {
   const [connectionStatus, setConnectionStatus] = useState<"connected" | "disconnected" | "testing">("connected")
 
   const [basicConfig, setBasicConfig] = useState({
-    appId: "wx1234567890abcdef",
-    appSecret: "abcdef1234567890abcdef1234567890",
-    token: "jinlan_wechat_token_2024",
-    encodingAESKey: "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFG",
-    serverUrl: "https://api.jinlan.com/wechat/callback",
+    appId: "",
+    appSecret: "",
+    token: "",
+    encodingAESKey: "",
+    serverUrl: "",
     enabled: true,
   })
 
@@ -231,7 +231,7 @@ export function WechatConfiguration() {
       case "testing":
         return <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
       default:
-        return <XCircle className="w-5 h-5 text-gray-400" />
+        return <XCircle className="w-5 h-5 text-slate-400" />
     }
   }
 
@@ -266,7 +266,7 @@ export function WechatConfiguration() {
             <TestTube className="w-4 h-4 mr-2" />
             {connectionStatus === "testing" ? "测试中..." : "测试连接"}
           </Button>
-          <Button onClick={handleSave} disabled={loading} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleSave} disabled={loading} className="bg-primary hover:bg-primary/90">
             <Save className="w-4 h-4 mr-2" />
             {loading ? "保存中..." : "保存配置"}
           </Button>
@@ -356,7 +356,7 @@ export function WechatConfiguration() {
               <div className="flex items-center justify-between mb-4">
                 <div className="space-y-0.5">
                   <Label>启用微信公众号</Label>
-                  <p className="text-sm text-gray-500">开启后系统将接收微信公众号消息</p>
+                  <p className="text-sm text-slate-500">开启后系统将接收微信公众号消息</p>
                 </div>
                 <Switch
                   checked={basicConfig.enabled}
@@ -426,7 +426,7 @@ export function WechatConfiguration() {
                   onChange={(e) => setBasicConfig({ ...basicConfig, serverUrl: e.target.value })}
                   disabled={!basicConfig.enabled}
                 />
-                <p className="text-sm text-gray-500">请将此URL配置到微信公众平台的服务器配置中</p>
+                <p className="text-sm text-slate-500">请将此URL配置到微信公众平台的服务器配置中</p>
               </div>
             </CardContent>
           </Card>
@@ -452,7 +452,7 @@ export function WechatConfiguration() {
             <CardContent className="space-y-6">
               <div className="grid gap-6">
                 {menuButtons.map((button, index) => (
-                  <div key={button.id} className="border border-gray-200 rounded-lg p-4">
+                  <div key={button.id} className="border border-slate-200 rounded-lg p-4">
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="font-medium">一级菜单 {index + 1}</h4>
                       <Button variant="outline" size="sm">
@@ -468,7 +468,7 @@ export function WechatConfiguration() {
                       </div>
                       <div className="space-y-2">
                         <Label>菜单类型</Label>
-                        <select className="w-full p-2 border border-gray-300 rounded-md" value={button.type}>
+                        <select className="w-full p-2 border border-slate-300 rounded-md" value={button.type}>
                           <option value="click">点击事件</option>
                           <option value="view">跳转链接</option>
                           <option value="miniprogram">小程序</option>
@@ -482,9 +482,9 @@ export function WechatConfiguration() {
 
                     {button.subButtons && button.subButtons.length > 0 && (
                       <div className="space-y-4">
-                        <h5 className="font-medium text-sm text-gray-700">子菜单</h5>
+                        <h5 className="font-medium text-sm text-slate-700">子菜单</h5>
                         {button.subButtons.map((subButton, subIndex) => (
-                          <div key={subButton.id} className="bg-gray-50 p-3 rounded-md">
+                          <div key={subButton.id} className="bg-slate-50 p-3 rounded-md">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                               <div className="space-y-1">
                                 <Label className="text-xs">子菜单名称</Label>
@@ -493,7 +493,7 @@ export function WechatConfiguration() {
                               <div className="space-y-1">
                                 <Label className="text-xs">类型</Label>
                                 <select
-                                  className="w-full p-1 text-sm border border-gray-300 rounded"
+                                  className="w-full p-1 text-sm border border-slate-300 rounded"
                                   value={subButton.type}
                                 >
                                   <option value="click">点击事件</option>
@@ -535,7 +535,7 @@ export function WechatConfiguration() {
             </CardHeader>
             <CardContent className="space-y-4">
               {autoReplies.map((reply) => (
-                <div key={reply.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={reply.id} className="border border-slate-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <Switch
@@ -561,7 +561,7 @@ export function WechatConfiguration() {
                     <div className="space-y-2">
                       <Label>回复类型</Label>
                       <select
-                        className="w-full p-2 border border-gray-300 rounded-md"
+                        className="w-full p-2 border border-slate-300 rounded-md"
                         value={reply.replyType}
                         onChange={(e) =>
                           updateAutoReply(reply.id, { replyType: e.target.value as "text" | "image" | "news" })
@@ -600,7 +600,7 @@ export function WechatConfiguration() {
             </CardHeader>
             <CardContent className="space-y-4">
               {templates.map((template) => (
-                <div key={template.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={template.id} className="border border-slate-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <Switch
@@ -613,7 +613,7 @@ export function WechatConfiguration() {
                       />
                       <div>
                         <h4 className="font-medium">{template.title}</h4>
-                        <p className="text-sm text-gray-500">模板ID: {template.templateId}</p>
+                        <p className="text-sm text-slate-500">模板ID: {template.templateId}</p>
                       </div>
                     </div>
                     <Badge variant="outline">{template.industry}</Badge>
@@ -650,14 +650,14 @@ export function WechatConfiguration() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <h4 className="font-medium">用户增长趋势</h4>
-                  <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center">
-                    <p className="text-gray-500">用户增长图表</p>
+                  <div className="h-48 bg-slate-50 rounded-lg flex items-center justify-center">
+                    <p className="text-slate-500">用户增长图表</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <h4 className="font-medium">消息互动统计</h4>
-                  <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center">
-                    <p className="text-gray-500">消息统计图表</p>
+                  <div className="h-48 bg-slate-50 rounded-lg flex items-center justify-center">
+                    <p className="text-slate-500">消息统计图表</p>
                   </div>
                 </div>
               </div>
@@ -671,10 +671,10 @@ export function WechatConfiguration() {
                     { title: "春季家装优惠活动", views: 756, clicks: 45 },
                     { title: "客户案例：北欧风格装修", views: 623, clicks: 38 },
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                       <div>
                         <p className="font-medium">{item.title}</p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-slate-500">
                           阅读量: {item.views} | 点击量: {item.clicks}
                         </p>
                       </div>

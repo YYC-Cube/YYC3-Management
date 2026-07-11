@@ -1,5 +1,4 @@
 // analytics/AIDecisionSupport.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   RecommendationEngine,
   ScenarioSimulator,

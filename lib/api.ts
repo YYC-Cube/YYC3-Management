@@ -2,7 +2,7 @@
  * @fileoverview API客户端
  * @description 封装API请求，提供统一的接口调用方式
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -11,7 +11,7 @@
 
 // API服务类 - 统一管理所有API调用
 class ApiService {
-  private baseURL = "https://api.zy.baby"
+  private baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || ""
   private token: string | null = null
 
   constructor() {
@@ -75,7 +75,7 @@ class ApiService {
 
       return await response.json()
     } catch (error) {
-      console.warn("API请求失败，使用离线数据:", error)
+      // console.warn("API请求失败，使用离线数据:", error)
       // 不再抛出错误，而是返回null让调用方处理
       return null
     }
@@ -98,31 +98,11 @@ class ApiService {
         return response
       }
     } catch (error) {
-      console.warn("登录API失败，尝试本地验证:", error)
+      // console.warn("登录API失败，尝试本地验证:", error)
     }
 
-    // API失败或无响应时的本地验证
-    if (username === "admin" && password === "admin123") {
-      const mockResponse = {
-        success: true,
-        token: "mock_jwt_token_" + Date.now(),
-        user: {
-          id: 1,
-          username: "admin",
-          name: "系统管理员",
-          email: "admin@company.com",
-          role: "admin",
-          avatar: "/placeholder.svg?height=40&width=40",
-        },
-      }
-      this.setToken(mockResponse.token)
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user_info", JSON.stringify(mockResponse.user))
-      }
-      return mockResponse
-    }
-
-    throw new Error("用户名或密码错误")
+    // API失败或无响应时，拒绝登录
+    throw new Error("登录服务不可用，请检查网络连接后重试")
   }
 
   // 获取用户信息
@@ -144,7 +124,7 @@ class ApiService {
         return response
       }
     } catch (error) {
-      console.warn("获取用户信息失败:", error)
+      // console.warn("获取用户信息失败:", error)
     }
 
     // 返回默认用户信息
@@ -166,7 +146,7 @@ class ApiService {
         return response
       }
     } catch (error) {
-      console.warn("获取仪表板数据失败，使用离线数据:", error)
+      // console.warn("获取仪表板数据失败，使用离线数据:", error)
     }
 
     // 返回模拟数据
@@ -198,7 +178,7 @@ class ApiService {
         return response
       }
     } catch (error) {
-      console.warn("获取销售数据失败，使用离线数据:", error)
+      // console.warn("获取销售数据失败，使用离线数据:", error)
     }
 
     // 返回模拟数据
@@ -224,7 +204,7 @@ class ApiService {
         return response
       }
     } catch (error) {
-      console.warn("获取客户数据失败，使用离线数据:", error)
+      // console.warn("获取客户数据失败，使用离线数据:", error)
     }
 
     // 返回模拟数据
@@ -242,7 +222,7 @@ class ApiService {
       await this.request("/auth/logout", { method: "POST" })
     } catch (error) {
       // 即使API失败也要清除本地token
-      console.log("登出API调用失败，但继续清除本地认证信息")
+      // console.log("登出API调用失败，但继续清除本地认证信息")
     } finally {
       this.clearToken()
     }

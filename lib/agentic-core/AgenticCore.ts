@@ -2,7 +2,7 @@
  * @fileoverview 智能自治核心引擎
  * @description 采用事件驱动+目标驱动的混合架构，提供AI Agent核心能力
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -221,11 +221,11 @@ export class AgenticCore extends EventEmitter {
    */
   private setupEventListeners(): void {
     this.on('task:created', (task: AgentTask) => {
-      console.log(`[AgenticCore] Task created: ${task.id}`);
+      // console.log(`[AgenticCore] Task created: ${task.id}`);
     });
 
     this.on('task:completed', (task: AgentTask) => {
-      console.log(`[AgenticCore] Task completed: ${task.id}`);
+      // console.log(`[AgenticCore] Task completed: ${task.id}`);
       this.metrics.completedTasks++;
     });
 
@@ -235,7 +235,7 @@ export class AgenticCore extends EventEmitter {
     });
 
     this.on('state:changed', (oldState: AgentState, newState: AgentState) => {
-      console.log(`[AgenticCore] State changed: ${oldState} -> ${newState}`);
+      // console.log(`[AgenticCore] State changed: ${oldState} -> ${newState}`);
     });
   }
 
@@ -586,14 +586,14 @@ export class AgenticCore extends EventEmitter {
    * 生成任务ID
    */
   private generateTaskId(): string {
-    return `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `task-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
 
   /**
    * 生成会话ID
    */
   private generateSessionId(): string {
-    return `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `session-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
 
   /**

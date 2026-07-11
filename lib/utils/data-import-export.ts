@@ -23,8 +23,8 @@ export interface ImportResult<T> {
 export interface ImportOptions {
   skipEmptyRows?: boolean
   trimValues?: boolean
-  validateRow?: (row: any) => boolean
-  transformRow?: (row: any) => any
+  validateRow?: (row: unknown) => boolean
+  transformRow?: (row: unknown) => any
 }
 
 export class DataExporter {
@@ -76,7 +76,7 @@ export class DataExporter {
     }
   }
 
-  static exportMultipleSheets(data: { [sheetName: string]: any[] }, filename: string = "export"): void {
+  static exportMultipleSheets(data: { [sheetName: string]: unknown[] }, filename: string = "export"): void {
     const workbook = XLSX.utils.book_new()
 
     Object.entries(data).forEach(([sheetName, sheetData]) => {
@@ -103,7 +103,7 @@ export class DataImporter {
           const errors: string[] = []
           const validData: T[] = []
 
-          results.data.forEach((row: any, index) => {
+          results.data.forEach((row: unknown, index) => {
             if (validateRow && !validateRow(row)) {
               errors.push(`第 ${index + 1} 行数据验证失败`)
               return
@@ -157,7 +157,7 @@ export class DataImporter {
           const errors: string[] = []
           const validData: T[] = []
 
-          jsonData.forEach((row: any, index) => {
+          jsonData.forEach((row: unknown, index) => {
             if (skipEmptyRows && Object.values(row).every((v) => v === "")) {
               return
             }
@@ -233,7 +233,7 @@ export class DataImporter {
           const errors: string[] = []
           const validData: T[] = []
 
-          data.forEach((row: any, index) => {
+          data.forEach((row: unknown, index) => {
             if (validateRow && !validateRow(row)) {
               errors.push(`第 ${index + 1} 行数据验证失败`)
               return

@@ -53,7 +53,7 @@ export default function SchedulePage() {
       case "cancelled":
         return "bg-red-100 text-red-800 border-red-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -92,7 +92,7 @@ export default function SchedulePage() {
           </div>
 
           <div className="flex items-center gap-2 ml-auto">
-            <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)}>
+            <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as string)}>
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="day">日</TabsTrigger>
                 <TabsTrigger value="week">周</TabsTrigger>
@@ -118,8 +118,8 @@ export default function SchedulePage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-3xl font-bold text-gray-900">3</p>
-                  <p className="text-xs text-gray-500 mt-1">今日日程</p>
+                  <p className="text-3xl font-bold text-slate-900">3</p>
+                  <p className="text-xs text-slate-500 mt-1">今日日程</p>
                 </div>
                 <Calendar className="w-8 h-8 text-blue-500" />
               </div>
@@ -130,8 +130,8 @@ export default function SchedulePage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-3xl font-bold text-gray-900">2</p>
-                  <p className="text-xs text-gray-500 mt-1">待确认</p>
+                  <p className="text-3xl font-bold text-slate-900">2</p>
+                  <p className="text-xs text-slate-500 mt-1">待确认</p>
                 </div>
                 <Clock className="w-8 h-8 text-green-500" />
               </div>
@@ -142,8 +142,8 @@ export default function SchedulePage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-3xl font-bold text-gray-900">5</p>
-                  <p className="text-xs text-gray-500 mt-1">本周会议</p>
+                  <p className="text-3xl font-bold text-slate-900">5</p>
+                  <p className="text-xs text-slate-500 mt-1">本周会议</p>
                 </div>
                 <Users className="w-8 h-8 text-purple-500" />
               </div>
@@ -162,19 +162,19 @@ export default function SchedulePage() {
               {scheduleData.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-start gap-4 p-4 border rounded-lg hover:bg-slate-50 transition-colors"
                 >
                   <div className="text-2xl">{getTypeIcon(item.type)}</div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                      <h3 className="font-semibold text-slate-900">{item.title}</h3>
                       <Badge className={`${getStatusColor(item.status)} border`}>
                         {item.status === "confirmed" ? "已确认" : item.status === "pending" ? "待确认" : "已取消"}
                       </Badge>
                     </div>
 
-                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-4 mt-2 text-sm text-slate-600">
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {item.time}
@@ -190,7 +190,7 @@ export default function SchedulePage() {
                     </div>
 
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs text-gray-500">参与者:</span>
+                      <span className="text-xs text-slate-500">参与者:</span>
                       <div className="flex gap-1">
                         {item.attendees.map((attendee, index) => (
                           <Badge key={index} variant="secondary" className="text-xs">

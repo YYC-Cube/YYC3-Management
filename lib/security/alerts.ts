@@ -83,7 +83,7 @@ class EmailNotificationChannel implements NotificationChannel {
   async send(alert: SecurityAlert): Promise<void> {
     // TODO: 实现邮件发送
     // 这里可以使用nodemailer或其他邮件库
-    console.log(`[EMAIL] Sending alert: ${alert.title}`);
+    // console.log(`[EMAIL] Sending alert: ${alert.title}`);
   }
 }
 
@@ -140,7 +140,7 @@ class SlackNotificationChannel implements NotificationChannel {
     };
 
     // TODO: 发送到Slack webhook
-    console.log(`[SLACK] Sending alert: ${alert.title}`, message);
+    // console.log(`[SLACK] Sending alert: ${alert.title}`, message);
   }
 }
 
@@ -370,7 +370,7 @@ export class SecurityAlertManager {
    */
   private async handleAuditLog(log: AuditLog): Promise<void> {
     // 根据审计日志检测安全事件
-    const rule = this.alertRules.get(log.action as any);
+    const rule = this.alertRules.get(log.action as unknown);
 
     if (rule) {
       await rule.check(log, this);

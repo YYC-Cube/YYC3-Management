@@ -2,7 +2,7 @@
  * @fileoverview 模型适配器模块导出
  * @description 统一导出所有模型适配器相关的类型和类
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-28
  * @copyright Copyright (c) 2025 YYC³

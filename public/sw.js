@@ -1,95 +1,122 @@
-const CACHE_NAME = "jinlan-ems-v2.0.0"
+const CACHE_NAME = "yyc3-ems-v3.0.0"
+const STATIC_CACHE = "yyc3-static-v3.0.0"
+const RUNTIME_CACHE = "yyc3-runtime-v3.0.0"
+const API_CACHE = "yyc3-api-v3.0.0"
 const OFFLINE_URL = "/offline"
 
-// 需要缓存的静态资源
+// 需要预缓存的静态资源（核心外壳）
 const STATIC_CACHE_URLS = [
   "/",
   "/offline",
-  "/yyc3-logo-blue.png",
-  "/yyc3-pwa-icon.png",
+  "/yyc3-icons/pwa/icon-192x192.png",
+  "/yyc3-icons/pwa/icon-512x512.png",
+  "/yyc3-icons/pwa/icon-96x96.png",
+  "/yyc3-icons/favicon/favicon-32x32.png",
   "/manifest.json",
-  "/ai-assistant",
+]
+
+// 需要运行时缓存的核心路由（首屏可用性）
+const ROUTE_CACHE_URLS = [
+  "/dashboard",
   "/customers",
   "/tasks",
   "/analytics",
+  "/ai-assistant",
 ]
 
-// 需要缓存的API路径模式
-const API_CACHE_PATTERNS = [/^\/api\/dashboard/, /^\/api\/customers/, /^\/api\/tasks/, /^\/api\/approval/, /^\/api\/ai/]
+// 需要缓存的API路径模式（NetworkFirst 策略）
+const API_CACHE_PATTERNS = [
+  /^\/api\/dashboard/,
+  /^\/api\/customers/,
+  /^\/api\/tasks/,
+  /^\/api\/approval/,
+  /^\/api\/finance/,
+  /^\/api\/notifications/,
+  /^\/api\/search/,
+]
 
-// AI模型相关的缓存策略
+// AI模型相关的缓存策略（特殊：仅 GET /models 缓存）
 const AI_MODEL_CACHE_PATTERNS = [/^\/api\/ai\/models/, /^\/api\/ai\/chat/, /^\/api\/ai\/completions/]
+
+// 缓存上限（防止存储膨胀）
+const MAX_RUNTIME_ENTRIES = 100
+const MAX_API_ENTRIES = 200
 
 // 安装事件 - 预缓存静态资源
 self.addEventListener("install", (event) => {
-  console.log("Service Worker 安装中...")
-
   event.waitUntil(
     caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        console.log("预缓存静态资源")
-        return cache.addAll(STATIC_CACHE_URLS)
-      })
-      .then(() => {
-        // 强制激活新的 Service Worker
-        return self.skipWaiting()
-      }),
+      .open(STATIC_CACHE)
+      .then((cache) => cache.addAll(STATIC_CACHE_URLS))
+      .then(() => caches.open(RUNTIME_CACHE))
+      .then((cache) => cache.addAll(ROUTE_CACHE_URLS).catch(() => undefined))
+      .then(() => self.skipWaiting()),
   )
 })
 
-// 激活事件 - 清理旧缓存
+// 激活事件 - 清理旧缓存 + 启用导航预加载
 self.addEventListener("activate", (event) => {
-  console.log("Service Worker 激活中...")
-
   event.waitUntil(
     caches
       .keys()
-      .then((cacheNames) => {
-        return Promise.all(
+      .then((cacheNames) =>
+        Promise.all(
           cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME) {
-              console.log("删除旧缓存:", cacheName)
+            if (![STATIC_CACHE, RUNTIME_CACHE, API_CACHE, CACHE_NAME].includes(cacheName)) {
               return caches.delete(cacheName)
             }
+            return undefined
           }),
-        )
-      })
+        ),
+      )
       .then(() => {
-        // 立即控制所有客户端
-        return self.clients.claim()
-      }),
+        if (self.registration.navigationPreload) {
+          return self.registration.navigationPreload.enable()
+        }
+      })
+      .then(() => self.clients.claim()),
   )
 })
+
+// 清理运行时缓存超过上限的条目
+async function trimCache(cacheName, maxEntries) {
+  const cache = await caches.open(cacheName)
+  const keys = await cache.keys()
+  if (keys.length > maxEntries) {
+    const toRemove = keys.slice(0, keys.length - maxEntries)
+    await Promise.all(toRemove.map((key) => cache.delete(key)))
+  }
+}
 
 // 拦截网络请求
 self.addEventListener("fetch", (event) => {
   const { request } = event
   const url = new URL(request.url)
 
-  // 只处理同源请求
   if (url.origin !== location.origin) {
     return
   }
 
-  // HTML 页面请求 - 网络优先策略
+  // HTML 页面请求 - 网络优先策略 + 导航预加载
   if (request.destination === "document") {
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // 缓存成功的响应
+      (async () => {
+        const preloadResponse = await event.preloadResponse
+        if (preloadResponse) {
+          const responseClone = preloadResponse.clone()
+          caches.open(RUNTIME_CACHE).then((cache) => cache.put(request, responseClone))
+          return preloadResponse
+        }
+        try {
+          const response = await fetch(request)
           const responseClone = response.clone()
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseClone)
-          })
+          caches.open(RUNTIME_CACHE).then((cache) => cache.put(request, responseClone))
           return response
-        })
-        .catch(() => {
-          // 网络失败时从缓存获取
-          return caches.match(request).then((cachedResponse) => {
-            return cachedResponse || caches.match(OFFLINE_URL)
-          })
-        }),
+        } catch {
+          const cachedResponse = await caches.match(request)
+          return cachedResponse || caches.match(OFFLINE_URL)
+        }
+      })(),
     )
     return
   }
@@ -99,23 +126,16 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          // 只缓存成功的GET请求和模型列表
           if (request.method === "GET" && response.ok && url.pathname.includes("/models")) {
             const responseClone = response.clone()
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, responseClone)
-            })
+            caches.open(API_CACHE).then((cache) => cache.put(request, responseClone))
           }
           return response
         })
         .catch(() => {
-          // AI服务失败时返回离线提示
           if (request.method === "GET") {
             return caches.match(request).then((cachedResponse) => {
-              if (cachedResponse) {
-                return cachedResponse
-              }
-              // 返回AI服务离线响应
+              if (cachedResponse) return cachedResponse
               return new Response(
                 JSON.stringify({
                   success: false,
@@ -123,10 +143,7 @@ self.addEventListener("fetch", (event) => {
                   offline: true,
                   message: "AI助手暂时不可用，请检查网络连接或稍后重试",
                 }),
-                {
-                  status: 503,
-                  headers: { "Content-Type": "application/json" },
-                },
+                { status: 503, headers: { "Content-Type": "application/json" } },
               )
             })
           }
@@ -135,63 +152,62 @@ self.addEventListener("fetch", (event) => {
     return
   }
 
-  // 普通API请求 - 网络优先，缓存备用
+  // 普通API请求 - 网络优先（StaleWhileRevalidate for GET）
   if (url.pathname.startsWith("/api/")) {
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // 只缓存成功的 GET 请求
-          if (request.method === "GET" && response.ok) {
-            const responseClone = response.clone()
-            caches.open(CACHE_NAME).then((cache) => {
+      (async () => {
+        const cache = await caches.open(API_CACHE)
+        const cachedResponse = await cache.match(request)
+        const networkFetch = fetch(request)
+          .then((response) => {
+            if (request.method === "GET" && response.ok) {
+              const responseClone = response.clone()
               cache.put(request, responseClone)
-            })
-          }
-          return response
-        })
-        .catch(() => {
-          // 网络失败时从缓存获取
-          if (request.method === "GET") {
-            return caches.match(request).then((cachedResponse) => {
-              if (cachedResponse) {
-                return cachedResponse
-              }
-              // 返回离线数据
-              return new Response(
-                JSON.stringify({
-                  error: "网络连接失败",
-                  offline: true,
-                  message: "当前处于离线状态，显示的是缓存数据",
-                }),
-                {
-                  status: 200,
-                  headers: { "Content-Type": "application/json" },
-                },
-              )
-            })
-          }
-        }),
+            }
+            return response
+          })
+          .catch(() => {
+            if (cachedResponse) return cachedResponse
+            return new Response(
+              JSON.stringify({
+                error: "网络连接失败",
+                offline: true,
+                message: "当前处于离线状态，显示的是缓存数据",
+              }),
+              { status: 200, headers: { "Content-Type": "application/json" } },
+            )
+          })
+        if (cachedResponse && request.method === "GET") {
+          return cachedResponse
+        }
+        return networkFetch
+      })(),
     )
     return
   }
 
   // 静态资源 - 缓存优先策略
-  if (request.destination === "image" || request.destination === "script" || request.destination === "style") {
+  if (request.destination === "image" || request.destination === "script" || request.destination === "style" || request.destination === "font") {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
-        if (cachedResponse) {
-          return cachedResponse
-        }
+        if (cachedResponse) return cachedResponse
         return fetch(request).then((response) => {
-          const responseClone = response.clone()
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseClone)
-          })
+          if (response.ok) {
+            const responseClone = response.clone()
+            caches.open(STATIC_CACHE).then((cache) => cache.put(request, responseClone))
+          }
           return response
         })
       }),
     )
     return
+  }
+})
+
+// 定期清理运行时缓存（每次激活时执行一次）
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "TRIM_CACHES") {
+    event.waitUntil(Promise.all([trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES), trimCache(API_CACHE, MAX_API_ENTRIES)]))
   }
 })
 
@@ -215,8 +231,8 @@ self.addEventListener("push", (event) => {
   let notificationData = {
     title: "YYC³ 企业智能管理系统",
     body: "您有新的消息",
-    icon: "/yyc3-pwa-icon.png",
-    badge: "/yyc3-pwa-icon.png",
+    icon: "/yyc3-icons/pwa/icon-192x192.png",
+    badge: "/yyc3-icons/pwa/icon-72x72.png",
   }
 
   if (event.data) {
@@ -242,12 +258,12 @@ self.addEventListener("push", (event) => {
       {
         action: "explore",
         title: "查看详情",
-        icon: "/yyc3-pwa-icon.png",
+        icon: "/yyc3-icons/pwa/icon-96x96.png",
       },
       {
         action: "close",
         title: "关闭",
-        icon: "/yyc3-pwa-icon.png",
+        icon: "/yyc3-icons/pwa/icon-96x96.png",
       },
     ],
     requireInteraction: true,

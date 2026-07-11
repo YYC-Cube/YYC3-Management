@@ -2,7 +2,7 @@
  * @fileoverview AI智能助手组件
  * @description 提供多模型AI对话、业务分析、智能洞察等功能
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -54,7 +54,7 @@ interface QuickAction {
   id: string
   title: string
   description: string
-  icon: any
+  icon: unknown
   action: () => void
 }
 

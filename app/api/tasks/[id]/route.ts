@@ -1,4 +1,13 @@
+/**
+ * @fileoverview api/tasks/[id]/route.ts
+ * @description YYC³ API路由 — 认证守卫 + 数据验证 + Redis缓存
+ * @author YYC³
+ * @version 3.0.0
+ * @license MIT
+ */
+
 import { NextRequest, NextResponse } from 'next/server'
+import { authenticateApiRequest } from '@/lib/api/auth-guard'
 import { TaskRepository } from '@/lib/db/repositories/task.repository'
 import { checkDatabaseConnection } from '@/lib/db/client'
 
@@ -9,6 +18,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const auth = authenticateApiRequest(request)
+    if (!auth.authenticated) return auth.response
     const isConnected = await checkDatabaseConnection()
     if (!isConnected) {
       return NextResponse.json(
@@ -40,7 +51,7 @@ export async function GET(
       success: true,
       data: task,
     })
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('获取任务详情失败:', error)
     return NextResponse.json(
       { success: false, error: '获取任务详情失败' },
@@ -54,6 +65,8 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    const auth = authenticateApiRequest(request)
+    if (!auth.authenticated) return auth.response
     const isConnected = await checkDatabaseConnection()
     if (!isConnected) {
       return NextResponse.json(
@@ -87,10 +100,10 @@ export async function PUT(
       success: true,
       data: task,
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('更新任务失败:', error)
     
-    if (error.code === '23503') {
+    if ((error as { code?: string }).code === '23503') {
       return NextResponse.json(
         { success: false, error: '指定的用户不存在' },
         { status: 400 }
@@ -109,6 +122,8 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
+    const auth = authenticateApiRequest(request)
+    if (!auth.authenticated) return auth.response
     const isConnected = await checkDatabaseConnection()
     if (!isConnected) {
       return NextResponse.json(
@@ -140,7 +155,7 @@ export async function DELETE(
       success: true,
       message: '任务删除成功',
     })
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('删除任务失败:', error)
     return NextResponse.json(
       { success: false, error: '删除任务失败' },

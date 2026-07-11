@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 
 export class ValidationError extends Error {
-  constructor(message: string, public details?: any) {
+  constructor(message: string, public details?: unknown) {
     super(message)
     this.name = 'ValidationError'
   }
@@ -145,7 +145,7 @@ export function sanitizeInput(input: string): string {
   return input.trim().replace(/[<>]/g, '')
 }
 
-export function validateRequired(value: any, fieldName: string): void {
+export function validateRequired(value: unknown, fieldName: string): void {
   if (value === null || value === undefined || value === '') {
     throw new ValidationError(`${fieldName}不能为空`)
   }

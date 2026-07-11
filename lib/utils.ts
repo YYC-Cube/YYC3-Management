@@ -2,7 +2,7 @@
  * @fileoverview 工具函数库
  * @description 提供常用的工具函数和辅助方法
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -61,10 +61,10 @@ export function truncateText(text: string, maxLength: number): string {
 }
 
 export function generateId(): string {
-  return Math.random().toString(36).substr(2, 9)
+  return crypto.randomUUID().slice(0,9)
 }
 
-export function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
+export function debounce<T extends (...args: unknown[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout
   return (...args: Parameters<T>) => {
     clearTimeout(timeout)
@@ -72,7 +72,7 @@ export function debounce<T extends (...args: any[]) => any>(func: T, wait: numbe
   }
 }
 
-export function throttle<T extends (...args: any[]) => any>(func: T, limit: number): (...args: Parameters<T>) => void {
+export function throttle<T extends (...args: unknown[]) => any>(func: T, limit: number): (...args: Parameters<T>) => void {
   let inThrottle: boolean
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
@@ -126,7 +126,7 @@ export function copyToClipboard(text: string): Promise<void> {
   return navigator.clipboard.writeText(text)
 }
 
-export function downloadFile(data: any, filename: string, type = "application/json"): void {
+export function downloadFile(data: unknown, filename: string, type = "application/json"): void {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type })
   const url = URL.createObjectURL(blob)
   const link = document.createElement("a")
@@ -145,7 +145,7 @@ export function getFileSize(bytes: number): string {
   return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + " " + sizes[i]
 }
 
-export function validateRequired(value: any): boolean {
+export function validateRequired(value: unknown): boolean {
   if (typeof value === "string") {
     return value.trim().length > 0
   }

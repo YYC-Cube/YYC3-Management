@@ -3,9 +3,7 @@
  * @remarks PerformanceMetric 类型已迁移到 core/shared-types.ts 的 Education 命名空间
  */
 
-// @ts-ignore - TypeScript module resolution issue
 import type { UUID, Timestamp } from '../shared-types.ts';
-// @ts-ignore - TypeScript module resolution issue
 import type { Education as SharedEducation } from '../shared-types.ts';
 
 // 重新导出共享类型以保持向后兼容

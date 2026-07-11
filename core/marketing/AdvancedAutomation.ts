@@ -1,5 +1,4 @@
 // marketing/AdvancedAutomation.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   JourneyOrchestrator,
   ContentPersonalizer,

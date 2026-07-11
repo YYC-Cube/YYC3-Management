@@ -236,7 +236,7 @@ export default function SystemMonitorPage() {
       case "critical":
         return "text-red-600 bg-red-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -251,7 +251,7 @@ export default function SystemMonitorPage() {
       case "critical":
         return <XCircle className="w-4 h-4 text-red-600" />
       default:
-        return <Activity className="w-4 h-4 text-gray-600" />
+        return <Activity className="w-4 h-4 text-slate-600" />
     }
   }
 
@@ -264,7 +264,7 @@ export default function SystemMonitorPage() {
       case "info":
         return <CheckCircle className="w-4 h-4 text-blue-600" />
       default:
-        return <Activity className="w-4 h-4 text-gray-600" />
+        return <Activity className="w-4 h-4 text-slate-600" />
     }
   }
 
@@ -281,7 +281,7 @@ export default function SystemMonitorPage() {
             <p className="responsive-text mt-2">实时监控系统状态和性能指标</p>
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600">
               <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>最后更新: {lastUpdate.toLocaleTimeString()}</span>
             </div>
@@ -300,7 +300,7 @@ export default function SystemMonitorPage() {
             <Button
               onClick={refreshData}
               disabled={loading}
-              className="bg-blue-600 hover:bg-blue-700 responsive-button"
+              className="bg-primary hover:bg-primary/90 responsive-button"
             >
               <RefreshCw className={`responsive-icon mr-2 ${loading ? "animate-spin" : ""}`} />
               {loading ? "刷新中..." : "刷新数据"}
@@ -373,18 +373,18 @@ export default function SystemMonitorPage() {
                     id="autoRefresh"
                     checked={autoRefresh}
                     onChange={(e) => setAutoRefresh(e.target.checked)}
-                    className="rounded border-gray-300"
+                    className="rounded border-slate-300"
                   />
                   <label htmlFor="autoRefresh" className="text-sm font-medium">
                     自动刷新
                   </label>
                 </div>
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-gray-600">刷新间隔:</label>
+                  <label className="text-sm text-slate-600">刷新间隔:</label>
                   <select
                     value={refreshInterval}
                     onChange={(e) => setRefreshInterval(Number(e.target.value))}
-                    className="px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-2 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value={5}>5秒</option>
                     <option value={10}>10秒</option>
@@ -393,7 +393,7 @@ export default function SystemMonitorPage() {
                   </select>
                 </div>
               </div>
-              <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-gray-600">
+              <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-600">
                 <span>监控频率: 实时</span>
                 <span>数据保留: 30天</span>
               </div>
@@ -442,19 +442,19 @@ export default function SystemMonitorPage() {
                     <div className="space-y-3">
                       <div className="grid grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
                         <div>
-                          <span className="text-gray-600">端口:</span>
+                          <span className="text-slate-600">端口:</span>
                           <span className="ml-2 font-medium">{service.port}</span>
                         </div>
                         <div>
-                          <span className="text-gray-600">版本:</span>
+                          <span className="text-slate-600">版本:</span>
                           <span className="ml-2 font-medium">{service.version}</span>
                         </div>
                         <div>
-                          <span className="text-gray-600">运行时间:</span>
+                          <span className="text-slate-600">运行时间:</span>
                           <span className="ml-2 font-medium">{service.uptime}</span>
                         </div>
                         <div>
-                          <span className="text-gray-600">最后检查:</span>
+                          <span className="text-slate-600">最后检查:</span>
                           <span className="ml-2 font-medium">{service.lastCheck}</span>
                         </div>
                       </div>
@@ -515,7 +515,7 @@ export default function SystemMonitorPage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">总体使用率</span>
+                      <span className="text-sm text-slate-600">总体使用率</span>
                       <span className="font-semibold">45%</span>
                     </div>
                     <Progress value={45} className="h-2" />
@@ -539,7 +539,7 @@ export default function SystemMonitorPage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">内存使用率</span>
+                      <span className="text-sm text-slate-600">内存使用率</span>
                       <span className="font-semibold">68%</span>
                     </div>
                     <Progress value={68} className="h-2" />
@@ -563,7 +563,7 @@ export default function SystemMonitorPage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">磁盘使用率</span>
+                      <span className="text-sm text-slate-600">磁盘使用率</span>
                       <span className="font-semibold">32%</span>
                     </div>
                     <Progress value={32} className="h-2" />
@@ -587,7 +587,7 @@ export default function SystemMonitorPage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">网络使用率</span>
+                      <span className="text-sm text-slate-600">网络使用率</span>
                       <span className="font-semibold">156 MB/s</span>
                     </div>
                     <Progress value={65} className="h-2" />
@@ -696,7 +696,7 @@ export default function SystemMonitorPage() {
                     <Download className="w-3 h-3 mr-1" />
                     导出日志
                   </Button>
-                  <select className="px-3 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <select className="px-3 py-1 border border-slate-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option>应用日志</option>
                     <option>错误日志</option>
                     <option>访问日志</option>
@@ -706,28 +706,28 @@ export default function SystemMonitorPage() {
               <CardContent>
                 <ScrollArea className="h-64 sm:h-96">
                   <div className="space-y-2 font-mono text-xs sm:text-sm">
-                    <div className="p-2 bg-gray-50 rounded">
-                      <span className="text-gray-500">[2024-01-02 14:30:25]</span>
+                    <div className="p-2 bg-slate-50 rounded">
+                      <span className="text-slate-500">[2024-01-02 14:30:25]</span>
                       <span className="text-blue-600 ml-2">[INFO]</span>
                       <span className="ml-2">用户登录成功 - admin@jinlan.com</span>
                     </div>
                     <div className="p-2 bg-yellow-50 rounded">
-                      <span className="text-gray-500">[2024-01-02 14:29:15]</span>
+                      <span className="text-slate-500">[2024-01-02 14:29:15]</span>
                       <span className="text-yellow-600 ml-2">[WARN]</span>
                       <span className="ml-2">内存使用率超过阈值 - 68%</span>
                     </div>
                     <div className="p-2 bg-red-50 rounded">
-                      <span className="text-gray-500">[2024-01-02 14:25:10]</span>
+                      <span className="text-slate-500">[2024-01-02 14:25:10]</span>
                       <span className="text-red-600 ml-2">[ERROR]</span>
                       <span className="ml-2">Elasticsearch服务连接失败</span>
                     </div>
-                    <div className="p-2 bg-gray-50 rounded">
-                      <span className="text-gray-500">[2024-01-02 14:20:05]</span>
+                    <div className="p-2 bg-slate-50 rounded">
+                      <span className="text-slate-500">[2024-01-02 14:20:05]</span>
                       <span className="text-blue-600 ml-2">[INFO]</span>
                       <span className="ml-2">定时备份任务开始执行</span>
                     </div>
-                    <div className="p-2 bg-gray-50 rounded">
-                      <span className="text-gray-500">[2024-01-02 14:15:30]</span>
+                    <div className="p-2 bg-slate-50 rounded">
+                      <span className="text-slate-500">[2024-01-02 14:15:30]</span>
                       <span className="text-blue-600 ml-2">[INFO]</span>
                       <span className="ml-2">系统监控服务启动</span>
                     </div>
@@ -824,7 +824,7 @@ export default function SystemMonitorPage() {
                       <div>
                         <h4 className="font-medium">{alert.title}</h4>
                         <AlertDescription className="mt-1">{alert.message}</AlertDescription>
-                        <p className="text-xs text-gray-500 mt-2">{alert.timestamp}</p>
+                        <p className="text-xs text-slate-500 mt-2">{alert.timestamp}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">

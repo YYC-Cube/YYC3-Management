@@ -2,7 +2,7 @@
  * @fileoverview 状态管理器 - 应用状态持久化与恢复
  * @description 提供状态快照、历史记录、自动持久化等能力
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -278,7 +278,7 @@ export class StateManager extends EventEmitter {
    * 生成快照ID
    */
   private generateSnapshotId(): string {
-    return `snapshot-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `snapshot-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
 
   /**

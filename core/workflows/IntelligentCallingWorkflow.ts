@@ -1,5 +1,4 @@
 // workflows/IntelligentCallingWorkflow.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   Customer,
   Campaign,

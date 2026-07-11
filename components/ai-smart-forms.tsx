@@ -2,7 +2,7 @@
  * @fileoverview ai-smart-forms.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -127,7 +127,7 @@ export function AiSmartForms() {
       title: "保存成功",
       description: "表单已保存为草稿，可稍后继续编辑",
     })
-    console.log("保存表单数据", formData)
+    // console.log("保存表单数据", formData)
   }
 
   // 提交表单函数
@@ -146,7 +146,7 @@ export function AiSmartForms() {
       description: "表单已提交，正在跳转到客户管理页面",
     })
 
-    console.log("提交表单数据", formData)
+    // console.log("提交表单数据", formData)
     setTimeout(() => {
       handleNavigation("/customers")
     }, 1500)
@@ -223,7 +223,7 @@ export function AiSmartForms() {
       case "处理中":
         return "bg-blue-100 text-blue-700 border-blue-300"
       default:
-        return "bg-gray-100 text-gray-700 border-gray-300"
+        return "bg-slate-100 text-slate-700 border-slate-300"
     }
   }
 
@@ -464,7 +464,7 @@ export function AiSmartForms() {
           >
             重置表单
           </Button>
-          <Button onClick={handleSubmit} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90">
             提交表单
           </Button>
         </div>

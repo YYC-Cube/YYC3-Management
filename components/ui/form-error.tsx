@@ -2,7 +2,7 @@
  * @fileoverview form-error.tsx
  * @description 表单错误显示组件
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT

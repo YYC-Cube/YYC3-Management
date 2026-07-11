@@ -2,7 +2,7 @@
  * @fileoverview channel-center.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -122,10 +122,10 @@ export function ChannelCenter() {
             dataCount: 15420,
             errorCount: 0,
             config: {
-              appId: "wx1234567890",
-              appSecret: "***hidden***",
-              token: "jinlan_token_2024",
-              webhookUrl: "https://api.jinlan.com/wechat/webhook",
+              appId: "",
+              appSecret: "",
+              token: "",
+              webhookUrl: "",
             },
             metrics: {
               totalUsers: 25680,
@@ -166,7 +166,7 @@ export function ChannelCenter() {
             errorCount: 5,
             config: {
               apiKey: "***hidden***",
-              webhookUrl: "https://api.jinlan.com/xiaohongshu/webhook",
+              webhookUrl: "",
             },
             metrics: {
               totalUsers: 8650,
@@ -255,13 +255,13 @@ export function ChannelCenter() {
       case "connected":
         return "bg-green-100 text-green-800 border-green-200"
       case "disconnected":
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
       case "error":
         return "bg-red-100 text-red-800 border-red-200"
       case "syncing":
         return "bg-blue-100 text-blue-800 border-blue-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -346,7 +346,7 @@ export function ChannelCenter() {
       const newChannel: Channel = {
         id: `channel-${Date.now()}`,
         name: newChannelData.name || "新渠道",
-        type: (newChannelData.type as any) || "wechat",
+        type: (newChannelData.type as unknown) || "wechat",
         status: "disconnected",
         lastSync: "从未同步",
         dataCount: 0,
@@ -416,18 +416,18 @@ export function ChannelCenter() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <div className="h-8 bg-gray-200 rounded w-48 animate-pulse"></div>
-            <div className="h-4 bg-gray-200 rounded w-64 mt-2 animate-pulse"></div>
+            <div className="h-8 bg-slate-200 rounded w-48 animate-pulse"></div>
+            <div className="h-4 bg-slate-200 rounded w-64 mt-2 animate-pulse"></div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-32 bg-gray-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-32 bg-slate-200 rounded-xl animate-pulse"></div>
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-64 bg-gray-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-64 bg-slate-200 rounded-xl animate-pulse"></div>
           ))}
         </div>
       </div>
@@ -449,7 +449,7 @@ export function ChannelCenter() {
           </Button>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Button className="bg-primary hover:bg-primary/90">
                 <Plus className="w-4 h-4 mr-2" />
                 添加渠道
               </Button>
@@ -466,7 +466,7 @@ export function ChannelCenter() {
                     variant="outline"
                     className="h-20 flex-col gap-2 bg-transparent"
                     onClick={() => {
-                      setNewChannelData({ type: template.type as any, name: template.name })
+                      setNewChannelData({ type: template.type as unknown, name: template.name })
                       setIsAddDialogOpen(false)
                       setIsEditDialogOpen(true)
                     }}
@@ -490,7 +490,7 @@ export function ChannelCenter() {
       {/* 搜索和筛选 */}
       <div className="flex items-center gap-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
             placeholder="搜索渠道..."
             value={searchQuery}
@@ -643,19 +643,19 @@ export function ChannelCenter() {
               {/* 数据统计 */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-gray-600">总用户</p>
+                  <p className="text-slate-600">总用户</p>
                   <p className="font-semibold">{channel.metrics.totalUsers.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">活跃用户</p>
+                  <p className="text-slate-600">活跃用户</p>
                   <p className="font-semibold">{channel.metrics.activeUsers.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">消息数</p>
+                  <p className="text-slate-600">消息数</p>
                   <p className="font-semibold">{channel.metrics.messages.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">订单数</p>
+                  <p className="text-slate-600">订单数</p>
                   <p className="font-semibold">{channel.metrics.orders.toLocaleString()}</p>
                 </div>
               </div>
@@ -667,7 +667,7 @@ export function ChannelCenter() {
                   <span className="font-semibold">¥{channel.metrics.revenue.toLocaleString()}</span>
                 </div>
                 <Progress value={(channel.metrics.activeUsers / channel.metrics.totalUsers) * 100} className="h-2" />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-slate-500">
                   活跃率: {((channel.metrics.activeUsers / channel.metrics.totalUsers) * 100).toFixed(1)}%
                 </p>
               </div>

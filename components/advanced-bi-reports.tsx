@@ -2,7 +2,7 @@
  * @fileoverview advanced-bi-reports.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -85,7 +85,7 @@ interface FinanceData {
 interface ChartData {
   name: string
   value: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export function AdvancedBIReports() {
@@ -177,7 +177,7 @@ export function AdvancedBIReports() {
       case "operation":
         return "bg-orange-100 text-orange-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -212,7 +212,7 @@ export function AdvancedBIReports() {
             <Download className="w-4 h-4 mr-2" />
             导出
           </Button>
-          <Button className="bg-indigo-600 hover:bg-indigo-700">
+          <Button className="bg-primary hover:bg-primary/90">
             <Plus className="w-4 h-4 mr-2" />
             新建报表
           </Button>

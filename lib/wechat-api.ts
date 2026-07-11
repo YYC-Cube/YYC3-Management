@@ -2,7 +2,7 @@
  * @fileoverview wechat-api.ts
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -43,7 +43,7 @@ interface WeChatMenu {
 
 class WeChatApiService {
   private config: WeChatConfig
-  private baseUrl = "https://api.weixin.qq.com/cgi-bin"
+  private baseUrl = process.env.WECHAT_API_BASE_URL || "https://api.weixin.qq.com/cgi-bin"
 
   constructor(config: WeChatConfig) {
     this.config = config
@@ -95,7 +95,7 @@ class WeChatApiService {
         throw new Error(`创建菜单失败: ${data.errmsg}`)
       }
 
-      console.log("微信菜单创建成功")
+      // console.log("微信菜单创建成功")
       return true
     } catch (error) {
       console.error("创建微信菜单失败:", error)
@@ -139,7 +139,7 @@ class WeChatApiService {
         throw new Error(`删除菜单失败: ${data.errmsg}`)
       }
 
-      console.log("微信菜单删除成功")
+      // console.log("微信菜单删除成功")
       return true
     } catch (error) {
       console.error("删除微信菜单失败:", error)
@@ -148,8 +148,8 @@ class WeChatApiService {
   }
 
   // 将系统菜单转换为微信菜单格式
-  convertToWeChatMenu(systemMenuItems: any[]): WeChatMenu {
-    const convertMenuItem = (item: any): WeChatMenuItem => {
+  convertToWeChatMenu(systemMenuItems: unknown[]): WeChatMenu {
+    const convertMenuItem = (item: unknown): WeChatMenuItem => {
       const wechatItem: WeChatMenuItem = {
         name: item.title.substring(0, item.children && item.children.length > 0 ? 4 : 8), // 微信限制：一级菜单4个字符，子菜单8个字符
         type: item.isExternal || item.url.startsWith("http") ? "view" : "click",
@@ -164,9 +164,9 @@ class WeChatApiService {
       // 处理子菜单
       if (item.children && item.children.length > 0) {
         wechatItem.sub_button = item.children
-          .filter((child: any) => child.isActive)
+          .filter((child: unknown) => child.isActive)
           .slice(0, 5) // 微信限制：最多5个子菜单
-          .map((child: any) => convertMenuItem(child))
+          .map((child: unknown) => convertMenuItem(child))
         // 有子菜单时，父菜单不需要type和其他属性
         delete wechatItem.type
         delete wechatItem.key
@@ -186,7 +186,7 @@ class WeChatApiService {
   }
 
   // 同步系统菜单到微信
-  async syncMenuToWeChat(systemMenuItems: any[]): Promise<boolean> {
+  async syncMenuToWeChat(systemMenuItems: unknown[]): Promise<boolean> {
     try {
       const wechatMenu = this.convertToWeChatMenu(systemMenuItems)
 
@@ -195,13 +195,13 @@ class WeChatApiService {
         await this.deleteMenu()
       } catch (error) {
         // 如果菜单不存在，忽略错误
-        console.log("删除菜单时出现错误，可能菜单不存在:", error)
+        // console.log("删除菜单时出现错误，可能菜单不存在:", error)
       }
 
       // 创建新菜单
       await this.createMenu(wechatMenu)
 
-      console.log("菜单同步到微信公众号成功")
+      // console.log("菜单同步到微信公众号成功")
       return true
     } catch (error) {
       console.error("同步菜单到微信失败:", error)

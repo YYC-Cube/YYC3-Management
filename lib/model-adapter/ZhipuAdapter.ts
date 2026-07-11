@@ -2,7 +2,7 @@
  * @fileoverview 智谱GLM模型适配器
  * @description 智谱AI GLM系列模型的统一适配实现（新架构）
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-28
  * @copyright Copyright (c) 2025 YYC³
@@ -184,7 +184,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
       const data = await response.json();
 
       return {
-        embeddings: data.data.map((item: any) => item.embedding),
+        embeddings: data.data.map((item: unknown) => item.embedding),
         usage: {
           totalTokens: data.usage?.total_tokens || 0
         },
@@ -267,7 +267,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
         parameters: { maxTokens: 10 }
       });
     } catch (error) {
-      console.warn('Zhipu adapter warmup failed:', error);
+      // console.warn('Zhipu adapter warmup failed:', error);
     }
   }
 
@@ -282,13 +282,13 @@ export class ZhipuAdapter extends BaseModelAdapter {
    * 优化
    */
   async optimizeFor(batchSize: number): Promise<void> {
-    console.log(`Optimizing Zhipu adapter for batch size: ${batchSize}`);
+    // console.log(`Optimizing Zhipu adapter for batch size: ${batchSize}`);
   }
 
   /**
    * 调用模型API
    */
-  protected async callModelAPI(request: CompletionRequest): Promise<any> {
+  protected async callModelAPI(request: CompletionRequest): Promise<unknown> {
     let lastError: Error | null = null;
     const retryAttempts = 3;
 
@@ -335,7 +335,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 调用模型流式API
    */
-  protected async *callModelStream(request: CompletionRequest): AsyncIterable<any> {
+  protected async *callModelStream(request: CompletionRequest): AsyncIterable<unknown> {
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -393,7 +393,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 后处理响应
    */
-  protected async postprocess(rawResponse: any): Promise<CompletionResponse> {
+  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
     const choice = rawResponse.choices?.[0];
 
     return {
@@ -416,7 +416,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 解析流式数据块
    */
-  protected parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: any } {
+  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     if (!chunk.choices || chunk.choices.length === 0) {
       return { text: '', finished: false };
     }

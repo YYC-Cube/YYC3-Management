@@ -2,7 +2,7 @@
  * @fileoverview user-management.tsx
  * @description 用户管理组件 - 集成真实API
  * @author YYC³
- * @version 2.0.1
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -135,7 +135,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
     validateAll,
   } = useFormValidation({
     schema: userFormSchema,
-    onSubmit: async (data: any) => {
+    onSubmit: async (data: unknown) => {
       if (editingUser) {
         const result = await updateUser(editingUser.id, data)
         if (result.success) {
@@ -174,7 +174,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
     onSuccess: () => {
       clearErrors()
     },
-    onError: (errors: any) => {
+    onError: (errors: unknown) => {
       console.error("Form validation errors:", errors)
     },
   })
@@ -416,9 +416,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "active":
         return "text-green-600 bg-green-50"
       case "inactive":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -427,9 +427,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "active":
         return <CheckCircle className="w-4 h-4 text-green-600" />
       case "inactive":
-        return <XCircle className="w-4 h-4 text-gray-600" />
+        return <XCircle className="w-4 h-4 text-slate-600" />
       default:
-        return <AlertTriangle className="w-4 h-4 text-gray-600" />
+        return <AlertTriangle className="w-4 h-4 text-slate-600" />
     }
   }
 
@@ -442,7 +442,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "user":
         return <Users className="w-4 h-4 text-green-600" />
       default:
-        return <Users className="w-4 h-4 text-gray-600" />
+        return <Users className="w-4 h-4 text-slate-600" />
     }
   }
 
@@ -486,10 +486,10 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
               sheetName: "用户数据",
             }}
             importOptions={{
-              validateRow: (row: any) => {
+              validateRow: (row: unknown) => {
                 return row.username && row.email && row.real_name
               },
-              transformRow: (row: any) => ({
+              transformRow: (row: unknown) => ({
                 username: row.username || row["用户名"],
                 email: row.email || row["邮箱"],
                 real_name: row.real_name || row["真实姓名"],
@@ -523,7 +523,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             getItemId={(user: User) => user.id}
             disabled={selectedUsers.length === 0}
           />
-          <Button onClick={openCreateDialog} className="bg-blue-600 hover:bg-blue-700 responsive-button">
+          <Button onClick={openCreateDialog} className="bg-primary hover:bg-primary/90 responsive-button">
             <UserPlus className="responsive-icon mr-2" />
             添加用户
           </Button>
@@ -657,7 +657,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                                 setSelectedUsers(selectedUsers.filter((id) => id !== user.id))
                               }
                             }}
-                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                            className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                           />
                           <div className="relative">
                             <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">

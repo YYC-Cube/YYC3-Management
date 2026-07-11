@@ -10,8 +10,8 @@ export interface LogContext {
   user_id?: number
   ip_address?: string
   user_agent?: string
-  request_data?: any
-  response_data?: any
+  request_data?: unknown
+  response_data?: unknown
   error_message?: string
   stack_trace?: string
   duration?: number
@@ -23,7 +23,7 @@ export class ApiLogger {
       await systemRepository.log(context)
     } catch (error) {
       console.error('Failed to log to database:', error)
-      console.log('Log context:', context)
+      // console.log('Log context:', context)
     }
   }
 

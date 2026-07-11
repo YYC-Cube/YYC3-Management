@@ -1,7 +1,7 @@
 /**
  * @fileoverview optimization.ts
  * @description 性能优化工具集
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2026-01-05
  *
  * 功能：
@@ -39,7 +39,7 @@ export interface CacheConfig {
  * @param importFn - 动态导入函数
  * @param fallback - 加载中显示的组件
  */
-export function lazyLoad<T extends React.ComponentType<any>>(
+export function lazyLoad<T extends React.ComponentType<Record<string, unknown>>>(
   importFn: () => Promise<{ default: T }>,
   fallback?: React.ComponentType
 ): React.LazyExoticComponent<React.ComponentProps<T>> {
@@ -55,7 +55,7 @@ export function lazyLoad<T extends React.ComponentType<any>>(
             children: '组件加载失败',
           }),
         }),
-      } as any;
+      } as unknown;
     })
   );
 }
@@ -65,7 +65,7 @@ export function lazyLoad<T extends React.ComponentType<any>>(
  * @param importFn - 动态导入函数
  * @param preloadDelay - 预加载延迟（毫秒）
  */
-export function lazyLoadWithPreload<T extends React.ComponentType<any>>(
+export function lazyLoadWithPreload<T extends React.ComponentType<Record<string, unknown>>>(
   importFn: () => Promise<{ default: T }>,
   preloadDelay: number = 5000
 ): React.LazyExoticComponent<React.ComponentProps<T>> {
@@ -185,7 +185,7 @@ export class CacheManager<K, V> {
     if (!item) return undefined;
 
     if (Date.now() > item.expiresAt) {
-      this.cache.set(key, item as any); // LRU会移除过期项
+      this.cache.set(key, item as unknown); // LRU会移除过期项
       return undefined;
     }
 
@@ -287,7 +287,7 @@ export function useCachedData<T>(
 /**
  * 防抖Hook
  */
-export function useDebounce<T extends (...args: any[]) => any>(
+export function useDebounce<T extends (...args: unknown[]) => any>(
   fn: T,
   delay: number = 300
 ): (...args: Parameters<T>) => void {
@@ -310,7 +310,7 @@ export function useDebounce<T extends (...args: any[]) => any>(
 /**
  * 节流Hook
  */
-export function useThrottle<T extends (...args: any[]) => any>(
+export function useThrottle<T extends (...args: unknown[]) => any>(
   fn: T,
   delay: number = 300
 ): (...args: Parameters<T>) => void {

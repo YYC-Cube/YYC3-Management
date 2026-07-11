@@ -2,7 +2,7 @@
  * @fileoverview performance-optimization.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -240,7 +240,7 @@ export function PerformanceOptimization() {
       case "critical":
         return "text-red-600"
       default:
-        return "text-gray-600"
+        return "text-slate-600"
     }
   }
 
@@ -253,7 +253,7 @@ export function PerformanceOptimization() {
       case "critical":
         return "bg-red-100"
       default:
-        return "bg-gray-100"
+        return "bg-slate-100"
     }
   }
 
@@ -264,7 +264,7 @@ export function PerformanceOptimization() {
       case "down":
         return <TrendingUp className="w-4 h-4 text-green-500 rotate-180" />
       default:
-        return <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
+        return <div className="w-4 h-4 bg-slate-400 rounded-full"></div>
     }
   }
 
@@ -277,7 +277,7 @@ export function PerformanceOptimization() {
       case "low":
         return "bg-green-100 text-green-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -329,7 +329,7 @@ export function PerformanceOptimization() {
               <h3 className="font-semibold text-green-900">正在优化系统性能</h3>
               <span className="text-sm text-green-700">{Math.round(optimizationProgress)}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-slate-200 rounded-full h-2">
               <div
                 className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${optimizationProgress}%` }}

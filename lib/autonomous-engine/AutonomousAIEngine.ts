@@ -2,7 +2,7 @@
  * @fileoverview 自治AI引擎 - 系统核心大脑
  * @description 实现"感知-思考-行动"闭环的中央指挥系统
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-28
  * @modified 2025-12-28
  * @copyright Copyright (c) 2025 YYC³
@@ -59,7 +59,7 @@ export interface EngineConfig {
 export interface AgentMessage {
   id?: string;
   type: MessageType;
-  content: any;
+  content: unknown;
   source?: string;
   timestamp?: Date;
   metadata?: Record<string, any>;
@@ -68,7 +68,7 @@ export interface AgentMessage {
 export interface AgentResponse {
   id: string;
   success: boolean;
-  data?: any;
+  data?: unknown;
   error?: Error;
   metadata: {
     processingTime: number;
@@ -137,7 +137,7 @@ export interface EngineSnapshot {
   version: string;
   timestamp: Date;
   status: EngineStatus;
-  tasks: any[];
+  tasks: unknown[];
   metrics: EngineMetrics;
   subsystems: string[];
   configuration: EngineConfig;
@@ -148,23 +148,23 @@ export interface ISubsystem {
   name: string;
   initialize(): Promise<void>;
   shutdown(): Promise<void>;
-  getStatus(): any;
+  getStatus(): unknown;
 }
 
 export interface SystemEvent {
   type: string;
-  data: any;
+  data: unknown;
   timestamp: Date;
 }
 
 export interface ProcessingContext {
   traceId: string;
   message: AgentMessage;
-  engineState: any;
+  engineState: unknown;
   availableSubsystems: string[];
   currentTime: Date;
-  userContext?: any;
-  systemConstraints?: any;
+  userContext?: unknown;
+  systemConstraints?: unknown;
   options: {
     timeoutMs: number;
     maxRetries: number;
@@ -415,7 +415,7 @@ export class AutonomousAIEngine extends EventEmitter {
   /**
    * 执行任务
    */
-  async executeTask(taskId: string): Promise<any> {
+  async executeTask(taskId: string): Promise<unknown> {
     const task = this.currentTasks.get(taskId);
     if (!task) {
       throw new Error(`Task not found: ${taskId}`);
@@ -452,7 +452,7 @@ export class AutonomousAIEngine extends EventEmitter {
   /**
    * 获取任务进度
    */
-  getTaskProgress(taskId: string): any {
+  getTaskProgress(taskId: string): Record<string, unknown> {
     const task = this.currentTasks.get(taskId);
     if (!task) {
       return null;
@@ -499,7 +499,7 @@ export class AutonomousAIEngine extends EventEmitter {
   /**
    * 获取引擎状态
    */
-  getState(): any {
+  getState(): Record<string, unknown> {
     return this.stateManager.getAllStates();
   }
   
@@ -564,8 +564,8 @@ export class AutonomousAIEngine extends EventEmitter {
       uptime,
       status: this.status,
       taskCount: tasks.length,
-      activeTasks: tasks.filter((t: any) => t.status === 'running').length,
-      queuedTasks: tasks.filter((t: any) => t.status === 'queued').length,
+      activeTasks: tasks.filter((t: unknown) => t.status === 'running').length,
+      queuedTasks: tasks.filter((t: unknown) => t.status === 'queued').length,
       completedTasks: 0, // 从状态管理器获取
       failedTasks: 0, // 从状态管理器获取
       averageProcessingTime: 0,
@@ -578,7 +578,7 @@ export class AutonomousAIEngine extends EventEmitter {
   /**
    * 系统诊断
    */
-  async diagnose(): Promise<any> {
+  async diagnose(): Promise<unknown> {
     return {
       timestamp: new Date(),
       status: this.status,
@@ -651,9 +651,9 @@ export class AutonomousAIEngine extends EventEmitter {
     };
   }
   
-  private recordMessageEvent(event: string, data: any): void {
+  private recordMessageEvent(event: string, data: unknown): void {
     if (this.debugMode) {
-      console.log(`[AutonomousAIEngine] ${event}:`, data);
+      // console.log(`[AutonomousAIEngine] ${event}:`, data);
     }
     this.emit(event, data);
   }
@@ -666,7 +666,7 @@ export class AutonomousAIEngine extends EventEmitter {
   }
   
   private generateId(): string {
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
   
   private generateTraceId(): string {

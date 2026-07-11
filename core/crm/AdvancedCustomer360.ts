@@ -1,4 +1,3 @@
-// @ts-ignore - TypeScript module resolution issue
 import { BehavioralAnalytics, PredictiveScoring, JourneyMapper, Customer360, BehavioralData, PredictiveInsights, AITag } from './types.ts';
 
 export class AdvancedCustomer360 {

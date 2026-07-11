@@ -1,152 +1,120 @@
 {
+  "id": "/",
   "name": "YYC³ 企业智能管理系统 - YanYuCloudCube Enterprise Management",
   "short_name": "YYC³ Mana",
   "description": "YYC³ Professional Enterprise Intelligent Management System - 言语云立方企业智能管理系统",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "background_color": "#ffffff",
   "theme_color": "#3b82f6",
-  "orientation": "portrait-primary",
-  "scope": "/",
+  "orientation": "any",
   "lang": "zh-CN",
   "dir": "ltr",
   "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/yyc3-icons/pwa/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
-      "src": "/yyc3-pwa-icon.png",
+      "src": "/yyc3-icons/pwa/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
+    },
+    {
+      "src": "/yyc3-icons/pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/yyc3-icons/webp/icon-192x192.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/yyc3-icons/webp/icon-512x512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
     }
   ],
   "shortcuts": [
     {
+      "name": "数据中心",
+      "short_name": "首页",
+      "description": "查看运营数据中心",
+      "url": "/dashboard"
+    },
+    {
       "name": "客户管理",
       "short_name": "客户",
       "description": "管理客户信息和服务记录",
-      "url": "/customers",
-      "icons": [
-        {
-          "src": "/images/icons/customers-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/customers"
     },
     {
       "name": "任务管理",
       "short_name": "任务",
       "description": "查看和管理待办任务",
-      "url": "/tasks",
-      "icons": [
-        {
-          "src": "/images/icons/tasks-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "数据分析",
-      "short_name": "分析",
-      "description": "查看业务数据和报表",
-      "url": "/analytics",
-      "icons": [
-        {
-          "src": "/images/icons/analytics-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/tasks"
     },
     {
       "name": "通知中心",
       "short_name": "通知",
       "description": "查看系统通知和消息",
-      "url": "/notifications",
-      "icons": [
-        {
-          "src": "/images/icons/notifications-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/notifications"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/images/screenshots/desktop-dashboard.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Dashboard view on desktop"
-    },
-    {
-      "src": "/images/screenshots/mobile-dashboard.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Dashboard view on mobile"
-    },
-    {
-      "src": "/images/screenshots/desktop-customers.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Customer management on desktop"
-    },
-    {
-      "src": "/images/screenshots/mobile-customers.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Customer management on mobile"
-    }
-  ],
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://care.jinlan.com/manifest.json"
-    }
-  ],
+  "screenshots": [],
+  "related_applications": [],
   "prefer_related_applications": false,
   "edge_side_panel": {
     "preferred_width": 400

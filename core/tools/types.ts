@@ -3,7 +3,6 @@
  * @remarks 使用共享基础类型以提高类型安全性
  */
 
-// @ts-ignore - TypeScript module resolution issue
 import type { UUID, Timestamp, JsonObject, JsonValue } from '../shared-types.ts';
 
 /**

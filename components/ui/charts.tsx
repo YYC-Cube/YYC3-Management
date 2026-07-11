@@ -2,7 +2,7 @@
  * @fileoverview charts.tsx
  * @description 数据可视化图表组件
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -29,13 +29,13 @@ import {
 interface LineChartData {
   name: string
   value: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 interface BarChartData {
   name: string
   value: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 interface PieChartData {
@@ -47,7 +47,7 @@ interface PieChartData {
 interface AreaChartData {
   name: string
   value: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"]

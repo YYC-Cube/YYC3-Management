@@ -2,7 +2,7 @@
  * @fileoverview user-training.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -236,7 +236,7 @@ export function UserTraining() {
       case "advanced":
         return "bg-red-100 text-red-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -290,7 +290,7 @@ export function UserTraining() {
             </div>
             <TrendingUp className="w-8 h-8 text-orange-400" />
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
             <div
               className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${overallProgress}%` }}
@@ -457,7 +457,7 @@ export function UserTraining() {
                             <span>学习进度</span>
                             <span>{module.progress}%</span>
                           </div>
-                          <div className="w-full bg-gray-200 rounded-full h-1">
+                          <div className="w-full bg-slate-200 rounded-full h-1">
                             <div
                               className="bg-gradient-to-r from-orange-400 to-orange-500 h-1 rounded-full transition-all duration-1000 ease-out"
                               style={{ width: `${module.progress}%` }}
@@ -586,7 +586,7 @@ export function UserTraining() {
                         <p className="text-xs text-slate-600">获得证书</p>
                       </div>
                     </div>
-                    <div className="w-32 bg-gray-200 rounded-full h-2">
+                    <div className="w-32 bg-slate-200 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${(user.completedModules / user.totalModules) * 100}%` }}
@@ -610,7 +610,7 @@ export function UserTraining() {
                         <span>{category}</span>
                         <span>{85 - index * 5}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
                           className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                           style={{ width: `${85 - index * 5}%` }}

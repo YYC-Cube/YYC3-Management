@@ -1,5 +1,4 @@
 // analytics/PredictiveAnalytics.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   TimeSeriesForecaster,
   PatternRecognizer,

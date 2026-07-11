@@ -73,7 +73,7 @@ export class SystemRepository {
     action?: string
     module?: string
     user_id?: number
-  } = {}): Promise<{ data: SystemLog[]; pagination: any }> {
+  } = {}): Promise<{ data: SystemLog[]; pagination: Record<string, unknown> }> {
     const {
       page = 1,
       limit = 50,
@@ -86,7 +86,7 @@ export class SystemRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (level) {
@@ -172,7 +172,7 @@ export class SystemRepository {
     limit?: number
     type?: string
     category?: string
-  } = {}): Promise<{ data: FinanceRecord[]; pagination: any }> {
+  } = {}): Promise<{ data: FinanceRecord[]; pagination: Record<string, unknown> }> {
     const {
       page = 1,
       limit = 20,
@@ -183,7 +183,7 @@ export class SystemRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (type) {

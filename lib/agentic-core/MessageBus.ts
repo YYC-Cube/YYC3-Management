@@ -2,7 +2,7 @@
  * @fileoverview 消息总线 - 事件驱动架构核心
  * @description 提供发布-订阅模式的消息传递机制
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -204,7 +204,7 @@ export class MessageBus extends EventEmitter {
    * 生成消息ID
    */
   private generateMessageId(): string {
-    return `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `msg-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
 
   /**

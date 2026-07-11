@@ -91,7 +91,7 @@ export default function NotificationsPage() {
       case "feedback":
         return <MessageSquare className="w-5 h-5 text-pink-500" />
       default:
-        return <Info className="w-5 h-5 text-gray-500" />
+        return <Info className="w-5 h-5 text-slate-500" />
     }
   }
 
@@ -104,7 +104,7 @@ export default function NotificationsPage() {
       case "low":
         return "bg-green-100 text-green-800 border-green-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -139,8 +139,8 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-gray-900">{notifications.length}</p>
-                <p className="text-xs text-gray-500 mt-1">全部通知</p>
+                <p className="text-3xl font-bold text-slate-900">{notifications.length}</p>
+                <p className="text-xs text-slate-500 mt-1">全部通知</p>
               </div>
               <Bell className="w-8 h-8 text-blue-500" />
             </div>
@@ -151,8 +151,8 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-gray-900">{unreadCount}</p>
-                <p className="text-xs text-gray-500 mt-1">未读消息</p>
+                <p className="text-3xl font-bold text-slate-900">{unreadCount}</p>
+                <p className="text-xs text-slate-500 mt-1">未读消息</p>
               </div>
               <AlertCircle className="w-8 h-8 text-red-500" />
             </div>
@@ -163,8 +163,8 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-gray-900">{importantCount}</p>
-                <p className="text-xs text-gray-500 mt-1">重要通知</p>
+                <p className="text-3xl font-bold text-slate-900">{importantCount}</p>
+                <p className="text-xs text-slate-500 mt-1">重要通知</p>
               </div>
               <AlertCircle className="w-8 h-8 text-orange-500" />
             </div>
@@ -175,8 +175,8 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-gray-900">95%</p>
-                <p className="text-xs text-gray-500 mt-1">处理率</p>
+                <p className="text-3xl font-bold text-slate-900">95%</p>
+                <p className="text-xs text-slate-500 mt-1">处理率</p>
               </div>
               <CheckCircle className="w-8 h-8 text-green-500" />
             </div>
@@ -206,7 +206,7 @@ export default function NotificationsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <Tabs value={filter} onValueChange={(value) => setFilter(value as any)} className="mb-6">
+            <Tabs value={filter} onValueChange={(value) => setFilter(value as string)} className="mb-6">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="all">全部 ({notifications.length})</TabsTrigger>
                 <TabsTrigger value="unread">未读 ({unreadCount})</TabsTrigger>
@@ -220,14 +220,14 @@ export default function NotificationsPage() {
                   key={notification.id}
                   className={`
                     flex items-start gap-4 p-4 border rounded-lg transition-all hover:shadow-sm
-                    ${!notification.read ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"}
+                    ${!notification.read ? "bg-blue-50 border-blue-200" : "bg-white border-slate-200"}
                   `}
                 >
                   <div className="flex-shrink-0 mt-1">{getTypeIcon(notification.type)}</div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className={`font-semibold ${!notification.read ? "text-gray-900" : "text-gray-700"}`}>
+                      <h3 className={`font-semibold ${!notification.read ? "text-slate-900" : "text-slate-700"}`}>
                         {notification.title}
                       </h3>
                       <div className="flex items-center gap-2">
@@ -238,10 +238,10 @@ export default function NotificationsPage() {
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">{notification.message}</p>
+                    <p className="text-sm text-slate-600 mt-1 line-clamp-2">{notification.message}</p>
 
                     <div className="flex items-center justify-between mt-3">
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-4 text-xs text-slate-500">
                         <span>来自: {notification.from}</span>
                         <span>{notification.time}</span>
                       </div>
@@ -252,7 +252,7 @@ export default function NotificationsPage() {
                             标记已读
                           </Button>
                         )}
-                        <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-700">
+                        <Button variant="ghost" size="sm" className="text-slate-600 hover:text-slate-700">
                           删除
                         </Button>
                       </div>

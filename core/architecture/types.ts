@@ -3,7 +3,6 @@
  * @remarks 使用共享基础类型以提高类型安全性
  */
 
-// @ts-ignore - TypeScript module resolution issue
 import type { UUID, JsonObject } from '../shared-types.ts';
 
 export interface DataHub {

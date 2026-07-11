@@ -1,5 +1,4 @@
 // mobile/AIMobileWorkbench.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   Agent,
   MobileAIExperience,

@@ -2,7 +2,7 @@
  * @fileoverview 页面头部组件
  * @description 包含搜索、通知、用户信息等功能
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -64,29 +64,30 @@ export function Header() {
   }
 
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+    <header className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 bg-white border-b border-slate-200 pl-14 md:pl-6" role="banner">
       {/* 左侧：搜索栏 */}
-      <div className="flex items-center space-x-4 flex-1">
-        <div className="relative max-w-md w-full">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+      <div className="flex items-center space-x-4 flex-1 min-w-0">
+        <div className="relative w-full max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
             type="text"
             placeholder="搜索客户、任务、项目..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-4 w-full bg-gray-50 border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-300"
+            aria-label="全局搜索"
+            className="pl-10 pr-4 w-full bg-slate-50 border-slate-200 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-300"
           />
         </div>
       </div>
 
       {/* 中间：时间显示 */}
-      <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600">
+      <div className="hidden lg:flex items-center space-x-2 text-sm text-slate-600">
         <Clock className="h-4 w-4" />
         <span>{getCurrentTime()}</span>
       </div>
 
       {/* 右侧：操作按钮 */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-1 md:space-x-3 shrink-0">
         {/* 快捷操作 */}
         <Button variant="ghost" size="sm" className="hidden md:flex text-purple-500 hover:text-purple-600 hover:bg-purple-50">
           <Calendar className="h-4 w-4 mr-2" />
@@ -134,11 +135,11 @@ export function Header() {
                   <div className="flex items-start justify-between w-full">
                     <div className="flex-1">
                       <p className="text-sm font-medium">{notification.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">{notification.message}</p>
+                      <p className="text-xs text-slate-500 mt-1">{notification.message}</p>
                     </div>
                     {notification.unread && <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 ml-2"></div>}
                   </div>
-                  <span className="text-xs text-gray-400 mt-2">{notification.time}</span>
+                  <span className="text-xs text-slate-400 mt-2">{notification.time}</span>
                 </DropdownMenuItem>
               ))}
             </div>

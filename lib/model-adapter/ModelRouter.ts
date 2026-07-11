@@ -2,7 +2,7 @@
  * @fileoverview 模型路由器 - 智能模型选择与负载均衡
  * @description 根据请求特征自动选择最优模型，支持成本优化和故障转移
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -201,7 +201,7 @@ export class ModelRouter {
       // 检查能力要求
       if (routingRequest.requirements?.requiredCapabilities) {
         const hasCapabilities = routingRequest.requirements.requiredCapabilities.every(
-          cap => modelInfo.capabilities.includes(cap as any)
+          cap => modelInfo.capabilities.includes(cap as unknown)
         );
         if (!hasCapabilities) continue;
       }
