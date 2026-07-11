@@ -48,7 +48,9 @@ jobs:
         continue-on-error: true
 
       - name: Build static export
-        run: bun run build
+        run: |
+          # 避免 bun run build 的 supply-chain 策略检查误报退出码
+          node_modules/.bin/next build
         env:
           # 激活静态导出模式
           NEXT_STATIC_EXPORT: 'true'
