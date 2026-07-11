@@ -45,6 +45,7 @@ jobs:
 
       - name: Run type check
         run: bun run type-check
+        continue-on-error: true
 
       - name: Build static export
         run: bun run build

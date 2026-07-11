@@ -282,13 +282,7 @@ export function reportWebVitals(metric: Metric) {
 
   // 开发环境打印到控制台
   if (process.env.NODE_ENV === 'development') {
-    // console.log('[Performance]', {
-      name: metric.name,
-      value: metric.value,
-      rating: getRating(metric.name, metric.value),
-      delta: metric.delta,
-      navigationType: metric.navigationType,
-    });
+    // Dev logging disabled
   }
 
   // 生产环境发送到分析服务（示例）

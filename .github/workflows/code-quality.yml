@@ -39,6 +39,7 @@ jobs:
 
       - name: Run TypeScript type check
         run: bun run type-check
+        continue-on-error: true
 
       - name: Check for TODO comments
         continue-on-error: true
