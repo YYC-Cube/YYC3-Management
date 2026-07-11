@@ -44,7 +44,7 @@ jobs:
         continue-on-error: true
 
       - name: Build static export
-        run: bun run build
+        run: node_modules/.bin/next build
         env:
           # 激活静态导出模式
           NEXT_STATIC_EXPORT: 'true'
