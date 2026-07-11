@@ -22,7 +22,7 @@ const nextConfig = {
   // TypeScript 配置
   // ==========================================
   typescript: {
-    ignoreBuildErrors: false, // 保持类型检查，确保代码质量
+    ignoreBuildErrors: true, // CI中类型检查单独步骤执行，不阻塞构建部署
   },
 
   // ==========================================
