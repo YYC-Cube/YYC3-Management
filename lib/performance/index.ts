@@ -119,13 +119,5 @@ export default PerformanceToolkit;
 // ==========================================
 
 if (process.env.NODE_ENV === 'development') {
-  // console.log(
-    '[YYC³ Performance]',
-    '性能优化模块已加载',
-    '\n- 性能监控: initPerformanceMonitoring()',
-    '\n- 懒加载: lazyLoad(() => import(...))',
-    '\n- 虚拟列表: <VirtualList />',
-    '\n- 缓存Hook: useCachedData()',
-    '\n\n文档: /docs/112-性能优化快速开始.md'
-  );
+  // Performance module loaded
 }

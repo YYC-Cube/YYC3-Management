@@ -97,10 +97,10 @@ export class QuickStartTemplate {
 
 async function createAutonomousAIWidget(config: AutonomousAIWidgetConfig): Promise<AIWidgetInstance> {
   return {
-    sendMessage: async (message) => ({
+    sendMessage: async (_message: unknown) => ({
       data: null,
       immediate_action_required: false
     }),
-    registerTool: async (tool) => {}
+    registerTool: async (_tool: unknown) => {}
   };
 }

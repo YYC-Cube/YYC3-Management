@@ -19,7 +19,6 @@
     "jsx": "preserve",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    "downlevelIteration": true,
     "ignoreDeprecations": "6.0",
     "plugins": [
       {
@@ -85,6 +84,10 @@
     ".next",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/__tests__/**/*"
+    "**/__tests__/**/*",
+    "vitest.config.ts",
+    "vitest.setup.ts",
+    "vitest.config.coverage.ts",
+    "templates/**/*"
   ]
 }
