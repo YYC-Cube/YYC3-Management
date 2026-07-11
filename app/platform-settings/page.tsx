@@ -318,11 +318,11 @@ export default function PlatformSettingsPage() {
       {/* 页面头部 */}
       <div className="mb-8">
         <div className="flex items-center space-x-3 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 flex items-center justify-center">
             <Globe className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               国内公共平台对接设置
             </h1>
             <p className="text-slate-600 mt-1">
