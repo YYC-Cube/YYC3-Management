@@ -18,11 +18,15 @@ import { Toaster } from "@/components/ui/toaster"
 import { PageTitleProvider } from "@/contexts/page-title-context"
 import { I18nProvider } from "@/lib/i18n"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
 import type React from "react"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+// 使用系统字体栈替代 next/font/google 的 Inter 字体
+// 避免 CI 构建时无法获取 Google Fonts 导致构建失败
+const inter = {
+  className: "font-sans",
+  style: { fontFamily: '"Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif' },
+}
 
 const siteUrl = "https://management.yyc3.vip"
 const siteName = "YYC³ 企业智能管理系统"
