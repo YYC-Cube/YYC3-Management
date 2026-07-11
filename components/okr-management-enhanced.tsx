@@ -11,16 +11,10 @@
 
 "use client"
 
-import { useState, useCallback } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { OKRAnalyticsCharts } from "@/components/charts/okr-analytics-charts"
 import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { EnhancedProgress } from "@/components/ui/enhanced-progress"
-import { InteractiveProgress } from "@/components/ui/interactive-progress"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -29,27 +23,33 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { EnhancedProgress } from "@/components/ui/enhanced-progress"
+import { Input } from "@/components/ui/input"
+import { InteractiveProgress } from "@/components/ui/interactive-progress"
 import { Label } from "@/components/ui/label"
-import { OKRAnalyticsCharts } from "@/components/charts/okr-analytics-charts"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import {
-  Target,
-  TrendingUp,
-  Plus,
-  Eye,
+  BarChart3,
+  Bell,
   CheckCircle,
   Clock,
-  BarChart3,
+  Eye,
   Lightbulb,
-  PieChart,
-  Save,
-  RefreshCw,
-  Zap,
-  Bell,
-  Share2,
   MessageSquare,
+  PieChart,
+  Plus,
+  RefreshCw,
+  Save,
+  Share2,
+  Target,
+  TrendingUp,
   Users,
+  Zap,
 } from "lucide-react"
+import { useCallback, useState } from "react"
 
 interface OKR {
   id: string
@@ -99,9 +99,8 @@ interface NotificationRule {
 
 export function OKRManagementEnhanced() {
   const [selectedQuarter, setSelectedQuarter] = useState("2025-Q2")
-  const [selectedDepartment, setSelectedDepartment] = useState("all")
+  const [selectedDepartment] = useState("all")
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-  const [selectedOKR, setSelectedOKR] = useState<OKR | null>(null)
   const [activeTab, setActiveTab] = useState("overview")
   const [isAutoRefresh, setIsAutoRefresh] = useState(false)
   const { toast } = useToast()
@@ -328,7 +327,7 @@ export function OKRManagementEnhanced() {
   }, [isAutoRefresh, toast])
 
   // 分享OKR
-  const handleShareOKR = (okrId: string) => {
+  const handleShareOKR = (_okrId: string) => {
     toast({
       title: "OKR已分享",
       description: "目标已分享给团队成员，他们将收到通知",
@@ -337,7 +336,7 @@ export function OKRManagementEnhanced() {
   }
 
   // 设置通知规则
-  const handleNotificationSettings = (okrId: string) => {
+  const handleNotificationSettings = (_okrId: string) => {
     toast({
       title: "通知设置",
       description: "通知规则已更新",
@@ -405,7 +404,7 @@ export function OKRManagementEnhanced() {
 
   // SMART目标设定向导
   const SMARTGuide = () => (
-    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+    <Card className="bg-linear-to-r from-blue-50 to-indigo-50 border-blue-200">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-blue-800">
           <Lightbulb className="w-5 h-5" />
@@ -464,7 +463,7 @@ export function OKRManagementEnhanced() {
           </Select>
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+              <Button className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
                 <Plus className="w-4 h-4 mr-2" />
                 创建OKR
               </Button>
@@ -506,7 +505,7 @@ export function OKRManagementEnhanced() {
                   <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
                     取消
                   </Button>
-                  <Button className="bg-gradient-to-r from-sky-500 to-blue-600 text-white">创建目标</Button>
+                  <Button className="bg-linear-to-r from-sky-500 to-blue-600 text-white">创建目标</Button>
                 </div>
               </div>
             </DialogContent>
@@ -612,7 +611,7 @@ export function OKRManagementEnhanced() {
                 key={okr.id}
                 className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                <CardHeader className="border-b border-sky-100 bg-gradient-to-r from-sky-50/50 to-blue-50/30">
+                <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -720,11 +719,10 @@ export function OKRManagementEnhanced() {
                                     <Clock className="w-4 h-4 text-slate-400 group-hover:text-sky-500 transition-colors" />
                                   )}
                                   <span
-                                    className={`text-xs ${
-                                      milestone.completed
-                                        ? "text-green-600 line-through"
-                                        : "text-slate-600 group-hover:text-sky-700"
-                                    } transition-colors`}
+                                    className={`text-xs ${milestone.completed
+                                      ? "text-green-600 line-through"
+                                      : "text-slate-600 group-hover:text-sky-700"
+                                      } transition-colors`}
                                   >
                                     {milestone.title}
                                   </span>
@@ -789,7 +787,7 @@ export function OKRManagementEnhanced() {
                       </Button>
                       <Button
                         size="sm"
-                        className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white transition-all duration-200 hover:scale-105"
+                        className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white transition-all duration-200 hover:scale-105"
                       >
                         <Save className="w-4 h-4 mr-2" />
                         保存更改

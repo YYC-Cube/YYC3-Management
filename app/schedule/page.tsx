@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { PageContainer } from "@/components/layout/page-container"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PageContainer } from "@/components/layout/page-container"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { Calendar, Clock, MapPin, Users, Plus, ChevronLeft, ChevronRight, Filter } from "lucide-react"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Calendar, ChevronLeft, ChevronRight, Clock, Filter, MapPin, Plus, Users } from "lucide-react"
+import { useState } from "react"
 
 export default function SchedulePage() {
-  const [currentDate, setCurrentDate] = useState(new Date())
+  const [currentDate, _setCurrentDate] = useState(new Date())
   const [viewMode, setViewMode] = useState<"day" | "week" | "month">("week")
 
   // 模拟日程数据
@@ -92,7 +92,7 @@ export default function SchedulePage() {
           </div>
 
           <div className="flex items-center gap-2 ml-auto">
-            <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as string)}>
+            <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as "day" | "week" | "month")}>
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="day">日</TabsTrigger>
                 <TabsTrigger value="week">周</TabsTrigger>
@@ -105,7 +105,7 @@ export default function SchedulePage() {
               筛选
             </Button>
 
-            <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700">
+            <Button className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700">
               <Plus className="w-4 h-4 mr-2" />
               新建日程
             </Button>

@@ -31,7 +31,8 @@ export function SystemSettings({ showTitle = true }: { showTitle?: boolean }) {
     const file = event.target.files?.[0];
     if (file) {
       try {
-        const config = await importConfig(file);
+        const _config = await importConfig(file);
+        void _config // 配置保留供未来使用
         // 应用导入的配置
         // console.log('配置导入成功', config);
       } catch (error) {

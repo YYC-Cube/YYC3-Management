@@ -4,7 +4,6 @@ import { useState } from "react"
 import { PageContainer } from "@/components/layout/page-container"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { StatusBadge } from "@/components/ui/status-badge"
 import { PageLoadingSkeleton } from "@/components/ui/loading-skeleton"
 import {

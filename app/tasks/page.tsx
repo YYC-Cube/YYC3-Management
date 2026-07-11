@@ -10,15 +10,8 @@
 
 "use client"
 
-import { useState } from "react"
 import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Dialog,
   DialogContent,
@@ -27,6 +20,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
 import {
   Select,
   SelectContent,
@@ -34,32 +33,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useTasks } from "@/hooks/use-tasks"
+import { toast } from "@/hooks/use-toast"
+import type { Task } from "@/lib/db/models/task"
 import {
-  CheckSquare,
-  Plus,
-  Clock,
   AlertCircle,
   CheckCircle,
-  User,
-  Search,
-  Filter,
+  CheckSquare,
+  Clock,
   Edit,
-  Trash2,
+  Filter,
   Loader2,
+  Plus,
+  Search,
+  Trash2,
+  User,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
-import { useTasks } from "@/hooks/use-tasks"
-import type { Task } from "@/store/task-store"
+import { useState } from "react"
 
 export default function TasksPage() {
-  const { tasks, loading, fetchTasks, createTask, updateTask, deleteTask } = useTasks({ page: 1, limit: 100 })
+  const { tasks, loading, fetchTasks: _fetchTasks, createTask, updateTask, deleteTask } = useTasks({ page: 1, limit: 100 })
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [showTaskDialog, setShowTaskDialog] = useState(false)
   const [editingTask, setEditingTask] = useState<Task | null>(null)
   const [dialogLoading, setDialogLoading] = useState(false)
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: string;
+    description: string;
+    assignee_id: number;
+    assignee_name: string;
+    project_id: number | null;
+    project_name: string;
+    priority: string;
+    status: string;
+    progress: number;
+    due_date: string;
+  }>({
     title: "",
     description: "",
     assignee_id: 1,
@@ -74,37 +85,30 @@ export default function TasksPage() {
 
   const taskStats = {
     totalTasks: tasks.length,
-    completedTasks: tasks.filter((t) => t.status === "completed").length,
-    inProgressTasks: tasks.filter((t) => t.status === "in_progress").length,
+    completedTasks: tasks.filter((t) => t.status === "已完成").length,
+    inProgressTasks: tasks.filter((t) => t.status === "进行中").length,
     overdueTasks: tasks.filter((t) => {
+      if (!t.due_date) return false
       const today = new Date()
       const dueDate = new Date(t.due_date)
-      return dueDate < today && t.status !== "completed"
+      return dueDate < today && t.status !== "已完成"
     }).length,
   }
 
   const handleCreateTask = async () => {
     setDialogLoading(true)
     try {
-      const result = await createTask(formData)
-      if (result.success) {
-        toast({
-          title: "创建成功",
-          description: "任务已成功创建",
-        })
-        setShowTaskDialog(false)
-        resetForm()
-      } else {
-        toast({
-          title: "创建失败",
-          description: result.error || "无法创建任务，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await createTask(formData as any)
+      toast({
+        title: "创建成功",
+        description: "任务已成功创建",
+      })
+      setShowTaskDialog(false)
+      resetForm()
     } catch (error) {
       toast({
         title: "创建失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法创建任务，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -117,26 +121,18 @@ export default function TasksPage() {
 
     setDialogLoading(true)
     try {
-      const result = await updateTask(editingTask.id, formData)
-      if (result.success) {
-        toast({
-          title: "更新成功",
-          description: "任务信息已成功更新",
-        })
-        setShowTaskDialog(false)
-        setEditingTask(null)
-        resetForm()
-      } else {
-        toast({
-          title: "更新失败",
-          description: result.error || "无法更新任务，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await updateTask(editingTask.id, formData as any)
+      toast({
+        title: "更新成功",
+        description: "任务信息已成功更新",
+      })
+      setShowTaskDialog(false)
+      setEditingTask(null)
+      resetForm()
     } catch (error) {
       toast({
         title: "更新失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法更新任务，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -145,16 +141,16 @@ export default function TasksPage() {
   }
 
   const handleDeleteTask = async (taskId: number) => {
-    const result = await deleteTask(taskId)
-    if (result.success) {
+    try {
+      await deleteTask(taskId)
       toast({
         title: "删除成功",
         description: "任务已成功删除",
       })
-    } else {
+    } catch (error) {
       toast({
         title: "删除失败",
-        description: result.error || "无法删除任务，请稍后重试",
+        description: error instanceof Error ? error.message : "无法删除任务，请稍后重试",
         variant: "destructive",
       })
     }
@@ -184,15 +180,15 @@ export default function TasksPage() {
   const openEditDialog = (task: Task) => {
     setFormData({
       title: task.title,
-      description: task.description,
-      assignee_id: task.assignee_id,
-      assignee_name: task.assignee_name,
-      project_id: task.project_id,
+      description: task.description || "",
+      assignee_id: task.assignee_id || 0,
+      assignee_name: task.assignee_name || "",
+      project_id: task.project_id ?? null,
       project_name: task.project_name || "",
       priority: task.priority,
       status: task.status,
       progress: task.progress,
-      due_date: task.due_date.split("T")[0],
+      due_date: task.due_date ? new Date(task.due_date).toISOString().split("T")[0] : "",
     })
     setEditingTask(task)
     setShowTaskDialog(true)
@@ -261,19 +257,19 @@ export default function TasksPage() {
   const filteredTasks = tasks.filter((task) => {
     const matchesSearch =
       task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.toLowerCase())
+      (task.description || '').toLowerCase().includes(searchTerm.toLowerCase())
     const matchesFilter =
       selectedFilter === "all" ||
-      (selectedFilter === "completed" && task.status === "completed") ||
-      (selectedFilter === "in_progress" && task.status === "in_progress") ||
-      (selectedFilter === "pending" && task.status === "pending")
+      (selectedFilter === "completed" && task.status === "已完成") ||
+      (selectedFilter === "in_progress" && task.status === "进行中") ||
+      (selectedFilter === "pending" && task.status === "待处理")
     return matchesSearch && matchesFilter
   })
 
   if (loading && tasks.length === 0) {
     return (
       <PageContainer title="任务管理" description="跟踪和管理团队任务进度">
-        <div className="flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center justify-center min-h-100">
           <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
         </div>
       </PageContainer>
@@ -411,7 +407,7 @@ export default function TasksPage() {
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    截止: {task.due_date.split("T")[0]}
+                    截止: {task.due_date ? new Date(task.due_date).toISOString().split("T")[0] : "-"}
                   </div>
                   {task.project_name && (
                     <div className="flex items-center gap-1">
@@ -437,7 +433,7 @@ export default function TasksPage() {
       </div>
 
       <Dialog open={showTaskDialog} onOpenChange={setShowTaskDialog}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle>{editingTask ? "编辑任务" : "新建任务"}</DialogTitle>
             <DialogDescription>

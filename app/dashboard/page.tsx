@@ -1,25 +1,25 @@
 "use client"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { PageContainer } from "@/components/layout/page-container"
 import { StatisticsDashboard } from "@/components/statistics-dashboard"
-import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { useCustomers } from "@/hooks/use-customers"
+import { useProjects } from "@/hooks/use-projects"
+import { useTasks } from "@/hooks/use-tasks"
+import { useUsers } from "@/hooks/use-users"
 import {
   BarChart3,
-  Users,
   CheckSquare,
+  Users,
 } from "lucide-react"
-import { useUsers } from "@/hooks/use-users"
-import { useCustomers } from "@/hooks/use-customers"
-import { useTasks } from "@/hooks/use-tasks"
-import { useProjects } from "@/hooks/use-projects"
+import { useRouter } from "next/navigation"
 import { useEffect, useMemo } from "react"
 
 export default function DashboardPage() {
   const router = useRouter()
   const { users, fetchUsers } = useUsers({ page: 1, limit: 1000 })
-  const { customers, fetchCustomers } = useCustomers({ page: 1, limit: 1000 })
+  const { fetchCustomers } = useCustomers({ page: 1, limit: 1000 })
   const { tasks, fetchTasks } = useTasks({ page: 1, limit: 1000 })
   const { projects, fetchProjects } = useProjects({ page: 1, limit: 1000 })
 
@@ -31,10 +31,11 @@ export default function DashboardPage() {
   }, [])
 
   const activeUsers = useMemo(() => users.filter((u) => u.status === "active").length, [users])
-  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "completed").length, [tasks])
-  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "in_progress").length, [tasks])
-  const completedProjects = useMemo(() => projects.filter((p) => p.status === "completed").length, [projects])
-  const activeCustomers = useMemo(() => customers.filter((c) => c.status === "active").length, [customers])
+  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "已完成").length, [tasks])
+  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "进行中").length, [tasks])
+  const completedProjects = useMemo(() => projects.filter((p) => p.status === "已完成").length, [projects])
+  // 活跃客户数（保留实现供未来使用）
+  // const activeCustomers = useMemo(() => customers.filter((c) => c.status === "active").length, [customers])
 
   const monthNames = useMemo(() => {
     const now = new Date()
@@ -63,10 +64,10 @@ export default function DashboardPage() {
   }, [completedTasks, monthNames])
 
   const projectStatusData = useMemo(() => [
-    { name: "进行中", value: projects.filter((p) => p.status === "in_progress").length, color: "#3b82f6" },
+    { name: "进行中", value: projects.filter((p) => p.status === "进行中").length, color: "#3b82f6" },
     { name: "已完成", value: completedProjects, color: "#10b981" },
-    { name: "规划中", value: projects.filter((p) => p.status === "planning").length, color: "#f59e0b" },
-    { name: "暂停", value: projects.filter((p) => p.status === "paused").length, color: "#ef4444" },
+    { name: "规划中", value: projects.filter((p) => p.status === "计划中").length, color: "#f59e0b" },
+    { name: "暂停", value: projects.filter((p) => p.status === "已暂停").length, color: "#ef4444" },
   ], [projects, completedProjects])
 
   const userActivityData = useMemo(() => {

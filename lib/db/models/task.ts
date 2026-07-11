@@ -3,6 +3,9 @@ export interface Task {
   title: string
   description?: string
   assignee_id?: number
+  assignee_name?: string
+  project_id?: number | null
+  project_name?: string | null
   priority: '低' | '中' | '高' | '紧急'
   status: '待处理' | '进行中' | '已完成' | '已取消' | '逾期'
   progress: number

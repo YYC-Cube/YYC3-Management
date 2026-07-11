@@ -374,7 +374,7 @@ export function SystemTesting() {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
             <div
-              className="bg-gradient-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
+              className="bg-linear-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${testProgress}%` }}
             ></div>
           </div>
@@ -545,7 +545,7 @@ export function SystemTesting() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-linear-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${item.coverage}%` }}
                       ></div>
                     </div>
@@ -570,7 +570,7 @@ export function SystemTesting() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-linear-to-r from-blue-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${item.coverage}%` }}
                       ></div>
                     </div>

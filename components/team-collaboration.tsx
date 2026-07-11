@@ -11,30 +11,30 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Textarea } from "@/components/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import {
-  Users,
-  MessageSquare,
-  Share2,
-  Eye,
-  ThumbsUp,
-  MessageCircle,
-  Send,
-  Plus,
-  Clock,
-  CheckCircle,
   AlertCircle,
-  TrendingUp,
+  CheckCircle,
+  Clock,
+  Eye,
+  MessageCircle,
+  MessageSquare,
+  Plus,
+  Send,
+  Share2,
   Target,
+  ThumbsUp,
+  TrendingUp,
+  Users,
 } from "lucide-react"
+import { useState } from "react"
 
 interface TeamCollaborationProps {
   showTitle?: boolean
@@ -86,7 +86,9 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
   const { toast } = useToast()
   const [activeTab, setActiveTab] = useState("dashboard")
   const [newComment, setNewComment] = useState("")
+  // 选中的OKR（保留实现供未来使用）
   const [selectedOKR, setSelectedOKR] = useState<string | null>(null)
+  void selectedOKR
 
   const teamMembers: TeamMember[] = [
     {
@@ -234,18 +236,8 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
     }
   }
 
-  const handleAddComment = (okrId: string) => {
+  const handleAddComment = (_okrId: string) => {
     if (!newComment.trim()) return
-
-    const comment: Comment = {
-      id: Date.now().toString(),
-      author: "当前用户",
-      avatar: "/placeholder.svg?height=32&width=32",
-      content: newComment,
-      timestamp: new Date().toLocaleString("zh-CN"),
-      likes: 0,
-      replies: [],
-    }
 
     // 这里应该更新实际的数据
     setNewComment("")
@@ -255,7 +247,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
     })
   }
 
-  const handleShareOKR = (okrId: string) => {
+  const handleShareOKR = (_okrId: string) => {
     toast({
       title: "OKR已分享",
       description: "目标已分享给团队成员",
@@ -275,12 +267,12 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
             <div className="flex items-center space-x-3">
               <Button
                 variant="outline"
-                className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white border-0"
+                className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white border-0"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 分享目标
               </Button>
-              <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+              <Button className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
                 <Plus className="w-4 h-4 mr-2" />
                 邀请成员
               </Button>
@@ -412,7 +404,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="bg-gradient-to-r from-sky-400 to-blue-500 h-2 rounded-full transition-all duration-300"
+                          className="bg-linear-to-r from-sky-400 to-blue-500 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${member.completionRate}%` }}
                         />
                       </div>
@@ -469,7 +461,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <div className="w-20 mt-1">
                         <div className="w-full bg-slate-200 rounded-full h-2">
                           <div
-                            className="bg-gradient-to-r from-sky-400 to-blue-500 h-2 rounded-full"
+                            className="bg-linear-to-r from-sky-400 to-blue-500 h-2 rounded-full"
                             style={{ width: `${okr.progress}%` }}
                           />
                         </div>
@@ -510,7 +502,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <Button
                         size="sm"
                         onClick={() => setSelectedOKR(okr.id)}
-                        className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                        className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
                       >
                         <MessageSquare className="w-4 h-4 mr-2" />
                         参与讨论
@@ -594,12 +586,12 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                         placeholder="添加您的评论或建议..."
-                        className="flex-1 min-h-[60px]"
+                        className="flex-1 min-h-15"
                       />
                       <Button
                         onClick={() => handleAddComment(okr.id)}
                         disabled={!newComment.trim()}
-                        className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                        className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
                       >
                         <Send className="w-4 h-4" />
                       </Button>

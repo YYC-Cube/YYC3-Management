@@ -11,16 +11,9 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -29,41 +22,48 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useToast } from "@/hooks/use-toast"
 import {
+  Activity,
+  AlertTriangle,
+  CheckCircle,
+  Database,
+  Download,
+  Eye,
+  Lock,
+  Network,
+  RefreshCw,
+  Search,
+  Server,
+  Settings,
   Shield,
   ShieldAlert,
   ShieldCheck,
-  AlertTriangle,
-  Lock,
-  Eye,
-  UserCheck,
-  Activity,
-  Database,
-  Settings,
-  RefreshCw,
-  Download,
-  Search,
-  CheckCircle,
-  TrendingUp,
   TrendingDown,
-  Zap,
+  TrendingUp,
+  UserCheck,
   Users,
-  Server,
-  Network,
+  Zap,
 } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useEffect, useState } from "react"
 import {
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
+  CartesianGrid,
   Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
 } from "recharts"
 
 interface SecurityEvent {
@@ -121,7 +121,6 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterLevel, setFilterLevel] = useState<string>("all")
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false)
-  const [isPolicyDialogOpen, setIsPolicyDialogOpen] = useState(false)
   const { toast } = useToast()
 
   // 模拟数据加载
@@ -398,7 +397,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   }
 
   const handleEventStatusChange = (eventId: string, newStatus: string) => {
-    setEvents((prev) => prev.map((event) => (event.id === eventId ? { ...event, status: newStatus as unknown } : event)))
+    setEvents((prev) => prev.map((event) => (event.id === eventId ? { ...event, status: newStatus as any } : event)))
     toast({
       title: "状态已更新",
       description: `事件状态已更改为${newStatus}`,

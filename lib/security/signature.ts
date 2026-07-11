@@ -5,7 +5,7 @@
  * 使用HMAC-SHA256进行API请求签名验证
  */
 
-import { createHmac, timingSafeEqual } from 'crypto';
+import { createHmac, randomBytes, timingSafeEqual } from 'crypto';
 
 /**
  * 签名配置
@@ -62,8 +62,8 @@ class MemoryAPIKeyStore implements APIKeyStore {
   }
 
   async create(keyData: Omit<APIKey, 'key' | 'createdAt'>): Promise<APIKey> {
-    const key = `ak_${Date.now()}_${crypto.randomBytes(16).toString('hex')}`;
-    const secret = `sk_${Date.now()}_${crypto.randomBytes(32).toString('hex')}`;
+    const key = `ak_${Date.now()}_${randomBytes(16).toString('hex')}`;
+    const secret = `sk_${Date.now()}_${randomBytes(32).toString('hex')}`;
 
     const apiKey: APIKey = {
       ...keyData,
@@ -253,10 +253,12 @@ export class APISignatureVerifier {
     scopes: string[];
     expiresIn?: number;
   }): Promise<{ key: string; secret: string }> {
+    const secret = randomBytes(32).toString('hex')
     const keyData = await this.apiKeyStore.create({
       userId: params.userId,
       name: params.name,
       scopes: params.scopes,
+      secret,
       isActive: true,
       expiresAt: params.expiresIn ? Date.now() + params.expiresIn : undefined,
     });
@@ -294,7 +296,7 @@ export class ClientSignatureGenerator {
   constructor(
     private apiKey: string,
     private apiSecret: string
-  ) {}
+  ) { }
 
   /**
    * 为请求生成签名

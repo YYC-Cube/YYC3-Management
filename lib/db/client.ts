@@ -1,3 +1,4 @@
+// @ts-expect-error - pg ESM 模块缺少类型声明文件，使用 types.d.ts 中的 declare module
 import { Pool, PoolConfig } from 'pg'
 
 const poolConfig: PoolConfig = {
@@ -13,7 +14,7 @@ const poolConfig: PoolConfig = {
 
 const pool = new Pool(poolConfig)
 
-pool.on('error', (err) => {
+pool.on('error', (err: Error) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
 })
@@ -34,10 +35,9 @@ export async function checkDatabaseConnection(): Promise<boolean> {
 }
 
 export async function query<T = any>(text: string, params?: unknown[]): Promise<T[]> {
-  const start = Date.now()
   try {
     const result = await pool.query(text, params)
-    const duration = Date.now() - start
+    // const duration = Date.now() - start
     // console.log('Executed query', { text, duration, rows: result.rowCount })
     return result.rows
   } catch (error) {

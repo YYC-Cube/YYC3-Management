@@ -34,19 +34,19 @@ export function FloatingNavButtons({ className }: FloatingNavButtonsProps) {
         onMouseLeave={() => setIsBackHovered(false)}
         className={`
           group relative w-14 h-14 rounded-full
-          bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600
+          bg-linear-to-br from-slate-400 via-slate-500 to-slate-600
           shadow-lg hover:shadow-xl
           border-2 border-slate-300
           transition-all duration-300 ease-out
           ${isBackHovered ? "scale-110 -translate-y-1" : "scale-100"}
           before:absolute before:inset-0 before:rounded-full
-          before:bg-gradient-to-br before:from-white/20 before:to-transparent
+          before:bg-linear-to-br before:from-white/20 before:to-transparent
           before:opacity-0 hover:before:opacity-100 before:transition-opacity
           active:scale-95 active:shadow-md
         `}
         title="返回上一页"
       >
-        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-slate-300 to-slate-500 shadow-inner">
+        <div className="absolute inset-1 rounded-full bg-linear-to-br from-slate-300 to-slate-500 shadow-inner">
           <div className="flex items-center justify-center w-full h-full">
             <ArrowLeft
               className={`w-6 h-6 text-white transition-all duration-300 ${isBackHovered ? "scale-110" : "scale-100"}`}
@@ -70,19 +70,19 @@ export function FloatingNavButtons({ className }: FloatingNavButtonsProps) {
         onMouseLeave={() => setIsHomeHovered(false)}
         className={`
           group relative w-14 h-14 rounded-full
-          bg-gradient-to-br from-sky-400 via-blue-500 to-blue-600
+          bg-linear-to-br from-sky-400 via-blue-500 to-blue-600
           shadow-lg hover:shadow-xl
           border-2 border-sky-300
           transition-all duration-300 ease-out
           ${isHomeHovered ? "scale-110 -translate-y-1" : "scale-100"}
           before:absolute before:inset-0 before:rounded-full
-          before:bg-gradient-to-br before:from-white/20 before:to-transparent
+          before:bg-linear-to-br before:from-white/20 before:to-transparent
           before:opacity-0 hover:before:opacity-100 before:transition-opacity
           active:scale-95 active:shadow-md
         `}
         title="回到首页"
       >
-        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-sky-300 to-blue-500 shadow-inner">
+        <div className="absolute inset-1 rounded-full bg-linear-to-br from-sky-300 to-blue-500 shadow-inner">
           <div className="flex items-center justify-center w-full h-full">
             <Home
               className={`w-6 h-6 text-white transition-all duration-300 ${isHomeHovered ? "scale-110" : "scale-100"}`}

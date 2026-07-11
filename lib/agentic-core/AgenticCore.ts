@@ -11,8 +11,8 @@
 
 import { EventEmitter } from 'events';
 import { MessageBus } from './MessageBus';
-import { TaskScheduler } from './TaskScheduler';
 import { StateManager } from './StateManager';
+import { TaskScheduler } from './TaskScheduler';
 
 // ====================================
 // 类型定义
@@ -164,30 +164,29 @@ export class AgenticCore extends EventEmitter {
   private state: AgentState = AgentState.IDLE;
   private config: AgentConfig;
   private activeTasks: Map<string, AgentTask> = new Map();
-  private taskQueue: AgentTask[] = [];
   private sessionData: Map<string, unknown> = new Map();
-  
+
   // 核心子系统
   private messageBus: MessageBus;
   private taskScheduler: TaskScheduler;
   private stateManager: StateManager;
-  
+
   private metrics: {
     totalTasks: number;
     completedTasks: number;
     failedTasks: number;
     averageDuration: number;
   } = {
-    totalTasks: 0,
-    completedTasks: 0,
-    failedTasks: 0,
-    averageDuration: 0
-  };
+      totalTasks: 0,
+      completedTasks: 0,
+      failedTasks: 0,
+      averageDuration: 0
+    };
 
   constructor(config: AgentConfig) {
     super();
     this.config = config;
-    
+
     // 初始化核心子系统
     this.messageBus = new MessageBus({
       maxQueueSize: 1000,
@@ -198,19 +197,19 @@ export class AgenticCore extends EventEmitter {
       },
       deadLetterQueue: true
     });
-    
+
     this.taskScheduler = new TaskScheduler({
       maxConcurrentTasks: 10,
       timeoutMs: 30000,
       priorityLevels: 5
     });
-    
+
     this.stateManager = new StateManager({
       autoPersist: true,
       persistInterval: 60000,
       maxHistory: 100
     });
-    
+
     this.setupEventListeners();
     this.setupSubsystemListeners();
     this.emit('agent:initialized', { agentId: config.agentId });
@@ -220,12 +219,12 @@ export class AgenticCore extends EventEmitter {
    * 设置事件监听器
    */
   private setupEventListeners(): void {
-    this.on('task:created', (task: AgentTask) => {
-      // console.log(`[AgenticCore] Task created: ${task.id}`);
+    this.on('task:created', (_task: AgentTask) => {
+      // console.log(`[AgenticCore] Task created: ${_task.id}`);
     });
 
-    this.on('task:completed', (task: AgentTask) => {
-      // console.log(`[AgenticCore] Task completed: ${task.id}`);
+    this.on('task:completed', (_task: AgentTask) => {
+      // console.log(`[AgenticCore] Task completed: ${_task.id}`);
       this.metrics.completedTasks++;
     });
 
@@ -234,8 +233,8 @@ export class AgenticCore extends EventEmitter {
       this.metrics.failedTasks++;
     });
 
-    this.on('state:changed', (oldState: AgentState, newState: AgentState) => {
-      // console.log(`[AgenticCore] State changed: ${oldState} -> ${newState}`);
+    this.on('state:changed', (_oldState: AgentState, _newState: AgentState) => {
+      // console.log(`[AgenticCore] State changed: ${_oldState} -> ${_newState}`);
     });
   }
 
@@ -246,16 +245,16 @@ export class AgenticCore extends EventEmitter {
     try {
       // 1. 意图识别
       const intent = await this.analyzeIntent(input);
-      
+
       // 2. 创建任务
       const task = await this.createTask(intent, input.context);
-      
+
       // 3. 执行任务
       const result = await this.executeTask(task);
-      
+
       // 4. 生成响应
       const response = this.generateResponse(result);
-      
+
       return response;
     } catch (error) {
       return this.handleError(error as Error);
@@ -320,15 +319,15 @@ export class AgenticCore extends EventEmitter {
     try {
       // 1. 规划阶段
       const plan = await this.planTask(task);
-      
+
       // 2. 执行阶段
       const result = await this.executePlan(plan, task);
-      
+
       // 3. 反思阶段
       if (this.config.reflectionConfig.enableReflection) {
         await this.reflect(task, result);
       }
-      
+
       // 4. 学习阶段
       if (this.config.learningConfig.enableLearning) {
         await this.learn(task, result);
@@ -356,7 +355,7 @@ export class AgenticCore extends EventEmitter {
    */
   private async planTask(task: AgentTask): Promise<Subtask[]> {
     this.setState(AgentState.PLANNING);
-    
+
     // 简化的规划逻辑
     // 实际应该使用更复杂的规划算法（如STRIPS, HTN等）
     const subtasks: Subtask[] = [
@@ -431,7 +430,7 @@ export class AgenticCore extends EventEmitter {
   private async analyzeData(task: AgentTask): Promise<unknown> {
     const userMessage = task.context.conversationHistory[task.context.conversationHistory.length - 1];
     const message = userMessage?.content || '未知消息';
-    
+
     return {
       analyzed: true,
       message: `我理解了您的消息："${message}"。让我来帮您分析一下。`,
@@ -449,7 +448,7 @@ export class AgenticCore extends EventEmitter {
   private async executeAction(task: AgentTask): Promise<unknown> {
     const userMessage = task.context.conversationHistory[task.context.conversationHistory.length - 1];
     const message = userMessage?.content || '未知消息';
-    
+
     return {
       executed: true,
       message: `根据您的消息："${message}"，我已完成相关操作。`,
@@ -462,7 +461,7 @@ export class AgenticCore extends EventEmitter {
    */
   private async reflect(task: AgentTask, result: unknown): Promise<void> {
     this.setState(AgentState.REFLECTING);
-    
+
     // 分析任务执行情况
     const performance = {
       success: task.status === 'completed',
@@ -479,7 +478,7 @@ export class AgenticCore extends EventEmitter {
    */
   private async learn(task: AgentTask, result: unknown): Promise<void> {
     this.setState(AgentState.LEARNING);
-    
+
     // 从任务执行中学习
     const learningData = {
       task: task.goal,
@@ -495,7 +494,7 @@ export class AgenticCore extends EventEmitter {
   /**
    * 评估结果质量
    */
-  private evaluateQuality(result: unknown): number {
+  private evaluateQuality(_result: unknown): number {
     // 简化的质量评估
     return 0.8;
   }
@@ -505,12 +504,12 @@ export class AgenticCore extends EventEmitter {
    */
   private generateResponse(result: unknown): AgentResponse {
     let content = '';
-    
+
     if (typeof result === 'string') {
       content = result;
     } else if (result && typeof result === 'object') {
       const resultObj = result as Record<string, unknown>;
-      
+
       if (resultObj.executed && resultObj.result) {
         content = resultObj.result as string;
       } else if (resultObj.analyzed && resultObj.insights) {
@@ -523,7 +522,7 @@ export class AgenticCore extends EventEmitter {
     } else {
       content = '操作已完成';
     }
-    
+
     return {
       id: this.generateTaskId(),
       content,
@@ -541,7 +540,7 @@ export class AgenticCore extends EventEmitter {
    */
   private handleError(error: Error): AgentResponse {
     this.setState(AgentState.ERROR);
-    
+
     return {
       id: this.generateTaskId(),
       content: `Error: ${error.message}`,
@@ -586,14 +585,14 @@ export class AgenticCore extends EventEmitter {
    * 生成任务ID
    */
   private generateTaskId(): string {
-    return `task-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
+    return `task-${Date.now()}-${crypto.randomUUID().slice(0, 9)}`;
   }
 
   /**
    * 生成会话ID
    */
   private generateSessionId(): string {
-    return `session-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
+    return `session-${Date.now()}-${crypto.randomUUID().slice(0, 9)}`;
   }
 
   /**
@@ -625,74 +624,73 @@ export class AgenticCore extends EventEmitter {
     this.messageBus.on('message:published', (message) => {
       this.emit('system:message_published', message);
     });
-    
+
     this.messageBus.on('message:processed', (message) => {
       this.emit('system:message_processed', message);
     });
-    
+
     this.messageBus.on('message:failed', ({ message, error }) => {
       this.emit('system:message_failed', { message, error });
     });
-    
+
     // 任务调度器事件
     this.taskScheduler.on('task:started', (task) => {
       this.emit('system:task_started', task);
     });
-    
+
     this.taskScheduler.on('task:completed', (task, result) => {
       this.metrics.completedTasks++;
       this.emit('system:task_completed', { task, result });
     });
-    
+
     this.taskScheduler.on('task:failed', (task, result) => {
       this.metrics.failedTasks++;
       this.emit('system:task_failed', { task, result });
     });
-    
+
     // 状态管理器事件
     this.stateManager.on('state:changed', (change) => {
       this.emit('system:state_changed', change);
     });
-    
+
     this.stateManager.on('snapshot:created', (snapshot) => {
       this.emit('system:snapshot_created', snapshot);
     });
   }
-  
+
   /**
    * 获取子系统实例
    */
   getMessageBus(): MessageBus {
     return this.messageBus;
   }
-  
+
   getTaskScheduler(): TaskScheduler {
     return this.taskScheduler;
   }
-  
+
   getStateManager(): StateManager {
     return this.stateManager;
   }
-  
+
   /**
    * 清理资源
    */
   async destroy(): Promise<void> {
     // 停止任务调度器
     await this.taskScheduler.waitAll();
-    
+
     // 清理消息总线
     this.messageBus.clear();
-    
+
     // 停止状态管理器
     this.stateManager.stopAutoPersist();
-    
+
     // 清理本地资源
     this.activeTasks.clear();
-    this.taskQueue = [];
     this.sessionData.clear();
     this.removeAllListeners();
-    
+
     this.emit('agent:destroyed');
   }
 }

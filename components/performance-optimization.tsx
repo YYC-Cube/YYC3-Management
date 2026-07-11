@@ -331,7 +331,7 @@ export function PerformanceOptimization() {
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2">
               <div
-                className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                className="bg-linear-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${optimizationProgress}%` }}
               ></div>
             </div>

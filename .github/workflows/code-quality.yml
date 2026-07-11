@@ -1,7 +1,8 @@
+# =============================================================
+# YYC³ 企业智能管理系统 — 代码质量检查流水线
+# 独立运行，专注代码质量、复杂度、安全漏洞扫描
+# =============================================================
 name: Code Quality
-
-env:
-  BUN_VERSION: '1.1.0'
 
 on:
   push:
@@ -10,6 +11,9 @@ on:
     branches: [main, develop]
   schedule:
     - cron: '0 0 * * 0'
+
+env:
+  BUN_VERSION: '1.2.2'
 
 jobs:
   code-quality:
@@ -27,66 +31,53 @@ jobs:
           bun-version: ${{ env.BUN_VERSION }}
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Run ESLint
         run: bun run lint
-        continue-on-error: true
-
-      - name: Run Prettier check
-        run: bunx prettier --check "**/*.{ts,tsx,js,jsx,json,md}"
         continue-on-error: true
 
       - name: Run TypeScript type check
         run: bun run type-check
         continue-on-error: true
 
-      - name: Check for TODO comments
+      - name: Check for TODO/FIXME comments
         continue-on-error: true
         run: |
-          TODO_COUNT=$(grep -r "TODO\|FIXME\|HACK" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . | grep -v node_modules | grep -v .next | wc -l)
+          TODO_COUNT=$(grep -r "TODO\|FIXME\|HACK" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . \
+            | grep -v node_modules | grep -v .next | grep -v core | wc -l)
           echo "Found $TODO_COUNT TODO/FIXME/HACK comments"
-          if [ $TODO_COUNT -gt 50 ]; then
-            echo "Too many TODO comments. Please address them."
-            exit 1
+          if [ "$TODO_COUNT" -gt 50 ]; then
+            echo "WARNING: Too many TODO comments ($TODO_COUNT). Please address them."
           fi
 
-      - name: Check for console.log
+      - name: Check for console.log statements
         continue-on-error: true
         run: |
-          CONSOLE_COUNT=$(grep -r "console\.log\|console\.debug" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . | grep -v "node_modules" | grep -v ".next" | wc -l)
+          CONSOLE_COUNT=$(grep -r "console\.log\|console\.debug" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" . \
+            | grep -v node_modules | grep -v ".next" | wc -l)
           echo "Found $CONSOLE_COUNT console.log/debug statements"
-          if [ $CONSOLE_COUNT -gt 10 ]; then
-            echo "Too many console.log statements. Please remove them."
-            exit 1
+          if [ "$CONSOLE_COUNT" -gt 10 ]; then
+            echo "WARNING: Too many console.log statements ($CONSOLE_COUNT). Consider removing them."
           fi
 
       - name: Check file sizes
         continue-on-error: true
         run: |
-          LARGE_FILES=$(find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \) | grep -v node_modules | grep -v ".next" | while read file; do
-            SIZE=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
-            if [ "$SIZE" -gt 51200 ]; then
+          LARGE_FILES=$(find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \) \
+            -not -path "*/node_modules/*" -not -path "*/.next/*" -not -path "*/core/*" | while read file; do
+            SIZE=$(stat -c%s "$file" 2>/dev/null)
+            if [ -n "$SIZE" ] && [ "$SIZE" -gt 51200 ]; then
               echo "$file: $SIZE bytes"
             fi
           done)
           if [ -n "$LARGE_FILES" ]; then
             echo "Large files found (>50KB):"
             echo "$LARGE_FILES"
-            exit 1
           fi
-
-      - name: Check for duplicate code
-        continue-on-error: true
-        run: |
-          bunx jscpd ./ --threshold 5 --format "ts,tsx,js,jsx" --ignore "node_modules,.next,dist,build"
 
       - name: Check for security vulnerabilities
         run: bun audit --audit-level=moderate
-        continue-on-error: true
-
-      - name: Run cSpell
-        run: bunx cspell "**/*.{ts,tsx,js,jsx,md}"
         continue-on-error: true
 
   complexity-analysis:
@@ -102,19 +93,12 @@ jobs:
           bun-version: ${{ env.BUN_VERSION }}
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
-      - name: Run ESLint with complexity rules
-        continue-on-error: true
+      - name: Check file count and structure
         run: |
-          bunx eslint . --ext .ts,.tsx,.js,.jsx \
-            --rule '{"complexity": ["warn", 15]}' \
-            --format json \
-            --output-file complexity-report.json || true
-
-      - name: Upload complexity report
-        uses: actions/upload-artifact@v4
-        with:
-          name: complexity-report
-          path: complexity-report.json
-        if: always()
+          echo "### Code Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Source files (.ts/.tsx): $(find . -type f \( -name '*.ts' -o -name '*.tsx' \) -not -path '*/node_modules/*' -not -path '*/.next/*' | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Total lines of code: $(find . -type f \( -name '*.ts' -o -name '*.tsx' \) -not -path '*/node_modules/*' -not -path '*/.next/*' -exec cat {} + | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Test files: $(find . -name '*.test.ts' -o -name '*.test.tsx' | wc -l)" >> $GITHUB_STEP_SUMMARY

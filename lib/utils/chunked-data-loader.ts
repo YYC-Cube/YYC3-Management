@@ -22,7 +22,7 @@ export class ChunkedDataLoader<T> {
   private preloadCount: number
   private cacheSize: number
   private loadQueue: Set<string> = new Set()
-  private loadingPromises: Map<string, Promise<void>> = new Map()
+  private loadingPromises: Map<string, Promise<any>> = new Map()
 
   constructor(options: ChunkedDataLoaderOptions = {}) {
     this.chunkSize = options.chunkSize || 20

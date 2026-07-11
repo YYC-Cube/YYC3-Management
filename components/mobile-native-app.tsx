@@ -11,34 +11,34 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
-  Smartphone,
+  BarChart3,
+  Bell,
+  Calendar,
   Download,
+  MessageSquare,
+  Settings,
+  Shield,
+  Smartphone,
+  FolderSyncIcon as Sync,
+  Users,
   Wifi,
   WifiOff,
-  Bell,
-  Settings,
-  FolderSyncIcon as Sync,
-  Shield,
   Zap,
-  Users,
-  BarChart3,
-  MessageSquare,
-  Calendar,
 } from "lucide-react"
-import { Switch } from "@/components/ui/switch"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react"
 
 interface AppFeature {
   id: string
   name: string
   description: string
-  icon: unknown
+  icon: React.ComponentType<{ className?: string }>
   status: "available" | "development" | "planned"
 }
 
@@ -51,7 +51,7 @@ interface NotificationSetting {
 
 export function MobileNativeApp() {
   const [isOfflineMode, setIsOfflineMode] = useState(false)
-  const [syncProgress, setSyncProgress] = useState(85)
+  const [syncProgress] = useState(85)
 
   const appFeatures: AppFeature[] = [
     {

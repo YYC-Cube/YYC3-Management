@@ -58,7 +58,7 @@ export function validateRequest<T>(
     return schema.parse(data)
   } catch (error) {
     if (error instanceof z.ZodError) {
-      throw new ValidationError('数据验证失败', error.errors)
+      throw new ValidationError('数据验证失败', error.issues)
     }
     throw error
   }

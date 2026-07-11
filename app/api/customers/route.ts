@@ -6,12 +6,12 @@
  * @license MIT
  */
 
-import { NextRequest, NextResponse } from 'next/server'
 import { authenticateApiRequest } from '@/lib/api/auth-guard'
-import { CustomerRepository } from '@/lib/db/repositories/customer.repository'
+import { buildCacheKey, invalidateResourceCache, withCache } from '@/lib/db/cache'
 import { checkDatabaseConnection } from '@/lib/db/client'
+import { CustomerRepository } from '@/lib/db/repositories/customer.repository'
 import { customerSchema } from '@/lib/validations/schemas'
-import { withCache, invalidateResourceCache, buildCacheKey } from '@/lib/db/cache'
+import { NextRequest, NextResponse } from 'next/server'
 
 const customerRepository = new CustomerRepository()
 
@@ -70,12 +70,12 @@ export async function POST(request: NextRequest) {
     const validation = customerSchema.safeParse(body)
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: '数据验证失败', details: validation.error.errors },
+        { success: false, error: '数据验证失败', details: validation.error.issues },
         { status: 400 }
       )
     }
 
-    const customer = await customerRepository.create(validation.data)
+    const customer = await customerRepository.create(validation.data as any)
     await invalidateResourceCache('customers')
 
     return NextResponse.json({
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
     }, { status: 201 })
   } catch (error: unknown) {
     console.error('创建客户失败:', error)
-    
+
     if ((error as { code?: string }).code === '23505') {
       return NextResponse.json(
         { success: false, error: '客户邮箱已存在' },

@@ -12,7 +12,7 @@
  * - 防抖节流工具
  */
 
-import { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 // ==========================================
 // 类型定义
@@ -39,23 +39,23 @@ export interface CacheConfig {
  * @param importFn - 动态导入函数
  * @param fallback - 加载中显示的组件
  */
-export function lazyLoad<T extends React.ComponentType<Record<string, unknown>>>(
+export function lazyLoad<T extends React.ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
-  fallback?: React.ComponentType
-): React.LazyExoticComponent<React.ComponentProps<T>> {
+  _fallback?: React.ComponentType
+): React.LazyExoticComponent<T> {
   return React.lazy(() =>
     importFn().catch((error) => {
       console.error('Lazy load failed:', error);
       // 返回一个简单的错误组件
       return {
-        default: () => React.createElement('div', {
+        default: (() => React.createElement('div', {
           className: 'p-4 bg-red-50 border border-red-200 rounded',
           children: React.createElement('p', {
             className: 'text-red-600',
             children: '组件加载失败',
           }),
-        }),
-      } as unknown;
+        })) as unknown as T,
+      };
     })
   );
 }
@@ -65,10 +65,10 @@ export function lazyLoad<T extends React.ComponentType<Record<string, unknown>>>
  * @param importFn - 动态导入函数
  * @param preloadDelay - 预加载延迟（毫秒）
  */
-export function lazyLoadWithPreload<T extends React.ComponentType<Record<string, unknown>>>(
+export function lazyLoadWithPreload<T extends React.ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
   preloadDelay: number = 5000
-): React.LazyExoticComponent<React.ComponentProps<T>> {
+): React.LazyExoticComponent<T> {
   const LazyComponent = React.lazy(importFn);
 
   // 自动预加载
@@ -90,7 +90,7 @@ export function lazyLoadWithPreload<T extends React.ComponentType<Record<string,
  */
 export function useLazyLoad(
   options: LazyLoadOptions = {}
-): [React.RefObject<HTMLDivElement>, boolean] {
+): [React.RefObject<HTMLDivElement | null>, boolean] {
   const { threshold = 0.1, rootMargin = '50px', triggerOnce = true } = options;
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -154,7 +154,7 @@ class LRUCache<K, V> {
     } else if (this.cache.size >= this.maxSize) {
       // 删除最旧的项
       const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
+      this.cache.delete(firstKey as K);
     }
     this.cache.set(key, value);
   }
@@ -185,7 +185,7 @@ export class CacheManager<K, V> {
     if (!item) return undefined;
 
     if (Date.now() > item.expiresAt) {
-      this.cache.set(key, item as unknown); // LRU会移除过期项
+      this.cache.set(key, item as any); // LRU会移除过期项
       return undefined;
     }
 
@@ -214,10 +214,8 @@ export class CacheManager<K, V> {
 
   // 清理过期条目
   cleanup(): void {
-    const now = Date.now();
     // LRU会自动清理，这里只需要获取所有键并检查
     // 由于Map的迭代器在修改时会失效，我们需要收集要删除的键
-    const keysToDelete: K[] = [];
     // 注意：这个实现需要访问内部cache，实际使用中可能需要调整
   }
 }
@@ -239,7 +237,7 @@ export function useCachedData<T>(
   const [error, setError] = useState<Error | null>(null);
 
   // 使用ref来保持缓存实例
-  const cacheRef = useRef<CacheManager<string, T>>();
+  const cacheRef = useRef<CacheManager<string, T> | null>(null);
 
   if (!cacheRef.current) {
     cacheRef.current = new CacheManager(cacheConfig);
@@ -291,7 +289,7 @@ export function useDebounce<T extends (...args: unknown[]) => any>(
   fn: T,
   delay: number = 300
 ): (...args: Parameters<T>) => void {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   return useCallback(
     (...args: Parameters<T>) => {
@@ -315,7 +313,7 @@ export function useThrottle<T extends (...args: unknown[]) => any>(
   delay: number = 300
 ): (...args: Parameters<T>) => void {
   const lastRunRef = useRef<number>(0);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   return useCallback(
     (...args: Parameters<T>) => {
@@ -411,7 +409,7 @@ export function preconnect(origin: string): void {
  */
 export function useBatchUpdate<T>(batchSize: number = 10, delay: number = 100) {
   const [updates, setUpdates] = useState<T[]>([]);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const addUpdate = useCallback((item: T) => {
     setUpdates((prev) => {

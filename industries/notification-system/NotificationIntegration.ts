@@ -185,7 +185,7 @@ export class NotificationIntegration {
     return strategy.data;
   }
 
-  private async analyzeNotificationData(analyticsData: any): Promise<any> {
+  private async analyzeNotificationData(_analyticsData: any): Promise<any> {
     return {
       key_insights: [],
       trends: [],
@@ -193,11 +193,11 @@ export class NotificationIntegration {
     };
   }
 
-  private async generateNotificationRecommendations(insights: any): Promise<string[]> {
+  private async generateNotificationRecommendations(_insights: any): Promise<string[]> {
     return [];
   }
 
-  private async analyzeUserBehavior(userSegment: string): Promise<any> {
+  private async analyzeUserBehavior(_userSegment: string): Promise<any> {
     return {
       active_hours: ['9:00-18:00'],
       preferred_channels: ['email', 'push'],
@@ -205,7 +205,7 @@ export class NotificationIntegration {
     };
   }
 
-  private async calculateOptimalSchedule(userBehavior: any, params: any): Promise<any> {
+  private async calculateOptimalSchedule(_userBehavior: any, _params: any): Promise<any> {
     return {
       times: ['10:00', '14:00', '17:00'],
       channels: ['email', 'push'],
@@ -213,18 +213,18 @@ export class NotificationIntegration {
     };
   }
 
-  private async predictEngagement(schedule: any): Promise<number> {
+  private async predictEngagement(_schedule: any): Promise<number> {
     return 0.85;
   }
 
-  private async createScheduleImplementation(schedule: any): Promise<any> {
+  private async createScheduleImplementation(_schedule: any): Promise<any> {
     return {
       steps: [],
       estimated_time: 30
     };
   }
 
-  private async getTemplatePerformance(templateId: string): Promise<any> {
+  private async getTemplatePerformance(_templateId: string): Promise<any> {
     return {
       open_rate: 0.65,
       click_rate: 0.25,
@@ -232,7 +232,7 @@ export class NotificationIntegration {
     };
   }
 
-  private async optimizeTemplate(templateData: any, performanceData: any, focus: string): Promise<any> {
+  private async optimizeTemplate(_templateData: any, _performanceData: any, _focus: string): Promise<any> {
     return {
       subject_line: 'Optimized Subject',
       body_content: 'Optimized content',
@@ -240,7 +240,7 @@ export class NotificationIntegration {
     };
   }
 
-  private async createABTestPlan(optimizations: any): Promise<any> {
+  private async createABTestPlan(_optimizations: any): Promise<any> {
     return {
       variants: ['A', 'B'],
       duration: '7 days',
@@ -248,18 +248,18 @@ export class NotificationIntegration {
     };
   }
 
-  private async predictImprovement(optimizations: any): Promise<number> {
+  private async predictImprovement(_optimizations: any): Promise<number> {
     return 0.15;
   }
 
-  private async analyzeDeliverySuccess(event: any): Promise<any> {
+  private async analyzeDeliverySuccess(_event: any): Promise<any> {
     return {
       success_rate: 0.98,
       delivery_time: 150
     };
   }
 
-  private async analyzeEngagementPatterns(engagement: any): Promise<any> {
+  private async analyzeEngagementPatterns(_engagement: any): Promise<any> {
     return {
       patterns: [],
       peak_times: [],
@@ -267,7 +267,7 @@ export class NotificationIntegration {
     };
   }
 
-  private async generateEngagementOptimizations(patterns: any): Promise<string[]> {
+  private async generateEngagementOptimizations(_patterns: any): Promise<string[]> {
     return [];
   }
 

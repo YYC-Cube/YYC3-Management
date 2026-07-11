@@ -12,7 +12,7 @@ export default function TrainingPage() {
       className="p-6"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <UserTraining showTitle={false} />
+        <UserTraining />
       </div>
       <FloatingNavButtons />
     </PageContainer>

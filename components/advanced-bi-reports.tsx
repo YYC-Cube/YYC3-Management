@@ -11,32 +11,32 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { BarChart3, PieChart, TrendingUp, Download, Filter, Eye, Settings, Plus, Brain, Zap } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { BarChart3, Brain, Download, Eye, Filter, PieChart, Plus, Settings, TrendingUp, Zap } from "lucide-react"
+import { useState } from "react"
 import {
-  LineChart,
-  Line,
-  PieChart as RechartsPieChart,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
   Area,
-  RadarChart,
-  PolarGrid,
+  AreaChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
   PolarAngleAxis,
+  PolarGrid,
   PolarRadiusAxis,
   Radar,
-  Pie,
+  RadarChart,
+  PieChart as RechartsPieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts"
 
 interface ReportTemplate {
@@ -57,7 +57,7 @@ interface SalesTrendData {
 }
 
 // 产品分类数据接口
-interface CategoryData {
+export interface CategoryData {
   name: string
   value: number
   sales: number
@@ -85,12 +85,12 @@ interface FinanceData {
 interface ChartData {
   name: string
   value: number
+  color?: string
   [key: string]: unknown
 }
 
 export function AdvancedBIReports() {
   const [selectedPeriod, setSelectedPeriod] = useState("month")
-  const [selectedReport, setSelectedReport] = useState("overview")
 
   const reportTemplates: ReportTemplate[] = [
     {

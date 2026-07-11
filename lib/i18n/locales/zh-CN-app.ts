@@ -1,4 +1,4 @@
-import type { TranslationMap } from './types'
+import type { TranslationMap } from '../types'
 
 export const zhCN: TranslationMap = {
   common: {

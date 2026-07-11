@@ -91,8 +91,8 @@ export function DataIntegration() {
     },
   ])
 
-  const [selectedSource, setSelectedSource] = useState<DataSource | null>(null)
-  const [isConfiguring, setIsConfiguring] = useState(false)
+  const [, setSelectedSource] = useState<DataSource | null>(null)
+  const [, setIsConfiguring] = useState(false)
 
   const getStatusIcon = (status: DataSource["status"]) => {
     switch (status) {

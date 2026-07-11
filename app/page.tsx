@@ -17,7 +17,7 @@ import { PageContainer } from "@/components/layout/page-container"
 export default function HomePage() {
   return (
     <PageContainer title="运营中心" description="欢迎回来，这里是您的企业管理控制台">
-      <DashboardContent showTitle={false} />
+      <DashboardContent />
     </PageContainer>
   )
 }

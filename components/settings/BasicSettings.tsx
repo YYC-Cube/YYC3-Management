@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Globe, Mail, Phone, MapPin } from "lucide-react"
+import { Globe } from "lucide-react"
 import type { BasicConfig } from "./types"
 import { useSystemConfig } from "./hooks"
 

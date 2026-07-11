@@ -9,7 +9,7 @@
  * @license MIT
  */
 
-import { IModelAdapter, ModelInfo, ChatRequest, ChatResponse } from '../model-adapter/types';
+import { ChatRequest, ChatResponse, IModelAdapter, ModelInfo } from '../model-adapter/types';
 
 // ====================================
 // 类型定义
@@ -99,14 +99,14 @@ export class ModelRouter {
    */
   async registerAdapter(id: string, adapter: IModelAdapter): Promise<void> {
     this.adapters.set(id, adapter);
-    
+
     // 获取模型信息
     const modelInfo = await adapter.getModelInfo();
     this.modelInfo.set(id, modelInfo);
-    
+
     // 初始化性能历史
     this.performanceHistory.set(id, []);
-    
+
     // 初始化成本追踪
     this.costTracker.set(id, {
       totalCost: 0,
@@ -120,25 +120,25 @@ export class ModelRouter {
    */
   async route(routingRequest: RoutingRequest): Promise<RoutingResult> {
     const startTime = Date.now();
-    
+
     try {
       // 1. 筛选候选模型
       const candidates = await this.filterCandidates(routingRequest);
-      
+
       if (candidates.length === 0) {
         throw new Error('No suitable model available for this request');
       }
-      
+
       // 2. 评分排序
       const scored = await this.scoreCandidates(candidates, routingRequest);
-      
+
       // 3. 选择最佳模型
       const selected = scored[0];
-      
+
       // 4. 执行请求
       let response: ChatResponse;
       let fallbackAttempts = 0;
-      
+
       try {
         response = await this.executeRequest(selected.adapterId, routingRequest.request);
       } catch (error) {
@@ -150,7 +150,7 @@ export class ModelRouter {
           throw error;
         }
       }
-      
+
       // 5. 记录性能指标
       const executionTime = Date.now() - startTime;
       await this.recordPerformance(selected.adapterId, {
@@ -159,11 +159,11 @@ export class ModelRouter {
         tokensUsed: response.usage.total_tokens,
         timestamp: new Date()
       });
-      
+
       // 6. 计算成本
       const cost = this.calculateCost(selected.adapterId, response.usage.total_tokens);
       await this.recordCost(selected.adapterId, cost);
-      
+
       return {
         adapterId: selected.adapterId,
         adapter: selected.adapter,
@@ -179,7 +179,7 @@ export class ModelRouter {
           fallbackAttempts
         }
       };
-      
+
     } catch (error) {
       throw new Error(`Routing failed: ${(error as Error).message}`);
     }
@@ -192,34 +192,34 @@ export class ModelRouter {
     routingRequest: RoutingRequest
   ): Promise<CandidateAdapter[]> {
     const candidates: CandidateAdapter[] = [];
-    
+
     for (const [id, adapter] of this.adapters.entries()) {
       // 检查可用性
       const modelInfo = this.modelInfo.get(id)!;
       if (modelInfo.status !== 'online') continue;
-      
+
       // 检查能力要求
       if (routingRequest.requirements?.requiredCapabilities) {
         const hasCapabilities = routingRequest.requirements.requiredCapabilities.every(
-          cap => modelInfo.capabilities.includes(cap as unknown)
+          cap => modelInfo.capabilities.includes(cap as any)
         );
         if (!hasCapabilities) continue;
       }
-      
+
       // 检查提供商偏好
       if (routingRequest.requirements?.preferredProvider) {
         if (modelInfo.provider !== routingRequest.requirements.preferredProvider) {
           continue;
         }
       }
-      
+
       candidates.push({
         adapterId: id,
         adapter,
         model: modelInfo
       });
     }
-    
+
     return candidates;
   }
 
@@ -234,7 +234,7 @@ export class ModelRouter {
       candidates.map(async candidate => {
         const scores = await this.calculateScores(candidate, routingRequest);
         const totalScore = this.combineScores(scores);
-        
+
         return {
           ...candidate,
           scores,
@@ -243,7 +243,7 @@ export class ModelRouter {
         };
       })
     );
-    
+
     // 按分数降序排序
     return scored.sort((a, b) => b.score - a.score);
   }
@@ -253,33 +253,33 @@ export class ModelRouter {
    */
   private async calculateScores(
     candidate: CandidateAdapter,
-    routingRequest: RoutingRequest
+    _routingRequest: RoutingRequest
   ): Promise<ScoreBreakdown> {
     const history = this.performanceHistory.get(candidate.adapterId) || [];
     const costMetrics = this.costTracker.get(candidate.adapterId)!;
-    
+
     // 1. 性能分数（基于历史记录）
     const performance = history.length > 0
       ? history.reduce((sum, m) => sum + (m.success ? 1 : 0), 0) / history.length
       : 0.5;
-    
+
     // 2. 成本分数（归一化）
     const avgCost = costMetrics.averageCost;
     const maxCost = Math.max(...Array.from(this.costTracker.values()).map(m => m.averageCost));
     const cost = maxCost > 0 ? 1 - (avgCost / maxCost) : 1;
-    
+
     // 3. 质量分数（基于模型能力）
     const quality = candidate.model.capabilities.length / 8; // 假设最多8种能力
-    
+
     // 4. 延迟分数（基于历史延迟）
     const avgLatency = history.length > 0
       ? history.reduce((sum, m) => sum + m.latency, 0) / history.length
       : 1000;
     const latency = Math.max(0, 1 - (avgLatency / 5000)); // 5秒为基准
-    
+
     // 5. 可用性分数
     const availability = candidate.model.status === 'online' ? 1 : 0;
-    
+
     return {
       performance,
       cost,
@@ -307,12 +307,12 @@ export class ModelRouter {
    */
   private generateReason(scores: ScoreBreakdown): string {
     const reasons: string[] = [];
-    
+
     if (scores.performance > 0.8) reasons.push('高性能表现');
     if (scores.cost > 0.8) reasons.push('成本优化');
     if (scores.quality > 0.8) reasons.push('高质量输出');
     if (scores.latency > 0.8) reasons.push('低延迟');
-    
+
     return reasons.length > 0 ? reasons.join('、') : '综合评分最优';
   }
 
@@ -341,7 +341,7 @@ export class ModelRouter {
         continue;
       }
     }
-    
+
     throw new Error('All fallback attempts failed');
   }
 
@@ -354,12 +354,12 @@ export class ModelRouter {
   ): Promise<void> {
     const history = this.performanceHistory.get(adapterId) || [];
     history.push(metrics);
-    
+
     // 保留最近100条记录
     if (history.length > 100) {
       history.shift();
     }
-    
+
     this.performanceHistory.set(adapterId, history);
   }
 
@@ -369,7 +369,7 @@ export class ModelRouter {
   private calculateCost(adapterId: string, tokens: number): number {
     const modelInfo = this.modelInfo.get(adapterId)!;
     const costPer1k = modelInfo.costPer1kTokens;
-    
+
     // 简化计算：假设输入输出各占一半
     const avgCost = (costPer1k.input + costPer1k.output) / 2;
     return (tokens / 1000) * avgCost;
@@ -380,11 +380,11 @@ export class ModelRouter {
    */
   private async recordCost(adapterId: string, cost: number): Promise<void> {
     const metrics = this.costTracker.get(adapterId)!;
-    
+
     metrics.totalCost += cost;
     metrics.totalRequests += 1;
     metrics.averageCost = metrics.totalCost / metrics.totalRequests;
-    
+
     this.costTracker.set(adapterId, metrics);
   }
 

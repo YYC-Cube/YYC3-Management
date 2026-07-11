@@ -6,7 +6,7 @@ export interface BatchOperationResult<T> {
   errors: string[]
 }
 
-export interface BatchOperationOptions {
+export interface BatchOperationOptions<T = any> {
   batchSize?: number
   delayBetweenBatches?: number
   onProgress?: (progress: { processed: number; total: number }) => void
@@ -35,9 +35,9 @@ export class BatchOperations<T> {
       await Promise.all(
         batch.map(async (item) => {
           try {
-            const createResult = await createFn(item)
+            const createResult = await createFn(item as any)
             if (createResult.success) {
-              result.succeeded.push(item as unknown)
+              result.succeeded.push(i + batch.indexOf(item))
             } else {
               result.failed.push({ item, error: createResult.error || "创建失败" })
               result.errors.push(createResult.error || "创建失败")
@@ -90,16 +90,16 @@ export class BatchOperations<T> {
       await Promise.all(
         batch.map(async ({ id, data }) => {
           try {
-            const updateResult = await updateFn(id, data)
+            const updateResult = await updateFn(id as any, data)
             if (updateResult.success) {
-              result.succeeded.push(data as unknown)
+              result.succeeded.push(id as any)
             } else {
-              result.failed.push({ item: data as unknown, error: updateResult.error || "更新失败" })
+              result.failed.push({ item: data as T, error: updateResult.error || "更新失败" })
               result.errors.push(updateResult.error || "更新失败")
             }
           } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "未知错误"
-            result.failed.push({ item: data as unknown, error: errorMessage })
+            result.failed.push({ item: data as T, error: errorMessage })
             result.errors.push(errorMessage)
           }
 
@@ -145,16 +145,16 @@ export class BatchOperations<T> {
       await Promise.all(
         batch.map(async (id) => {
           try {
-            const deleteResult = await deleteFn(id)
+            const deleteResult = await deleteFn(id as any)
             if (deleteResult.success) {
-              result.succeeded.push(id as unknown)
+              result.succeeded.push(id as any)
             } else {
-              result.failed.push({ item: id as unknown, error: deleteResult.error || "删除失败" })
+              result.failed.push({ item: id as any, error: deleteResult.error || "删除失败" })
               result.errors.push(deleteResult.error || "删除失败")
             }
           } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "未知错误"
-            result.failed.push({ item: id as unknown, error: errorMessage })
+            result.failed.push({ item: id as any, error: errorMessage })
             result.errors.push(errorMessage)
           }
 
@@ -185,7 +185,7 @@ export class BatchOperations<T> {
     updateFn: (id: number, data: Partial<T>) => Promise<{ success: boolean; error?: string }>,
     options: BatchOperationOptions = {}
   ): Promise<BatchOperationResult<T>> {
-    const updates = ids.map((id) => ({ id, data: { status } as Partial<T> }))
+    const updates = ids.map((id) => ({ id, data: { status } as unknown as Partial<T> }))
     return this.batchUpdate(updates, updateFn, options)
   }
 

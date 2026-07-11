@@ -9,8 +9,8 @@
  */
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CustomLineChart, CustomBarChart, CustomPieChart, CustomAreaChart } from "@/components/ui/charts"
-import { TrendingUp, Users, Briefcase, CheckCircle, Clock, AlertTriangle } from "lucide-react"
+import { CustomAreaChart, CustomBarChart, CustomLineChart, CustomPieChart } from "@/components/ui/charts"
+import { AlertTriangle, Briefcase, CheckCircle, Clock, TrendingUp, Users } from "lucide-react"
 import { useMemo } from "react"
 
 interface StatisticsDashboardProps {
@@ -160,7 +160,7 @@ export function StatisticsDashboard({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">
-                  {finalStats.totalTasks > 0 ? Math.round((finalStats.completedTasks / finalStats.totalTasks) * 100) : 0}%
+                  {(finalStats.totalTasks || 0) > 0 ? Math.round(((finalStats.completedTasks || 0) / (finalStats.totalTasks || 1)) * 100) : 0}%
                 </p>
                 <div className="flex items-center mt-2 text-sm text-green-600">
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -239,7 +239,7 @@ export function StatisticsDashboard({
                 <AlertTriangle className="w-8 h-8 text-red-600" />
               </div>
               <p className="text-3xl font-bold text-red-700">
-                {finalStats.totalTasks - finalStats.completedTasks - finalStats.pendingTasks}
+                {(finalStats.totalTasks || 0) - (finalStats.completedTasks || 0) - (finalStats.pendingTasks || 0)}
               </p>
               <p className="text-sm text-red-600 mt-2">逾期任务</p>
             </div>

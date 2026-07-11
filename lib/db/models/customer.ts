@@ -8,6 +8,8 @@ export interface Customer {
   status: '活跃' | '潜在' | '休眠'
   address?: string
   notes?: string
+  total_spent?: number
+  last_contact?: string
   created_by?: number
   created_at: Date
   updated_at: Date

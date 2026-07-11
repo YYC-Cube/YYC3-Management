@@ -35,7 +35,7 @@ interface SystemStatus {
   score: number
   description: string
   lastCheck: Date
-  icon: unknown
+  icon: React.ComponentType<{ className?: string }>
   route: string
   colorTheme: string
   borderColor: string
@@ -57,7 +57,7 @@ export function SystemManagementOverview() {
       route: "/system-testing",
       colorTheme: "blue",
       borderColor: "border-l-blue-500",
-      progressColor: "bg-gradient-to-r from-blue-400 to-blue-500",
+      progressColor: "bg-linear-to-r from-blue-400 to-blue-500",
     },
     {
       category: "性能优化",
@@ -69,7 +69,7 @@ export function SystemManagementOverview() {
       route: "/performance",
       colorTheme: "green",
       borderColor: "border-l-green-500",
-      progressColor: "bg-gradient-to-r from-green-400 to-green-500",
+      progressColor: "bg-linear-to-r from-green-400 to-green-500",
     },
     {
       category: "数据集成",
@@ -81,7 +81,7 @@ export function SystemManagementOverview() {
       route: "/data-integration",
       colorTheme: "purple",
       borderColor: "border-l-purple-500",
-      progressColor: "bg-gradient-to-r from-purple-400 to-purple-500",
+      progressColor: "bg-linear-to-r from-purple-400 to-purple-500",
     },
     {
       category: "用户培训",
@@ -93,7 +93,7 @@ export function SystemManagementOverview() {
       route: "/training",
       colorTheme: "orange",
       borderColor: "border-l-orange-500",
-      progressColor: "bg-gradient-to-r from-orange-400 to-orange-500",
+      progressColor: "bg-linear-to-r from-orange-400 to-orange-500",
     },
     {
       category: "安全防护",
@@ -105,7 +105,7 @@ export function SystemManagementOverview() {
       route: "/security",
       colorTheme: "orange",
       borderColor: "border-l-orange-500",
-      progressColor: "bg-gradient-to-r from-orange-400 to-orange-500",
+      progressColor: "bg-linear-to-r from-orange-400 to-orange-500",
     },
   ]
 
@@ -295,7 +295,7 @@ export function SystemManagementOverview() {
         </div>
         <div className="w-full bg-slate-200 rounded-full h-3 mb-4">
           <div
-            className="bg-gradient-to-r from-blue-400 to-blue-500 h-3 rounded-full transition-all duration-1000 ease-out"
+            className="bg-linear-to-r from-blue-400 to-blue-500 h-3 rounded-full transition-all duration-1000 ease-out"
             style={{ width: `${overallScore}%` }}
           ></div>
         </div>

@@ -132,7 +132,7 @@ export default function NotificationsPage() {
 
   return (
     <PageContainer title="通知中心" description="查看和管理您的所有通知消息">
-      <NotificationReminderSystem showTitle={false} />
+      <NotificationReminderSystem />
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
@@ -206,7 +206,7 @@ export default function NotificationsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <Tabs value={filter} onValueChange={(value) => setFilter(value as string)} className="mb-6">
+            <Tabs value={filter} onValueChange={(value) => setFilter(value as "all" | "unread" | "important")} className="mb-6">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="all">全部 ({notifications.length})</TabsTrigger>
                 <TabsTrigger value="unread">未读 ({unreadCount})</TabsTrigger>
@@ -223,7 +223,7 @@ export default function NotificationsPage() {
                     ${!notification.read ? "bg-blue-50 border-blue-200" : "bg-white border-slate-200"}
                   `}
                 >
-                  <div className="flex-shrink-0 mt-1">{getTypeIcon(notification.type)}</div>
+                  <div className="shrink-0 mt-1">{getTypeIcon(notification.type)}</div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">

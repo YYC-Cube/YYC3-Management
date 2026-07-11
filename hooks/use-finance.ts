@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import { useSWRResource } from './use-swr-resource'
-import { fetcher, type PaginatedResponse } from './use-swr-resource'
+import { fetcher } from './use-swr-resource'
 import type { FinanceRecord, FinanceSummary } from '@/lib/db/models/finance'
 
 export function useFinance(params?: {

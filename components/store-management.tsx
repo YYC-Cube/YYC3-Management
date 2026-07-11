@@ -57,7 +57,6 @@ interface Employee {
 
 export function StoreManagement() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedStore, setSelectedStore] = useState<string | null>(null)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
 
   const stores: StoreType[] = [
@@ -398,7 +397,7 @@ export function StoreManagement() {
               </div>
               <div className="mt-4">
                 <div
-                  className="bg-gradient-to-r from-green-400 to-emerald-500 h-2 rounded-full transition-all duration-500"
+                  className="bg-linear-to-r from-green-400 to-emerald-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: "100%" }}
                 />
               </div>
@@ -416,7 +415,7 @@ export function StoreManagement() {
               </div>
               <div className="mt-4">
                 <div
-                  className="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full transition-all duration-500"
+                  className="bg-linear-to-r from-blue-400 to-purple-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: "85%" }}
                 />
               </div>
@@ -434,7 +433,7 @@ export function StoreManagement() {
               </div>
               <div className="mt-4">
                 <div
-                  className="bg-gradient-to-r from-purple-400 to-pink-500 h-2 rounded-full transition-all duration-500"
+                  className="bg-linear-to-r from-purple-400 to-pink-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: "92%" }}
                 />
               </div>
@@ -452,7 +451,7 @@ export function StoreManagement() {
               </div>
               <div className="mt-4">
                 <div
-                  className="bg-gradient-to-r from-orange-400 to-red-500 h-2 rounded-full transition-all duration-500"
+                  className="bg-linear-to-r from-orange-400 to-red-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: "75%" }}
                 />
               </div>

@@ -5,7 +5,7 @@
  * 使用基于Token的CSRF保护机制
  */
 
-import { randomBytes, createHash, timingSafeEqual } from 'crypto';
+import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 
 /**
  * CSRF Token配置
@@ -155,7 +155,7 @@ export class CSRFTokenManager {
       hash,
       userId,
       createdAt: Date.now(),
-      expiresAt: Date.now() + this.config.cookieOptions.maxAge,
+      expiresAt: Date.now() + (this.config.cookieOptions?.maxAge ?? 24 * 60 * 60 * 1000),
     };
 
     await this.store.set(csrfToken);
@@ -245,7 +245,7 @@ export class CSRFTokenManager {
     const parts = [
       `${this.config.cookieName}=${cookieValue}`,
       `Path=${options.path}`,
-      `Max-Age=${Math.floor(options.maxAge / 1000)}`,
+      `Max-Age=${Math.floor((options.maxAge || 0) / 1000)}`,
       `SameSite=${options.sameSite}`,
     ];
 
@@ -306,11 +306,11 @@ export const csrfManager = new CSRFTokenManager();
  */
 export async function withCSRFProtection(
   req: Request,
-  csrfManager: CSRFTokenManager = csrfManager
+  manager: CSRFTokenManager = csrfManager
 ): Promise<{ valid: boolean; error?: string }> {
   // 对写操作进行CSRF验证
   if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
-    return csrfManager.validateRequest(req);
+    return manager.validateRequest(req);
   }
 
   // 读操作不需要验证

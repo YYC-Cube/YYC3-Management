@@ -64,13 +64,13 @@ export function createAITool(tool: AITool): AITool {
 export function createBusinessManagementAI(): BusinessManagementAI {
   return {
     getInstance: () => createBusinessManagementAI(),
-    createManagerAI: async (role: string) => {
+    createManagerAI: async (_role: string) => {
       return {
-        sendMessage: async (message) => ({
+        sendMessage: async (_message) => ({
           data: null,
           immediate_action_required: false
         }),
-        registerTool: async (tool) => {}
+        registerTool: async (_tool) => {}
       };
     },
     fetchKPIData: async (kpiType: string, timePeriod?: string) => {
@@ -82,14 +82,14 @@ export function createBusinessManagementAI(): BusinessManagementAI {
         trend: 'up'
       };
     },
-    analyzeKPI: async (kpiData: any) => {
+    analyzeKPI: async (_kpiData: any) => {
       return {
         status: 'on_track',
         trend: 'positive',
         insights: []
       };
     },
-    generateKPIRecommendations: async (analysis: any) => {
+    generateKPIRecommendations: async (_analysis: any) => {
       return ['Continue current strategy', 'Monitor closely'];
     },
     createKPIVisualization: async (kpiData: any) => {

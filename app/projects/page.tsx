@@ -10,15 +10,8 @@
 
 "use client"
 
-import { useState } from "react"
 import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Dialog,
   DialogContent,
@@ -27,6 +20,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
 import {
   Select,
   SelectContent,
@@ -34,26 +33,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useProjects } from "@/hooks/use-projects"
+import { toast } from "@/hooks/use-toast"
+import type { Project } from "@/lib/db/models/project"
 import {
+  AlertTriangle,
   Briefcase,
-  Plus,
-  Users,
   Calendar,
   CheckCircle,
   Clock,
-  AlertTriangle,
-  Search,
-  Filter,
   Edit,
-  Trash2,
+  Filter,
   Loader2,
+  Plus,
+  Search,
+  Trash2,
+  Users,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
-import { useProjects } from "@/hooks/use-projects"
-import type { Project } from "@/store/project-store"
+import { useState } from "react"
 
 export default function ProjectsPage() {
-  const { projects, loading, fetchProjects, createProject, updateProject, deleteProject } = useProjects({ page: 1, limit: 100 })
+  const { projects, loading, fetchProjects: _fetchProjects, createProject, updateProject, deleteProject } = useProjects({ page: 1, limit: 100 })
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [showProjectDialog, setShowProjectDialog] = useState(false)
@@ -76,37 +76,30 @@ export default function ProjectsPage() {
 
   const projectStats = {
     totalProjects: projects.length,
-    completedProjects: projects.filter((p) => p.status === "completed").length,
-    inProgressProjects: projects.filter((p) => p.status === "in_progress").length,
+    completedProjects: projects.filter((p) => p.status === "已完成").length,
+    inProgressProjects: projects.filter((p) => p.status === "进行中").length,
     delayedProjects: projects.filter((p) => {
+      if (!p.end_date) return false
       const today = new Date()
       const endDate = new Date(p.end_date)
-      return endDate < today && p.status !== "completed"
+      return endDate < today && p.status !== "已完成"
     }).length,
   }
 
   const handleCreateProject = async () => {
     setDialogLoading(true)
     try {
-      const result = await createProject(formData)
-      if (result.success) {
-        toast({
-          title: "创建成功",
-          description: "项目已成功创建",
-        })
-        setShowProjectDialog(false)
-        resetForm()
-      } else {
-        toast({
-          title: "创建失败",
-          description: result.error || "无法创建项目，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await createProject(formData as any)
+      toast({
+        title: "创建成功",
+        description: "项目已成功创建",
+      })
+      setShowProjectDialog(false)
+      resetForm()
     } catch (error) {
       toast({
         title: "创建失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法创建项目，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -119,26 +112,18 @@ export default function ProjectsPage() {
 
     setDialogLoading(true)
     try {
-      const result = await updateProject(editingProject.id, formData)
-      if (result.success) {
-        toast({
-          title: "更新成功",
-          description: "项目信息已成功更新",
-        })
-        setShowProjectDialog(false)
-        setEditingProject(null)
-        resetForm()
-      } else {
-        toast({
-          title: "更新失败",
-          description: result.error || "无法更新项目，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await updateProject(editingProject.id, formData as any)
+      toast({
+        title: "更新成功",
+        description: "项目信息已成功更新",
+      })
+      setShowProjectDialog(false)
+      setEditingProject(null)
+      resetForm()
     } catch (error) {
       toast({
         title: "更新失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法更新项目，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -147,16 +132,16 @@ export default function ProjectsPage() {
   }
 
   const handleDeleteProject = async (projectId: number) => {
-    const result = await deleteProject(projectId)
-    if (result.success) {
+    try {
+      await deleteProject(projectId)
       toast({
         title: "删除成功",
         description: "项目已成功删除",
       })
-    } else {
+    } catch (error) {
       toast({
         title: "删除失败",
-        description: result.error || "无法删除项目，请稍后重试",
+        description: error instanceof Error ? error.message : "无法删除项目，请稍后重试",
         variant: "destructive",
       })
     }
@@ -187,16 +172,16 @@ export default function ProjectsPage() {
   const openEditDialog = (project: Project) => {
     setFormData({
       name: project.name,
-      description: project.description,
-      manager_id: project.manager_id,
-      manager_name: project.manager_name,
+      description: project.description || "",
+      manager_id: project.manager_id || 0,
+      manager_name: project.manager_name || "",
       team_size: project.team_size,
       priority: project.priority,
       status: project.status,
       progress: project.progress,
-      start_date: project.start_date.split("T")[0],
-      end_date: project.end_date.split("T")[0],
-      budget: project.budget,
+      start_date: project.start_date ? new Date(project.start_date).toISOString().split("T")[0] : "",
+      end_date: project.end_date ? new Date(project.end_date).toISOString().split("T")[0] : "",
+      budget: project.budget || 0,
     })
     setEditingProject(project)
     setShowProjectDialog(true)
@@ -269,19 +254,19 @@ export default function ProjectsPage() {
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase())
+      (project.description || '').toLowerCase().includes(searchTerm.toLowerCase())
     const matchesFilter =
       selectedFilter === "all" ||
-      (selectedFilter === "completed" && project.status === "completed") ||
-      (selectedFilter === "in_progress" && project.status === "in_progress") ||
-      (selectedFilter === "planning" && project.status === "planning")
+      (selectedFilter === "completed" && project.status === "已完成") ||
+      (selectedFilter === "in_progress" && project.status === "进行中") ||
+      (selectedFilter === "planning" && project.status === "计划中")
     return matchesSearch && matchesFilter
   })
 
   if (loading && projects.length === 0) {
     return (
       <PageContainer title="项目管理" description="跟踪和管理项目进度">
-        <div className="flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center justify-center min-h-100">
           <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
         </div>
       </PageContainer>
@@ -423,11 +408,11 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    开始: {project.start_date.split("T")[0]}
+                    开始: {project.start_date ? new Date(project.start_date).toISOString().split("T")[0] : "-"}
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    结束: {project.end_date.split("T")[0]}
+                    结束: {project.end_date ? new Date(project.end_date).toISOString().split("T")[0] : "-"}
                   </div>
                 </div>
 
@@ -436,7 +421,7 @@ export default function ProjectsPage() {
                     <span className="text-sm text-slate-600">项目进度</span>
                     <span className="font-medium text-slate-800">{project.progress}%</span>
                   </div>
-                  <div className="text-sm text-slate-600">预算: ¥{project.budget.toLocaleString()}</div>
+                  <div className="text-sm text-slate-600">预算: ¥{(project.budget || 0).toLocaleString()}</div>
                 </div>
 
                 <Progress value={project.progress} className="h-2" />
@@ -452,8 +437,8 @@ export default function ProjectsPage() {
               {[
                 { status: "进行中", count: projectStats.inProgressProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.inProgressProjects / projectStats.totalProjects) * 100) : 0, color: "bg-blue-500" },
                 { status: "已完成", count: projectStats.completedProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
-                { status: "规划中", count: projects.filter((p) => p.status === "planning").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "planning").length / projectStats.totalProjects) * 100) : 0, color: "bg-slate-500" },
-                { status: "暂停", count: projects.filter((p) => p.status === "on_hold").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "on_hold").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
+                { status: "规划中", count: projects.filter((p) => p.status === "计划中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "计划中").length / projectStats.totalProjects) * 100) : 0, color: "bg-slate-500" },
+                { status: "暂停", count: projects.filter((p) => p.status === "已暂停").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "已暂停").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -475,10 +460,9 @@ export default function ProjectsPage() {
             <h3 className="text-lg font-semibold text-slate-800 mb-4">项目优先级分布</h3>
             <div className="space-y-3">
               {[
-                { priority: "紧急", count: projects.filter((p) => p.priority === "urgent").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "urgent").length / projectStats.totalProjects) * 100) : 0, color: "bg-red-500" },
-                { priority: "高", count: projects.filter((p) => p.priority === "high").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "high").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
-                { priority: "中", count: projects.filter((p) => p.priority === "medium").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "medium").length / projectStats.totalProjects) * 100) : 0, color: "bg-yellow-500" },
-                { priority: "低", count: projects.filter((p) => p.priority === "low").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "low").length / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
+                { priority: "高", count: projects.filter((p) => p.priority === "高").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "高").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
+                { priority: "中", count: projects.filter((p) => p.priority === "中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "中").length / projectStats.totalProjects) * 100) : 0, color: "bg-yellow-500" },
+                { priority: "低", count: projects.filter((p) => p.priority === "低").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "低").length / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -499,7 +483,7 @@ export default function ProjectsPage() {
       </div>
 
       <Dialog open={showProjectDialog} onOpenChange={setShowProjectDialog}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle>{editingProject ? "编辑项目" : "新建项目"}</DialogTitle>
             <DialogDescription>

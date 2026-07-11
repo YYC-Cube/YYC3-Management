@@ -205,7 +205,7 @@ export default function CreativeCollaborationPage() {
         {/* 页面标题 */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center">
+            <h1 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center">
               <Lightbulb className="w-8 h-8 mr-3 text-purple-600" />
               智创协同
             </h1>
@@ -218,7 +218,7 @@ export default function CreativeCollaborationPage() {
             </Button>
             <Button
               onClick={handleCreateProject}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+              className="bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
             >
               <Plus className="w-4 h-4 mr-2" />
               新建项目
@@ -341,7 +341,7 @@ export default function CreativeCollaborationPage() {
                     <option value="completed">已完成</option>
                   </select>
                 </div>
-                <Button onClick={handleCreateProject} className="bg-gradient-to-r from-purple-600 to-pink-600">
+                <Button onClick={handleCreateProject} className="bg-linear-to-r from-purple-600 to-pink-600">
                   <Plus className="w-4 h-4 mr-2" />
                   新建项目
                 </Button>
@@ -438,7 +438,7 @@ export default function CreativeCollaborationPage() {
             <TabsContent value="ideas" className="space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-semibold">创意想法库</h3>
-                <Button onClick={handleCreateIdea} className="bg-gradient-to-r from-pink-600 to-purple-600">
+                <Button onClick={handleCreateIdea} className="bg-linear-to-r from-pink-600 to-purple-600">
                   <Plus className="w-4 h-4 mr-2" />
                   提交创意
                 </Button>
@@ -612,7 +612,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">今日使用次数</span>
                         <Badge className="bg-purple-100 text-purple-800">15次</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800">
+                      <Button className="w-full bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800">
                         <Sparkles className="w-4 h-4 mr-2" />
                         开始创作
                       </Button>
@@ -634,7 +634,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">设计模板</span>
                         <Badge className="bg-pink-100 text-pink-800">200+</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800">
+                      <Button className="w-full bg-linear-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800">
                         <Palette className="w-4 h-4 mr-2" />
                         开始设计
                       </Button>
@@ -656,7 +656,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">文案风格</span>
                         <Badge className="bg-blue-100 text-blue-800">12种</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
+                      <Button className="w-full bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
                         <FileText className="w-4 h-4 mr-2" />
                         生成文案
                       </Button>
@@ -678,7 +678,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">数据源</span>
                         <Badge className="bg-green-100 text-green-800">实时更新</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800">
+                      <Button className="w-full bg-linear-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800">
                         <TrendingUp className="w-4 h-4 mr-2" />
                         查看趋势
                       </Button>
@@ -700,7 +700,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">评估维度</span>
                         <Badge className="bg-orange-100 text-orange-800">8个</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800">
+                      <Button className="w-full bg-linear-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800">
                         <CheckCircle className="w-4 h-4 mr-2" />
                         开始评估
                       </Button>
@@ -722,7 +722,7 @@ export default function CreativeCollaborationPage() {
                         <span className="text-sm text-slate-600">成功率</span>
                         <Badge className="bg-indigo-100 text-indigo-800">92%</Badge>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
+                      <Button className="w-full bg-linear-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
                         <Calendar className="w-4 h-4 mr-2" />
                         智能规划
                       </Button>

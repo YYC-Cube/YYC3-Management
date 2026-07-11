@@ -8,7 +8,7 @@
  * @license MIT
  */
 
-import { useState, useCallback } from "react"
+import { useCallback, useState } from "react"
 import { z } from "zod"
 
 interface UseFormValidationOptions<T extends z.ZodSchema> {
@@ -48,16 +48,17 @@ export function useFormValidation<T extends z.ZodSchema>({
 
   const handleChange = useCallback(
     (field: keyof z.infer<T>, value: any) => {
-      setValues((prev) => ({ ...prev, [field]: value }))
-      
+      setValues((prev) => ({ ...(prev as object), [field]: value }) as z.infer<T>)
+
       if (touched[field as string]) {
-        const fieldSchema = schema.shape[field as string] as z.ZodTypeAny
+        const fieldSchema = (schema as unknown as z.ZodObject<z.ZodRawShape>).shape?.[field as string] as z.ZodTypeAny
+        if (!fieldSchema) return
         const result = fieldSchema.safeParse(value)
-        
+
         if (!result.success) {
           setErrors((prev) => ({
             ...prev,
-            [field as string]: result.error.errors[0]?.message || "验证失败",
+            [field as string]: result.error.issues[0]?.message || "验证失败",
           }))
         } else {
           setErrors((prev) => {
@@ -81,13 +82,14 @@ export function useFormValidation<T extends z.ZodSchema>({
 
   const validateField = useCallback(
     (field: keyof z.infer<T>): boolean => {
-      const fieldSchema = schema.shape[field as string] as z.ZodTypeAny
+      const fieldSchema = (schema as unknown as z.ZodObject<z.ZodRawShape>).shape?.[field as string] as z.ZodTypeAny
+      if (!fieldSchema) return true
       const result = fieldSchema.safeParse(values[field])
-      
+
       if (!result.success) {
         setErrors((prev) => ({
           ...prev,
-          [field as string]: result.error.errors[0]?.message || "验证失败",
+          [field as string]: result.error.issues[0]?.message || "验证失败",
         }))
         return false
       } else {
@@ -104,10 +106,10 @@ export function useFormValidation<T extends z.ZodSchema>({
 
   const validateAll = useCallback((): boolean => {
     const result = schema.safeParse(values)
-    
+
     if (!result.success) {
       const newErrors: Record<string, string> = {}
-      result.error.errors.forEach((error) => {
+      result.error.issues.forEach((error) => {
         if (error.path.length > 0) {
           const field = error.path.join(".")
           newErrors[field] = error.message
@@ -115,7 +117,7 @@ export function useFormValidation<T extends z.ZodSchema>({
       })
       setErrors(newErrors)
       setTouched(
-        Object.keys(values).reduce((acc, key) => ({ ...acc, [key]: true }), {} as Record<string, boolean>)
+        Object.keys(values as object).reduce((acc, key) => ({ ...acc, [key]: true }), {} as Record<string, boolean>)
       )
       return false
     } else {
@@ -127,7 +129,7 @@ export function useFormValidation<T extends z.ZodSchema>({
   const handleSubmit = useCallback(
     async (e?: React.FormEvent) => {
       e?.preventDefault()
-      
+
       if (!validateAll()) {
         onError?.(errors)
         return
@@ -147,7 +149,7 @@ export function useFormValidation<T extends z.ZodSchema>({
   )
 
   const setFieldValue = useCallback((field: keyof z.infer<T>, value: any) => {
-    setValues((prev) => ({ ...prev, [field]: value }))
+    setValues((prev) => ({ ...(prev as object), [field]: value }) as z.infer<T>)
   }, [])
 
   const setFieldError = useCallback((field: string, error: string) => {

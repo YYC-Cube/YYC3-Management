@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function SystemSettingsPage() {
   return (
     <PageContainer title="系统设置" description="全局系统配置管理">
-      <SystemSettings showTitle={false} />
+      <SystemSettings />
     </PageContainer>
   )
 }

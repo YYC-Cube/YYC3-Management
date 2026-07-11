@@ -10,14 +10,8 @@
 
 "use client"
 
-import { useState } from "react"
 import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Dialog,
   DialogContent,
@@ -26,6 +20,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -33,27 +32,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import {
-  Users,
-  UserPlus,
-  Search,
-  Filter,
-  TrendingUp,
-  Star,
-  Phone,
-  Mail,
-  Edit,
-  Trash2,
-  Loader2,
-  CheckCircle,
-  XCircle,
-} from "lucide-react"
-import { toast } from "@/hooks/use-toast"
 import { useCustomers } from "@/hooks/use-customers"
-import type { Customer } from "@/store/customer-store"
+import { toast } from "@/hooks/use-toast"
+import type { Customer } from "@/lib/db/models/customer"
+import {
+  Edit,
+  Filter,
+  Loader2,
+  Mail,
+  Phone,
+  Search,
+  Star,
+  Trash2,
+  TrendingUp,
+  UserPlus,
+  Users,
+} from "lucide-react"
+import { useState } from "react"
 
 export default function CustomersPage() {
-  const { customers, loading, fetchCustomers, createCustomer, updateCustomer, deleteCustomer } = useCustomers({ page: 1, limit: 100 })
+  const { customers, loading, fetchCustomers: _fetchCustomers, createCustomer, updateCustomer, deleteCustomer } = useCustomers({ page: 1, limit: 100 })
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [showCustomerDialog, setShowCustomerDialog] = useState(false)
@@ -71,7 +69,7 @@ export default function CustomersPage() {
 
   const customerStats = {
     totalCustomers: customers.length,
-    activeCustomers: customers.filter((c) => c.status === "active").length,
+    activeCustomers: customers.filter((c) => c.status === "活跃").length,
     vipCustomers: customers.filter((c) => c.level === "VIP").length,
     newCustomers: customers.filter((c) => {
       const today = new Date().toDateString()
@@ -82,25 +80,17 @@ export default function CustomersPage() {
   const handleCreateCustomer = async () => {
     setDialogLoading(true)
     try {
-      const result = await createCustomer(formData)
-      if (result.success) {
-        toast({
-          title: "创建成功",
-          description: "客户已成功创建",
-        })
-        setShowCustomerDialog(false)
-        resetForm()
-      } else {
-        toast({
-          title: "创建失败",
-          description: result.error || "无法创建客户，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await createCustomer(formData as any)
+      toast({
+        title: "创建成功",
+        description: "客户已成功创建",
+      })
+      setShowCustomerDialog(false)
+      resetForm()
     } catch (error) {
       toast({
         title: "创建失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法创建客户，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -113,26 +103,18 @@ export default function CustomersPage() {
 
     setDialogLoading(true)
     try {
-      const result = await updateCustomer(editingCustomer.id, formData)
-      if (result.success) {
-        toast({
-          title: "更新成功",
-          description: "客户信息已成功更新",
-        })
-        setShowCustomerDialog(false)
-        setEditingCustomer(null)
-        resetForm()
-      } else {
-        toast({
-          title: "更新失败",
-          description: result.error || "无法更新客户，请稍后重试",
-          variant: "destructive",
-        })
-      }
+      await updateCustomer(editingCustomer.id, formData as any)
+      toast({
+        title: "更新成功",
+        description: "客户信息已成功更新",
+      })
+      setShowCustomerDialog(false)
+      setEditingCustomer(null)
+      resetForm()
     } catch (error) {
       toast({
         title: "更新失败",
-        description: "网络错误，请稍后重试",
+        description: error instanceof Error ? error.message : "无法更新客户，请稍后重试",
         variant: "destructive",
       })
     } finally {
@@ -141,16 +123,16 @@ export default function CustomersPage() {
   }
 
   const handleDeleteCustomer = async (customerId: number) => {
-    const result = await deleteCustomer(customerId)
-    if (result.success) {
+    try {
+      await deleteCustomer(customerId)
       toast({
         title: "删除成功",
         description: "客户已成功删除",
       })
-    } else {
+    } catch (error) {
       toast({
         title: "删除失败",
-        description: result.error || "无法删除客户，请稍后重试",
+        description: error instanceof Error ? error.message : "无法删除客户，请稍后重试",
         variant: "destructive",
       })
     }
@@ -176,9 +158,9 @@ export default function CustomersPage() {
   const openEditDialog = (customer: Customer) => {
     setFormData({
       name: customer.name,
-      company: customer.company,
-      email: customer.email,
-      phone: customer.phone,
+      company: customer.company || "",
+      email: customer.email || "",
+      phone: customer.phone || "",
       level: customer.level,
       status: customer.status,
     })
@@ -215,12 +197,12 @@ export default function CustomersPage() {
   const filteredCustomers = customers.filter((customer) => {
     const matchesSearch =
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.email.toLowerCase().includes(searchTerm.toLowerCase())
+      (customer.company || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (customer.email || '').toLowerCase().includes(searchTerm.toLowerCase())
     const matchesFilter =
       selectedFilter === "all" ||
-      (selectedFilter === "active" && customer.status === "active") ||
-      (selectedFilter === "inactive" && customer.status === "inactive") ||
+      (selectedFilter === "active" && customer.status === "活跃") ||
+      (selectedFilter === "inactive" && customer.status === "休眠") ||
       (selectedFilter === "VIP" && customer.level === "VIP") ||
       (selectedFilter === "普通" && customer.level === "普通")
     return matchesSearch && matchesFilter
@@ -229,7 +211,7 @@ export default function CustomersPage() {
   if (loading && customers.length === 0) {
     return (
       <PageContainer title="客户管理" description="管理和维护客户关系">
-        <div className="flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center justify-center min-h-100">
           <Loader2 className="w-8 h-8 animate-spin text-green-600" />
         </div>
       </PageContainer>
@@ -340,7 +322,7 @@ export default function CustomersPage() {
                   className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-green-500 shadow-[2px_0_8px_rgba(34,197,94,0.1)]"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                    <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
                       {customer.name.charAt(0)}
                     </div>
                     <div>
@@ -350,7 +332,7 @@ export default function CustomersPage() {
                           {customer.level}
                         </Badge>
                         <Badge className={getStatusColor(customer.status)}>
-                          {customer.status === "active" ? "活跃" : "非活跃"}
+                          {customer.status === "活跃" ? "活跃" : "非活跃"}
                         </Badge>
                       </div>
                       <p className="text-sm text-slate-600">{customer.company}</p>
@@ -389,7 +371,7 @@ export default function CustomersPage() {
       </div>
 
       <Dialog open={showCustomerDialog} onOpenChange={setShowCustomerDialog}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle>{editingCustomer ? "编辑客户" : "新增客户"}</DialogTitle>
             <DialogDescription>

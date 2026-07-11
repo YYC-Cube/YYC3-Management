@@ -14,8 +14,8 @@
 
 import { EventEmitter } from 'events';
 import { MessageBus } from '../agentic-core/MessageBus';
-import { TaskScheduler } from '../agentic-core/TaskScheduler';
 import { StateManager } from '../agentic-core/StateManager';
+import { TaskScheduler } from '../agentic-core/TaskScheduler';
 
 // ================================================
 // 类型定义
@@ -187,24 +187,24 @@ export class AutonomousAIEngine extends EventEmitter {
   private taskScheduler!: TaskScheduler;
   private stateManager!: StateManager;
   private subsystemRegistry!: Map<string, ISubsystem>;
-  
+
   // ============ 运行时状态 ============
   private status: EngineStatus = EngineStatus.STOPPED;
   private currentTasks: Map<string, any> = new Map();
   private messageHandlers: Map<MessageType, MessageHandler> = new Map();
   private debugMode: boolean = false;
   private startTime: Date;
-  
+
   // ============ 配置 ============
   private config: EngineConfig;
-  
+
   constructor(config: EngineConfig) {
     super();
     this.config = config;
     this.startTime = new Date();
     this.initializeCoreComponents();
   }
-  
+
   /**
    * 初始化核心组件
    */
@@ -217,28 +217,28 @@ export class AutonomousAIEngine extends EventEmitter {
         backoffFactor: 2
       }
     });
-    
+
     // 2. 任务调度器
     this.taskScheduler = new TaskScheduler({
       maxConcurrentTasks: this.config.maxConcurrentTasks,
       timeoutMs: 30000,
       priorityLevels: 5
     });
-    
+
     // 3. 状态管理器
     this.stateManager = new StateManager({
       autoPersist: this.config.persistenceEnabled,
       persistInterval: 60000,
       maxHistory: 100
     });
-    
+
     // 4. 子系统注册表
     this.subsystemRegistry = new Map();
-    
+
     // 设置消息总线监听
     this.setupMessageBusListeners();
   }
-  
+
   /**
    * 引擎生命周期 - 初始化
    */
@@ -246,16 +246,16 @@ export class AutonomousAIEngine extends EventEmitter {
     if (this.status !== EngineStatus.STOPPED) {
       throw new Error(`Cannot initialize engine in ${this.status} state`);
     }
-    
+
     this.status = EngineStatus.STARTING;
-    
+
     try {
       // 初始化所有子系统
       for (const [name, subsystem] of this.subsystemRegistry) {
         await subsystem.initialize();
         this.emit('subsystem:initialized', { name });
       }
-      
+
       this.status = EngineStatus.RUNNING;
       this.emit('engine:initialized');
     } catch (error) {
@@ -264,7 +264,7 @@ export class AutonomousAIEngine extends EventEmitter {
       throw error;
     }
   }
-  
+
   /**
    * 引擎生命周期 - 启动
    */
@@ -272,11 +272,11 @@ export class AutonomousAIEngine extends EventEmitter {
     if (this.status === EngineStatus.RUNNING) {
       return;
     }
-    
+
     await this.initialize();
     this.emit('engine:started');
   }
-  
+
   /**
    * 引擎生命周期 - 暂停
    */
@@ -284,29 +284,29 @@ export class AutonomousAIEngine extends EventEmitter {
     if (this.status !== EngineStatus.RUNNING) {
       return;
     }
-    
+
     this.status = EngineStatus.PAUSED;
     this.emit('engine:paused');
   }
-  
+
   /**
    * 引擎生命周期 - 关闭
    */
   async shutdown(): Promise<void> {
     this.status = EngineStatus.STOPPING;
-    
+
     try {
       // 停止所有任务
       for (const [taskId] of this.currentTasks) {
         await this.cancelTask(taskId);
       }
-      
+
       // 关闭所有子系统
       for (const [name, subsystem] of this.subsystemRegistry) {
         await subsystem.shutdown();
         this.emit('subsystem:shutdown', { name });
       }
-      
+
       this.status = EngineStatus.STOPPED;
       this.emit('engine:shutdown');
     } catch (error) {
@@ -315,21 +315,21 @@ export class AutonomousAIEngine extends EventEmitter {
       throw error;
     }
   }
-  
+
   /**
    * 获取引擎状态
    */
   getStatus(): EngineStatus {
     return this.status;
   }
-  
+
   /**
    * 完整的消息处理流程
    */
   async processMessage(input: AgentMessage): Promise<AgentResponse> {
     const startTime = Date.now();
     const traceId = this.generateTraceId();
-    
+
     try {
       // 1. 记录接收消息
       this.recordMessageEvent('message_received', {
@@ -337,29 +337,29 @@ export class AutonomousAIEngine extends EventEmitter {
         type: input.type,
         contentLength: JSON.stringify(input.content).length
       });
-      
+
       // 2. 消息预处理
       const preprocessed = await this.preprocessMessage(input);
-      
+
       // 3. 消息路由
       const handler = this.messageHandlers.get(preprocessed.type);
       if (!handler) {
         throw new Error(`No handler for message type: ${preprocessed.type}`);
       }
-      
+
       // 4. 消息处理
       const processingContext = this.createProcessingContext(preprocessed, traceId);
       const result = await handler(preprocessed, processingContext);
-      
+
       // 5. 记录成功
       this.recordMessageEvent('message_processed', {
         traceId,
         processingTime: Date.now() - startTime,
         success: true
       });
-      
+
       return result;
-      
+
     } catch (error) {
       // 错误处理
       this.recordMessageEvent('message_failed', {
@@ -367,12 +367,12 @@ export class AutonomousAIEngine extends EventEmitter {
         error: error instanceof Error ? error.message : String(error),
         processingTime: Date.now() - startTime
       });
-      
+
       // 错误恢复策略
       return await this.handleProcessingError(error as Error, input);
     }
   }
-  
+
   /**
    * 注册消息处理器
    */
@@ -380,7 +380,7 @@ export class AutonomousAIEngine extends EventEmitter {
     this.messageHandlers.set(type, handler);
     this.emit('handler:registered', { type });
   }
-  
+
   /**
    * 取消注册消息处理器
    */
@@ -388,7 +388,7 @@ export class AutonomousAIEngine extends EventEmitter {
     this.messageHandlers.delete(type);
     this.emit('handler:unregistered', { type });
   }
-  
+
   /**
    * 任务规划
    */
@@ -407,11 +407,11 @@ export class AutonomousAIEngine extends EventEmitter {
         confidence: 0.8
       }
     };
-    
+
     this.emit('task:planned', { plan });
     return plan;
   }
-  
+
   /**
    * 执行任务
    */
@@ -420,13 +420,13 @@ export class AutonomousAIEngine extends EventEmitter {
     if (!task) {
       throw new Error(`Task not found: ${taskId}`);
     }
-    
+
     this.emit('task:executing', { taskId });
-    
+
     try {
       // 执行任务逻辑
       const result = await task.execute();
-      
+
       this.emit('task:completed', { taskId, result });
       return result;
     } catch (error) {
@@ -434,7 +434,7 @@ export class AutonomousAIEngine extends EventEmitter {
       throw error;
     }
   }
-  
+
   /**
    * 取消任务
    */
@@ -443,28 +443,28 @@ export class AutonomousAIEngine extends EventEmitter {
     if (!task) {
       return;
     }
-    
+
     await this.taskScheduler.cancelTask(taskId);
     this.currentTasks.delete(taskId);
     this.emit('task:cancelled', { taskId });
   }
-  
+
   /**
    * 获取任务进度
    */
-  getTaskProgress(taskId: string): Record<string, unknown> {
+  getTaskProgress(taskId: string): Record<string, unknown> | null {
     const task = this.currentTasks.get(taskId);
     if (!task) {
       return null;
     }
-    
+
     return {
       status: task.status,
       startedAt: task.startedAt,
       completedAt: task.completedAt
     };
   }
-  
+
   /**
    * 注册子系统
    */
@@ -472,7 +472,7 @@ export class AutonomousAIEngine extends EventEmitter {
     this.subsystemRegistry.set(subsystem.name, subsystem);
     this.emit('subsystem:registered', { name: subsystem.name });
   }
-  
+
   /**
    * 取消注册子系统
    */
@@ -480,14 +480,14 @@ export class AutonomousAIEngine extends EventEmitter {
     this.subsystemRegistry.delete(name);
     this.emit('subsystem:unregistered', { name });
   }
-  
+
   /**
    * 获取子系统
    */
   getSubsystem(name: string): ISubsystem | undefined {
     return this.subsystemRegistry.get(name);
   }
-  
+
   /**
    * 广播事件
    */
@@ -495,14 +495,14 @@ export class AutonomousAIEngine extends EventEmitter {
     this.emit('system:event', event);
     this.messageBus.publish('system:event', event);
   }
-  
+
   /**
    * 获取引擎状态
    */
   getState(): Record<string, unknown> {
     return this.stateManager.getAllStates();
   }
-  
+
   /**
    * 保存状态快照
    */
@@ -517,31 +517,31 @@ export class AutonomousAIEngine extends EventEmitter {
       configuration: this.config,
       checksum: await this.calculateChecksum()
     };
-    
+
     this.emit('state:saved', { snapshot });
     return snapshot;
   }
-  
+
   /**
    * 恢复状态
    */
   async restoreState(snapshot: EngineSnapshot): Promise<void> {
     await this.pause();
-    
+
     this.status = snapshot.status;
     this.startTime = new Date();
-    
+
     if (this.config.resumeTasksOnRestore) {
       // 恢复任务
-      for (const task of snapshot.tasks) {
+      for (const task of snapshot.tasks as any[]) {
         this.currentTasks.set(task.id, task);
       }
     }
-    
+
     this.emit('state:restored', { snapshot });
     await this.start();
   }
-  
+
   /**
    * 重置状态
    */
@@ -552,20 +552,20 @@ export class AutonomousAIEngine extends EventEmitter {
     this.emit('state:reset');
     await this.start();
   }
-  
+
   /**
    * 获取性能指标
    */
   getMetrics(): EngineMetrics {
     const uptime = Date.now() - this.startTime.getTime();
     const tasks = Array.from(this.currentTasks.values());
-    
+
     return {
       uptime,
       status: this.status,
       taskCount: tasks.length,
-      activeTasks: tasks.filter((t: unknown) => t.status === 'running').length,
-      queuedTasks: tasks.filter((t: unknown) => t.status === 'queued').length,
+      activeTasks: tasks.filter((t: any) => t.status === 'running').length,
+      queuedTasks: tasks.filter((t: any) => t.status === 'queued').length,
       completedTasks: 0, // 从状态管理器获取
       failedTasks: 0, // 从状态管理器获取
       averageProcessingTime: 0,
@@ -574,7 +574,7 @@ export class AutonomousAIEngine extends EventEmitter {
       customMetrics: {}
     };
   }
-  
+
   /**
    * 系统诊断
    */
@@ -589,7 +589,7 @@ export class AutonomousAIEngine extends EventEmitter {
       metrics: this.getMetrics()
     };
   }
-  
+
   /**
    * 启用调试模式
    */
@@ -597,7 +597,7 @@ export class AutonomousAIEngine extends EventEmitter {
     this.debugMode = true;
     this.emit('debug:enabled');
   }
-  
+
   /**
    * 禁用调试模式
    */
@@ -605,9 +605,9 @@ export class AutonomousAIEngine extends EventEmitter {
     this.debugMode = false;
     this.emit('debug:disabled');
   }
-  
+
   // ============ 私有辅助方法 ============
-  
+
   private async preprocessMessage(message: AgentMessage): Promise<AgentMessage> {
     return {
       ...message,
@@ -616,7 +616,7 @@ export class AutonomousAIEngine extends EventEmitter {
       metadata: message.metadata || {}
     };
   }
-  
+
   private createProcessingContext(
     message: AgentMessage,
     traceId: string
@@ -634,10 +634,10 @@ export class AutonomousAIEngine extends EventEmitter {
       }
     };
   }
-  
+
   private async handleProcessingError(
     error: Error,
-    originalMessage: AgentMessage
+    _originalMessage: AgentMessage
   ): Promise<AgentResponse> {
     return {
       id: this.generateId(),
@@ -650,29 +650,29 @@ export class AutonomousAIEngine extends EventEmitter {
       }
     };
   }
-  
+
   private recordMessageEvent(event: string, data: unknown): void {
     if (this.debugMode) {
       // console.log(`[AutonomousAIEngine] ${event}:`, data);
     }
     this.emit(event, data);
   }
-  
+
   private setupMessageBusListeners(): void {
     // 系统事件监听
     this.messageBus.on('system:start', () => this.emit('system:start'));
     this.messageBus.on('system:stop', () => this.emit('system:stop'));
     this.messageBus.on('system:error', (error) => this.emit('system:error', error));
   }
-  
+
   private generateId(): string {
-    return `${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
+    return `${Date.now()}-${crypto.randomUUID().slice(0, 9)}`;
   }
-  
+
   private generateTraceId(): string {
     return `trace-${this.generateId()}`;
   }
-  
+
   private async calculateChecksum(): Promise<string> {
     // 简化实现
     return `checksum-${Date.now()}`;

@@ -6,8 +6,8 @@
  * @license MIT
  */
 
-import { NextRequest, NextResponse } from 'next/server'
 import { authenticateApiRequest } from '@/lib/api/auth-guard'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
   try {
@@ -29,7 +29,7 @@ export async function PUT(request: NextRequest) {
   try {
     const auth = authenticateApiRequest(request)
     if (!auth.authenticated) return auth.response
-    const body = await request.json()
+    void await request.json() // 请求体保留供未来实现
 
     return NextResponse.json({
       success: true,

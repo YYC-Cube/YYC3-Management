@@ -132,23 +132,23 @@ export interface IModelAdapter {
   getModelInfo(): ModelInfo;
   isAvailable(): Promise<boolean>;
   healthCheck(): Promise<HealthStatus>;
-  
+
   // ============ 核心推理 ============
   generateCompletion(request: CompletionRequest): Promise<CompletionResponse>;
   generateChatCompletion(request: ChatRequest): Promise<ChatResponse>;
   generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse>;
-  
+
   // ============ 流式处理 ============
   streamCompletion(request: CompletionRequest): AsyncIterable<StreamChunk>;
   streamChat(request: ChatRequest): AsyncIterable<ChatChunk>;
-  
+
   // ============ 批量处理 ============
   batchComplete(requests: CompletionRequest[]): Promise<CompletionResponse[]>;
-  
+
   // ============ 模型配置 ============
   updateConfig(config: Partial<ModelConfig>): Promise<void>;
   getConfig(): ModelConfig;
-  
+
   // ============ 性能优化 ============
   warmup(): Promise<void>;
   clearCache(): Promise<void>;
@@ -170,7 +170,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     cacheHits: number;
   };
   protected lastUsed: Date;
-  
+
   constructor(config: ModelConfig) {
     this.config = this.validateConfig(config);
     this.cache = new Map();
@@ -183,7 +183,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     };
     this.lastUsed = new Date();
   }
-  
+
   /**
    * 模板方法：标准生成流程
    */
@@ -191,66 +191,66 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     const startTime = Date.now();
     this.lastUsed = new Date();
     this.metrics.totalRequests++;
-    
+
     try {
       // 1. 验证请求
       const validated = await this.validateRequest(request);
-      
+
       // 2. 检查缓存
       const cached = await this.checkCache(validated);
       if (cached) {
         this.metrics.cacheHits++;
         return cached;
       }
-      
+
       // 3. 预处理
       const preprocessed = await this.preprocess(validated);
-      
+
       // 4. 调用模型
       const rawResponse = await this.callModelAPI(preprocessed);
-      
+
       // 5. 后处理
       const processed = await this.postprocess(rawResponse);
-      
+
       // 6. 更新缓存
       if (this.config.cacheEnabled) {
         await this.updateCache(validated, processed);
       }
-      
+
       // 7. 更新指标
       this.metrics.successfulRequests++;
       this.metrics.totalProcessingTime += Date.now() - startTime;
-      
+
       return processed;
-      
+
     } catch (error) {
       this.metrics.failedRequests++;
       throw error;
     }
   }
-  
+
   /**
    * 流式生成实现
    */
   async *streamCompletion(request: CompletionRequest): AsyncIterable<StreamChunk> {
     const validated = await this.validateRequest(request);
     const preprocessed = await this.preprocess(validated);
-    
+
     let index = 0;
     let buffer = '';
-    
+
     try {
       for await (const chunk of this.callModelStream(preprocessed)) {
         const parsed = this.parseStreamChunk(chunk);
         buffer += parsed.text;
-        
+
         yield {
           text: parsed.text,
           finished: parsed.finished,
           index: index++,
           metadata: parsed.metadata
         };
-        
+
         if (parsed.finished) {
           break;
         }
@@ -264,7 +264,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       };
     }
   }
-  
+
   /**
    * 聊天补全
    */
@@ -276,9 +276,9 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       parameters: request.parameters,
       context: request.context
     };
-    
+
     const response = await this.generateCompletion(completionRequest);
-    
+
     return {
       ...response,
       message: {
@@ -287,7 +287,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       }
     };
   }
-  
+
   /**
    * 流式聊天
    */
@@ -298,7 +298,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       parameters: request.parameters,
       context: request.context
     };
-    
+
     for await (const chunk of this.streamCompletion(completionRequest)) {
       yield {
         ...chunk,
@@ -309,36 +309,36 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       };
     }
   }
-  
+
   /**
    * 生成嵌入向量
    */
-  async generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse> {
+  async generateEmbedding(_request: EmbeddingRequest): Promise<EmbeddingResponse> {
     // 默认实现：抛出未实现错误
     throw new Error('Embedding generation not implemented for this adapter');
   }
-  
+
   /**
    * 批量处理
    */
   async batchComplete(requests: CompletionRequest[]): Promise<CompletionResponse[]> {
     return Promise.all(requests.map(req => this.generateCompletion(req)));
   }
-  
+
   /**
    * 更新配置
    */
   async updateConfig(config: Partial<ModelConfig>): Promise<void> {
     this.config = { ...this.config, ...config };
   }
-  
+
   /**
    * 获取配置
    */
   getConfig(): ModelConfig {
     return { ...this.config };
   }
-  
+
   /**
    * 模型预热
    */
@@ -349,32 +349,32 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     };
     await this.generateCompletion(warmupRequest);
   }
-  
+
   /**
    * 清除缓存
    */
   async clearCache(): Promise<void> {
     this.cache.clear();
   }
-  
+
   /**
    * 为批量大小优化
    */
-  async optimizeFor(batchSize: number): Promise<void> {
+  async optimizeFor(_batchSize: number): Promise<void> {
     // 默认实现：无操作
     // console.log(`Optimizing for batch size: ${batchSize}`);
   }
-  
+
   /**
    * 健康检查
    */
   async healthCheck(): Promise<HealthStatus> {
     const startTime = Date.now();
-    
+
     try {
       await this.isAvailable();
       const latency = Date.now() - startTime;
-      
+
       return {
         healthy: true,
         latency,
@@ -391,7 +391,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       };
     }
   }
-  
+
   /**
    * 检查可用性
    */
@@ -403,15 +403,15 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       return false;
     }
   }
-  
+
   // ============ 抽象方法（由具体适配器实现）============
-  
+
   abstract getModelInfo(): ModelInfo;
   protected abstract callModelAPI(request: unknown): Promise<unknown>;
   protected abstract callModelStream(request: unknown): AsyncIterable<unknown>;
-  
+
   // ============ 通用实现 ============
-  
+
   protected validateConfig(config: ModelConfig): ModelConfig {
     if (!config.modelName) {
       throw new Error('Model name is required');
@@ -421,44 +421,44 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     }
     return config;
   }
-  
+
   protected async validateRequest(request: CompletionRequest): Promise<CompletionRequest> {
     if (!request.prompt?.trim()) {
       throw new Error('Prompt cannot be empty');
     }
-    
+
     if (request.prompt.length > this.config.maxInputLength) {
       throw new Error(`Prompt too long, max length: ${this.config.maxInputLength}`);
     }
-    
+
     return request;
   }
-  
+
   protected async checkCache(request: CompletionRequest): Promise<CompletionResponse | null> {
     if (!this.config.cacheEnabled) {
       return null;
     }
-    
+
     const cacheKey = this.generateCacheKey(request);
     return this.cache.get(cacheKey) || null;
   }
-  
+
   protected async preprocess(request: CompletionRequest): Promise<unknown> {
     return request;
   }
-  
+
   protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
-    return rawResponse;
+    return rawResponse as CompletionResponse;
   }
-  
+
   protected async updateCache(request: CompletionRequest, response: CompletionResponse): Promise<void> {
     if (!this.config.cacheEnabled) {
       return;
     }
-    
+
     const cacheKey = this.generateCacheKey(request);
     this.cache.set(cacheKey, response);
-    
+
     // 简单的LRU：如果缓存超过限制，删除最旧的
     if (this.config.cacheConfig && this.cache.size > this.config.cacheConfig.maxSize) {
       const firstKey = this.cache.keys().next().value;
@@ -467,19 +467,19 @@ export abstract class BaseModelAdapter implements IModelAdapter {
       }
     }
   }
-  
+
   protected generateCacheKey(request: CompletionRequest): string {
     return `${this.config.modelName}-${JSON.stringify(request)}`;
   }
-  
-  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+
+  protected parseStreamChunk(_chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     return { text: '', finished: false };
   }
-  
+
   protected formatChatMessages(messages: ChatMessage[]): string {
     return messages.map(m => `${m.role}: ${m.content}`).join('\n');
   }
-  
+
   protected calculateErrorRate(): number {
     if (this.metrics.totalRequests === 0) {
       return 0;
@@ -494,27 +494,27 @@ export abstract class BaseModelAdapter implements IModelAdapter {
 
 export class ModelAdapterFactory {
   private static registry: Map<string, new (config: ModelConfig) => IModelAdapter> = new Map();
-  
+
   static register(type: string, constructor: new (config: ModelConfig) => IModelAdapter): void {
     this.registry.set(type, constructor);
   }
-  
+
   static async create(type: string, config: ModelConfig): Promise<IModelAdapter> {
     const Constructor = this.registry.get(type);
     if (!Constructor) {
       throw new Error(`Model adapter type not supported: ${type}`);
     }
-    
+
     const adapter = new Constructor(config);
-    
+
     // 预热（如果需要）
     if (config.warmupOnCreate) {
       await adapter.warmup();
     }
-    
+
     return adapter;
   }
-  
+
   static getSupportedTypes(): string[] {
     return Array.from(this.registry.keys());
   }

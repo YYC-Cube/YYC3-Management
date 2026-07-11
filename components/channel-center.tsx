@@ -346,7 +346,7 @@ export function ChannelCenter() {
       const newChannel: Channel = {
         id: `channel-${Date.now()}`,
         name: newChannelData.name || "新渠道",
-        type: (newChannelData.type as unknown) || "wechat",
+        type: (newChannelData.type as any) || "wechat",
         status: "disconnected",
         lastSync: "从未同步",
         dataCount: 0,
@@ -466,7 +466,7 @@ export function ChannelCenter() {
                     variant="outline"
                     className="h-20 flex-col gap-2 bg-transparent"
                     onClick={() => {
-                      setNewChannelData({ type: template.type as unknown, name: template.name })
+                      setNewChannelData({ type: template.type as any, name: template.name })
                       setIsAddDialogOpen(false)
                       setIsEditDialogOpen(true)
                     }}

@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     const validation = userSchema.safeParse(body)
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: '数据验证失败', details: validation.error.errors },
+        { success: false, error: '数据验证失败', details: validation.error.issues },
         { status: 400 }
       )
     }

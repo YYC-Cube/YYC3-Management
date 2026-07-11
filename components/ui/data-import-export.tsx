@@ -1,15 +1,15 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Progress } from "@/components/ui/progress"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { FormError, FormErrors } from "@/components/ui/form-error"
-import { Download, Upload, FileSpreadsheet, FileJson, FileText, AlertCircle, CheckCircle2, XCircle } from "lucide-react"
-import { DataExporter, DataImporter, validateFile, ImportResult, ExportFormat } from "@/lib/utils/data-import-export"
-import { toast } from "sonner"
+import { useRef, useState } from "react"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { toast } from "@/hooks/use-toast"
+import { DataExporter, DataImporter, ExportFormat, ImportResult, validateFile } from "@/lib/utils/data-import-export"
+import { AlertCircle, CheckCircle2, Download, FileJson, FileSpreadsheet, FileText, Upload, XCircle } from "lucide-react"
 
 interface DataImportExportProps<T> {
   data?: T[]
@@ -255,7 +255,7 @@ export function DataImportExport<T>({
                     <div className="max-h-40 overflow-y-auto space-y-1">
                       {importResult.errors.map((error, index) => (
                         <div key={index} className="flex items-start gap-2 text-sm">
-                          <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+                          <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                           <span className="text-red-700">{error}</span>
                         </div>
                       ))}

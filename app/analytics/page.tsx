@@ -1,17 +1,17 @@
 "use client"
 
-import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { StatisticsDashboard } from "@/components/statistics-dashboard"
-import { SalesChart } from "@/components/charts/sales-chart"
 import { FinanceChart } from "@/components/charts/finance-chart"
 import { PerformanceChart } from "@/components/charts/performance-chart"
-import { BarChart3, TrendingUp, Download, Eye, Users, DollarSign } from "lucide-react"
-import { useUsers } from "@/hooks/use-users"
-import { useTasks } from "@/hooks/use-tasks"
+import { SalesChart } from "@/components/charts/sales-chart"
+import { PageContainer } from "@/components/layout/page-container"
+import { StatisticsDashboard } from "@/components/statistics-dashboard"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { useProjects } from "@/hooks/use-projects"
+import { useTasks } from "@/hooks/use-tasks"
+import { useUsers } from "@/hooks/use-users"
+import { BarChart3, DollarSign } from "lucide-react"
 import { useEffect, useMemo } from "react"
 
 export default function AnalyticsPage() {
@@ -26,9 +26,9 @@ export default function AnalyticsPage() {
   }, [])
 
   const activeUsers = useMemo(() => users.filter((u) => u.status === "active").length, [users])
-  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "completed").length, [tasks])
-  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "in_progress").length, [tasks])
-  const completedProjects = useMemo(() => projects.filter((p) => p.status === "completed").length, [projects])
+  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "已完成").length, [tasks])
+  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "进行中").length, [tasks])
+  const completedProjects = useMemo(() => projects.filter((p) => p.status === "已完成").length, [projects])
 
   const userGrowthData = useMemo(() => [
     { name: "1月", value: Math.round(users.length * 0.6) },
@@ -49,10 +49,10 @@ export default function AnalyticsPage() {
   ], [completedTasks])
 
   const projectStatusData = useMemo(() => [
-    { name: "进行中", value: projects.filter((p) => p.status === "in_progress").length, color: "#3b82f6" },
+    { name: "进行中", value: projects.filter((p) => p.status === "进行中").length, color: "#3b82f6" },
     { name: "已完成", value: completedProjects, color: "#10b981" },
-    { name: "规划中", value: projects.filter((p) => p.status === "planning").length, color: "#f59e0b" },
-    { name: "暂停", value: projects.filter((p) => p.status === "paused").length, color: "#ef4444" },
+    { name: "规划中", value: projects.filter((p) => p.status === "计划中").length, color: "#f59e0b" },
+    { name: "暂停", value: projects.filter((p) => p.status === "已暂停").length, color: "#ef4444" },
   ], [projects, completedProjects])
 
   const userActivityData = useMemo(() => [

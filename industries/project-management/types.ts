@@ -18,13 +18,13 @@ export interface AITool {
   execute: (params: any) => Promise<any>;
 }
 
-export function createAutonomousAIWidget(config: any): Promise<AIWidgetInstance> {
+export function createAutonomousAIWidget(_config: any): Promise<AIWidgetInstance> {
   return Promise.resolve({
-    sendMessage: async (message) => ({
+    sendMessage: async (_message) => ({
       data: null,
       immediate_action_required: false
     }),
-    initialize: async (config) => {}
+    initialize: async (_config) => { }
   });
 }
 
@@ -32,7 +32,7 @@ export function createAITool(tool: AITool): AITool {
   return tool;
 }
 
-export function createProjectManagementSystem(systemUrl: string, apiKey: string): ProjectManagementSystem {
+export function createProjectManagementSystem(_systemUrl: string, _apiKey: string): ProjectManagementSystem {
   return {
     getCapabilities: async () => {
       return {
@@ -69,7 +69,7 @@ export function createProjectManagementSystem(systemUrl: string, apiKey: string)
         spent: 75000
       };
     },
-    on: (event: string, callback: (data: any) => void) => {
+    on: (event: string, _callback: (data: any) => void) => {
       console.log(`[ProjectManagementSystem] Listening for event: ${event}`);
     }
   };

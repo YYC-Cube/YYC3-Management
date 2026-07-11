@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function collectBusinessData(type: string, _timeRange?: { start?: string; end?: string }) {
+async function collectBusinessData(_type: string, _timeRange?: { start?: string; end?: string }) {
   const [customerStats, taskStats, projectStats, financeStats] = await Promise.all([
     query(`SELECT
       COUNT(*) as total,

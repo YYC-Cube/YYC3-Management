@@ -6,12 +6,12 @@
  * @license MIT
  */
 
-import { NextRequest, NextResponse } from 'next/server'
 import { authenticateApiRequest } from '@/lib/api/auth-guard'
-import { TaskRepository } from '@/lib/db/repositories/task.repository'
+import { buildCacheKey, invalidateResourceCache, withCache } from '@/lib/db/cache'
 import { checkDatabaseConnection } from '@/lib/db/client'
+import { TaskRepository } from '@/lib/db/repositories/task.repository'
 import { taskSchema } from '@/lib/validations/schemas'
-import { withCache, invalidateResourceCache, buildCacheKey } from '@/lib/db/cache'
+import { NextRequest, NextResponse } from 'next/server'
 
 const taskRepository = new TaskRepository()
 
@@ -80,12 +80,12 @@ export async function POST(request: NextRequest) {
     const validation = taskSchema.safeParse(body)
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: '数据验证失败', details: validation.error.errors },
+        { success: false, error: '数据验证失败', details: validation.error.issues },
         { status: 400 }
       )
     }
 
-    const task = await taskRepository.create(validation.data)
+    const task = await taskRepository.create(validation.data as any)
     await invalidateResourceCache('tasks')
 
     return NextResponse.json({
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
     }, { status: 201 })
   } catch (error: unknown) {
     console.error('创建任务失败:', error)
-    
+
     if ((error as { code?: string }).code === '23503') {
       return NextResponse.json(
         { success: false, error: '指定的用户不存在' },

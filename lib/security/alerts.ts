@@ -5,7 +5,52 @@
  * 检测和响应安全事件
  */
 
-import { auditLogger, AuditLog, AuditLevel } from '../audit/logger';
+// AuditLog 类型（用于安全事件检测）
+export interface AuditLog {
+  action: string
+  userId?: string | number
+  username?: string
+  module?: string
+  targetId?: string | number
+  description?: string
+  ipAddress?: string
+  userAgent?: string
+  result?: string
+  details?: Record<string, unknown>
+  timestamp?: Date
+}
+
+// 审计日志查询结果
+interface AuditQueryResult extends AuditLog {
+  id: string
+  created_at: Date
+}
+
+// 简易审计日志管理器
+class AuditLogger {
+  private alertHandlers: Map<string, ((log: AuditLog) => Promise<void>)[]> = new Map()
+
+  registerAlert(category: string, handler: (log: AuditLog) => Promise<void>): void {
+    if (!this.alertHandlers.has(category)) {
+      this.alertHandlers.set(category, [])
+    }
+    this.alertHandlers.get(category)!.push(handler)
+  }
+
+  async log(log: AuditLog): Promise<void> {
+    const handlers = this.alertHandlers.get('security') || []
+    for (const handler of handlers) {
+      await handler(log)
+    }
+  }
+
+  async query(_params: Record<string, unknown>, _limit?: number): Promise<AuditQueryResult[]> {
+    // TODO: 实现实际查询逻辑
+    return []
+  }
+}
+
+const auditLogger = new AuditLogger()
 
 /**
  * 安全告警类型
@@ -66,7 +111,7 @@ interface NotificationChannel {
 /**
  * 邮件通知渠道
  */
-class EmailNotificationChannel implements NotificationChannel {
+export class EmailNotificationChannel implements NotificationChannel {
   name = 'email';
 
   constructor(
@@ -78,9 +123,11 @@ class EmailNotificationChannel implements NotificationChannel {
       from: string;
       to: string[];
     }
-  ) {}
+  ) {
+    void this.config
+  }
 
-  async send(alert: SecurityAlert): Promise<void> {
+  async send(_alert: SecurityAlert): Promise<void> {
     // TODO: 实现邮件发送
     // 这里可以使用nodemailer或其他邮件库
     // console.log(`[EMAIL] Sending alert: ${alert.title}`);
@@ -90,67 +137,29 @@ class EmailNotificationChannel implements NotificationChannel {
 /**
  * Slack通知渠道
  */
-class SlackNotificationChannel implements NotificationChannel {
+export class SlackNotificationChannel implements NotificationChannel {
   name = 'slack';
 
-  constructor(private webhookUrl: string) {}
+  constructor(private webhookUrl: string) {
+    void this.webhookUrl
+  }
 
-  async send(alert: SecurityAlert): Promise<void> {
-    const severityEmoji = {
-      [AlertSeverity.LOW]: '🟢',
-      [AlertSeverity.MEDIUM]: '🟡',
-      [AlertSeverity.HIGH]: '🟠',
-      [AlertSeverity.CRITICAL]: '🔴',
-    };
-
-    const message = {
-      text: `${severityEmoji[alert.severity]} ${alert.title}`,
-      blocks: [
-        {
-          type: 'header',
-          text: {
-            type: 'plain_text',
-            text: `${severityEmoji[alert.severity]} ${alert.title}`,
-          },
-        },
-        {
-          type: 'section',
-          fields: [
-            { type: 'mrkdwn', text: `*Type:*\n${alert.type}` },
-            { type: 'mrkdwn', text: `*Severity:*\n${alert.severity}` },
-            { type: 'mrkdwn', text: `*IP:*\n${alert.sourceIp}` },
-            { type: 'mrkdwn', text: `*Time:*\n${new Date(alert.timestamp).toISOString()}` },
-          ],
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `*Message:*\n${alert.message}`,
-          },
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `*Details:*\n\`\`\`${JSON.stringify(alert.details, null, 2)}\`\`\``,
-          },
-        },
-      ],
-    };
-
+  async send(_alert: SecurityAlert): Promise<void> {
     // TODO: 发送到Slack webhook
-    // console.log(`[SLACK] Sending alert: ${alert.title}`, message);
+    // 构建 Slack 消息 payload (severity, alert.title, alert.type, alert.severity, alert.sourceIp, alert.timestamp, alert.message, alert.details)
+    // const severityEmoji = { ... };
+    // const message = { ... };
+    // await fetch(this.webhookUrl, { method: 'POST', body: JSON.stringify(message) })
   }
 }
 
 /**
  * Webhook通知渠道
  */
-class WebhookNotificationChannel implements NotificationChannel {
+export class WebhookNotificationChannel implements NotificationChannel {
   name = 'webhook';
 
-  constructor(private url: string) {}
+  constructor(private url: string) { }
 
   async send(alert: SecurityAlert): Promise<void> {
     try {
@@ -240,7 +249,7 @@ export class SecurityAlertManager {
   /**
    * 确认告警
    */
-  acknowledgeAlert(alertId: string, userId: string): boolean {
+  acknowledgeAlert(alertId: string, _userId: string): boolean {
     const alert = this.alerts.get(alertId);
     if (alert) {
       alert.acknowledged = true;
@@ -370,7 +379,7 @@ export class SecurityAlertManager {
    */
   private async handleAuditLog(log: AuditLog): Promise<void> {
     // 根据审计日志检测安全事件
-    const rule = this.alertRules.get(log.action as unknown);
+    const rule = this.alertRules.get(log.action as any);
 
     if (rule) {
       await rule.check(log, this);
@@ -410,8 +419,8 @@ export class SecurityAlertManager {
                 attemptCount: recentFailures.length,
                 timeWindow: '10 minutes',
               },
-              sourceIp: log.ipAddress,
-              userId: log.userId,
+              sourceIp: log.ipAddress || '',
+              userId: log.userId != null ? String(log.userId) : undefined,
             });
           }
         }
@@ -427,9 +436,9 @@ export class SecurityAlertManager {
             severity: AlertSeverity.MEDIUM,
             title: 'Privilege Escalation Detected',
             message: `User ${log.userId} has changed privileges`,
-            details: log.details,
-            sourceIp: log.ipAddress,
-            userId: log.userId,
+            details: log.details || {},
+            sourceIp: log.ipAddress || '',
+            userId: log.userId != null ? String(log.userId) : undefined,
           });
         }
       },
@@ -455,8 +464,8 @@ export class SecurityAlertManager {
               operationCount: recentOperations.length,
               action: log.action,
             },
-            sourceIp: log.ipAddress,
-            userId: log.userId,
+            sourceIp: log.ipAddress || '',
+            userId: log.userId != null ? String(log.userId) : undefined,
           });
         }
       },

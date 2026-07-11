@@ -12,7 +12,7 @@ export default function MobileAppPage() {
       className="p-6"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <MobileNativeApp showTitle={false} />
+        <MobileNativeApp />
       </div>
       <FloatingNavButtons />
     </PageContainer>

@@ -10,13 +10,12 @@
 
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
-import { IntelligentAIWidget } from './IntelligentAIWidget';
-import { AutonomousAIEngine, EngineConfig, AgentMessage, MessageType } from '@/lib/autonomous-engine';
-import { UnifiedLearningSystem, UserBehavior } from '@/lib/learning-system';
-import { ModelProvider } from '@/lib/model-adapter/types';
-import { ModelAdapterFactory, IModelAdapter } from '@/lib/model-adapter';
 import { AgenticCore } from '@/lib/agentic-core';
+import { AutonomousAIEngine, EngineConfig, MessageType } from '@/lib/autonomous-engine';
+import { UnifiedLearningSystem, UserBehavior } from '@/lib/learning-system';
+import { IModelAdapter, ModelAdapterFactory } from '@/lib/model-adapter';
+import React, { useCallback, useEffect, useState } from 'react';
+import { IntelligentAIWidget } from './IntelligentAIWidget';
 
 // ====================================
 // 类型定义
@@ -45,8 +44,8 @@ interface SystemStatus {
 // 组件实现
 // ====================================
 
-export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({ 
-  agenticCore, 
+export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
+  agenticCore,
   onClose,
   initialPosition,
   initialSize,
@@ -88,11 +87,11 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
         };
 
         const newEngine = new AutonomousAIEngine(engineConfig);
-        
+
         // 注册消息处理器
         newEngine.registerMessageHandler(MessageType.USER_INPUT, async (message, context) => {
           // console.log('[EnhancedAIWidget] 处理用户输入:', message);
-          
+
           // 这里集成模型适配器来处理实际的AI推理
           // 简化实现：返回模拟响应
           return {
@@ -121,7 +120,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
 
         // 3. 初始化模型适配器
         const adapters = new Map<string, IModelAdapter>();
-        
+
         try {
           const localAdapter = await ModelAdapterFactory.createAdapter({
             provider: 'Local',
@@ -132,7 +131,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
             timeout: 30000,
             cacheEnabled: false
           });
-          
+
           adapters.set('local', localAdapter);
           // console.log('[EnhancedAIWidget] 本地模型适配器初始化完成');
         } catch (error) {
@@ -178,7 +177,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
       currentAdapters: Map<string, IModelAdapter>
     ) => {
       const metrics = currentLearningSystem.getOverallMetrics();
-      
+
       setSystemStatus({
         engineStatus: currentEngine.getStatus(),
         activeModels: Array.from(currentAdapters.keys()),
@@ -227,113 +226,11 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
     [learningSystem, userId]
   );
 
-  // ====================================
-  // 增强的消息处理
-  // ====================================
-
-  const handleEnhancedMessage = useCallback(
-    async (content: string) => {
-      if (!engine) {
-        // console.warn('[EnhancedAIWidget] 引擎未就绪');
-        return null;
-      }
-
-      // 记录用户行为
-      recordUserBehavior('send_message', { content });
-
-      // 通过引擎处理消息
-      const message: AgentMessage = {
-        type: MessageType.USER_INPUT,
-        content,
-        source: 'chat-widget',
-        timestamp: new Date()
-      };
-
-      try {
-        const response = await engine.processMessage(message);
-        
-        // 记录成功的决策
-        if (learningSystem && response.success) {
-          learningSystem.getStrategicLayer().recordOutcome({
-            id: `outcome-${Date.now()}`,
-            decision: 'process_user_message',
-            parameters: { messageType: MessageType.USER_INPUT },
-            context: { content },
-            result: 'success',
-            metrics: {
-              executionTime: response.metadata.processingTime,
-              resourceUsage: 0.1,
-              userSatisfaction: 0.8
-            },
-            timestamp: new Date()
-          });
-        }
-
-        return response;
-      } catch (error) {
-        console.error('[EnhancedAIWidget] 消息处理失败:', error);
-        
-        // 记录失败的决策
-        if (learningSystem) {
-          learningSystem.getStrategicLayer().recordOutcome({
-            id: `outcome-${Date.now()}`,
-            decision: 'process_user_message',
-            parameters: { messageType: MessageType.USER_INPUT },
-            context: { content },
-            result: 'failure',
-            metrics: {
-              executionTime: 0,
-              resourceUsage: 0,
-              userSatisfaction: 0
-            },
-            timestamp: new Date()
-          });
-        }
-
-        return null;
-      }
-    },
-    [engine, learningSystem, recordUserBehavior]
-  );
-
-  // ====================================
-  // 渲染
-  // ====================================
-
-  if (!systemReady) {
-    return (
-      <div 
-        className="fixed z-50 bg-white dark:bg-slate-900 rounded-lg shadow-2xl p-6"
-        style={{
-          left: initialPosition?.x || window.innerWidth - 420,
-          top: initialPosition?.y || 100,
-          width: initialSize?.width || 400,
-          height: initialSize?.height || 600
-        }}
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-              初始化AI系统
-            </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-              正在加载自治AI引擎、学习系统和模型适配器...
-            </p>
-            <div className="mt-4 text-xs text-slate-400">
-              <div>引擎状态: {systemStatus.engineStatus}</div>
-              <div>活跃模型: {systemStatus.activeModels.join(', ') || '无'}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // 系统就绪，渲染完整的AI Widget
   return (
     <>
-      <IntelligentAIWidget 
+      <IntelligentAIWidget
         agenticCore={agenticCore}
         initialPosition={initialPosition}
         initialSize={initialSize}
@@ -343,10 +240,10 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
           onClose?.();
         }}
       />
-      
+
       {/* 系统状态指示器（调试模式） */}
       {process.env.NODE_ENV === 'development' && (
-        <div 
+        <div
           className="fixed bottom-4 right-4 bg-black/80 text-white text-xs p-3 rounded-lg z-[60] max-w-xs"
         >
           <div className="font-bold mb-2">增强AI系统状态</div>

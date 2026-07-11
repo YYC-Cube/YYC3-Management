@@ -15,13 +15,13 @@
 'use client';
 
 import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-  memo,
   forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
 import { calculateVisibleRange } from './optimization';
 
@@ -93,7 +93,7 @@ export function VirtualList<T>({
 // 2. Memo化组件包装器
 // ==========================================
 
-export interface OptimizedComponentProps<P> extends P {
+export type OptimizedComponentProps<P = any> = P & {
   __performance_key?: string;
 }
 
@@ -106,9 +106,9 @@ export function createOptimizedComponent<P extends object>(
 ) {
   const MemoizedComponent = memo(Component, arePropsEqual);
 
-  return forwardRef<any, OptimizedComponentProps<P>>((props, ref) => {
-    return <MemoizedComponent {...props} ref={ref} />;
-  }) as React.ComponentType<OptimizedizedComponentProps<P>>;
+  return forwardRef<any, any>((props, ref) => {
+    return <MemoizedComponent {...(props as any)} ref={ref} />;
+  }) as React.ComponentType<any>;
 }
 
 // ==========================================
@@ -125,7 +125,7 @@ export interface DebouncedInputProps
 export const DebouncedInput = memo<DebouncedInputProps>(
   ({ value, onChange, debounceMs = 300, ...inputProps }) => {
     const [localValue, setLocalValue] = useState(value.toString());
-    const timeoutRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
       setLocalValue(value.toString());
@@ -260,7 +260,7 @@ export interface PerformanceTrackerProps {
 }
 
 export const PerformanceTracker: React.FC<PerformanceTrackerProps> = memo(
-  ({ name, children, logRerenders = true, logRenderTime = true }) => {
+  ({ name: _name, children, logRerenders = true, logRenderTime = true }) => {
     const renderCount = useRef(0);
     const renderStartTime = useRef<number>(0);
 
@@ -272,11 +272,11 @@ export const PerformanceTracker: React.FC<PerformanceTrackerProps> = memo(
       renderCount.current += 1;
 
       if (logRerenders) {
-        // console.log(`[Performance Tracker] ${name} rendered ${renderCount.current} times`);
+        // console.log(`[Performance Tracker] ${_name} rendered ${renderCount.current} times`);
 
         if (logRenderTime) {
-          const renderTime = performance.now() - renderStartTime.current;
-          // console.log(`[Performance Tracker] ${name} render time: ${renderTime.toFixed(2)}ms`);
+          // const renderTime = performance.now() - renderStartTime.current;
+          // console.log(`[Performance Tracker] ${_name} render time: ${renderTime.toFixed(2)}ms`);
         }
       }
     });
@@ -435,7 +435,7 @@ export function useConditionalRender<T>(
 ): React.ReactNode | null {
   return useMemo(() => {
     if (!condition) return null;
-    return <Component {...props} />;
+    return React.createElement(Component as React.ComponentType<any>, props);
   }, [condition, Component, props]);
 }
 
@@ -478,7 +478,7 @@ export function useWindowSize(debounceMs: number = 200) {
 
 export function useBatchedUpdates<T>(updater: (updates: T[]) => void, batchSize: number = 10) {
   const [batch, setBatch] = useState<T[]>([]);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const addToBatch = useCallback((item: T) => {
     setBatch((prev) => {

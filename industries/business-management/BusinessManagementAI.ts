@@ -1,8 +1,7 @@
 import {
-  AIWidgetInstance,
   AITool,
-  createAITool,
-  createBusinessManagementAI
+  AIWidgetInstance,
+  createAITool
 } from './types';
 
 export class BusinessManagementAI {
@@ -204,7 +203,7 @@ export class BusinessManagementAI {
     };
   }
 
-  async analyzeKPI(kpiData: any, params?: any): Promise<any> {
+  async analyzeKPI(_kpiData: any, _params?: any): Promise<any> {
     return {
       status: 'on_track',
       trend: 'positive',
@@ -212,7 +211,7 @@ export class BusinessManagementAI {
     };
   }
 
-  async generateKPIRecommendations(analysis: any): Promise<string[]> {
+  async generateKPIRecommendations(_analysis: any): Promise<string[]> {
     return ['Continue current strategy', 'Monitor closely'];
   }
 
@@ -224,12 +223,12 @@ export class BusinessManagementAI {
   }
 }
 
-async function createAutonomousAIWidget(config: any): Promise<AIWidgetInstance> {
+async function createAutonomousAIWidget(_config: any): Promise<AIWidgetInstance> {
   return {
-    sendMessage: async (message) => ({
+    sendMessage: async (_message) => ({
       data: null,
       immediate_action_required: false
     }),
-    registerTool: async (tool) => {}
+    registerTool: async (_tool) => { }
   };
 }

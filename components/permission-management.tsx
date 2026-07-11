@@ -48,8 +48,6 @@ interface Permission {
 
 export function PermissionManagement() {
   const [selectedTab, setSelectedTab] = useState("users")
-  const [isCreateUserDialogOpen, setIsCreateUserDialogOpen] = useState(false)
-  const [isCreateRoleDialogOpen, setIsCreateRoleDialogOpen] = useState(false)
 
   // 模拟用户数据
   const users: User[] = [
@@ -190,7 +188,7 @@ export function PermissionManagement() {
             <UserPlus className="w-4 h-4 mr-2" />
             添加用户
           </Button>
-          <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700">
+          <Button className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700">
             <Shield className="w-4 h-4 mr-2" />
             创建角色
           </Button>

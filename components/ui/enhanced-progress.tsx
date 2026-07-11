@@ -40,7 +40,7 @@ export function EnhancedProgress({
           style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
         >
           {animated && (
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
           )}
         </div>
       </div>

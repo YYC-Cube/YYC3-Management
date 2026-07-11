@@ -101,14 +101,14 @@ export default function AIFloatingDemoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-12">
         {/* 页面标题 */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 mb-6">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-linear-to-r from-blue-500 to-purple-600 mb-6">
             <Sparkles className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold mb-4 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             YYC³ AI智能浮窗系统
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -222,7 +222,7 @@ export default function AIFloatingDemoPage() {
                   onClick={handleOpenWidget}
                   disabled={!agenticCore || showWidget}
                   size="lg"
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                  className="flex-1 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
                   打开AI助手浮窗

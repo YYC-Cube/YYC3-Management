@@ -164,7 +164,7 @@ export function Sidebar() {
               onClick={() => toggleWidget()}
               aria-label="打开AI浮窗"
               title="打开AI浮窗"
-              className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-8 h-8 bg-linear-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <Image src="/yyc3-icons/pwa/icon-96x96.png" alt="YYC³ Logo" width={20} height={20} className="rounded" />
             </button>
@@ -177,7 +177,7 @@ export function Sidebar() {
         {isCollapsed && title && (
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer mx-auto">
+              <div className="w-8 h-8 bg-linear-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer mx-auto">
                 <Image src="/yyc3-icons/pwa/icon-96x96.png" alt="YYC³ Logo" width={20} height={20} className="rounded" />
               </div>
             </TooltipTrigger>
@@ -255,9 +255,9 @@ export function Sidebar() {
                         </Link>
                       </Button>
                       <div
-                        className="absolute right-0 top-0 bottom-0 w-[3px] rounded-r transition-all duration-200"
+                        className="absolute right-0 top-0 bottom-0 w-0.75 rounded-r transition-all duration-200"
                         style={{
-                          ['--theme-shadow' as unknown]: theme.shadow,
+                          ['--theme-shadow' as any]: theme.shadow,
                           backgroundColor: isActive ? 'var(--theme-shadow)' : 'transparent',
                           boxShadow: isActive ? '0 0 8px var(--theme-shadow)80' : 'none',
                         } as React.CSSProperties}
@@ -287,7 +287,7 @@ export function Sidebar() {
       <div className="border-t border-slate-200 p-4">
         {!isCollapsed ? (
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-linear-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-medium">管</span>
             </div>
             <div className="flex-1 min-w-0">
@@ -298,7 +298,7 @@ export function Sidebar() {
         ) : (
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto cursor-pointer">
+              <div className="w-8 h-8 bg-linear-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto cursor-pointer">
                 <span className="text-white text-sm font-medium">管</span>
               </div>
             </TooltipTrigger>

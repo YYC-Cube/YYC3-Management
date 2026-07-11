@@ -11,13 +11,13 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { EnhancedProgress } from "@/components/ui/enhanced-progress"
-import { Target, TrendingUp, Users, Calendar, Plus, Edit, Eye, Award } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Award, Calendar, Edit, Eye, Plus, Target, TrendingUp, Users } from "lucide-react"
+import { useState } from "react"
 
 interface OKR {
   id: string
@@ -46,8 +46,7 @@ interface KeyResult {
 
 export function OKRManagement() {
   const [selectedQuarter, setSelectedQuarter] = useState("2025-Q2")
-  const [selectedDepartment, setSelectedDepartment] = useState("all")
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
+  const [selectedDepartment] = useState("all")
 
   // 模拟OKR数据
   const okrs: OKR[] = [
@@ -217,7 +216,7 @@ export function OKRManagement() {
               <SelectItem value="2025-Q4">2025 Q4</SelectItem>
             </SelectContent>
           </Select>
-          <Button className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
+          <Button className="bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
             <Plus className="w-4 h-4 mr-2" />
             创建OKR
           </Button>
@@ -288,7 +287,7 @@ export function OKRManagement() {
             key={okr.id}
             className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
           >
-            <CardHeader className="border-b border-sky-100 bg-gradient-to-r from-sky-50/50 to-blue-50/30">
+            <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <CardTitle className="text-lg text-slate-800">{okr.title}</CardTitle>
@@ -354,7 +353,7 @@ export function OKRManagement() {
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                    className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
                   >
                     <Award className="w-4 h-4 mr-2" />
                     更新进度

@@ -100,7 +100,7 @@ export const shadows = {
 // 通用样式配置
 export const commonStyles = {
   layout: {
-    container: "min-h-screen bg-gradient-to-br from-slate-50 to-sky-50/30 p-6",
+    container: "min-h-screen bg-linear-to-br from-slate-50 to-sky-50/30 p-6",
     pageHeader: "flex items-center justify-between mb-6",
     pageTitle: "text-2xl font-bold text-slate-900",
     pageDescription: "text-slate-600 mt-1",
@@ -117,7 +117,7 @@ export const commonStyles = {
   },
   button: {
     primary:
-      "bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md",
+      "bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md",
     secondary:
       "bg-white border border-sky-200 text-sky-700 hover:bg-sky-50 hover:border-sky-300 font-medium px-4 py-2 rounded-lg transition-all duration-200",
     outline:
@@ -154,21 +154,21 @@ export const commonStyles = {
 
 // 进度条颜色配置 - 统一使用彩色渐变
 export const getProgressColor = (progress: number, status?: string): string => {
-  if (status === "completed") return "bg-gradient-to-r from-emerald-400 to-emerald-500"
-  if (status === "cancelled") return "bg-gradient-to-r from-red-400 to-red-500"
-  if (status === "critical") return "bg-gradient-to-r from-red-400 to-red-500"
-  if (status === "warning") return "bg-gradient-to-r from-amber-400 to-amber-500"
-  if (status === "excellent") return "bg-gradient-to-r from-emerald-400 to-emerald-500"
-  if (status === "good") return "bg-gradient-to-r from-sky-400 to-sky-500"
-  if (status === "at-risk") return "bg-gradient-to-r from-amber-400 to-amber-500"
-  if (status === "off-track") return "bg-gradient-to-r from-red-400 to-red-500"
-  if (status === "on-track") return "bg-gradient-to-r from-emerald-400 to-emerald-500"
+  if (status === "completed") return "bg-linear-to-r from-emerald-400 to-emerald-500"
+  if (status === "cancelled") return "bg-linear-to-r from-red-400 to-red-500"
+  if (status === "critical") return "bg-linear-to-r from-red-400 to-red-500"
+  if (status === "warning") return "bg-linear-to-r from-amber-400 to-amber-500"
+  if (status === "excellent") return "bg-linear-to-r from-emerald-400 to-emerald-500"
+  if (status === "good") return "bg-linear-to-r from-sky-400 to-sky-500"
+  if (status === "at-risk") return "bg-linear-to-r from-amber-400 to-amber-500"
+  if (status === "off-track") return "bg-linear-to-r from-red-400 to-red-500"
+  if (status === "on-track") return "bg-linear-to-r from-emerald-400 to-emerald-500"
 
   // 根据进度值返回彩色渐变
-  if (progress >= 90) return "bg-gradient-to-r from-emerald-400 to-emerald-500"
-  if (progress >= 70) return "bg-gradient-to-r from-sky-400 to-sky-500"
-  if (progress >= 50) return "bg-gradient-to-r from-amber-400 to-amber-500"
-  return "bg-gradient-to-r from-red-400 to-red-500"
+  if (progress >= 90) return "bg-linear-to-r from-emerald-400 to-emerald-500"
+  if (progress >= 70) return "bg-linear-to-r from-sky-400 to-sky-500"
+  if (progress >= 50) return "bg-linear-to-r from-amber-400 to-amber-500"
+  return "bg-linear-to-r from-red-400 to-red-500"
 }
 
 // 状态配置
