@@ -1,7 +1,7 @@
 /**
  * @fileoverview monitor.ts
  * @description 性能监控和测量工具
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2026-01-05
  *
  * 功能：
@@ -88,7 +88,7 @@ function getRating(metricName: string, value: number): 'good' | 'needs-improveme
 // ==========================================
 
 function collectDeviceInfo(): DeviceInfo {
-  const navigator = window.navigator as any;
+  const navigator = window.navigator as unknown;
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   return {
@@ -282,7 +282,7 @@ export function reportWebVitals(metric: Metric) {
 
   // 开发环境打印到控制台
   if (process.env.NODE_ENV === 'development') {
-    console.log('[Performance]', {
+    // console.log('[Performance]', {
       name: metric.name,
       value: metric.value,
       rating: getRating(metric.name, metric.value),
@@ -325,7 +325,7 @@ export function measureCustomMetric(name: string, measureFn: () => void) {
     timestamp: Date.now(),
   };
 
-  (performanceStore as any).setMetric(metric);
+  (performanceStore as unknown).setMetric(metric);
 
   // 清理marks
   performance.clearMarks(startMark);
@@ -338,7 +338,7 @@ export function measureCustomMetric(name: string, measureFn: () => void) {
 
 export function exportPerformanceData(): PerformanceReport | null {
   if (!performanceStore.hasAllCoreMetrics()) {
-    console.warn('Not all core metrics collected yet');
+    // console.warn('Not all core metrics collected yet');
     return null;
   }
 
@@ -394,7 +394,7 @@ export async function initPerformanceMonitoring() {
     getLCP(reportWebVitals);
     getTTFB(reportWebVitals);
 
-    console.log('[Performance] Monitoring initialized');
+    // console.log('[Performance] Monitoring initialized');
   } catch (error) {
     console.error('[Performance] Failed to initialize monitoring:', error);
   }

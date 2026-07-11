@@ -2,7 +2,7 @@
  * @fileoverview tasks.tsx
  * @description 任务管理组件 - 集成真实API
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -209,7 +209,7 @@ export default function TasksPage() {
       case "low":
         return "text-green-600 bg-green-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -220,11 +220,11 @@ export default function TasksPage() {
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "pending":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       case "cancelled":
         return "text-red-600 bg-red-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -362,7 +362,7 @@ export default function TasksPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">全部任务</option>
                 <option value="pending">待处理</option>

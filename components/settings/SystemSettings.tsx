@@ -19,7 +19,7 @@ export function SystemSettings({ showTitle = true }: { showTitle?: boolean }) {
     const result = await saveConfig();
     if (result.success) {
       // Toast通知
-      console.log('配置保存成功');
+      // console.log('配置保存成功');
     }
   };
 
@@ -33,7 +33,7 @@ export function SystemSettings({ showTitle = true }: { showTitle?: boolean }) {
       try {
         const config = await importConfig(file);
         // 应用导入的配置
-        console.log('配置导入成功', config);
+        // console.log('配置导入成功', config);
       } catch (error) {
         console.error('配置导入失败:', error);
       }

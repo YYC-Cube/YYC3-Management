@@ -1,5 +1,4 @@
 // workflows/intelligent-calling/CallingWorkflowEngine.ts
-// @ts-ignore - TypeScript module resolution issue
 import { Customer, Campaign } from '../types';
 import {
   AIOrchestrator,

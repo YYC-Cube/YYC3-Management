@@ -2,7 +2,7 @@
  * @fileoverview 模型适配器工厂
  * @description 统一管理和创建各类AI模型适配器
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³

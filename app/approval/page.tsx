@@ -217,7 +217,7 @@ export default function ApprovalPage() {
                   { type: "报销申请", count: 18, percentage: 28, color: "bg-green-500" },
                   { type: "采购申请", count: 12, percentage: 18, color: "bg-yellow-500" },
                   { type: "培训申请", count: 8, percentage: 12, color: "bg-purple-500" },
-                  { type: "其他申请", count: 5, percentage: 7, color: "bg-gray-500" },
+                  { type: "其他申请", count: 5, percentage: 7, color: "bg-slate-500" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

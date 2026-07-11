@@ -146,7 +146,7 @@ export default function CreativeCollaborationPage() {
       case "completed":
         return "bg-green-100 text-green-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -174,7 +174,7 @@ export default function CreativeCollaborationPage() {
       case "low":
         return "text-green-600"
       default:
-        return "text-gray-600"
+        return "text-slate-600"
     }
   }
 
@@ -319,7 +319,7 @@ export default function CreativeCollaborationPage() {
                   <div className="space-y-2">
                     <Label htmlFor="project-search" className="sr-only">搜索项目</Label>
                     <div className="relative">
-                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                       <Input
                         id="project-search"
                         placeholder="搜索项目..."
@@ -332,7 +332,7 @@ export default function CreativeCollaborationPage() {
                   <select
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md"
+                    className="px-3 py-2 border border-slate-300 rounded-md"
                   >
                     <option value="all">全部状态</option>
                     <option value="planning">规划中</option>
@@ -385,8 +385,8 @@ export default function CreativeCollaborationPage() {
 
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">{project.deadline}</span>
+                            <Calendar className="w-4 h-4 text-slate-500" />
+                            <span className="text-sm text-slate-600">{project.deadline}</span>
                           </div>
                           <div className="flex -space-x-2">
                             {project.team.slice(0, 3).map((member, index) => (
@@ -397,8 +397,8 @@ export default function CreativeCollaborationPage() {
                               </Avatar>
                             ))}
                             {project.team.length > 3 && (
-                              <div className="w-6 h-6 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center">
-                                <span className="text-xs text-gray-600">+{project.team.length - 3}</span>
+                              <div className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center">
+                                <span className="text-xs text-slate-600">+{project.team.length - 3}</span>
                               </div>
                             )}
                           </div>
@@ -475,13 +475,13 @@ export default function CreativeCollaborationPage() {
                                 {idea.author.charAt(0)}
                               </AvatarFallback>
                             </Avatar>
-                            <span className="text-sm text-gray-600">{idea.author}</span>
+                            <span className="text-sm text-slate-600">{idea.author}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Badge variant="secondary" className="bg-pink-50 text-pink-700">
                               {idea.category}
                             </Badge>
-                            <span className="text-xs text-gray-500">{idea.timestamp}</span>
+                            <span className="text-xs text-slate-500">{idea.timestamp}</span>
                           </div>
                         </div>
 
@@ -564,7 +564,7 @@ export default function CreativeCollaborationPage() {
                           <p className="text-sm">
                             <span className="font-medium">张设计师</span> 更新了春季营销方案的设计稿
                           </p>
-                          <p className="text-xs text-gray-500">2分钟前</p>
+                          <p className="text-xs text-slate-500">2分钟前</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
@@ -575,7 +575,7 @@ export default function CreativeCollaborationPage() {
                           <p className="text-sm">
                             <span className="font-medium">李文案</span> 提交了新的创意想法
                           </p>
-                          <p className="text-xs text-gray-500">5分钟前</p>
+                          <p className="text-xs text-slate-500">5分钟前</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
@@ -586,7 +586,7 @@ export default function CreativeCollaborationPage() {
                           <p className="text-sm">
                             <span className="font-medium">AI助手</span> 生成了3个新的营销创意
                           </p>
-                          <p className="text-xs text-gray-500">10分钟前</p>
+                          <p className="text-xs text-slate-500">10分钟前</p>
                         </div>
                       </div>
                     </div>
@@ -609,7 +609,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">今日使用次数</span>
+                        <span className="text-sm text-slate-600">今日使用次数</span>
                         <Badge className="bg-purple-100 text-purple-800">15次</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800">
@@ -631,7 +631,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">设计模板</span>
+                        <span className="text-sm text-slate-600">设计模板</span>
                         <Badge className="bg-pink-100 text-pink-800">200+</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800">
@@ -653,7 +653,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">文案风格</span>
+                        <span className="text-sm text-slate-600">文案风格</span>
                         <Badge className="bg-blue-100 text-blue-800">12种</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
@@ -675,7 +675,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">数据源</span>
+                        <span className="text-sm text-slate-600">数据源</span>
                         <Badge className="bg-green-100 text-green-800">实时更新</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800">
@@ -697,7 +697,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">评估维度</span>
+                        <span className="text-sm text-slate-600">评估维度</span>
                         <Badge className="bg-orange-100 text-orange-800">8个</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800">
@@ -719,7 +719,7 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">成功率</span>
+                        <span className="text-sm text-slate-600">成功率</span>
                         <Badge className="bg-indigo-100 text-indigo-800">92%</Badge>
                       </div>
                       <Button className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
@@ -745,19 +745,19 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">创意采用率</span>
+                        <span className="text-sm text-slate-600">创意采用率</span>
                         <span className="font-semibold text-blue-600">78%</span>
                       </div>
                       <Progress value={78} className="h-2" />
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">平均评分</span>
+                        <span className="text-sm text-slate-600">平均评分</span>
                         <span className="font-semibold text-blue-600">4.6/5.0</span>
                       </div>
                       <Progress value={92} className="h-2" />
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">实施成功率</span>
+                        <span className="text-sm text-slate-600">实施成功率</span>
                         <span className="font-semibold text-blue-600">85%</span>
                       </div>
                       <Progress value={85} className="h-2" />
@@ -775,19 +775,19 @@ export default function CreativeCollaborationPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">项目按时完成率</span>
+                        <span className="text-sm text-slate-600">项目按时完成率</span>
                         <span className="font-semibold text-green-600">91%</span>
                       </div>
                       <Progress value={91} className="h-2" />
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">团队满意度</span>
+                        <span className="text-sm text-slate-600">团队满意度</span>
                         <span className="font-semibold text-green-600">4.8/5.0</span>
                       </div>
                       <Progress value={96} className="h-2" />
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">沟通效率提升</span>
+                        <span className="text-sm text-slate-600">沟通效率提升</span>
                         <span className="font-semibold text-green-600">+45%</span>
                       </div>
                       <Progress value={45} className="h-2" />
@@ -807,15 +807,15 @@ export default function CreativeCollaborationPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="text-3xl font-bold text-purple-600 mb-2">40%</div>
-                      <div className="text-sm text-gray-600">创意生成效率提升</div>
+                      <div className="text-sm text-slate-600">创意生成效率提升</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-purple-600 mb-2">65%</div>
-                      <div className="text-sm text-gray-600">设计时间节省</div>
+                      <div className="text-sm text-slate-600">设计时间节省</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-purple-600 mb-2">85%</div>
-                      <div className="text-sm text-gray-600">用户满意度</div>
+                      <div className="text-sm text-slate-600">用户满意度</div>
                     </div>
                   </div>
                 </CardContent>

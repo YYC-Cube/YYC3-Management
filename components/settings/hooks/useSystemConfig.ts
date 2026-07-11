@@ -78,7 +78,7 @@ export function useSystemConfig() {
   const updateConfig = useCallback((
     section: ConfigSection,
     field: string,
-    value: any
+    value: unknown
   ) => {
     setConfig(prev => ({
       ...prev,

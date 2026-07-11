@@ -2,7 +2,7 @@
  * @fileoverview customers.tsx
  * @description 客户管理组件 - 集成真实API
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-01-19
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -195,9 +195,9 @@ export default function CustomersPage() {
       case "普通":
         return "text-green-600 bg-green-50"
       case "潜在":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -206,9 +206,9 @@ export default function CustomersPage() {
       case "active":
         return "text-green-600 bg-green-50"
       case "inactive":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -319,7 +319,7 @@ export default function CustomersPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 <option value="all">全部客户</option>
                 <option value="active">活跃客户</option>

@@ -62,8 +62,8 @@ class MemoryAPIKeyStore implements APIKeyStore {
   }
 
   async create(keyData: Omit<APIKey, 'key' | 'createdAt'>): Promise<APIKey> {
-    const key = `ak_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    const secret = `sk_${Date.now()}_${Math.random().toString(36).substr(2, 16)}`;
+    const key = `ak_${Date.now()}_${crypto.randomBytes(16).toString('hex')}`;
+    const secret = `sk_${Date.now()}_${crypto.randomBytes(32).toString('hex')}`;
 
     const apiKey: APIKey = {
       ...keyData,
@@ -302,7 +302,7 @@ export class ClientSignatureGenerator {
   async signRequest(req: {
     method: string;
     url: string;
-    body?: any;
+    body?: unknown;
   }): Promise<{
     'x-api-key': string;
     'x-timestamp': string;
@@ -335,7 +335,7 @@ export class ClientSignatureGenerator {
   async createSignedRequest(req: {
     method: string;
     url: string;
-    body?: any;
+    body?: unknown;
     headers?: Record<string, string>;
   }): Promise<Request> {
     const signatureHeaders = await this.signRequest(req);

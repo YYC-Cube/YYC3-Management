@@ -2,7 +2,7 @@
  * @fileoverview log-management.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -274,7 +274,7 @@ export default function LogManagement() {
   const getLevelColor = (level: string) => {
     switch (level) {
       case "debug":
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
       case "info":
         return "text-blue-600 bg-blue-50"
       case "warn":
@@ -282,7 +282,7 @@ export default function LogManagement() {
       case "error":
         return "text-red-600 bg-red-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 
@@ -295,7 +295,7 @@ export default function LogManagement() {
       case "user":
         return "text-green-600 bg-green-50"
       default:
-        return "text-gray-600 bg-gray-50"
+        return "text-slate-600 bg-slate-50"
     }
   }
 

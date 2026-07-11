@@ -2,7 +2,7 @@
  * @fileoverview store-management.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -72,7 +72,7 @@ export function StoreManagement() {
       monthlyRevenue: 850000,
       createdAt: new Date("2023-01-15"),
       lastActive: new Date(),
-      logo: "/yyc3-logo-blue.png",
+      logo: "/yyc3-icons/pwa/icon-512x512.png",
     },
     {
       id: "2",
@@ -164,7 +164,7 @@ export function StoreManagement() {
       case "outlet":
         return "bg-green-100 text-green-800 border-green-200"
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-slate-100 text-slate-800 border-slate-200"
     }
   }
 
@@ -173,11 +173,11 @@ export function StoreManagement() {
       case "active":
         return "bg-green-100 text-green-800"
       case "inactive":
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
       case "maintenance":
         return "bg-yellow-100 text-yellow-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -254,7 +254,7 @@ export function StoreManagement() {
         <TabsContent value="stores" className="space-y-4">
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
               <Input
                 placeholder="搜索门店名称或地址..."
                 value={searchTerm}
@@ -363,7 +363,7 @@ export function StoreManagement() {
                         </Badge>
                         <Badge
                           className={
-                            employee.status === "active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"
+                            employee.status === "active" ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"
                           }
                         >
                           {employee.status === "active" ? "在职" : "离职"}
@@ -389,8 +389,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">总门店数</p>
-                  <p className="text-2xl font-bold text-gray-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-slate-600">总门店数</p>
+                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
                     {stores.length}
                   </p>
                 </div>
@@ -407,8 +407,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-blue-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">总员工数</p>
-                  <p className="text-2xl font-bold text-gray-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-slate-600">总员工数</p>
+                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
                     {stores.reduce((sum, store) => sum + store.employees, 0)}
                   </p>
                 </div>
@@ -425,8 +425,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-purple-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">月总营收</p>
-                  <p className="text-2xl font-bold text-gray-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-slate-600">月总营收</p>
+                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
                     ¥{(stores.reduce((sum, store) => sum + store.monthlyRevenue, 0) / 10000).toFixed(1)}万
                   </p>
                 </div>
@@ -443,8 +443,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">营业门店</p>
-                  <p className="text-2xl font-bold text-gray-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-slate-600">营业门店</p>
+                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
                     {stores.filter((store) => store.status === "active").length}
                   </p>
                 </div>

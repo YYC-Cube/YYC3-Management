@@ -2,7 +2,7 @@
  * @fileoverview system-management-overview.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -35,7 +35,7 @@ interface SystemStatus {
   score: number
   description: string
   lastCheck: Date
-  icon: any
+  icon: unknown
   route: string
   colorTheme: string
   borderColor: string
@@ -212,7 +212,7 @@ export function SystemManagementOverview() {
       case "critical":
         return "text-red-600"
       default:
-        return "text-gray-600"
+        return "text-slate-600"
     }
   }
 
@@ -225,7 +225,7 @@ export function SystemManagementOverview() {
       case "critical":
         return "bg-red-100"
       default:
-        return "bg-gray-100"
+        return "bg-slate-100"
     }
   }
 
@@ -277,7 +277,7 @@ export function SystemManagementOverview() {
             )}
             刷新状态
           </Button>
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button className="bg-primary hover:bg-primary/90">
             <Settings className="w-4 h-4 mr-2" />
             系统设置
           </Button>
@@ -293,7 +293,7 @@ export function SystemManagementOverview() {
             <span className="text-slate-600">/100</span>
           </div>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
+        <div className="w-full bg-slate-200 rounded-full h-3 mb-4">
           <div
             className="bg-gradient-to-r from-blue-400 to-blue-500 h-3 rounded-full transition-all duration-1000 ease-out"
             style={{ width: `${overallScore}%` }}
@@ -320,7 +320,7 @@ export function SystemManagementOverview() {
               <span className={`text-xl font-bold ${getStatusColor(status.status)}`}>{status.score}</span>
             </div>
             <p className="text-sm text-slate-600 mb-3">{status.description}</p>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div className="w-full bg-slate-200 rounded-full h-2 mb-2">
               <div
                 className={`${status.progressColor} h-2 rounded-full transition-all duration-1000 ease-out`}
                 style={{ width: `${status.score}%` }}

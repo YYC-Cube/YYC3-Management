@@ -2,7 +2,7 @@
  * @fileoverview ai-customer-data.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -57,12 +57,12 @@ export function AiCustomerData() {
 
   // 导出数据函数
   const handleExport = (type: string) => {
-    console.log(`导出${type}数据`)
+    // console.log(`导出${type}数据`)
   }
 
   // 分享数据函数
   const handleShare = (type: string) => {
-    console.log(`分享${type}数据`)
+    // console.log(`分享${type}数据`)
   }
 
   const customerStages = [
@@ -206,7 +206,7 @@ export function AiCustomerData() {
       case "info":
         return "text-blue-600 bg-blue-100"
       default:
-        return "text-gray-600 bg-gray-100"
+        return "text-slate-600 bg-slate-100"
     }
   }
 
@@ -435,9 +435,9 @@ export function AiCustomerData() {
                       <div className="text-lg font-bold text-blue-700">892</div>
                       <div className="text-xs text-blue-600">中价值</div>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200/50">
-                      <div className="text-lg font-bold text-gray-700">1,247</div>
-                      <div className="text-xs text-gray-600">低价值</div>
+                    <div className="text-center p-3 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-slate-200/50">
+                      <div className="text-lg font-bold text-slate-700">1,247</div>
+                      <div className="text-xs text-slate-600">低价值</div>
                     </div>
                   </div>
                   <div className="space-y-3">

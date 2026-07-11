@@ -20,7 +20,7 @@ export class NotificationRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (user_id) {

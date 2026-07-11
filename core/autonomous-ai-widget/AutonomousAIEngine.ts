@@ -1,5 +1,4 @@
 // core/autonomous-ai-widget/AutonomousAIEngine.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   AutonomousAIConfig,
   UserMessage,

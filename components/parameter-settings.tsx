@@ -2,7 +2,7 @@
  * @fileoverview parameter-settings.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -118,8 +118,8 @@ export function ParameterSettings() {
       {/* 页面头部 */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">参数设置</h2>
-          <p className="text-gray-600 mt-1">配置系统运行的各项参数和集成设置</p>
+          <h2 className="text-2xl font-bold text-slate-900">参数设置</h2>
+          <p className="text-slate-600 mt-1">配置系统运行的各项参数和集成设置</p>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline">

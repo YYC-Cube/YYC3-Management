@@ -27,7 +27,7 @@ export function BatchOperationsPanel<T>({
   onUpdate,
   onDelete,
   onUpdateStatus,
-  getItemId = (item) => (item as any).id,
+  getItemId = (item) => (item as unknown).id,
   disabled = false,
 }: BatchOperationsPanelProps<T>) {
   const [isOpen, setIsOpen] = useState(false)

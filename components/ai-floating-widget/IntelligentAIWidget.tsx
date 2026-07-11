@@ -2,7 +2,7 @@
  * @fileoverview 智能AI浮窗组件
  * @description 可拖拽、可插拔的智能AI交互界面，支持多模型切换
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -321,7 +321,7 @@ export const IntelligentAIWidget: React.FC<{
   };
 
   // 更新用户偏好
-  const updateUserPreferences = (preference: string, value: any) => {
+  const updateUserPreferences = (preference: string, value: unknown) => {
     setLearningState(prev => {
       const updated = { ...prev };
       updated.userPreferences.set(preference, value);
@@ -482,7 +482,7 @@ export const IntelligentAIWidget: React.FC<{
               navigator.clipboard.writeText(response.content)
                 .then(() => {
                   // 可以添加复制成功的提示
-                  console.log('消息内容已复制到剪贴板');
+                  // console.log('消息内容已复制到剪贴板');
                 })
                 .catch(err => {
                   console.error('复制失败:', err);
@@ -504,7 +504,7 @@ export const IntelligentAIWidget: React.FC<{
             type: 'success',
             action: () => {
               // 收藏该消息并记录为成功响应
-              console.log('消息已收藏');
+              // console.log('消息已收藏');
               learnFromUserInteraction(inputValue, response.content, true);
             }
           }
@@ -634,7 +634,7 @@ export const IntelligentAIWidget: React.FC<{
     setSettingsVisible(!settingsVisible);
   };
 
-  const handleSettingChange = (key: string, value: any) => {
+  const handleSettingChange = (key: string, value: unknown) => {
     setSettings(prev => ({
       ...prev,
       [key]: value
@@ -677,10 +677,10 @@ export const IntelligentAIWidget: React.FC<{
         isDragging ? "cursor-grabbing" : "cursor-grab"
       )}
       style={{
-        ['--widget-x' as any]: `${position.x}px`,
-        ['--widget-y' as any]: `${position.y}px`,
-        ['--widget-width' as any]: `${size.width}px`,
-        ['--widget-height' as any]: `${size.height}px`,
+        ['--widget-x' as unknown]: `${position.x}px`,
+        ['--widget-y' as unknown]: `${position.y}px`,
+        ['--widget-width' as unknown]: `${size.width}px`,
+        ['--widget-height' as unknown]: `${size.height}px`,
         left: 'var(--widget-x)',
         top: 'var(--widget-y)',
         width: 'var(--widget-width)',
@@ -765,7 +765,7 @@ export const IntelligentAIWidget: React.FC<{
 
         {/* 消息区域 */}
         <ScrollArea className="flex-1 p-4 relative">
-          <div className="absolute inset-0 bg-[url('/yyc3-logo-gray.png')] bg-no-repeat bg-center bg-cover opacity-50 pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/yyc3-icons/pwa/icon-512x512.png')] bg-no-repeat bg-center bg-cover opacity-50 pointer-events-none" />
           <div className="relative z-10">
             {settingsVisible ? (
             <div className="space-y-4">
@@ -957,7 +957,7 @@ export const IntelligentAIWidget: React.FC<{
                       {message.role === 'user' && message.sentiment && (
                         <div className="mt-1 flex items-center">
                           <span
-                            className={`text-xs px-1.5 py-0.5 rounded-full mr-1 ${message.sentiment.label === 'very-negative' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100' : message.sentiment.label === 'negative' ? 'bg-red-50 text-red-700 dark:bg-red-800 dark:text-red-200' : message.sentiment.label === 'neutral' ? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200' : message.sentiment.label === 'positive' ? 'bg-green-50 text-green-700 dark:bg-green-800 dark:text-green-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100'}`}
+                            className={`text-xs px-1.5 py-0.5 rounded-full mr-1 ${message.sentiment.label === 'very-negative' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100' : message.sentiment.label === 'negative' ? 'bg-red-50 text-red-700 dark:bg-red-800 dark:text-red-200' : message.sentiment.label === 'neutral' ? 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200' : message.sentiment.label === 'positive' ? 'bg-green-50 text-green-700 dark:bg-green-800 dark:text-green-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100'}`}
                           >
                             {message.sentiment.label === 'very-negative' ? '非常消极' : message.sentiment.label === 'negative' ? '消极' : message.sentiment.label === 'neutral' ? '中性' : message.sentiment.label === 'positive' ? '积极' : '非常积极'}
                           </span>

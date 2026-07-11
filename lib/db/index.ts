@@ -12,7 +12,7 @@ export async function checkAllConnections() {
     await pgClient.query('SELECT 1')
     pgClient.release()
     results.postgresql = true
-    console.log('✓ PostgreSQL connection successful')
+    // console.log('✓ PostgreSQL connection successful')
   } catch (error) {
     console.error('✗ PostgreSQL connection failed:', error)
   }
@@ -23,7 +23,7 @@ export async function checkAllConnections() {
     }
     await redisClient.ping()
     results.redis = true
-    console.log('✓ Redis connection successful')
+    // console.log('✓ Redis connection successful')
   } catch (error) {
     console.error('✗ Redis connection failed:', error)
   }
@@ -34,7 +34,7 @@ export async function checkAllConnections() {
 export async function closeAllConnections() {
   try {
     await pool.end()
-    console.log('✓ PostgreSQL connection closed')
+    // console.log('✓ PostgreSQL connection closed')
   } catch (error) {
     console.error('✗ Failed to close PostgreSQL connection:', error)
   }
@@ -42,7 +42,7 @@ export async function closeAllConnections() {
   try {
     if (redisClient.isOpen) {
       await redisClient.quit()
-      console.log('✓ Redis connection closed')
+      // console.log('✓ Redis connection closed')
     }
   } catch (error) {
     console.error('✗ Failed to close Redis connection:', error)

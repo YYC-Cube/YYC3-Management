@@ -12,7 +12,7 @@ export function useConnectionTest() {
 
   const testConnection = useCallback(async (
     type: string,
-    config: any
+    config: unknown
   ): Promise<ConnectionTestResult> => {
     setTesting(prev => ({ ...prev, [type]: true }));
     

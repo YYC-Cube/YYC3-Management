@@ -23,8 +23,8 @@ export interface SystemLog {
   user_id?: number
   ip_address?: string
   user_agent?: string
-  request_data?: any
-  response_data?: any
+  request_data?: unknown
+  response_data?: unknown
   error_message?: string
   stack_trace?: string
   duration?: number

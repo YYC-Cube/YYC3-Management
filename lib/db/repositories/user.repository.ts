@@ -8,6 +8,12 @@ import type {
   UserListResponse,
 } from '../models/user'
 
+const ALLOWED_UPDATE_COLUMNS = [
+  'username', 'email', 'phone', 'real_name', 'avatar',
+  'status', 'role', 'department', 'position', 'password_hash',
+  'last_login', 'is_online', 'login_count',
+] as const
+
 export class UserRepository {
   async findAll(params: UserSearchParams = {}): Promise<UserListResponse> {
     const {
@@ -22,7 +28,7 @@ export class UserRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (search) {
@@ -139,12 +145,12 @@ export class UserRepository {
 
   async update(id: number, data: UpdateUserData): Promise<User | null> {
     const updates: string[] = []
-    const values: any[] = []
+    const values: unknown[] = []
     let paramIndex = 1
 
     Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined) {
-        updates.push(`${key} = $${paramIndex}`)
+      if (value !== undefined && (ALLOWED_UPDATE_COLUMNS as readonly string[]).includes(key)) {
+        updates.push(`"${key}" = $${paramIndex}`)
         values.push(value)
         paramIndex++
       }

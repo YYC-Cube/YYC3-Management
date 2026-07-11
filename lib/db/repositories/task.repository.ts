@@ -7,6 +7,11 @@ import type {
   TaskListResponse,
 } from '../models/task'
 
+const ALLOWED_UPDATE_COLUMNS = [
+  'title', 'description', 'assignee_id', 'priority', 'status',
+  'progress', 'due_date', 'completed_at',
+] as const
+
 export class TaskRepository {
   async findAll(params: TaskSearchParams = {}): Promise<TaskListResponse> {
     const {
@@ -22,7 +27,7 @@ export class TaskRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (search) {
@@ -123,12 +128,12 @@ export class TaskRepository {
 
   async update(id: number, data: UpdateTaskData): Promise<Task | null> {
     const updates: string[] = []
-    const values: any[] = []
+    const values: unknown[] = []
     let paramIndex = 1
 
     Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined) {
-        updates.push(`${key} = $${paramIndex}`)
+      if (value !== undefined && (ALLOWED_UPDATE_COLUMNS as readonly string[]).includes(key)) {
+        updates.push(`"${key}" = $${paramIndex}`)
         values.push(value)
         paramIndex++
       }
@@ -158,7 +163,7 @@ export class TaskRepository {
 
   async updateStatus(id: number, status: string, progress?: number): Promise<Task | null> {
     const updates: string[] = ['status = $1']
-    const values: any[] = [status]
+    const values: unknown[] = [status]
     let paramIndex = 2
 
     if (progress !== undefined) {

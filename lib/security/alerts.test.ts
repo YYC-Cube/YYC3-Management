@@ -313,8 +313,7 @@ describe('SecurityAlertManager', () => {
       manager.registerChannel(mockSlackChannel);
       manager.registerChannel(mockWebhookChannel);
 
-      // 验证渠道注册成功（通过后续操作不会报错）
-      expect(true).toBe(true);
+      expect(manager).toBeDefined()
     });
 
     it('应该向HIGH和CRITICAL告警发送通知', async () => {

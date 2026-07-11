@@ -12,6 +12,10 @@
  * 5. 生产环境性能监控
  */
 
+// GitHub Pages 静态导出模式（CI 中通过 NEXT_PUBLIC_GITHUB_PAGES=true 激活）
+const isGitHubPages = process.env.NEXT_PUBLIC_GITHUB_PAGES === 'true'
+const isStaticExport = process.env.NEXT_STATIC_EXPORT === 'true'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // ==========================================
@@ -22,40 +26,25 @@ const nextConfig = {
   },
 
   // ==========================================
-  // ESLint 配置
+  // ESLint 配置（Next.js 16 已移除，通过 CLI 运行）
   // ==========================================
-  eslint: {
-    ignoreDuringBuilds: false, // 保持代码质量检查
-  },
 
   // ==========================================
   // 图片优化配置
+  // 静态导出（GitHub Pages）时关闭服务端图片优化
   // ==========================================
   images: {
-    // 启用图片优化
-    unoptimized: false,
-
-    // 支持的现代图片格式
+    unoptimized: isStaticExport ? true : false,
     formats: ['image/avif', 'image/webp'],
-
-    // 图片域名配置（如果使用外部图片）
     domains: [],
-
-    // 远程图片模式（更灵活）
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**.example.com', // 替换为实际域名
       },
     ],
-
-    // 设备尺寸（生成响应式图片）
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-
-    // 图片尺寸（按需生成）
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-
-    // 最小化缓存时间（开发环境）
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30天
   },
 
@@ -100,16 +89,20 @@ const nextConfig = {
 
     // 启用CSS优化
     optimizeCss: true,
-
-    // 启用App Router优化
-    appDir: true,
-
-    // 启用服务器组件
-    serverComponentsExternalPackages: ['sharp', 'onnxruntime-node'],
   },
 
   // ==========================================
-  // Webpack 配置（构建优化）
+  // 服务器外部包（Next.js 16 从 experimental.serverComponentsExternalPackages 迁移）
+  // ==========================================
+  serverExternalPackages: ['sharp', 'onnxruntime-node'],
+
+  // ==========================================
+  // Turbopack 配置（Next.js 16 默认构建器）
+  // ==========================================
+  turbopack: {},
+
+  // ==========================================
+  // Webpack 配置（仅在 --webpack 模式下生效）
   // ==========================================
   webpack: (config, { isServer }) => {
     // 生产环境优化
@@ -188,15 +181,8 @@ const nextConfig = {
       };
     }
 
-    // 模块解析优化
-    config.resolve = {
-      ...config.resolve,
-      alias: {
-        ...config.resolve.alias,
-        // 项目别名（在tsconfig.json中也定义）
-        '@': '/Users/yanyu/Documents/yyc3-mana',
-      },
-    };
+    // 模块解析优化 — 依赖 tsconfig.json paths 配置，不覆盖 webpack alias
+    // (tsconfig.json 中 "@/*": ["./*"] 已正确配置)
 
     return config;
   },
@@ -293,7 +279,14 @@ const nextConfig = {
   // ==========================================
   // 输出配置
   // ==========================================
-  output: 'standalone', // 独立输出（Docker友好）
+  // GitHub Pages 静态导出模式 vs Docker standalone 模式
+  output: isStaticExport ? 'export' : 'standalone',
+
+  // GitHub Pages 自定义域名无需 basePath；项目页面 (xxx.github.io/repo) 需要
+  basePath: isGitHubPages && !process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ? '/YYC3-Management' : '',
+
+  // 静态导出时启用 trailingSlash（GitHub Pages 兼容性更好）
+  trailingSlash: isStaticExport,
 
   // ==========================================
   // Power By 信息隐藏（安全）

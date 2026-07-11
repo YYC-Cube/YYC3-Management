@@ -73,7 +73,7 @@ describe("Chaos Engineering Examples", () => {
 
       await new Promise(resolve => setTimeout(resolve, 500))
 
-      expect(true).toBe(true)
+      expect(typeof cleanup).toBe('function')
 
       cleanup()
     })

@@ -2,7 +2,7 @@
  * @fileoverview 任务调度器 - 高级任务管理与执行
  * @description 提供优先级调度、并发控制、超时管理等能力
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-12-09
  * @modified 2025-12-09
  * @copyright Copyright (c) 2025 YYC³
@@ -239,7 +239,7 @@ export class TaskScheduler extends EventEmitter {
    * 生成任务ID
    */
   private generateTaskId(): string {
-    return `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `task-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
   }
 
   /**

@@ -2,7 +2,7 @@
  * @fileoverview 本地模型适配器
  * @description 适配本地部署的模型（Ollama, Qwen, GLM等）
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  */
 
 'use client';
@@ -32,7 +32,7 @@ export class LocalModelAdapter extends BaseModelAdapter {
     };
   }
   
-  protected async callModelAPI(request: CompletionRequest): Promise<any> {
+  protected async callModelAPI(request: CompletionRequest): Promise<unknown> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     };
@@ -61,7 +61,7 @@ export class LocalModelAdapter extends BaseModelAdapter {
     return response.json();
   }
   
-  protected async *callModelStream(request: any): AsyncIterable<any> {
+  protected async *callModelStream(request: unknown): AsyncIterable<unknown> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     };
@@ -121,7 +121,7 @@ export class LocalModelAdapter extends BaseModelAdapter {
     }
   }
   
-  protected async postprocess(rawResponse: any): Promise<CompletionResponse> {
+  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
     const choice = rawResponse.choices[0];
     
     return {
@@ -141,7 +141,7 @@ export class LocalModelAdapter extends BaseModelAdapter {
     };
   }
   
-  protected parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: any } {
+  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     if (!chunk.choices || chunk.choices.length === 0) {
       return { text: '', finished: false };
     }

@@ -7,6 +7,11 @@ import type {
   CustomerListResponse,
 } from '../models/customer'
 
+const ALLOWED_UPDATE_COLUMNS = [
+  'name', 'company', 'phone', 'email', 'level', 'status',
+  'address', 'notes', 'avatar', 'contact_person',
+] as const
+
 export class CustomerRepository {
   async findAll(params: CustomerSearchParams = {}): Promise<CustomerListResponse> {
     const {
@@ -20,7 +25,7 @@ export class CustomerRepository {
     const offset = (page - 1) * limit
 
     let whereClauses: string[] = []
-    let queryParams: any[] = []
+    let queryParams: unknown[] = []
     let paramIndex = 1
 
     if (search) {
@@ -112,12 +117,12 @@ export class CustomerRepository {
 
   async update(id: number, data: UpdateCustomerData): Promise<Customer | null> {
     const updates: string[] = []
-    const values: any[] = []
+    const values: unknown[] = []
     let paramIndex = 1
 
     Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined) {
-        updates.push(`${key} = $${paramIndex}`)
+      if (value !== undefined && (ALLOWED_UPDATE_COLUMNS as readonly string[]).includes(key)) {
+        updates.push(`"${key}" = $${paramIndex}`)
         values.push(value)
         paramIndex++
       }

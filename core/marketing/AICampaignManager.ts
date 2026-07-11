@@ -1,5 +1,4 @@
 // marketing/AICampaignManager.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   CampaignBrief,
   TargetAudience,

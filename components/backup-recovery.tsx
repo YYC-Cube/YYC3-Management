@@ -2,7 +2,7 @@
  * @fileoverview backup-recovery.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -130,7 +130,7 @@ export function BackupRecovery() {
       case "running":
         return <Clock className="w-4 h-4 text-blue-500 animate-spin" />
       default:
-        return <AlertTriangle className="w-4 h-4 text-gray-500" />
+        return <AlertTriangle className="w-4 h-4 text-slate-500" />
     }
   }
 
@@ -222,7 +222,7 @@ export function BackupRecovery() {
             <Database className="w-4 h-4 mr-2" />
             增量备份
           </Button>
-          <Button onClick={() => handleStartBackup("完整")} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={() => handleStartBackup("完整")} className="bg-primary hover:bg-primary/90">
             <Database className="w-4 h-4 mr-2" />
             完整备份
           </Button>
@@ -292,7 +292,7 @@ export function BackupRecovery() {
           <CardContent>
             <div className="space-y-4">
               <Progress value={backupProgress} className="w-full" />
-              <div className="flex justify-between text-sm text-gray-600">
+              <div className="flex justify-between text-sm text-slate-600">
                 <span>正在备份系统数据...</span>
                 <span>{backupProgress}%</span>
               </div>
@@ -321,21 +321,21 @@ export function BackupRecovery() {
                 {backupRecords.map((backup) => (
                   <div
                     key={backup.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
                   >
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
                         {getStatusIcon(backup.status)}
-                        <Database className="w-5 h-5 text-gray-500" />
+                        <Database className="w-5 h-5 text-slate-500" />
                       </div>
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
-                          <h3 className="font-semibold text-gray-900">{backup.name}</h3>
+                          <h3 className="font-semibold text-slate-900">{backup.name}</h3>
                           {getTypeBadge(backup.type)}
                           {getStatusBadge(backup.status)}
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">{backup.description}</p>
-                        <div className="flex items-center space-x-4 text-xs text-gray-400">
+                        <p className="text-sm text-slate-600 mb-1">{backup.description}</p>
+                        <div className="flex items-center space-x-4 text-xs text-slate-400">
                           <div className="flex items-center space-x-1">
                             <Calendar className="w-3 h-3" />
                             <span>{backup.createdAt.toLocaleString()}</span>

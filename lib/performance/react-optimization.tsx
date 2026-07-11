@@ -1,7 +1,7 @@
 /**
  * @fileoverview react-optimization.tsx
  * @description React组件性能优化工具
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2026-01-05
  *
  * 功能：
@@ -272,11 +272,11 @@ export const PerformanceTracker: React.FC<PerformanceTrackerProps> = memo(
       renderCount.current += 1;
 
       if (logRerenders) {
-        console.log(`[Performance Tracker] ${name} rendered ${renderCount.current} times`);
+        // console.log(`[Performance Tracker] ${name} rendered ${renderCount.current} times`);
 
         if (logRenderTime) {
           const renderTime = performance.now() - renderStartTime.current;
-          console.log(`[Performance Tracker] ${name} render time: ${renderTime.toFixed(2)}ms`);
+          // console.log(`[Performance Tracker] ${name} render time: ${renderTime.toFixed(2)}ms`);
         }
       }
     });

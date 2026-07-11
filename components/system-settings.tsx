@@ -2,7 +2,7 @@
  * @fileoverview system-settings.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -213,8 +213,8 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
     appearance: {
       theme: "light",
       primaryColor: "#3b82f6",
-      logoUrl: "/yyc3-logo-blue.png",
-      faviconUrl: "/favicon.ico",
+      logoUrl: "/yyc3-icons/pwa/icon-512x512.png",
+      faviconUrl: "/yyc3-icons/favicon/favicon.ico",
       customCss: "",
       showBranding: true,
       compactMode: false,
@@ -251,7 +251,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
     return () => clearInterval(interval)
   }, [])
 
-  const handleConfigChange = (section: keyof SystemConfig, field: string, value: any) => {
+  const handleConfigChange = (section: keyof SystemConfig, field: string, value: unknown) => {
     setSystemConfig((prev) => ({
       ...prev,
       [section]: {
@@ -375,7 +375,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
           <Button
             onClick={handleSaveConfig}
             disabled={!hasChanges || saving}
-            className="bg-blue-600 hover:bg-blue-700 responsive-button"
+            className="bg-primary hover:bg-primary/90 responsive-button"
           >
             <Save className={`responsive-icon mr-2 ${saving ? "animate-spin" : ""}`} />
             {saving ? "保存中..." : "保存配置"}
@@ -404,7 +404,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     stroke="currentColor"
                     strokeWidth="4"
                     fill="transparent"
-                    className="text-gray-200"
+                    className="text-slate-200"
                   />
                   <circle
                     cx="50%"
@@ -421,8 +421,8 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <Cpu className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                 </div>
               </div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.cpu}%</div>
-              <div className="text-xs sm:text-sm text-gray-600">CPU使用率</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.cpu}%</div>
+              <div className="text-xs sm:text-sm text-slate-600">CPU使用率</div>
             </div>
 
             <div className="text-center">
@@ -435,7 +435,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     stroke="currentColor"
                     strokeWidth="4"
                     fill="transparent"
-                    className="text-gray-200"
+                    className="text-slate-200"
                   />
                   <circle
                     cx="50%"
@@ -452,8 +452,8 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <Memory className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
                 </div>
               </div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.memory}%</div>
-              <div className="text-xs sm:text-sm text-gray-600">内存使用率</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.memory}%</div>
+              <div className="text-xs sm:text-sm text-slate-600">内存使用率</div>
             </div>
 
             <div className="text-center">
@@ -466,7 +466,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     stroke="currentColor"
                     strokeWidth="4"
                     fill="transparent"
-                    className="text-gray-200"
+                    className="text-slate-200"
                   />
                   <circle
                     cx="50%"
@@ -483,8 +483,8 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <HardDrive className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
                 </div>
               </div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.disk}%</div>
-              <div className="text-xs sm:text-sm text-gray-600">磁盘使用率</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.disk}%</div>
+              <div className="text-xs sm:text-sm text-slate-600">磁盘使用率</div>
             </div>
 
             <div className="text-center">
@@ -497,7 +497,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     stroke="currentColor"
                     strokeWidth="4"
                     fill="transparent"
-                    className="text-gray-200"
+                    className="text-slate-200"
                   />
                   <circle
                     cx="50%"
@@ -514,31 +514,31 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <Network className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
                 </div>
               </div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.network}%</div>
-              <div className="text-xs sm:text-sm text-gray-600">网络使用率</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.network}%</div>
+              <div className="text-xs sm:text-sm text-slate-600">网络使用率</div>
             </div>
           </div>
 
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.activeUsers}</div>
-              <div className="text-xs sm:text-sm text-gray-600">在线用户</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.activeUsers}</div>
+              <div className="text-xs sm:text-sm text-slate-600">在线用户</div>
             </div>
             <div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">
+              <div className="text-lg sm:text-xl font-bold text-slate-800">
                 {systemStatus.totalRequests.toLocaleString()}
               </div>
-              <div className="text-xs sm:text-sm text-gray-600">总请求数</div>
+              <div className="text-xs sm:text-sm text-slate-600">总请求数</div>
             </div>
             <div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">{systemStatus.uptime}</div>
-              <div className="text-xs sm:text-sm text-gray-600">运行时间</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.uptime}</div>
+              <div className="text-xs sm:text-sm text-slate-600">运行时间</div>
             </div>
             <div>
-              <div className="text-lg sm:text-xl font-bold text-gray-800">
+              <div className="text-lg sm:text-xl font-bold text-slate-800">
                 {(systemStatus.errorRate * 100).toFixed(2)}%
               </div>
-              <div className="text-xs sm:text-sm text-gray-600">错误率</div>
+              <div className="text-xs sm:text-sm text-slate-600">错误率</div>
             </div>
           </div>
         </CardContent>
@@ -813,7 +813,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                         step={10}
                         className="w-full"
                       />
-                      <div className="text-sm text-gray-600 text-center">
+                      <div className="text-sm text-slate-600 text-center">
                         {systemConfig.database.maxConnections} 个连接
                       </div>
                     </div>
@@ -831,7 +831,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <div className="flex items-center justify-between">
                     <div>
                       <Label className="text-sm font-medium">启用SSL</Label>
-                      <p className="text-xs text-gray-600">使用SSL加密连接</p>
+                      <p className="text-xs text-slate-600">使用SSL加密连接</p>
                     </div>
                     <Switch
                       checked={systemConfig.database.ssl}
@@ -841,7 +841,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <div className="flex items-center justify-between">
                     <div>
                       <Label className="text-sm font-medium">自动备份</Label>
-                      <p className="text-xs text-gray-600">定期备份数据库</p>
+                      <p className="text-xs text-slate-600">定期备份数据库</p>
                     </div>
                     <Switch
                       checked={systemConfig.database.backup}
@@ -896,7 +896,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   测试连接
                 </Button>
                 <Badge
-                  className={systemConfig.cache.enabled ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}
+                  className={systemConfig.cache.enabled ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"}
                 >
                   {systemConfig.cache.enabled ? "已启用" : "已禁用"}
                 </Badge>
@@ -908,7 +908,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <div className="flex items-center justify-between">
                     <div>
                       <Label className="text-sm font-medium">启用缓存</Label>
-                      <p className="text-xs text-gray-600">提高系统响应速度</p>
+                      <p className="text-xs text-slate-600">提高系统响应速度</p>
                     </div>
                     <Switch
                       checked={systemConfig.cache.enabled}
@@ -972,7 +972,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                           step={60}
                           className="w-full"
                         />
-                        <div className="text-sm text-gray-600 text-center">
+                        <div className="text-sm text-slate-600 text-center">
                           {Math.floor(systemConfig.cache.ttl / 60)} 分钟
                         </div>
                       </div>
@@ -988,13 +988,13 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                           step={64}
                           className="w-full"
                         />
-                        <div className="text-sm text-gray-600 text-center">{systemConfig.cache.maxSize} MB</div>
+                        <div className="text-sm text-slate-600 text-center">{systemConfig.cache.maxSize} MB</div>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
                         <Label className="text-sm font-medium">启用压缩</Label>
-                        <p className="text-xs text-gray-600">压缩缓存数据节省空间</p>
+                        <p className="text-xs text-slate-600">压缩缓存数据节省空间</p>
                       </div>
                       <Switch
                         checked={systemConfig.cache.compression}
@@ -1030,7 +1030,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                       step={5}
                       className="w-full"
                     />
-                    <div className="text-sm text-gray-600 text-center">{systemConfig.security.sessionTimeout} 分钟</div>
+                    <div className="text-sm text-slate-600 text-center">{systemConfig.security.sessionTimeout} 分钟</div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -1060,7 +1060,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">密码复杂度要求</Label>
-                    <p className="text-xs text-gray-600">要求包含大小写字母、数字和特殊字符</p>
+                    <p className="text-xs text-slate-600">要求包含大小写字母、数字和特殊字符</p>
                   </div>
                   <Switch
                     checked={systemConfig.security.passwordComplexity}
@@ -1070,7 +1070,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">双因素认证</Label>
-                    <p className="text-xs text-gray-600">启用2FA增强安全性</p>
+                    <p className="text-xs text-slate-600">启用2FA增强安全性</p>
                   </div>
                   <Switch
                     checked={systemConfig.security.twoFactorAuth}
@@ -1091,7 +1091,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">强制SSL</Label>
-                    <p className="text-xs text-gray-600">强制使用HTTPS连接</p>
+                    <p className="text-xs text-slate-600">强制使用HTTPS连接</p>
                   </div>
                   <Switch
                     checked={systemConfig.security.sslForced}
@@ -1101,7 +1101,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">启用CORS</Label>
-                    <p className="text-xs text-gray-600">跨域资源共享</p>
+                    <p className="text-xs text-slate-600">跨域资源共享</p>
                   </div>
                   <Switch
                     checked={systemConfig.security.corsEnabled}
@@ -1255,7 +1255,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                       <Phone className="w-4 h-4" />
                       短信通知
                     </Label>
-                    <p className="text-xs text-gray-600">发送重要通知短信</p>
+                    <p className="text-xs text-slate-600">发送重要通知短信</p>
                   </div>
                   <Switch
                     checked={systemConfig.notification.smsEnabled}
@@ -1309,7 +1309,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                       <Bell className="w-4 h-4" />
                       推送通知
                     </Label>
-                    <p className="text-xs text-gray-600">浏览器推送通知</p>
+                    <p className="text-xs text-slate-600">浏览器推送通知</p>
                   </div>
                   <Switch
                     checked={systemConfig.notification.pushEnabled}
@@ -1409,7 +1409,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">显示品牌标识</Label>
-                    <p className="text-xs text-gray-600">在页面底部显示品牌信息</p>
+                    <p className="text-xs text-slate-600">在页面底部显示品牌信息</p>
                   </div>
                   <Switch
                     checked={systemConfig.appearance.showBranding}
@@ -1419,7 +1419,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">紧凑模式</Label>
-                    <p className="text-xs text-gray-600">减少界面间距，显示更多内容</p>
+                    <p className="text-xs text-slate-600">减少界面间距，显示更多内容</p>
                   </div>
                   <Switch
                     checked={systemConfig.appearance.compactMode}
@@ -1429,7 +1429,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">启用动画</Label>
-                    <p className="text-xs text-gray-600">界面过渡动画效果</p>
+                    <p className="text-xs text-slate-600">界面过渡动画效果</p>
                   </div>
                   <Switch
                     checked={systemConfig.appearance.animationsEnabled}
@@ -1476,26 +1476,26 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     rows={8}
                   />
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-800 mb-2">预览效果</h4>
+                <div className="p-4 bg-slate-50 rounded-lg">
+                  <h4 className="text-sm font-medium text-slate-800 mb-2">预览效果</h4>
                   <div className="grid grid-cols-3 gap-2">
                     <div className="text-center">
-                      <div className="w-8 h-8 bg-gray-200 rounded mx-auto mb-1 flex items-center justify-center">
-                        <Monitor className="w-4 h-4 text-gray-600" />
+                      <div className="w-8 h-8 bg-slate-200 rounded mx-auto mb-1 flex items-center justify-center">
+                        <Monitor className="w-4 h-4 text-slate-600" />
                       </div>
-                      <div className="text-xs text-gray-600">桌面端</div>
+                      <div className="text-xs text-slate-600">桌面端</div>
                     </div>
                     <div className="text-center">
-                      <div className="w-8 h-8 bg-gray-200 rounded mx-auto mb-1 flex items-center justify-center">
-                        <Tablet className="w-4 h-4 text-gray-600" />
+                      <div className="w-8 h-8 bg-slate-200 rounded mx-auto mb-1 flex items-center justify-center">
+                        <Tablet className="w-4 h-4 text-slate-600" />
                       </div>
-                      <div className="text-xs text-gray-600">平板端</div>
+                      <div className="text-xs text-slate-600">平板端</div>
                     </div>
                     <div className="text-center">
-                      <div className="w-8 h-8 bg-gray-200 rounded mx-auto mb-1 flex items-center justify-center">
-                        <Smartphone className="w-4 h-4 text-gray-600" />
+                      <div className="w-8 h-8 bg-slate-200 rounded mx-auto mb-1 flex items-center justify-center">
+                        <Smartphone className="w-4 h-4 text-slate-600" />
                       </div>
-                      <div className="text-xs text-gray-600">移动端</div>
+                      <div className="text-xs text-slate-600">移动端</div>
                     </div>
                   </div>
                 </div>

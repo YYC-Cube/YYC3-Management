@@ -1,4 +1,3 @@
-// @ts-ignore - TypeScript module resolution issue
 import {
   SpeechRecognizer,
   SentimentAnalyzer,

@@ -11,7 +11,7 @@ const redisClient = createClient({
         return new Error('Redis reconnection failed')
       }
       const delay = Math.min(retries * 100, 3000)
-      console.log(`Redis reconnecting in ${delay}ms...`)
+      // console.log(`Redis reconnecting in ${delay}ms...`)
       return delay
     },
   },
@@ -22,11 +22,11 @@ redisClient.on('error', (err) => {
 })
 
 redisClient.on('connect', () => {
-  console.log('Redis Client Connected')
+  // console.log('Redis Client Connected')
 })
 
 redisClient.on('ready', () => {
-  console.log('Redis Client Ready')
+  // console.log('Redis Client Ready')
 })
 
 export async function connectRedis() {
@@ -53,7 +53,7 @@ export async function getCache<T>(key: string): Promise<T | null> {
   }
 }
 
-export async function setCache(key: string, value: any, ttl: number = 3600): Promise<void> {
+export async function setCache(key: string, value: unknown, ttl: number = 3600): Promise<void> {
   try {
     const client = await connectRedis()
     await client.setEx(key, ttl, JSON.stringify(value))

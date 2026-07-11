@@ -1,11 +1,24 @@
+/**
+ * @fileoverview api/tasks/route.ts
+ * @description YYC³ API路由 — 认证守卫 + 数据验证 + Redis缓存
+ * @author YYC³
+ * @version 3.0.0
+ * @license MIT
+ */
+
 import { NextRequest, NextResponse } from 'next/server'
+import { authenticateApiRequest } from '@/lib/api/auth-guard'
 import { TaskRepository } from '@/lib/db/repositories/task.repository'
 import { checkDatabaseConnection } from '@/lib/db/client'
+import { taskSchema } from '@/lib/validations/schemas'
+import { withCache, invalidateResourceCache, buildCacheKey } from '@/lib/db/cache'
 
 const taskRepository = new TaskRepository()
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = authenticateApiRequest(request)
+    if (!auth.authenticated) return auth.response
     const isConnected = await checkDatabaseConnection()
     if (!isConnected) {
       return NextResponse.json(
@@ -23,7 +36,7 @@ export async function GET(request: NextRequest) {
     const assignee_id = searchParams.get('assignee_id')
     const created_by = searchParams.get('created_by')
 
-    const result = await taskRepository.findAll({
+    const queryParams = {
       page,
       limit,
       search,
@@ -31,14 +44,17 @@ export async function GET(request: NextRequest) {
       priority,
       assignee_id: assignee_id ? parseInt(assignee_id) : undefined,
       created_by: created_by ? parseInt(created_by) : undefined,
-    })
+    }
+    const cacheKey = buildCacheKey('tasks', queryParams)
+
+    const result = await withCache(cacheKey, () => taskRepository.findAll(queryParams), 300)
 
     return NextResponse.json({
       success: true,
       data: result.data,
       pagination: result.pagination,
     })
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('获取任务列表失败:', error)
     return NextResponse.json(
       { success: false, error: '获取任务列表失败' },
@@ -49,6 +65,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const auth = authenticateApiRequest(request)
+    if (!auth.authenticated) return auth.response
     const isConnected = await checkDatabaseConnection()
     if (!isConnected) {
       return NextResponse.json(
@@ -59,16 +77,25 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
 
-    const task = await taskRepository.create(body)
+    const validation = taskSchema.safeParse(body)
+    if (!validation.success) {
+      return NextResponse.json(
+        { success: false, error: '数据验证失败', details: validation.error.errors },
+        { status: 400 }
+      )
+    }
+
+    const task = await taskRepository.create(validation.data)
+    await invalidateResourceCache('tasks')
 
     return NextResponse.json({
       success: true,
       data: task,
     }, { status: 201 })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建任务失败:', error)
     
-    if (error.code === '23503') {
+    if ((error as { code?: string }).code === '23503') {
       return NextResponse.json(
         { success: false, error: '指定的用户不存在' },
         { status: 400 }

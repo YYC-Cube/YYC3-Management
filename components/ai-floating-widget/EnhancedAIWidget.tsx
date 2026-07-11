@@ -2,7 +2,7 @@
  * @fileoverview 增强版AI浮窗组件
  * @description 集成AutonomousAIEngine、ModelAdapter、UnifiedLearningSystem的智能AI交互界面
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-28
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -75,7 +75,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
   useEffect(() => {
     const initializeSystem = async () => {
       try {
-        console.log('[EnhancedAIWidget] 开始初始化增强AI系统...');
+        // console.log('[EnhancedAIWidget] 开始初始化增强AI系统...');
 
         // 1. 初始化自治AI引擎
         const engineConfig: EngineConfig = {
@@ -91,7 +91,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
         
         // 注册消息处理器
         newEngine.registerMessageHandler(MessageType.USER_INPUT, async (message, context) => {
-          console.log('[EnhancedAIWidget] 处理用户输入:', message);
+          // console.log('[EnhancedAIWidget] 处理用户输入:', message);
           
           // 这里集成模型适配器来处理实际的AI推理
           // 简化实现：返回模拟响应
@@ -112,12 +112,12 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
 
         await newEngine.start();
         setEngine(newEngine);
-        console.log('[EnhancedAIWidget] 自治AI引擎初始化完成');
+        // console.log('[EnhancedAIWidget] 自治AI引擎初始化完成');
 
         // 2. 初始化学习系统
         const newLearningSystem = new UnifiedLearningSystem();
         setLearningSystem(newLearningSystem);
-        console.log('[EnhancedAIWidget] 学习系统初始化完成');
+        // console.log('[EnhancedAIWidget] 学习系统初始化完成');
 
         // 3. 初始化模型适配器
         const adapters = new Map<string, IModelAdapter>();
@@ -134,9 +134,9 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
           });
           
           adapters.set('local', localAdapter);
-          console.log('[EnhancedAIWidget] 本地模型适配器初始化完成');
+          // console.log('[EnhancedAIWidget] 本地模型适配器初始化完成');
         } catch (error) {
-          console.warn('[EnhancedAIWidget] 本地模型适配器初始化失败，将在运行时降级:', error);
+          // console.warn('[EnhancedAIWidget] 本地模型适配器初始化失败，将在运行时降级:', error);
         }
 
         setModelAdapters(adapters);
@@ -145,7 +145,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
         updateSystemStatus(newEngine, newLearningSystem, adapters);
 
         setSystemReady(true);
-        console.log('[EnhancedAIWidget] 增强AI系统初始化完成');
+        // console.log('[EnhancedAIWidget] 增强AI系统初始化完成');
 
       } catch (error) {
         console.error('[EnhancedAIWidget] 系统初始化失败:', error);
@@ -161,7 +161,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
     // 清理函数
     return () => {
       if (engine) {
-        console.log('[EnhancedAIWidget] 关闭自治AI引擎...');
+        // console.log('[EnhancedAIWidget] 关闭自治AI引擎...');
         engine.shutdown().catch(console.error);
       }
     };
@@ -222,7 +222,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
       };
 
       learningSystem.getBehavioralLayer().recordBehavior(behavior);
-      console.log('[EnhancedAIWidget] 记录用户行为:', action);
+      // console.log('[EnhancedAIWidget] 记录用户行为:', action);
     },
     [learningSystem, userId]
   );
@@ -234,7 +234,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
   const handleEnhancedMessage = useCallback(
     async (content: string) => {
       if (!engine) {
-        console.warn('[EnhancedAIWidget] 引擎未就绪');
+        // console.warn('[EnhancedAIWidget] 引擎未就绪');
         return null;
       }
 
@@ -303,7 +303,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
   if (!systemReady) {
     return (
       <div 
-        className="fixed z-50 bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6"
+        className="fixed z-50 bg-white dark:bg-slate-900 rounded-lg shadow-2xl p-6"
         style={{
           left: initialPosition?.x || window.innerWidth - 420,
           top: initialPosition?.y || 100,
@@ -314,13 +314,13 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
         <div className="flex flex-col items-center justify-center h-full space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
               初始化AI系统
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
               正在加载自治AI引擎、学习系统和模型适配器...
             </p>
-            <div className="mt-4 text-xs text-gray-400">
+            <div className="mt-4 text-xs text-slate-400">
               <div>引擎状态: {systemStatus.engineStatus}</div>
               <div>活跃模型: {systemStatus.activeModels.join(', ') || '无'}</div>
             </div>

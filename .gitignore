@@ -64,4 +64,8 @@ coverage/
 # Misc
 *.pid
 *.seed
-*.pid.lock
+*.pid.lockcore/
+# core/ archived (standalone library, not integrated)
+
+# Uploaded files
+public/uploads/

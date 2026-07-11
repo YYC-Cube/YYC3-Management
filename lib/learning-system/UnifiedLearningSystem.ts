@@ -2,7 +2,7 @@
  * @fileoverview 三层学习系统 - 自适应学习引擎
  * @description 实现行为学习、策略学习、知识学习三层递进式学习架构
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-28
  * @copyright Copyright (c) 2025 YYC³
  * @license MIT
@@ -430,7 +430,7 @@ export class KnowledgeLearningLayer {
    * 添加知识条目
    */
   addKnowledge(entry: Omit<KnowledgeEntry, 'id' | 'createdAt' | 'updatedAt'>): string {
-    const id = `knowledge-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const id = `knowledge-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
     
     const knowledgeEntry: KnowledgeEntry = {
       ...entry,

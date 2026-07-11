@@ -2,7 +2,7 @@
  * @fileoverview 仪表板内容组件
  * @description 展示业务数据、KPI指标和实时统计信息
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -148,27 +148,27 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
   ]
 
   const quickActions = [
-    { name: "新建客户", icon: Users, color: "bg-blue-500 hover:bg-blue-600", themeColor: "customers" },
+    { name: "新建客户", icon: Users, color: "bg-primary hover:bg-primary/90", themeColor: "customers" },
     { name: "创建任务", icon: CheckCircle, color: "bg-green-500 hover:bg-green-600", themeColor: "tasks" },
     { name: "发起会议", icon: MessageSquare, color: "bg-purple-500 hover:bg-purple-600", themeColor: "communication" },
     { name: "生成报告", icon: FileText, color: "bg-orange-500 hover:bg-orange-600", themeColor: "analytics" },
   ]
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-full">
+    <div className="p-6 space-y-6 bg-slate-50 min-h-full">
       {/* 页面标题和时间 */}
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
-            <h1 className="text-3xl font-bold text-gray-900">运营中心</h1>
+            <h1 className="text-3xl font-bold text-slate-900">运营中心</h1>
           )}
-          <p className="text-gray-600 mt-1">欢迎回来，这里是您的企业管理控制台</p>
+          <p className="text-slate-600 mt-1">欢迎回来，这里是您的企业管理控制台</p>
         </div>
         <div className="text-right">
-          <div className="text-2xl font-bold text-gray-900">
+          <div className="text-2xl font-bold text-slate-900">
             {currentTime ? currentTime.toLocaleTimeString("zh-CN", { hour12: false }) : "--:--:--"}
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-slate-500">
             {currentTime ? currentTime.toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
@@ -194,8 +194,8 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                    <p className="text-2xl font-bold text-gray-900 mt-2">{stat.value}</p>
+                    <p className="text-sm font-medium text-slate-600">{stat.title}</p>
+                    <p className="text-2xl font-bold text-slate-900 mt-2">{stat.value}</p>
                     <div className="flex items-center mt-2">
                       {stat.changeType === "increase" ? (
                         <ArrowUpRight className="h-4 w-4 text-green-500" />
@@ -209,7 +209,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                       >
                         {stat.change}
                       </span>
-                      <span className="text-sm text-gray-500 ml-1">vs 上月</span>
+                      <span className="text-sm text-slate-500 ml-1">vs 上月</span>
                     </div>
                   </div>
                   <div className={`p-3 rounded-full ${stat.bgColor}`}>
@@ -286,15 +286,15 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                     key={project.name}
                     className="flex items-center justify-between p-4 rounded-lg transition-all duration-200 relative"
                     style={{
-                      ['--project-border' as any]: projectTheme.border,
-                      ['--project-bg' as any]: projectTheme.bg,
+                      ['--project-border' as unknown]: projectTheme.border,
+                      ['--project-bg' as unknown]: projectTheme.bg,
                       borderLeft: '4px solid var(--project-border)',
                       backgroundColor: 'var(--project-bg)',
                     } as React.CSSProperties}
                   >
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-900">{project.name}</h4>
+                        <h4 className="font-medium text-slate-900">{project.name}</h4>
                         <Badge
                           variant={
                             project.status === "即将完成"
@@ -307,7 +307,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                           {project.status}
                         </Badge>
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-4 text-sm text-slate-500">
                         <span className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {project.dueDate}
@@ -355,11 +355,11 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                     <AvatarFallback>{activity.user[0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-900">
+                    <p className="text-sm text-slate-900">
                       <span className="font-medium">{activity.user}</span> {activity.action}{" "}
                       <span className="font-medium text-blue-600">{activity.target}</span>
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                    <p className="text-xs text-slate-500 mt-1">{activity.time}</p>
                   </div>
                 </div>
               ))}

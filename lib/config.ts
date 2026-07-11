@@ -2,7 +2,7 @@
  * @fileoverview config.ts
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -20,14 +20,14 @@ export const config = {
     version: "1.0.0",
     description: "Professional enterprise management system for Jin Lan Home Furnishing",
     descriptionChinese: "锦澜家居专业的企业管理系统",
-    url: "https://manage.jinlan.com",
-    logo: "/yyc3-logo-blue.png",
-    favicon: "/favicon.ico",
+    url: process.env.NEXT_PUBLIC_APP_URL || "",
+    logo: "/yyc3-icons/pwa/icon-512x512.png",
+    favicon: "/yyc3-icons/favicon/favicon.ico",
   },
 
   // API配置
   api: {
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || "https://api.jinlan.com",
+    baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || "",
     timeout: 10000,
     retries: 3,
     version: "v1",
@@ -198,7 +198,7 @@ export const config = {
     email: "service@jinlan.com",
     phone: "400-888-8888",
     address: "北京市朝阳区xxx街道xxx号",
-    website: "https://www.jinlan.com",
+    website: process.env.NEXT_PUBLIC_APP_URL || "",
     socialMedia: {
       wechat: "jinlan_official",
       weibo: "@锦澜家居官方",

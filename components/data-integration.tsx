@@ -2,7 +2,7 @@
  * @fileoverview data-integration.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -99,7 +99,7 @@ export function DataIntegration() {
       case "connected":
         return <CheckCircle className="h-4 w-4 text-green-500" />
       case "disconnected":
-        return <XCircle className="h-4 w-4 text-gray-400" />
+        return <XCircle className="h-4 w-4 text-slate-400" />
       case "error":
         return <AlertCircle className="h-4 w-4 text-red-500" />
     }
@@ -180,8 +180,8 @@ export function DataIntegration() {
       {/* 页面头部 */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">数据集成</h2>
-          <p className="text-gray-600 mt-1">管理和配置各种数据源的集成</p>
+          <h2 className="text-2xl font-bold text-slate-900">数据集成</h2>
+          <p className="text-slate-600 mt-1">管理和配置各种数据源的集成</p>
         </div>
         <Button onClick={() => setIsConfiguring(true)}>
           <Settings className="h-4 w-4 mr-2" />
@@ -218,11 +218,11 @@ export function DataIntegration() {
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-500">最后同步:</span>
+                      <span className="text-slate-500">最后同步:</span>
                       <span>{source.lastSync}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">记录数:</span>
+                      <span className="text-slate-500">记录数:</span>
                       <span className="font-medium">{source.records.toLocaleString()}</span>
                     </div>
                   </div>
@@ -370,7 +370,7 @@ export function DataIntegration() {
                       message: "完成定时数据备份",
                     },
                   ].map((log, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         {log.status === "success" ? (
                           <CheckCircle className="h-4 w-4 text-green-500" />
@@ -381,10 +381,10 @@ export function DataIntegration() {
                           <div className="font-medium text-sm">
                             {log.action} - {log.source}
                           </div>
-                          <div className="text-xs text-gray-500">{log.message}</div>
+                          <div className="text-xs text-slate-500">{log.message}</div>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-400">{log.time}</div>
+                      <div className="text-xs text-slate-400">{log.time}</div>
                     </div>
                   ))}
                 </div>

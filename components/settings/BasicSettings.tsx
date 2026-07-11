@@ -17,7 +17,7 @@ export function BasicSettings() {
   const { config, updateConfig } = useSystemConfig();
   const basic = config.basic;
 
-  const handleChange = (field: keyof BasicConfig, value: any) => {
+  const handleChange = (field: keyof BasicConfig, value: unknown) => {
     updateConfig('basic', field, value);
   };
 

@@ -2,7 +2,7 @@
  * @fileoverview 模型适配器 - 统一AI模型接口
  * @description 实现"一次编码，多模型运行"的适配器模式
  * @author YYC³
- * @version 2.0.0
+ * @version 3.0.0
  * @created 2025-12-28
  * @modified 2025-12-28
  * @copyright Copyright (c) 2025 YYC³
@@ -44,7 +44,7 @@ export interface CompletionRequest {
     presencePenalty?: number;
     stop?: string[];
   };
-  context?: any;
+  context?: unknown;
 }
 
 export interface CompletionResponse {
@@ -66,7 +66,7 @@ export interface CompletionResponse {
 export interface ChatRequest {
   messages: ChatMessage[];
   parameters?: CompletionRequest['parameters'];
-  context?: any;
+  context?: unknown;
 }
 
 export interface ChatMessage {
@@ -362,7 +362,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
    */
   async optimizeFor(batchSize: number): Promise<void> {
     // 默认实现：无操作
-    console.log(`Optimizing for batch size: ${batchSize}`);
+    // console.log(`Optimizing for batch size: ${batchSize}`);
   }
   
   /**
@@ -407,8 +407,8 @@ export abstract class BaseModelAdapter implements IModelAdapter {
   // ============ 抽象方法（由具体适配器实现）============
   
   abstract getModelInfo(): ModelInfo;
-  protected abstract callModelAPI(request: any): Promise<any>;
-  protected abstract callModelStream(request: any): AsyncIterable<any>;
+  protected abstract callModelAPI(request: unknown): Promise<unknown>;
+  protected abstract callModelStream(request: unknown): AsyncIterable<unknown>;
   
   // ============ 通用实现 ============
   
@@ -443,11 +443,11 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     return this.cache.get(cacheKey) || null;
   }
   
-  protected async preprocess(request: CompletionRequest): Promise<any> {
+  protected async preprocess(request: CompletionRequest): Promise<unknown> {
     return request;
   }
   
-  protected async postprocess(rawResponse: any): Promise<CompletionResponse> {
+  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
     return rawResponse;
   }
   
@@ -472,7 +472,7 @@ export abstract class BaseModelAdapter implements IModelAdapter {
     return `${this.config.modelName}-${JSON.stringify(request)}`;
   }
   
-  protected parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: any } {
+  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     return { text: '', finished: false };
   }
   

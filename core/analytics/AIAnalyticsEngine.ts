@@ -7,15 +7,11 @@ import {
   type ProcessedData,
   type AnalyticsInsight,
   type OptimizationRecommendation
-// @ts-ignore - TypeScript module resolution issue
 } from './types.ts';
 
 export class AIAnalyticsEngine {
-  // @ts-ignore - Class members will be used in future implementation
   private _predictiveModel: PredictiveModel;
-  // @ts-ignore - Class members will be used in future implementation
   private _anomalyDetector: AnomalyDetector;
-  // @ts-ignore - Class members will be used in future implementation
   private _insightGenerator: InsightGenerator;
 
   constructor() {

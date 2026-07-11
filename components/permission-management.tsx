@@ -2,7 +2,7 @@
  * @fileoverview permission-management.tsx
  * @description 自动生成的组件或模块
  * @author YYC³
- * @version 1.0.0
+ * @version 3.0.0
  * @created 2025-01-30
  * @modified 2025-12-08
  * @copyright Copyright (c) 2025 YYC³
@@ -157,7 +157,7 @@ export function PermissionManagement() {
       case "pending":
         return "bg-yellow-100 text-yellow-800"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-slate-100 text-slate-800"
     }
   }
 
@@ -182,8 +182,8 @@ export function PermissionManagement() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">权限管理</h1>
-          <p className="text-gray-600 mt-1">用户角色与权限控制系统</p>
+          <h1 className="text-2xl font-bold text-slate-900">权限管理</h1>
+          <p className="text-slate-600 mt-1">用户角色与权限控制系统</p>
         </div>
         <div className="flex items-center space-x-3">
           <Button variant="outline" size="sm">
@@ -203,9 +203,9 @@ export function PermissionManagement() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">总用户数</p>
+                <p className="text-sm text-slate-600">总用户数</p>
                 <p className="text-2xl font-bold text-indigo-600">{users.length}</p>
-                <p className="text-xs text-gray-500 mt-1">活跃: {users.filter((u) => u.status === "active").length}</p>
+                <p className="text-xs text-slate-500 mt-1">活跃: {users.filter((u) => u.status === "active").length}</p>
               </div>
               <Users className="w-8 h-8 text-indigo-400" />
             </div>

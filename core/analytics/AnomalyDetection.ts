@@ -1,5 +1,4 @@
 // analytics/AnomalyDetection.ts
-// @ts-ignore - TypeScript module resolution issue
 import {
   OutlierDetector,
   PatternAnalyzer,
