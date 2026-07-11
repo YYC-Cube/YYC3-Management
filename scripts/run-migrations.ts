@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import { Pool } from 'pg'
 import pool from '../lib/db/client'
 
 const MIGRATIONS_DIR = path.join(process.cwd(), 'migrations')

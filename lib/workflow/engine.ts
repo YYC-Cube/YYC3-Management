@@ -27,7 +27,7 @@ const WORKFLOW_STEPS: Record<WorkflowType, WorkflowStep[]> = {
   procurement: ['submit', 'manager_review', 'director_review', 'complete'],
 }
 
-const STEP_ASSIGNEE_ROLE: Record<WorkflowStep, string> = {
+export const STEP_ASSIGNEE_ROLE: Record<WorkflowStep, string> = {
   submit: 'user',
   manager_review: 'manager',
   director_review: 'admin',

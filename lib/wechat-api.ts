@@ -148,26 +148,26 @@ class WeChatApiService {
   }
 
   // 将系统菜单转换为微信菜单格式
-  convertToWeChatMenu(systemMenuItems: unknown[]): WeChatMenu {
-    const convertMenuItem = (item: unknown): WeChatMenuItem => {
+  convertToWeChatMenu(systemMenuItems: Record<string, unknown>[]): WeChatMenu {
+    const convertMenuItem = (item: Record<string, unknown>): WeChatMenuItem => {
+      const children = (item.children as Record<string, unknown>[]) || []
+      const itemUrl = (item.url as string) || ''
       const wechatItem: WeChatMenuItem = {
-        name: item.title.substring(0, item.children && item.children.length > 0 ? 4 : 8), // 微信限制：一级菜单4个字符，子菜单8个字符
-        type: item.isExternal || item.url.startsWith("http") ? "view" : "click",
+        name: (item.title as string).substring(0, children.length > 0 ? 4 : 8),
+        type: (item.isExternal as boolean) || itemUrl.startsWith("http") ? "view" : "click",
       }
 
       if (wechatItem.type === "view") {
-        wechatItem.url = item.url
+        wechatItem.url = itemUrl
       } else {
-        wechatItem.key = item.id || `menu_${Date.now()}`
+        wechatItem.key = (item.id as string) || `menu_${Date.now()}`
       }
 
-      // 处理子菜单
-      if (item.children && item.children.length > 0) {
-        wechatItem.sub_button = item.children
-          .filter((child: unknown) => child.isActive)
-          .slice(0, 5) // 微信限制：最多5个子菜单
-          .map((child: unknown) => convertMenuItem(child))
-        // 有子菜单时，父菜单不需要type和其他属性
+      if (children.length > 0) {
+        wechatItem.sub_button = children
+          .filter((child: Record<string, unknown>) => child.isActive)
+          .slice(0, 5)
+          .map((child: Record<string, unknown>) => convertMenuItem(child))
         delete wechatItem.type
         delete wechatItem.key
         delete wechatItem.url
@@ -177,16 +177,16 @@ class WeChatApiService {
     }
 
     const buttons = systemMenuItems
-      .filter((item) => item.isActive && !item.parentId)
-      .sort((a, b) => a.sort - b.sort)
-      .slice(0, 3) // 微信限制：最多3个一级菜单
-      .map((item) => convertMenuItem(item))
+      .filter((item: Record<string, unknown>) => item.isActive && !item.parentId)
+      .sort((a: Record<string, unknown>, b: Record<string, unknown>) => (a.sort as number) - (b.sort as number))
+      .slice(0, 3)
+      .map((item: Record<string, unknown>) => convertMenuItem(item))
 
     return { button: buttons }
   }
 
   // 同步系统菜单到微信
-  async syncMenuToWeChat(systemMenuItems: unknown[]): Promise<boolean> {
+  async syncMenuToWeChat(systemMenuItems: Record<string, unknown>[]): Promise<boolean> {
     try {
       const wechatMenu = this.convertToWeChatMenu(systemMenuItems)
 
@@ -222,7 +222,7 @@ class WeChatApiService {
       errors.push("一级菜单最多3个")
     }
 
-    menu.button.forEach((button, index) => {
+    menu.button.forEach((button) => {
       // 检查菜单名称长度
       if (button.sub_button && button.sub_button.length > 0) {
         if (button.name.length > 4) {
@@ -231,7 +231,7 @@ class WeChatApiService {
         if (button.sub_button.length > 5) {
           errors.push(`一级菜单"${button.name}"的子菜单不能超过5个`)
         }
-        button.sub_button.forEach((subButton, subIndex) => {
+        button.sub_button.forEach((subButton) => {
           if (subButton.name.length > 8) {
             errors.push(`子菜单"${subButton.name}"名称不能超过8个字符`)
           }

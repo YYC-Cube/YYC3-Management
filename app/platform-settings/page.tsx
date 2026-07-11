@@ -1,33 +1,33 @@
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "@/components/ui/switch"
-import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/hooks/use-toast"
 import {
+  CheckCircle,
+  Copy,
+  DollarSign,
+  ExternalLink,
   Eye,
   EyeOff,
-  Copy,
-  ExternalLink,
-  CheckCircle,
-  XCircle,
-  RefreshCw,
-  Save,
   Globe,
   MessageSquare,
+  RefreshCw,
+  Save,
   Users,
   Video,
-  DollarSign,
+  XCircle,
 } from "lucide-react"
 import Image from "next/image"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react"
 
 export default function PlatformSettingsPage() {
   const { toast } = useToast()
@@ -102,7 +102,7 @@ export default function PlatformSettingsPage() {
     {
       id: "enterprise",
       name: "企业微信",
-      logo: "/platforms/wechat.png",
+      logo: "/platforms/workwechat.png",
       description: "配置企业微信应用参数，实现企业内部通讯和办公协作",
       color: "border-l-blue-500",
       bgColor: "bg-blue-50",
@@ -370,7 +370,7 @@ export default function PlatformSettingsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Image
-                    src="/images/platforms/wechat.png"
+                    src="/platforms/wechat.png"
                     alt="微信公众号"
                     width={40}
                     height={40}
@@ -477,7 +477,7 @@ export default function PlatformSettingsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Image
-                    src="/images/platforms/wechat.png"
+                    src="/platforms/workwechat.png"
                     alt="企业微信"
                     width={40}
                     height={40}
@@ -580,7 +580,7 @@ export default function PlatformSettingsPage() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Image src="/images/platforms/feishu.png" alt="飞书" width={40} height={40} className="rounded-lg" />
+                  <Image src="/platforms/feishu.png" alt="飞书" width={40} height={40} className="rounded-lg" />
                   <div>
                     <CardTitle className="text-xl text-cyan-700">飞书对接配置</CardTitle>
                     <CardDescription>配置飞书开放平台应用，实现消息推送和数据同步</CardDescription>
@@ -778,7 +778,7 @@ export default function PlatformSettingsPage() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Image src="/images/platforms/douyin.png" alt="抖音" width={40} height={40} className="rounded-lg" />
+                  <Image src="/platforms/douyin.png" alt="抖音" width={40} height={40} className="rounded-lg" />
                   <div>
                     <CardTitle className="text-xl text-pink-700">抖音对接配置</CardTitle>
                     <CardDescription>配置抖音开放平台，实现内容发布和数据分析</CardDescription>
@@ -881,7 +881,7 @@ export default function PlatformSettingsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Image
-                    src="/images/platforms/alipay.png"
+                    src="/platforms/alipay.png"
                     alt="支付宝"
                     width={40}
                     height={40}

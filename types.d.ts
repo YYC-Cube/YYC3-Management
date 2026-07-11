@@ -184,11 +184,6 @@ declare module '@/hooks/use-form-validation' {
   }
 }
 
-// 工具类型声明
-declare module '@/lib/utils/form-validation' {
-  export const userFormSchema: any
-}
-
 // Store 类型声明
 declare module '@/store/user-store' {
   export interface User {

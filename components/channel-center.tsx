@@ -11,14 +11,9 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -29,28 +24,33 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useToast } from "@/hooks/use-toast"
 import {
-  WifiOff,
-  Settings,
-  Plus,
-  MoreHorizontal,
-  RefreshCw,
+  Activity,
   AlertTriangle,
+  BarChart3,
   CheckCircle,
   Clock,
-  Activity,
-  MessageSquare,
-  ShoppingCart,
-  Users,
-  BarChart3,
-  Edit,
-  Trash2,
   Copy,
   Download,
+  Edit,
+  MessageSquare,
+  MoreHorizontal,
+  Plus,
+  RefreshCw,
   Search,
+  Settings,
+  ShoppingCart,
+  Trash2,
+  Users,
+  WifiOff,
 } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 interface Channel {
   id: string
@@ -229,7 +229,7 @@ export function ChannelCenter() {
             name: "小红书",
             type: "xiaohongshu",
             description: "连接小红书平台，同步内容和用户数据",
-            icon: "/platforms/xiaohongshu.png",
+            icon: "/platforms/redbook.png",
             fields: [
               { key: "apiKey", label: "API密钥", type: "password", required: true },
               { key: "webhookUrl", label: "回调地址", type: "url", required: false },
@@ -299,10 +299,10 @@ export function ChannelCenter() {
     const iconMap: Record<string, string> = {
       wechat: "/platforms/wechat.png",
       douyin: "/platforms/douyin.png",
-      xiaohongshu: "/platforms/xiaohongshu.png",
+      xiaohongshu: "/platforms/redbook.png",
       alipay: "/platforms/alipay.png",
       feishu: "/platforms/feishu.png",
-      dingtalk: "/images/platforms/dingtalk.png",
+      dingtalk: "/platforms/dingtalk.png",
     }
     return iconMap[type] || "/placeholder.svg"
   }
@@ -317,11 +317,11 @@ export function ChannelCenter() {
         prev.map((channel) =>
           channel.id === channelId
             ? {
-                ...channel,
-                status: "connected" as const,
-                lastSync: new Date().toLocaleString("zh-CN"),
-                errorCount: 0,
-              }
+              ...channel,
+              status: "connected" as const,
+              lastSync: new Date().toLocaleString("zh-CN"),
+              errorCount: 0,
+            }
             : channel,
         ),
       )
@@ -796,15 +796,15 @@ export function ChannelCenter() {
               onClick={
                 selectedChannel
                   ? () => {
-                      // 更新现有渠道
-                      setChannels((prev) => prev.map((ch) => (ch.id === selectedChannel.id ? selectedChannel : ch)))
-                      setIsEditDialogOpen(false)
-                      setSelectedChannel(null)
-                      toast({
-                        title: "配置已保存",
-                        description: "渠道配置更新成功",
-                      })
-                    }
+                    // 更新现有渠道
+                    setChannels((prev) => prev.map((ch) => (ch.id === selectedChannel.id ? selectedChannel : ch)))
+                    setIsEditDialogOpen(false)
+                    setSelectedChannel(null)
+                    toast({
+                      title: "配置已保存",
+                      description: "渠道配置更新成功",
+                    })
+                  }
                   : handleAddChannel
               }
             >

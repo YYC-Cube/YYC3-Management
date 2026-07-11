@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="Family-001.png">
+  <source media="(prefers-color-scheme: light)" srcset="Family-001.png">
+  <img alt="YYC³ 企业智能管理系统" src="Family-001.png" width="100%">
+</picture>
+
 # 🔖 YYC³ 企业智能管理系统 v3.0
 
 > 「YanYuCloudCube」
@@ -6,15 +12,27 @@
 
 ---
 
-[![Version](https://img.shields.io/badge/Version-3.0.0-blue.svg)](#)
+[![Version](https://img.shields.io/badge/Version-3.0.0-blue.svg)](https://github.com/yyc3/yyc3-mana/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy Pages](https://github.com/yyc3/yyc3-mana/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/deploy-pages.yml)
+[![CI/CD Pipeline](https://github.com/yyc3/yyc3-mana/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/ci-cd.yml)
+[![Code Quality](https://github.com/yyc3/yyc3-mana/actions/workflows/code-quality.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/code-quality.yml)
+[![Security Scan](https://github.com/yyc3/yyc3-mana/actions/workflows/security-scan.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/security-scan.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-7.0-blue.svg)](https://www.typescriptlang.org)
+[![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7-3178c6.svg)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8.svg)](https://tailwindcss.com)
+[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-latest-000000.svg)](https://ui.shadcn.com)
 [![SWR](https://img.shields.io/badge/SWR-2.4-teal.svg)](https://swr.vercel.app)
+[![Zustand](https://img.shields.io/badge/Zustand-5-orange.svg)](https://zustand-demo.pmnd.rs)
+[![Zod](https://img.shields.io/badge/Zod-4-3e67b1.svg)](https://zod.dev)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791.svg)](https://postgresql.org)
+[![Redis](https://img.shields.io/badge/Redis-7-dc382d.svg)](https://redis.io)
+[![Bun](https://img.shields.io/badge/Bun-1.1-f9f9f9.svg)](https://bun.sh)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-222.svg)](https://management.yyc3.vip)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/yyc3/yyc3-mana/pulls)
 
-**YYC³ 管理项目是一款现代化的企业级智能管理系统，基于 Next.js 16 + React 19 + TypeScript 7 构建**模型自主编辑配置、Ollama 本地扫描、可视化模型测试、统一认证架构。
+**YYC³ 管理项目是一款现代化的企业级智能管理系统，基于 Next.js 16 + React 19 + TypeScript 7 构建**，涵盖客户管理、任务管理、项目管理、AI 助手、多平台渠道管理等核心业务模块，支持模型自主编辑配置、Ollama 本地扫描、可视化模型测试、统一认证架构。
 
 ---
 
@@ -200,7 +218,66 @@ bun run db:migrate    # 数据库迁移
 | **触摸优化** | iOS 输入框 16px 防缩放、点击高亮移除、文字防选中 |
 | **无障碍** | WCAG 2.5.5 触摸目标 ≥ 44px、ARIA landmarks、焦点管理 |
 
-### 开发者文档
+### 文档架构全景
+
+```
+📁 docs/                                    # 全量文档库 (80+ 文档)
+├── 📋 YYC3-Menu-文档索引-总览.md            # 文档总索引
+├── 📋 README.md                            # 文档库说明
+│
+├── 🏗️ YYC3-Menu-架构设计/                   # 架构设计 (20+ 文档)
+│   ├── 📐 架构类/                           #   总体/微服务/数据/安全/接口/AI 架构
+│   └── 💡 技巧类/                           #   架构评审、微服务拆分、性能优化
+│
+├── 💻 YYC3-Menu-开发实施/                    # 开发实施 (10+ 文档)
+│   ├── 📐 架构类/                           #   代码架构、API接口、组件开发、AI集成
+│   └── 💡 技巧类/                           #   TypeScript规范、编码规范、版本控制
+│
+├── 🔌 YYC3-Menu-需求规划/                    # 需求规划 (8 文档)
+│   ├── 📐 架构类/                           #   业务架构、数据架构、智能化能力
+│   └── 💡 技巧类/                           #   需求编写、跨部门协同、优先级排序
+│
+├── 🧪 YYC3-Menu-测试验证/                    # 测试验证 (15+ 文档)
+│   ├── 📐 架构类/                           #   测试架构、性能/安全/AI专项测试
+│   └── 💡 技巧类/                           #   用例设计、自动化脚本、缺陷管理
+│
+├── 🚀 YYC3-Menu-部署发布/                    # 部署发布 (8 文档)
+│   ├── 📐 架构类/                           #   CICD流水线、多环境部署、灰度发布
+│   └── 💡 技巧类/                           #   Docker/K8s部署、问题排查
+│
+├── ⚙️ YYC3-Menu-运维运营/                    # 运维运营 (8 文档)
+│   ├── 📐 架构类/                           #   运维架构、智能运维、灾备、系统扩容
+│   └── 💡 技巧类/                           #   监控告警、日志分析、性能优化
+│
+├── 📊 YYC3-Menu-实施总结/                    # 实施总结 (30+ 文档)
+│   └── 📋 各阶段实施报告/                    #   Phase1-3、Week1-6、性能优化、UI增强
+│
+├── 📖 YYC3-Menu-文档规范/                    # 文档规范 (8 文档)
+│   └── 📋 规范文件/                         #   文档架构、术语表、团队规范、安全策略
+│
+├── 🔄 YYC3-Menu-归类迭代/                    # 归类迭代 (3 文档)
+│   └── 📋 迭代文件/                         #   归档架构、系统迭代、资产沉淀
+│
+├── 📋 YYC3-Menu-团队规范/                    # 团队规范 (3 文档)
+├── 📋 YYC3-Menu-审核分析/                    # 审核分析 (6 文档)
+├── 📋 YYC3-Menu-业务管理/                    # 业务管理 (1 文档)
+│
+├── 📋 YYC3-Mune-文档规范/                    # Mune文档规范 (9 文档)
+├── 📋 YYC3-团队通用-标规文档/                # 团队通用标准 (5 文档)
+├── 📋 YYC3-安全审计与修复报告.md
+├── 📋 YYC3-分析问题汇总清单.md
+├── 📋 YYC3-深度全面审核报告.md
+├── 📋 YYC3-MVP功能拓展方案.md
+├── 📋 YYC3-深度测试审核报告.md
+├── 📋 YYC3-功能规格文档.md
+├── 📋 YYC3-功能拓展实施计划.md
+├── 📋 YYC3-功能拓展规划报告.md
+├── 📋 YYC3-统一化规范文档.md
+├── 📋 YYC3-分析改进路线图.md
+└── 📋 YYC3-闭环验收提示词.md
+```
+
+### 快速导航
 
 | 文档 | 说明 |
 |------|------|
@@ -211,6 +288,10 @@ bun run db:migrate    # 数据库迁移
 | [MVP-EXPANSION-PLAN.md](./MVP-EXPANSION-PLAN.md) | 功能拓展方案 |
 | [ISSUE-LIST.md](./ISSUE-LIST.md) | 问题追踪清单 |
 | [IMPROVEMENT-ROADMAP.md](./IMPROVEMENT-ROADMAP.md) | 改进路线图 |
+| [docs/YYC3-Menu-文档索引-总览.md](./docs/YYC3-Menu-文档索引-总览.md) | 全量文档索引总览 |
+| [docs/YYC3-Menu-架构设计/架构类/01-YYC3-Menu-架构类-总体架构设计文档.md](./docs/YYC3-Menu-架构设计/架构类/01-YYC3-Menu-架构类-总体架构设计文档.md) | 总体架构设计 |
+| [docs/YYC3-Menu-开发实施/架构类/01-YYC3-Menu-架构类-代码架构实现说明书.md](./docs/YYC3-Menu-开发实施/架构类/01-YYC3-Menu-架构类-代码架构实现说明书.md) | 代码架构实现 |
+| [docs/YYC3-Menu-部署发布/架构类/YYC3-Menu-架构类-CICD部署文档.md](./docs/YYC3-Menu-部署发布/架构类/YYC3-Menu-架构类-CICD部署文档.md) | CICD 部署文档 |
 
 ---
 
@@ -223,17 +304,20 @@ bun run db:migrate    # 数据库迁移
 **域名**: `management.yyc3.vip` (via [public/CNAME](./public/CNAME))
 
 **部署流程** (`.github/workflows/deploy-pages.yml`):
+
 1. 推送 `main` 分支 → 自动触发
 2. 静态导出 (`NEXT_STATIC_EXPORT=true`) → 输出至 `out/`
 3. 验证 CNAME + 添加 `.nojekyll` → 上传 artifact
 4. 部署至 GitHub Pages → 健康检查
 
 **首次配置**:
+
 1. GitHub 仓库 → Settings → Pages → Source: `GitHub Actions`
 2. DNS: 添加 CNAME 记录 `management` → `yyc3-cube.github.io`
 3. GitHub 仓库 → Settings → Pages → Custom domain: `management.yyc3.vip`
 
 **本地测试静态导出**:
+
 ```bash
 NEXT_STATIC_EXPORT=true NEXT_PUBLIC_GITHUB_PAGES=true NEXT_PUBLIC_CUSTOM_DOMAIN=true bun run build
 # 输出目录: ./out/
