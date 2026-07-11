@@ -87,8 +87,8 @@ const nextConfig = {
       'date-fns',
     ],
 
-    // 启用CSS优化
-    optimizeCss: true,
+    // CSS优化（Tailwind 4 原生已优化，关闭避免构建错误）
+    optimizeCss: false,
   },
 
   // ==========================================
