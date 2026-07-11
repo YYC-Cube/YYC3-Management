@@ -134,7 +134,7 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions) {
     shortcuts,
     enabled = true,
     global = false,
-    onShortcutTriggered,
+    onShortcutTriggered: _onShortcutTriggered,
   } = options
 
   const managerRef = useRef<KeyboardShortcutManager | null>(null)

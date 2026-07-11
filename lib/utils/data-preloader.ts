@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 interface PreloadConfig {
   enabled?: boolean
@@ -52,8 +52,8 @@ export class DataPreloader<T> {
 
     this.prefetchQueue.add(key)
 
-    if (!immediate && this.config.prefetchDelay > 0) {
-      await new Promise((resolve) => setTimeout(resolve, this.config.prefetchDelay))
+    if (!immediate && (this.config.prefetchDelay ?? 0) > 0) {
+      await new Promise((resolve) => setTimeout(resolve, this.config.prefetchDelay ?? 0))
     }
 
     try {
@@ -122,7 +122,7 @@ export class DataPreloader<T> {
       return null
     }
 
-    if (Date.now() - state.timestamp > this.config.cacheTTL!) {
+    if (Date.now() - state.timestamp > (this.config.cacheTTL ?? 60000)) {
       this.cache.delete(key)
       return null
     }

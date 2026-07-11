@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export interface OfflineOperation<T> {
   id: string
@@ -195,7 +195,7 @@ export class OfflineManager<T> {
     data: T
   ): Promise<void> {
     const operation: OfflineOperation<T> = {
-      id: `op-${Date.now()}-${crypto.randomUUID().slice(0,9)}`,
+      id: `op-${Date.now()}-${crypto.randomUUID().slice(0, 9)}`,
       type,
       data,
       timestamp: Date.now(),
@@ -203,7 +203,7 @@ export class OfflineManager<T> {
     }
 
     this.operations.push(operation)
-    await this.storage.add(operation as unknown)
+    await this.storage.add(operation as unknown as T & { id: string })
 
     if (this.isOnline && !this.syncInProgress) {
       this.sync()
@@ -224,10 +224,10 @@ export class OfflineManager<T> {
         try {
           await this.syncOperation(operation)
           operation.synced = true
-          await this.storage.update(operation as unknown)
+          await this.storage.update(operation as unknown as T & { id: string })
         } catch (error) {
           operation.error = error instanceof Error ? error.message : "Unknown error"
-          await this.storage.update(operation as unknown)
+          await this.storage.update(operation as unknown as T & { id: string })
         }
       }
 
@@ -239,7 +239,7 @@ export class OfflineManager<T> {
     }
   }
 
-  private async syncOperation(operation: OfflineOperation<T>): Promise<void> {
+  private async syncOperation(_operation: OfflineOperation<T>): Promise<void> {
     throw new Error("syncOperation must be implemented by subclass")
   }
 
@@ -271,7 +271,7 @@ export interface UseOfflineOptions<T> {
 }
 
 export function useOffline<T>(options: UseOfflineOptions<T>) {
-  const { syncFn, storageOptions } = options
+  const { syncFn, storageOptions: _storageOptions } = options
 
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [operations, setOperations] = useState<OfflineOperation<T>[]>([])
@@ -293,7 +293,7 @@ export function useOffline<T>(options: UseOfflineOptions<T>) {
   const addOperation = useCallback(
     async (type: "create" | "update" | "delete", data: T) => {
       const operation: OfflineOperation<T> = {
-        id: `op-${Date.now()}-${crypto.randomUUID().slice(0,9)}`,
+        id: `op-${Date.now()}-${crypto.randomUUID().slice(0, 9)}`,
         type,
         data,
         timestamp: Date.now(),

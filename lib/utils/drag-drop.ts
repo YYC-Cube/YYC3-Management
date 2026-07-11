@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useCallback, useEffect } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export interface DragItem<T> {
   id: string
@@ -30,7 +30,6 @@ export class DragDropManager<T> {
   private onDragStart?: (item: T) => void
   private onDragEnd?: (item: T) => void
   private disabled: boolean
-  private crossList: boolean
 
   constructor(options: DragDropOptions<T>) {
     this.items = options.items
@@ -38,7 +37,6 @@ export class DragDropManager<T> {
     this.onDragStart = options.onDragStart
     this.onDragEnd = options.onDragEnd
     this.disabled = options.disabled || false
-    this.crossList = options.crossList || false
   }
 
   startDrag(item: T, index: number): void {

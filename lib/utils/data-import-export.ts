@@ -1,11 +1,11 @@
-import * as XLSX from "xlsx"
-import Papa from "papaparse"
 import { saveAs } from "file-saver"
+import Papa from "papaparse"
+import * as XLSX from "xlsx"
 
 export type ExportFormat = "csv" | "xlsx" | "json"
 
 export interface ExportOptions {
-  format: ExportFormat
+  format?: ExportFormat
   filename?: string
   sheetName?: string
   includeHeaders?: boolean
@@ -152,12 +152,12 @@ export class DataImporter {
           const workbook = XLSX.read(data, { type: "array" })
           const sheetName = workbook.SheetNames[0]
           const worksheet = workbook.Sheets[sheetName]
-          const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" })
+          const jsonData = XLSX.utils.sheet_to_json<Record<string, unknown>>(worksheet, { defval: "" })
 
           const errors: string[] = []
           const validData: T[] = []
 
-          jsonData.forEach((row: unknown, index) => {
+          jsonData.forEach((row, index) => {
             if (skipEmptyRows && Object.values(row).every((v) => v === "")) {
               return
             }
@@ -165,7 +165,7 @@ export class DataImporter {
             if (trimValues) {
               Object.keys(row).forEach((key) => {
                 if (typeof row[key] === "string") {
-                  row[key] = row[key].trim()
+                  row[key] = (row[key] as string).trim()
                 }
               })
             }

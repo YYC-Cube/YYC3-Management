@@ -19,7 +19,7 @@
     "jsx": "preserve",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "plugins": [
       {
         "name": "next"
@@ -30,15 +30,6 @@
         "./*"
       ]
     },
-    // ============================================
-    // 类型定义
-    // ============================================
-    // TypeScript 自动加载 node_modules/@types 中的所有类型定义
-    // 使用 skipLibCheck: true 跳过库文件的详细类型检查
-    // 这样可以避免测试库类型警告，同时保持核心库的类型支持
-    // ============================================
-    // 严格类型检查选项
-    // ============================================
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -46,27 +37,11 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    // ============================================
-    // 额外检查选项
-    // ============================================
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
-    // ============================================
-    // 模块解析选项
-    // ============================================
-    "allowUmdGlobalAccess": true,
-    "moduleSuffixes": [
-      ".ts",
-      ".tsx",
-      ".json",
-      ".node"
-    ],
-    // ============================================
-    // 完整性检查
-    // ============================================
     "skipDefaultLibCheck": true
   },
   "include": [
@@ -88,6 +63,7 @@
     "vitest.config.ts",
     "vitest.setup.ts",
     "vitest.config.coverage.ts",
-    "templates/**/*"
+    "templates/**/*",
+    "scripts/**/*"
   ]
 }
