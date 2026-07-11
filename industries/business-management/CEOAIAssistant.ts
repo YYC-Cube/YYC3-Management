@@ -1,10 +1,9 @@
 import {
-  AIWidgetInstance,
-  StrategicContext,
   AITool,
+  AIWidgetInstance,
   BusinessPerformanceReport,
+  StrategicContext,
   StrategicInsight,
-  BusinessManagementAI,
   createAITool,
   createBusinessManagementAI
 } from './types';
@@ -96,7 +95,7 @@ export class CEOAIAssistant {
         },
         required: ['competitor_id']
       },
-      execute: async (params: any) => {
+      execute: async (_params: any) => {
         return {
           success: true,
           analysis: {}
@@ -119,7 +118,7 @@ export class CEOAIAssistant {
         },
         required: ['investment_type', 'amount']
       },
-      execute: async (params: any) => {
+      execute: async (_params: any) => {
         return {
           success: true,
           roi: 0.15,
@@ -141,7 +140,7 @@ export class CEOAIAssistant {
           metrics: { type: 'array', description: '评估指标' }
         }
       },
-      execute: async (params: any) => {
+      execute: async (_params: any) => {
         return {
           success: true,
           health_score: 85,
@@ -188,7 +187,7 @@ export class CEOAIAssistant {
     return insights.data;
   }
 
-  private async fetchMarketData(decisionType: string): Promise<any> {
+  private async fetchMarketData(_decisionType: string): Promise<any> {
     return {
       market_size: 1000000000,
       growth_rate: 0.05,
@@ -204,7 +203,7 @@ export class CEOAIAssistant {
     };
   }
 
-  private async analyzeRisks(decisionType: string, riskTolerance?: string): Promise<any> {
+  private async analyzeRisks(_decisionType: string, _riskTolerance?: string): Promise<any> {
     return {
       risks: [
         { type: 'market', probability: 0.3, impact: 'high' },
@@ -214,7 +213,7 @@ export class CEOAIAssistant {
     };
   }
 
-  private async generateDecisionScenarios(context: any): Promise<any> {
+  private async generateDecisionScenarios(_context: any): Promise<any> {
     return {
       scenarios: [
         { name: 'Optimistic', probability: 0.3, outcome: 'success' },
@@ -229,7 +228,7 @@ export class CEOAIAssistant {
     return scenarios.recommended;
   }
 
-  private async createImplementationRoadmap(scenario: string): Promise<any> {
+  private async createImplementationRoadmap(_scenario: string): Promise<any> {
     return {
       phases: [
         { name: 'Planning', duration: '1 month' },
@@ -241,7 +240,7 @@ export class CEOAIAssistant {
     };
   }
 
-  private processPerformanceReport(data: any): BusinessPerformanceReport {
+  private processPerformanceReport(_data: any): BusinessPerformanceReport {
     return {
       id: 'perf-001',
       generated_at: new Date(),

@@ -1,14 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Search, X, Filter, Clock, Plus, Trash2, ChevronDown } from "lucide-react"
-import { AdvancedSearch, SearchFilter, SearchHistoryItem, createSearchFilter, getFilterValue } from "@/lib/utils/advanced-search"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { AdvancedSearch, SearchFilter, SearchHistoryItem, createSearchFilter, getFilterValue } from "@/lib/utils/advanced-search"
+import { Clock, Filter, Plus, Search, X } from "lucide-react"
+import { useEffect, useState } from "react"
 
 interface AdvancedSearchBarProps<T> {
   data: T[]
@@ -55,12 +55,13 @@ export function AdvancedSearchBar<T>({
     setShowHistory(false)
   }
 
-  const handleQuickSearch = (term: string) => {
-    setSearchTerm(term)
-    const results = advancedSearch.search(data, term, [])
-    onSearch(results)
-    setShowHistory(false)
-  }
+  // 快速搜索（保留实现供未来使用）
+  // const handleQuickSearch = (term: string) => {
+  //   setSearchTerm(term)
+  //   const results = advancedSearch.search(data, term, [])
+  //   onSearch(results)
+  //   setShowHistory(false)
+  // }
 
   const handleAddFilter = () => {
     if (newFilter.field && newFilter.operator && newFilter.value !== "") {

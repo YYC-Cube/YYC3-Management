@@ -25,7 +25,7 @@ export function EnhancedCard({
   const cardVariants = {
     default: commonStyles.card.base,
     gradient:
-      "bg-gradient-to-br from-white to-sky-50/50 border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200",
+      "bg-linear-to-br from-white to-sky-50/50 border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200",
     glass:
       "bg-white/60 backdrop-blur-md border border-sky-200/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300",
   }

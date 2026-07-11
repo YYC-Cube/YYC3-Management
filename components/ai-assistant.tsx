@@ -54,7 +54,7 @@ interface QuickAction {
   id: string
   title: string
   description: string
-  icon: unknown
+  icon: React.ComponentType<{ className?: string }>
   action: () => void
 }
 
@@ -295,7 +295,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-sky-50/30 p-6 space-y-6">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-sky-50/30 p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
@@ -362,7 +362,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                           <div
                             className={`max-w-[80%] rounded-lg p-3 ${
                               message.role === "user"
-                                ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white"
+                                ? "bg-linear-to-r from-purple-500 to-purple-600 text-white"
                                 : "bg-purple-50 text-slate-900 border border-purple-200"
                             }`}
                           >
@@ -425,7 +425,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     <Button
                       onClick={handleSendMessage}
                       disabled={!inputValue.trim() || isTyping}
-                      className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
+                      className="bg-linear-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
                     >
                       <Send className="w-4 h-4" />
                     </Button>
@@ -477,7 +477,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                     <ColoredProgress
                       value={temperature[0] * 100}
-                      color="bg-gradient-to-r from-purple-400 to-purple-500"
+                      color="bg-linear-to-r from-purple-400 to-purple-500"
                     />
                   </div>
                   <div>
@@ -492,7 +492,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                     <ColoredProgress
                       value={(maxTokens[0] / 8000) * 100}
-                      color="bg-gradient-to-r from-purple-400 to-purple-500"
+                      color="bg-linear-to-r from-purple-400 to-purple-500"
                     />
                   </div>
                   <div className="flex items-center justify-between">

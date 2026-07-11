@@ -2,9 +2,9 @@
 
 export default function OfflinePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-sky-50 to-blue-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
-        <div className="w-20 h-20 bg-gradient-to-r from-sky-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="w-20 h-20 bg-linear-to-r from-sky-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
           <img src="/yyc3-icons/pwa/icon-96x96.png" alt="YYC³" className="w-12 h-12 object-contain" />
         </div>
 
@@ -33,7 +33,7 @@ export default function OfflinePage() {
 
         <button
           onClick={() => window.location.reload()}
-          className="w-full mt-6 bg-gradient-to-r from-sky-500 to-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:from-sky-600 hover:to-blue-700 transition-colors"
+          className="w-full mt-6 bg-linear-to-r from-sky-500 to-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:from-sky-600 hover:to-blue-700 transition-colors"
         >
           重新连接
         </button>

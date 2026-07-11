@@ -68,7 +68,7 @@ interface UserProgress {
 }
 
 export function UserTraining() {
-  const [selectedModule, setSelectedModule] = useState<string | null>(null)
+  const [, setSelectedModule] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState("overview")
 
   const trainingModules: TrainingModule[] = [
@@ -292,7 +292,7 @@ export function UserTraining() {
           </div>
           <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
             <div
-              className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
+              className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${overallProgress}%` }}
             ></div>
           </div>
@@ -459,7 +459,7 @@ export function UserTraining() {
                           </div>
                           <div className="w-full bg-slate-200 rounded-full h-1">
                             <div
-                              className="bg-gradient-to-r from-orange-400 to-orange-500 h-1 rounded-full transition-all duration-1000 ease-out"
+                              className="bg-linear-to-r from-orange-400 to-orange-500 h-1 rounded-full transition-all duration-1000 ease-out"
                               style={{ width: `${module.progress}%` }}
                             ></div>
                           </div>
@@ -588,7 +588,7 @@ export function UserTraining() {
                     </div>
                     <div className="w-32 bg-slate-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${(user.completedModules / user.totalModules) * 100}%` }}
                       ></div>
                     </div>
@@ -612,7 +612,7 @@ export function UserTraining() {
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                          className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                           style={{ width: `${85 - index * 5}%` }}
                         ></div>
                       </div>

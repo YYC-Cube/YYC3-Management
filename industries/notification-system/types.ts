@@ -26,13 +26,13 @@ export interface NotificationStrategy {
   created_at: Date;
 }
 
-export function createAutonomousAIWidget(config: any): Promise<AIWidgetInstance> {
+export function createAutonomousAIWidget(_config: any): Promise<AIWidgetInstance> {
   return Promise.resolve({
-    sendMessage: async (message) => ({
+    sendMessage: async (_message) => ({
       data: null,
       immediate_action_required: false
     }),
-    initialize: async (config) => {}
+    initialize: async (_config) => {}
   });
 }
 
@@ -40,9 +40,9 @@ export function createAITool(tool: AITool): AITool {
   return tool;
 }
 
-export function createNotificationSystem(systemUrl: string): NotificationSystem {
+export function createNotificationSystem(_systemUrl: string): NotificationSystem {
   return {
-    on: (event: string, callback: (data: any) => void) => {
+    on: (event: string, _callback: (data: any) => void) => {
       console.log(`[NotificationSystem] Listening for event: ${event}`);
     },
     getAnalytics: async (analysisType: string, timePeriod?: string) => {

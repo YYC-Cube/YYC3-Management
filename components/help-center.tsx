@@ -279,21 +279,21 @@ export function HelpCenter() {
     }
   }
 
-  const handleArticleClick = (articleId: string) => {
+  const handleArticleClick = (_articleId: string) => {
     toast({
       title: "查看文章",
       description: `正在打开文章详情页面`,
     })
   }
 
-  const handleVideoClick = (videoId: string) => {
+  const handleVideoClick = (_videoId: string) => {
     toast({
       title: "播放视频",
       description: `正在加载视频教程`,
     })
   }
 
-  const handleFeedback = (type: "helpful" | "notHelpful", faqId: string) => {
+  const handleFeedback = (type: "helpful" | "notHelpful", _faqId: string) => {
     toast({
       title: "反馈已提交",
       description: `感谢您的${type === "helpful" ? "好评" : "反馈"}`,

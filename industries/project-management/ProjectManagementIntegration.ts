@@ -1,11 +1,11 @@
 // integrations/project-management/ProjectManagementIntegration.ts
 import {
-  AIWidgetInstance,
-  ProjectManagementSystem,
   AITool,
-  createAutonomousAIWidget,
+  AIWidgetInstance,
   createAITool,
-  createProjectManagementSystem
+  createAutonomousAIWidget,
+  createProjectManagementSystem,
+  ProjectManagementSystem
 } from './types';
 
 export class ProjectManagementIntegration {
@@ -162,15 +162,15 @@ export class ProjectManagementIntegration {
     }));
   }
 
-  private async identifyProjectRisks(projects: any[]): Promise<any[]> {
+  private async identifyProjectRisks(_projects: any[]): Promise<any[]> {
     return [];
   }
 
-  private async generateRiskMitigation(risks: any[]): Promise<string[]> {
+  private async generateRiskMitigation(_risks: any[]): Promise<string[]> {
     return [];
   }
 
-  private async optimizeResourceAllocation(resourceData: any, params: any): Promise<any> {
+  private async optimizeResourceAllocation(_resourceData: any, _params: any): Promise<any> {
     return {
       allocation: [],
       efficiency_improvement: 0.15,
@@ -178,7 +178,7 @@ export class ProjectManagementIntegration {
     };
   }
 
-  private async calculateBenefits(allocation: any): Promise<any> {
+  private async calculateBenefits(_allocation: any): Promise<any> {
     return {
       time_savings: 20,
       cost_savings: 10000,
@@ -186,7 +186,7 @@ export class ProjectManagementIntegration {
     };
   }
 
-  private async createImplementationPlan(allocation: any): Promise<any> {
+  private async createImplementationPlan(_allocation: any): Promise<any> {
     return {
       phases: [],
       timeline: '30 days',
@@ -202,7 +202,7 @@ export class ProjectManagementIntegration {
     };
   }
 
-  private async predictProjectProgress(projectData: any, historicalData: any, confidenceLevel: number): Promise<any> {
+  private async predictProjectProgress(_projectData: any, _historicalData: any, _confidenceLevel: number): Promise<any> {
     return {
       completionDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
       confidenceInterval: {
@@ -214,11 +214,11 @@ export class ProjectManagementIntegration {
     };
   }
 
-  private async requiresAction(project: any): Promise<boolean> {
+  private async requiresAction(_project: any): Promise<boolean> {
     return false;
   }
 
-  private async analyzeRiskImpact(risk: any): Promise<any> {
+  private async analyzeRiskImpact(_risk: any): Promise<any> {
     return {
       severity: 'medium',
       probability: 0.5,

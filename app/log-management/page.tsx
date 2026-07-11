@@ -15,7 +15,7 @@ export default function LogManagementPage() {
       className="p-6"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <LogManagement showTitle={false} />
+        <LogManagement />
       </div>
     </PageContainer>
   )

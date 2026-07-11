@@ -6,15 +6,15 @@
  * @license MIT
  */
 
-import { NextRequest, NextResponse } from 'next/server'
 import { authenticateApiRequest } from '@/lib/api/auth-guard'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
   try {
     const auth = authenticateApiRequest(request)
     if (!auth.authenticated) return auth.response
     const searchParams = request.nextUrl.searchParams
-    const query = searchParams.get('q') || ''
+    void searchParams.get('q') // 搜索查询保留供未来实现
 
     return NextResponse.json({
       success: true,

@@ -179,7 +179,7 @@ export function Header() {
             <Button variant="ghost" className="relative h-9 w-9 rounded-full text-purple-500 hover:text-purple-600 hover:bg-purple-50">
               <Avatar className="h-9 w-9">
                 <AvatarImage src="/placeholder-user.jpg" alt="用户头像" onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder-user.jpg' }} />
-                <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">管</AvatarFallback>
+                <AvatarFallback className="bg-linear-to-r from-blue-500 to-purple-600 text-white">管</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>

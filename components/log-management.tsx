@@ -67,8 +67,8 @@ export default function LogManagement() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedLevel, setSelectedLevel] = useState("all")
   const [selectedCategory, setSelectedCategory] = useState("all")
-  const [realTimeEnabled, setRealTimeEnabled] = useState(true)
-  const [autoRefresh, setAutoRefresh] = useState(true)
+  const [realTimeEnabled] = useState(true)
+  const [autoRefresh] = useState(true)
   const [logsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -254,6 +254,7 @@ export default function LogManagement() {
 
       return () => clearInterval(interval)
     }
+    return undefined
   }, [realTimeEnabled, autoRefresh])
 
   const handleExportLogs = () => {

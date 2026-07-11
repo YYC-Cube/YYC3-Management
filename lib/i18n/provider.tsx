@@ -1,7 +1,8 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from 'react'
-import { I18nEngine, type Locale } from './engine'
+import { I18nEngine } from './engine'
+import type { Locale } from './types'
 import { zhCN } from './locales/zh-CN-app'
 import { enApp } from './locales/en-app'
 

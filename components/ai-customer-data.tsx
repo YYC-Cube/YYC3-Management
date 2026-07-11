@@ -11,37 +11,36 @@
 
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
-  Brain,
-  Users,
-  TrendingUp,
-  AlertTriangle,
-  CheckCircle,
-  Target,
-  Settings,
-  Download,
-  Share,
-  RefreshCw,
-  Filter,
-  BarChart3,
-  PieChart,
   Activity,
-  Star,
+  AlertTriangle,
   ArrowUpRight,
-  MessageSquare,
+  BarChart3,
+  Brain,
+  CheckCircle,
   DollarSign,
+  Download,
+  Filter,
+  MessageSquare,
+  PieChart,
+  RefreshCw,
+  Settings,
+  Share,
+  Star,
+  Target,
+  TrendingUp,
+  Users,
 } from "lucide-react"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export function AiCustomerData() {
   const router = useRouter()
   const [isRefreshing, setIsRefreshing] = useState(false)
-  const [selectedTimeRange, setSelectedTimeRange] = useState("30d")
 
   // 页面跳转函数
   const handleNavigation = (path: string) => {
@@ -56,13 +55,13 @@ export function AiCustomerData() {
   }
 
   // 导出数据函数
-  const handleExport = (type: string) => {
-    // console.log(`导出${type}数据`)
+  const handleExport = (_type: string) => {
+    // console.log(`导出${_type}数据`)
   }
 
   // 分享数据函数
-  const handleShare = (type: string) => {
-    // console.log(`分享${type}数据`)
+  const handleShare = (_type: string) => {
+    // console.log(`分享${_type}数据`)
   }
 
   const customerStages = [
@@ -248,7 +247,7 @@ export function AiCustomerData() {
       {/* 核心指标卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* 总客户数 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -256,7 +255,7 @@ export function AiCustomerData() {
                 <p className="text-3xl font-bold text-purple-600">15,847</p>
                 <p className="text-xs text-slate-500 mt-1">活跃客户</p>
               </div>
-              <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
+              <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <Users className="w-8 h-8 text-purple-600" />
               </div>
             </div>
@@ -273,7 +272,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 转化率 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -281,14 +280,14 @@ export function AiCustomerData() {
                 <p className="text-3xl font-bold text-purple-600">23.5%</p>
                 <p className="text-xs text-slate-500 mt-1">月度转化</p>
               </div>
-              <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
+              <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <TrendingUp className="w-8 h-8 text-purple-600" />
               </div>
             </div>
             <div className="mt-3">
               <div className="w-full bg-slate-200 rounded-full h-2">
                 <div
-                  className="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                  className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
                   style={{ width: "78%" }}
                 />
               </div>
@@ -298,7 +297,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 平均客单价 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -306,7 +305,7 @@ export function AiCustomerData() {
                 <p className="text-3xl font-bold text-purple-600">¥89,247</p>
                 <p className="text-xs text-slate-500 mt-1">单笔成交</p>
               </div>
-              <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
+              <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <DollarSign className="w-8 h-8 text-purple-600" />
               </div>
             </div>
@@ -323,7 +322,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* AI预测准确率 */}
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -331,14 +330,14 @@ export function AiCustomerData() {
                 <p className="text-3xl font-bold text-purple-600">94.2%</p>
                 <p className="text-xs text-slate-500 mt-1">智能分析</p>
               </div>
-              <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
+              <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <Brain className="w-8 h-8 text-purple-600" />
               </div>
             </div>
             <div className="mt-3">
               <div className="w-full bg-slate-200 rounded-full h-2">
                 <div
-                  className="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                  className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
                   style={{ width: "94%" }}
                 />
               </div>
@@ -359,7 +358,7 @@ export function AiCustomerData() {
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 客户分布图 */}
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <PieChart className="w-5 h-5 text-purple-600" />
@@ -370,11 +369,11 @@ export function AiCustomerData() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
+                    <div className="text-center p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
                       <div className="text-2xl font-bold text-purple-600">45%</div>
                       <div className="text-sm text-slate-600">大型企业</div>
                     </div>
-                    <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
+                    <div className="text-center p-4 bg-linear-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
                       <div className="text-2xl font-bold text-blue-600">35%</div>
                       <div className="text-sm text-slate-600">中型企业</div>
                     </div>
@@ -386,7 +385,7 @@ export function AiCustomerData() {
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
                       <div
-                        className="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"
+                        className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full"
                         style={{ width: "38%" }}
                       />
                     </div>
@@ -396,7 +395,7 @@ export function AiCustomerData() {
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
                       <div
-                        className="h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"
+                        className="h-full bg-linear-to-r from-blue-400 to-blue-500 rounded-full"
                         style={{ width: "28%" }}
                       />
                     </div>
@@ -406,7 +405,7 @@ export function AiCustomerData() {
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
                       <div
-                        className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
+                        className="h-full bg-linear-to-r from-green-400 to-green-500 rounded-full"
                         style={{ width: "22%" }}
                       />
                     </div>
@@ -416,7 +415,7 @@ export function AiCustomerData() {
             </Card>
 
             {/* 客户价值分析 */}
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-purple-600" />
@@ -427,15 +426,15 @@ export function AiCustomerData() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 gap-2">
-                    <div className="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200/50">
+                    <div className="text-center p-3 bg-linear-to-br from-green-50 to-green-100 rounded-lg border border-green-200/50">
                       <div className="text-lg font-bold text-green-700">156</div>
                       <div className="text-xs text-green-600">高价值</div>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200/50">
+                    <div className="text-center p-3 bg-linear-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200/50">
                       <div className="text-lg font-bold text-blue-700">892</div>
                       <div className="text-xs text-blue-600">中价值</div>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-slate-200/50">
+                    <div className="text-center p-3 bg-linear-to-br from-gray-50 to-gray-100 rounded-lg border border-slate-200/50">
                       <div className="text-lg font-bold text-slate-700">1,247</div>
                       <div className="text-xs text-slate-600">低价值</div>
                     </div>
@@ -448,7 +447,7 @@ export function AiCustomerData() {
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
+                          className="h-full bg-linear-to-r from-green-400 to-green-500 rounded-full"
                           style={{ width: "68%" }}
                         />
                       </div>
@@ -460,7 +459,7 @@ export function AiCustomerData() {
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"
+                          className="h-full bg-linear-to-r from-blue-400 to-blue-500 rounded-full"
                           style={{ width: "82%" }}
                         />
                       </div>
@@ -472,7 +471,7 @@ export function AiCustomerData() {
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"
+                          className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full"
                           style={{ width: "45%" }}
                         />
                       </div>
@@ -489,7 +488,7 @@ export function AiCustomerData() {
             {customerStages.map((stage, index) => (
               <Card
                 key={index}
-                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
+                className={`border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-6">
@@ -515,7 +514,7 @@ export function AiCustomerData() {
           </div>
 
           {/* 阶段转化漏斗 */}
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -526,15 +525,15 @@ export function AiCustomerData() {
             <CardContent>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
+                  <div className="text-center p-4 bg-linear-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
                     <div className="text-2xl font-bold text-blue-600">78%</div>
                     <div className="text-sm text-slate-600 mt-1">潜在→意向转化率</div>
                   </div>
-                  <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200/50">
+                  <div className="text-center p-4 bg-linear-to-br from-green-50 to-green-100 rounded-xl border border-green-200/50">
                     <div className="text-2xl font-bold text-green-600">65%</div>
                     <div className="text-sm text-slate-600 mt-1">意向→成交转化率</div>
                   </div>
-                  <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
+                  <div className="text-center p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
                     <div className="text-2xl font-bold text-purple-600">23.5%</div>
                     <div className="text-sm text-slate-600 mt-1">整体转化率</div>
                   </div>
@@ -549,7 +548,7 @@ export function AiCustomerData() {
             {aiInsights.map((insight, index) => (
               <Card
                 key={index}
-                className={`border-0 shadow-xl bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
+                className={`border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 cursor-pointer hover:scale-105`}
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-6">
@@ -594,7 +593,7 @@ export function AiCustomerData() {
             {recentActivities.map((activity) => (
               <Card
                 key={activity.id}
-                className="border-0 shadow-lg bg-gradient-to-br from-white via-slate-50/50 to-white hover:shadow-xl transition-all duration-300 border-r-[5px] border-r-purple-400 cursor-pointer"
+                className="border-0 shadow-lg bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-xl transition-all duration-300 border-r-[5px] border-r-purple-400 cursor-pointer"
                 onClick={() => handleNavigation("/customers")}
               >
                 <CardContent className="p-4">

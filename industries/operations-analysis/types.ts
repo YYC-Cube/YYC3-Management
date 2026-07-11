@@ -50,14 +50,14 @@ export interface OperationsReport {
   recommendations: string[];
 }
 
-export function createAutonomousAIWidget(config: any): Promise<AIWidgetInstance> {
+export function createAutonomousAIWidget(_config: any): Promise<AIWidgetInstance> {
   return Promise.resolve({
-    sendMessage: async (message) => ({
+    sendMessage: async (_message) => ({
       immediate_action_required: false,
       recommended_actions: [],
       data: null
     }),
-    initialize: async (config) => {}
+    initialize: async (_config) => {}
   });
 }
 

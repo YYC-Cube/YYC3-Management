@@ -30,7 +30,7 @@ export class ApiErrorHandler {
         {
           success: false,
           error: '数据验证失败',
-          details: error.errors,
+          details: error.issues,
           code: 'VALIDATION_ERROR',
         },
         { status: 400 }
@@ -39,7 +39,7 @@ export class ApiErrorHandler {
 
     if (error instanceof Error) {
       const statusCode = this.getHttpStatusCode(error)
-      
+
       return NextResponse.json(
         {
           success: false,
@@ -148,6 +148,17 @@ export class ApiErrorHandler {
         code: 'SERVICE_UNAVAILABLE',
       },
       { status: 503 }
+    )
+  }
+
+  static tooManyRequests(message: string = '请求过于频繁'): NextResponse<ApiError> {
+    return NextResponse.json(
+      {
+        success: false,
+        error: message,
+        code: 'TOO_MANY_REQUESTS',
+      },
+      { status: 429 }
     )
   }
 }

@@ -129,23 +129,23 @@ export class BehavioralLearningLayer {
   private behaviors: Map<string, UserBehavior[]> = new Map();
   private patterns: Map<string, BehaviorPattern[]> = new Map();
   private profiles: Map<string, PersonalizationProfile> = new Map();
-  
+
   /**
    * 记录用户行为
    */
   recordBehavior(behavior: UserBehavior): void {
     const userId = behavior.userId;
-    
+
     if (!this.behaviors.has(userId)) {
       this.behaviors.set(userId, []);
     }
-    
+
     this.behaviors.get(userId)!.push(behavior);
-    
+
     // 触发模式识别
     this.detectPatterns(userId);
   }
-  
+
   /**
    * 检测行为模式
    */
@@ -154,21 +154,21 @@ export class BehavioralLearningLayer {
     if (userBehaviors.length < 10) {
       return; // 需要足够的数据
     }
-    
+
     // 简化的模式识别算法
     const actionFrequency = new Map<string, number>();
-    
+
     userBehaviors.forEach(behavior => {
       const count = actionFrequency.get(behavior.action) || 0;
       actionFrequency.set(behavior.action, count + 1);
     });
-    
+
     const patterns: BehaviorPattern[] = [];
-    
+
     actionFrequency.forEach((frequency, action) => {
       if (frequency >= 3) {
         const examples = userBehaviors.filter(b => b.action === action).slice(0, 3);
-        
+
         patterns.push({
           id: `pattern-${Date.now()}-${action}`,
           patternType: action,
@@ -181,18 +181,18 @@ export class BehavioralLearningLayer {
         });
       }
     });
-    
+
     this.patterns.set(userId, patterns);
     this.updateProfile(userId);
   }
-  
+
   /**
    * 更新个性化配置
    */
   private updateProfile(userId: string): void {
     const existingProfile = this.profiles.get(userId);
     const patterns = this.patterns.get(userId) || [];
-    
+
     // 生成偏好设置
     const preferences: Record<string, any> = {};
     patterns.forEach(pattern => {
@@ -201,13 +201,13 @@ export class BehavioralLearningLayer {
         confidence: pattern.confidence
       };
     });
-    
+
     // 生成预测
     const predictions: Record<string, number> = {};
     patterns.forEach(pattern => {
       predictions[`next_${pattern.patternType}`] = pattern.confidence;
     });
-    
+
     const profile: PersonalizationProfile = {
       userId,
       preferences,
@@ -216,40 +216,40 @@ export class BehavioralLearningLayer {
       version: (existingProfile?.version || 0) + 1,
       lastUpdated: new Date()
     };
-    
+
     this.profiles.set(userId, profile);
   }
-  
+
   /**
    * 获取用户配置
    */
   getUserProfile(userId: string): PersonalizationProfile | null {
     return this.profiles.get(userId) || null;
   }
-  
+
   /**
    * 预测下一个可能的操作
    */
-  predictNextAction(userId: string, context: Record<string, any>): string | null {
+  predictNextAction(userId: string, _context: Record<string, any>): string | null {
     const profile = this.profiles.get(userId);
     if (!profile) {
       return null;
     }
-    
+
     // 简化的预测：返回最频繁的操作
     let maxConfidence = 0;
     let predictedAction: string | null = null;
-    
+
     for (const [action, confidence] of Object.entries(profile.predictions)) {
       if (confidence > maxConfidence) {
         maxConfidence = confidence;
         predictedAction = action.replace('next_', '');
       }
     }
-    
+
     return predictedAction;
   }
-  
+
   /**
    * 获取学习指标
    */
@@ -257,7 +257,7 @@ export class BehavioralLearningLayer {
     if (userId) {
       const behaviors = this.behaviors.get(userId) || [];
       const patterns = this.patterns.get(userId) || [];
-      
+
       return {
         totalSamples: behaviors.length,
         modelAccuracy: patterns.length > 0 ? patterns[0].confidence : 0,
@@ -266,23 +266,23 @@ export class BehavioralLearningLayer {
         improvementRate: 0
       };
     }
-    
+
     // 全局指标
     let totalBehaviors = 0;
     let totalPatterns = 0;
     let avgConfidence = 0;
-    
+
     this.behaviors.forEach(behaviors => {
       totalBehaviors += behaviors.length;
     });
-    
+
     this.patterns.forEach(patterns => {
       totalPatterns += patterns.length;
       patterns.forEach(p => {
         avgConfidence += p.confidence;
       });
     });
-    
+
     return {
       totalSamples: totalBehaviors,
       modelAccuracy: totalPatterns > 0 ? avgConfidence / totalPatterns : 0,
@@ -300,17 +300,17 @@ export class BehavioralLearningLayer {
 export class StrategicLearningLayer {
   private outcomes: DecisionOutcome[] = [];
   private strategies: Map<string, OptimizationStrategy> = new Map();
-  
+
   /**
    * 记录决策结果
    */
   recordOutcome(outcome: DecisionOutcome): void {
     this.outcomes.push(outcome);
-    
+
     // 触发策略优化
     this.optimizeStrategies();
   }
-  
+
   /**
    * 优化策略
    */
@@ -318,29 +318,29 @@ export class StrategicLearningLayer {
     if (this.outcomes.length < 20) {
       return; // 需要足够的数据
     }
-    
+
     // 按决策类型分组
     const decisionGroups = new Map<string, DecisionOutcome[]>();
-    
+
     this.outcomes.forEach(outcome => {
       if (!decisionGroups.has(outcome.decision)) {
         decisionGroups.set(outcome.decision, []);
       }
       decisionGroups.get(outcome.decision)!.push(outcome);
     });
-    
+
     // 为每种决策类型生成策略
     decisionGroups.forEach((outcomes, decisionType) => {
       const successCount = outcomes.filter(o => o.result === 'success').length;
       const successRate = successCount / outcomes.length;
-      
+
       const avgTime = outcomes.reduce((sum, o) => sum + o.metrics.executionTime, 0) / outcomes.length;
       const avgResource = outcomes.reduce((sum, o) => sum + o.metrics.resourceUsage, 0) / outcomes.length;
-      
+
       // 提取成功案例的参数模式
       const successOutcomes = outcomes.filter(o => o.result === 'success');
       const rules: StrategyRule[] = [];
-      
+
       if (successOutcomes.length > 0) {
         // 简化的规则提取
         rules.push({
@@ -350,7 +350,7 @@ export class StrategicLearningLayer {
           confidence: successRate
         });
       }
-      
+
       const strategy: OptimizationStrategy = {
         id: `strategy-${decisionType}`,
         name: `${decisionType}策略`,
@@ -363,46 +363,46 @@ export class StrategicLearningLayer {
         },
         lastEvaluated: new Date()
       };
-      
+
       this.strategies.set(decisionType, strategy);
     });
   }
-  
+
   /**
    * 获取最佳策略
    */
-  getBestStrategy(decisionType: string, context: Record<string, any>): OptimizationStrategy | null {
+  getBestStrategy(decisionType: string, _context: Record<string, any>): OptimizationStrategy | null {
     return this.strategies.get(decisionType) || null;
   }
-  
+
   /**
    * 推荐参数
    */
-  recommendParameters(decisionType: string, context: Record<string, any>): Record<string, any> {
+  recommendParameters(decisionType: string, _context: Record<string, any>): Record<string, any> {
     const strategy = this.strategies.get(decisionType);
     if (!strategy) {
       return {};
     }
-    
+
     // 获取成功案例的平均参数
     const successOutcomes = this.outcomes.filter(
       o => o.decision === decisionType && o.result === 'success'
     );
-    
+
     if (successOutcomes.length === 0) {
       return {};
     }
-    
+
     // 简化实现：返回最近成功案例的参数
     return successOutcomes[successOutcomes.length - 1].parameters;
   }
-  
+
   /**
    * 获取学习指标
    */
   getMetrics(): LearningMetrics {
     const successCount = this.outcomes.filter(o => o.result === 'success').length;
-    
+
     return {
       totalSamples: this.outcomes.length,
       modelAccuracy: this.outcomes.length > 0 ? successCount / this.outcomes.length : 0,
@@ -425,32 +425,32 @@ export class KnowledgeLearningLayer {
     version: 1,
     lastUpdated: new Date()
   };
-  
+
   /**
    * 添加知识条目
    */
   addKnowledge(entry: Omit<KnowledgeEntry, 'id' | 'createdAt' | 'updatedAt'>): string {
-    const id = `knowledge-${Date.now()}-${crypto.randomUUID().slice(0,9)}`;
-    
+    const id = `knowledge-${Date.now()}-${crypto.randomUUID().slice(0, 9)}`;
+
     const knowledgeEntry: KnowledgeEntry = {
       ...entry,
       id,
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    
+
     this.knowledgeBase.set(id, knowledgeEntry);
     this.updateGraph();
-    
+
     return id;
   }
-  
+
   /**
    * 更新知识图谱
    */
   private updateGraph(): void {
     this.graph.nodes = Array.from(this.knowledgeBase.values());
-    
+
     // 构建边：基于关系
     this.graph.edges = [];
     this.knowledgeBase.forEach(entry => {
@@ -463,38 +463,38 @@ export class KnowledgeLearningLayer {
         });
       });
     });
-    
+
     this.graph.version++;
     this.graph.lastUpdated = new Date();
   }
-  
+
   /**
    * 查询知识
    */
   queryKnowledge(query: string, options?: { type?: string; tags?: string[] }): KnowledgeEntry[] {
     const results: KnowledgeEntry[] = [];
-    
+
     this.knowledgeBase.forEach(entry => {
       // 类型过滤
       if (options?.type && entry.type !== options.type) {
         return;
       }
-      
+
       // 标签过滤
       if (options?.tags && !options.tags.some(tag => entry.tags.includes(tag))) {
         return;
       }
-      
+
       // 内容搜索
       if (entry.content.toLowerCase().includes(query.toLowerCase())) {
         results.push(entry);
       }
     });
-    
+
     // 按置信度排序
     return results.sort((a, b) => b.confidence - a.confidence);
   }
-  
+
   /**
    * 获取相关知识
    */
@@ -502,39 +502,39 @@ export class KnowledgeLearningLayer {
     const related = new Set<string>();
     const queue: Array<{ id: string; depth: number }> = [{ id: entryId, depth: 0 }];
     const visited = new Set<string>();
-    
+
     while (queue.length > 0) {
       const { id, depth } = queue.shift()!;
-      
+
       if (visited.has(id) || depth > maxDepth) {
         continue;
       }
-      
+
       visited.add(id);
-      
+
       if (depth > 0) {
         related.add(id);
       }
-      
+
       // 查找相关节点
       const edges = this.graph.edges.filter(e => e.from === id);
       edges.forEach(edge => {
         queue.push({ id: edge.to, depth: depth + 1 });
       });
     }
-    
+
     return Array.from(related)
       .map(id => this.knowledgeBase.get(id))
       .filter((entry): entry is KnowledgeEntry => entry !== undefined);
   }
-  
+
   /**
    * 获取知识图谱
    */
   getKnowledgeGraph(): KnowledgeGraph {
     return { ...this.graph };
   }
-  
+
   /**
    * 获取学习指标
    */
@@ -547,7 +547,7 @@ export class KnowledgeLearningLayer {
       improvementRate: 0
     };
   }
-  
+
   /**
    * 计算图谱质量
    */
@@ -555,11 +555,11 @@ export class KnowledgeLearningLayer {
     if (this.graph.nodes.length === 0) {
       return 0;
     }
-    
+
     // 简化的质量指标：平均置信度 × 连接密度
     const avgConfidence = this.graph.nodes.reduce((sum, node) => sum + node.confidence, 0) / this.graph.nodes.length;
     const connectionDensity = this.graph.edges.length / Math.max(this.graph.nodes.length, 1);
-    
+
     return Math.min(avgConfidence * (1 + connectionDensity), 1);
   }
 }
@@ -572,34 +572,34 @@ export class UnifiedLearningSystem {
   private behavioralLayer: BehavioralLearningLayer;
   private strategicLayer: StrategicLearningLayer;
   private knowledgeLayer: KnowledgeLearningLayer;
-  
+
   constructor() {
     this.behavioralLayer = new BehavioralLearningLayer();
     this.strategicLayer = new StrategicLearningLayer();
     this.knowledgeLayer = new KnowledgeLearningLayer();
   }
-  
+
   /**
    * 获取行为学习层
    */
   getBehavioralLayer(): BehavioralLearningLayer {
     return this.behavioralLayer;
   }
-  
+
   /**
    * 获取策略学习层
    */
   getStrategicLayer(): StrategicLearningLayer {
     return this.strategicLayer;
   }
-  
+
   /**
    * 获取知识学习层
    */
   getKnowledgeLayer(): KnowledgeLearningLayer {
     return this.knowledgeLayer;
   }
-  
+
   /**
    * 获取综合指标
    */
@@ -612,13 +612,13 @@ export class UnifiedLearningSystem {
     const behavioral = this.behavioralLayer.getMetrics();
     const strategic = this.strategicLayer.getMetrics();
     const knowledge = this.knowledgeLayer.getMetrics();
-    
+
     const overall = (
       behavioral.modelAccuracy +
       strategic.modelAccuracy +
       knowledge.modelAccuracy
     ) / 3;
-    
+
     return {
       behavioral,
       strategic,

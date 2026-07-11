@@ -1,4 +1,3 @@
-import { PoolClient } from 'pg'
 import { query } from '../client'
 import type {
   User,

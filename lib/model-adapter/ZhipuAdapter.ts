@@ -13,22 +13,21 @@
 
 import {
   BaseModelAdapter,
-  type ModelConfig,
-  type CompletionRequest,
-  type CompletionResponse,
+  type ChatChunk,
+  type ChatMessage,
   type ChatRequest,
   type ChatResponse,
-  type ChatMessage,
+  type CompletionRequest,
+  type CompletionResponse,
   type EmbeddingRequest,
   type EmbeddingResponse,
-  type StreamChunk,
-  type ChatChunk,
-  type ModelInfo,
-  type HealthStatus
+  type HealthStatus,
+  type ModelConfig,
+  type ModelInfo
 } from './ModelAdapter';
 import {
-  ModelProvider,
-  ModelAdapterError
+  ModelAdapterError,
+  ModelProvider
 } from './types';
 
 /**
@@ -49,7 +48,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 验证配置
    */
-  protected validateConfig(config: ModelConfig): ModelConfig {
+  protected override validateConfig(config: ModelConfig): ModelConfig {
     if (!config.apiKey && !process.env.ZHIPU_API_KEY) {
       throw new Error('Zhipu API key is required');
     }
@@ -97,7 +96,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 检查模型是否可用
    */
-  async isAvailable(): Promise<boolean> {
+  override async isAvailable(): Promise<boolean> {
     try {
       const response = await fetch(`${this.baseURL}/models`, {
         method: 'GET',
@@ -115,7 +114,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 健康检查
    */
-  async healthCheck(): Promise<HealthStatus> {
+  override async healthCheck(): Promise<HealthStatus> {
     const startTime = Date.now();
     try {
       const available = await this.isAvailable();
@@ -139,7 +138,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 生成聊天补全
    */
-  async generateChatCompletion(request: ChatRequest): Promise<ChatResponse> {
+  override async generateChatCompletion(request: ChatRequest): Promise<ChatResponse> {
     const completionRequest: CompletionRequest = {
       prompt: this.formatChatMessages(request.messages),
       parameters: request.parameters
@@ -159,7 +158,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 生成嵌入
    */
-  async generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse> {
+  override async generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse> {
     const inputs = Array.isArray(request.input) ? request.input : [request.input];
 
     try {
@@ -184,7 +183,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
       const data = await response.json();
 
       return {
-        embeddings: data.data.map((item: unknown) => item.embedding),
+        embeddings: data.data.map((item: any) => item.embedding),
         usage: {
           totalTokens: data.usage?.total_tokens || 0
         },
@@ -208,7 +207,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 流式聊天
    */
-  async *streamChat(request: ChatRequest): AsyncIterable<ChatChunk> {
+  override async *streamChat(request: ChatRequest): AsyncIterable<ChatChunk> {
     const completionRequest: CompletionRequest = {
       prompt: this.formatChatMessages(request.messages),
       parameters: request.parameters
@@ -230,14 +229,14 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 批量完成
    */
-  async batchComplete(requests: CompletionRequest[]): Promise<CompletionResponse[]> {
+  override async batchComplete(requests: CompletionRequest[]): Promise<CompletionResponse[]> {
     return Promise.all(requests.map(req => this.generateCompletion(req)));
   }
 
   /**
    * 更新配置
    */
-  async updateConfig(config: Partial<ModelConfig>): Promise<void> {
+  override async updateConfig(config: Partial<ModelConfig>): Promise<void> {
     this.config = { ...this.config, ...config };
     if (config.apiKey) {
       this.apiKey = config.apiKey;
@@ -253,14 +252,14 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 获取配置
    */
-  getConfig(): ModelConfig {
+  override getConfig(): ModelConfig {
     return { ...this.config };
   }
 
   /**
    * 预热
    */
-  async warmup(): Promise<void> {
+  override async warmup(): Promise<void> {
     try {
       await this.generateCompletion({
         prompt: 'Hello',
@@ -274,14 +273,14 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 清理缓存
    */
-  async clearCache(): Promise<void> {
+  override async clearCache(): Promise<void> {
     this.cache.clear();
   }
 
   /**
    * 优化
    */
-  async optimizeFor(batchSize: number): Promise<void> {
+  override async optimizeFor(_batchSize: number): Promise<void> {
     // console.log(`Optimizing Zhipu adapter for batch size: ${batchSize}`);
   }
 
@@ -393,7 +392,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 后处理响应
    */
-  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
     const choice = rawResponse.choices?.[0];
 
     return {
@@ -416,7 +415,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 解析流式数据块
    */
-  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     if (!chunk.choices || chunk.choices.length === 0) {
       return { text: '', finished: false };
     }
@@ -435,7 +434,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 格式化聊天消息为提示词
    */
-  protected formatChatMessages(messages: ChatMessage[]): string {
+  protected override formatChatMessages(messages: ChatMessage[]): string {
     return messages
       .map(msg => `${msg.role}: ${typeof msg.content === 'string' ? msg.content : '[multimodal content]'}`)
       .join('\n');

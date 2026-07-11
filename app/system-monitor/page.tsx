@@ -83,7 +83,7 @@ export default function SystemMonitorPage() {
     { name: "错误率", value: 0.12, unit: "%", status: "normal", trend: "down" },
   ])
 
-  const [systemServices, setSystemServices] = useState<SystemService[]>([
+  const [systemServices, _setSystemServices] = useState<SystemService[]>([
     {
       name: "Web服务器",
       status: "running",

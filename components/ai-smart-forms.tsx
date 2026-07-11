@@ -243,7 +243,7 @@ export function AiSmartForms() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl">
+            <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl">
               <FileText className="w-8 h-8 text-purple-600" />
             </div>
             AI智能表单

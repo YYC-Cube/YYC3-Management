@@ -293,7 +293,7 @@ export function OAApproval() {
 
       {/* 主要内容区域 */}
       <Card className={commonStyles.card.base}>
-        <CardHeader className="border-b border-sky-100 bg-gradient-to-r from-sky-50/50 to-blue-50/30">
+        <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-xl text-slate-800">审批管理</CardTitle>
@@ -637,7 +637,7 @@ export function OAApproval() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {["销售部", "技术部", "IT部", "人力资源部"].map((dept, index) => (
+                    {["销售部", "技术部", "IT部", "人力资源部"].map((dept, _index) => (
                       <div key={dept} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                         <div className="flex items-center space-x-3">
                           <Building className="w-5 h-5 text-slate-600" />

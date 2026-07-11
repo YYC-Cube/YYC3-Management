@@ -107,7 +107,7 @@ export default function CommunicationPage() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="relative">
-                      <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                      <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
                         {group.name.charAt(0)}
                       </div>
                       {group.online && (
@@ -131,7 +131,7 @@ export default function CommunicationPage() {
               {/* 聊天头部 */}
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                  <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
                     产
                   </div>
                   <div>

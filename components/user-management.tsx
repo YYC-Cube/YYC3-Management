@@ -10,15 +10,12 @@
 
 "use client"
 
-import React from "react"
-import { useState, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { AdvancedSearchBar } from "@/components/ui/advanced-search-bar"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { BatchOperationsPanel } from "@/components/ui/batch-operations-panel"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { DataImportExport } from "@/components/ui/data-import-export"
 import {
   Dialog,
   DialogContent,
@@ -27,6 +24,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { FormFieldError } from "@/components/ui/form-error"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
 import {
   Select,
   SelectContent,
@@ -34,46 +35,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { VirtualScroll } from "@/components/ui/virtual-scroll"
+import { useFormValidation } from "@/hooks/use-form-validation"
+import { toast } from "@/hooks/use-toast"
+import { useUsers } from "@/hooks/use-users"
+import type { User } from "@/lib/db/models/user"
+import { userFormSchema } from "@/lib/utils/form-validation"
 import {
-  Users,
-  UserPlus,
-  UserCheck,
-  UserX,
-  Shield,
-  Key,
-  Lock,
-  Unlock,
-  Eye,
-  Edit,
-  Trash2,
-  Download,
-  Upload,
-  Search,
-  Settings,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
   Activity,
   AlertTriangle,
   CheckCircle,
-  XCircle,
+  Clock,
   Crown,
-  Star,
-  Award,
-  TrendingUp,
+  Edit,
   Loader2,
+  Mail,
+  Shield,
+  Star,
+  Trash2,
+  TrendingUp,
+  UserCheck,
+  UserPlus,
+  Users,
+  UserX,
+  XCircle,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
-import { useUsers } from "@/hooks/use-users"
-import { useFormValidation } from "@/hooks/use-form-validation"
-import { userFormSchema } from "@/lib/utils/form-validation"
-import { FormFieldError } from "@/components/ui/form-error"
-import { DataImportExport } from "@/components/ui/data-import-export"
-import { AdvancedSearchBar } from "@/components/ui/advanced-search-bar"
-import { BatchOperationsPanel } from "@/components/ui/batch-operations-panel"
-import { VirtualScroll } from "@/components/ui/virtual-scroll"
-import type { User } from "@/store/user-store"
+import { useEffect, useState } from "react"
 
 interface Role {
   id: string
@@ -110,35 +98,32 @@ interface UserStats {
 
 export default function UserManagement({ showTitle = true }: { showTitle?: boolean }) {
   const { users, loading, fetchUsers, createUser, updateUser, deleteUser } = useUsers({ page: 1, limit: 100 })
-  const [searchResults, setSearchResults] = useState<User[] | null>(null)
-  const [selectedFilter, setSelectedFilter] = useState("all")
+  const [searchResults, _setSearchResults] = useState<User[] | null>(null)
+  const [selectedFilter, _setSelectedFilter] = useState("all")
   const [selectedUsers, setSelectedUsers] = useState<number[]>([])
   const [showUserDialog, setShowUserDialog] = useState(false)
-  const [showRoleDialog, setShowRoleDialog] = useState(false)
   const [editingUser, setEditingUser] = useState<User | null>(null)
-  const [editingRole, setEditingRole] = useState<Role | null>(null)
-  const [dialogLoading, setDialogLoading] = useState(false)
 
   const {
     values: formData,
     errors: formErrors,
-    touched,
+    touched: _touched,
     isSubmitting: formSubmitting,
     isValid: isFormValid,
     handleChange,
     handleBlur,
     handleSubmit,
     setFieldValue,
-    setFieldError,
+    setFieldError: _setFieldError,
     clearErrors,
     resetForm,
-    validateAll,
+    validateAll: _validateAll,
   } = useFormValidation({
     schema: userFormSchema,
     onSubmit: async (data: unknown) => {
       if (editingUser) {
-        const result = await updateUser(editingUser.id, data)
-        if (result.success) {
+        try {
+          await updateUser(editingUser.id, data as any)
           toast({
             title: "更新成功",
             description: "用户信息已成功更新",
@@ -146,26 +131,26 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           setShowUserDialog(false)
           setEditingUser(null)
           resetForm()
-        } else {
+        } catch (error) {
           toast({
             title: "更新失败",
-            description: result.error || "无法更新用户，请稍后重试",
+            description: error instanceof Error ? error.message : "无法更新用户，请稍后重试",
             variant: "destructive",
           })
         }
       } else {
-        const result = await createUser(data)
-        if (result.success) {
+        try {
+          await createUser(data as any)
           toast({
             title: "创建成功",
             description: "用户已成功创建",
           })
           setShowUserDialog(false)
           resetForm()
-        } else {
+        } catch (error) {
           toast({
             title: "创建失败",
-            description: result.error || "无法创建用户，请稍后重试",
+            description: error instanceof Error ? error.message : "无法创建用户，请稍后重试",
             variant: "destructive",
           })
         }
@@ -316,61 +301,62 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
   }, [users])
 
   const handleUserAction = async (userId: number, action: string) => {
-    const result = await updateUser(userId, { status: action === "activate" ? "active" : "inactive" })
-
-    if (result.success) {
+    try {
+      await updateUser(userId, { status: action === "activate" ? "active" : "inactive" })
       toast({
         title: "操作成功",
         description: `用户状态已更新`,
       })
-    } else {
+    } catch (error) {
       toast({
         title: "操作失败",
-        description: result.error || "无法更新用户状态，请稍后重试",
+        description: error instanceof Error ? error.message : "无法更新用户状态，请稍后重试",
         variant: "destructive",
       })
     }
   }
 
-  const handleBatchAction = async (action: string) => {
-    if (selectedUsers.length === 0) {
-      toast({
-        title: "请选择用户",
-        description: "请先选择要操作的用户",
-        variant: "destructive",
-      })
-      return
-    }
-
-    let successCount = 0
-    for (const userId of selectedUsers) {
-      const result = await updateUser(userId, { status: action === "activate" ? "active" : "inactive" })
-      if (result.success) successCount++
-    }
-
-    setSelectedUsers([])
-
-    if (successCount > 0) {
-      toast({
-        title: "批量操作成功",
-        description: `已对${successCount}个用户执行${action}操作`,
-      })
-    } else {
-      toast({
-        title: "批量操作失败",
-        description: "操作可能失败，请检查后重试",
-        variant: "destructive",
-      })
-    }
-  }
+  // 批量操作（保留实现供未来使用）
+  // const handleBatchAction = async (action: string) => {
+  //   if (selectedUsers.length === 0) {
+  //     toast({
+  //       title: "请选择用户",
+  //       description: "请先选择要操作的用户",
+  //       variant: "destructive",
+  //     })
+  //     return
+  //   }
+  //
+  //   let successCount = 0
+  //   for (const userId of selectedUsers) {
+  //     const result = await updateUser(userId, { status: action === "activate" ? "active" : "inactive" })
+  //     if (result.success) successCount++
+  //   }
+  //
+  //   setSelectedUsers([])
+  //
+  //   if (successCount > 0) {
+  //     toast({
+  //       title: "批量操作成功",
+  //       description: `已对${successCount}个用户执行${action}操作`,
+  //     })
+  //   } else {
+  //     toast({
+  //       title: "批量操作失败",
+  //       description: "操作可能失败，请检查后重试",
+  //       variant: "destructive",
+  //     })
+  //   }
+  // }
 
   const handleImportUsers = async (importedUsers: User[]) => {
     for (const user of importedUsers) {
-      const result = await createUser(user)
-      if (!result.success) {
+      try {
+        await createUser(user)
+      } catch (error) {
         toast({
           title: "导入失败",
-          description: `用户 ${user.username} 导入失败: ${result.error}`,
+          description: `用户 ${user.username} 导入失败: ${error instanceof Error ? error.message : '未知错误'}`,
           variant: "destructive",
         })
       }
@@ -379,16 +365,16 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
   }
 
   const handleDeleteUser = async (userId: number) => {
-    const result = await deleteUser(userId)
-    if (result.success) {
+    try {
+      await deleteUser(userId)
       toast({
         title: "删除成功",
         description: "用户已成功删除",
       })
-    } else {
+    } catch (error) {
       toast({
         title: "删除失败",
-        description: result.error || "无法删除用户，请稍后重试",
+        description: error instanceof Error ? error.message : "无法删除用户，请稍后重试",
         variant: "destructive",
       })
     }
@@ -433,7 +419,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
     }
   }
 
-  const getRoleIcon = (roleName: string) => {
+  const getRoleIcon = (roleName?: string) => {
     switch (roleName) {
       case "admin":
         return <Crown className="w-4 h-4 text-yellow-600" />
@@ -459,7 +445,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
 
   if (loading && users.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </div>
     )
@@ -486,10 +472,10 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
               sheetName: "用户数据",
             }}
             importOptions={{
-              validateRow: (row: unknown) => {
+              validateRow: (row: any) => {
                 return row.username && row.email && row.real_name
               },
-              transformRow: (row: unknown) => ({
+              transformRow: (row: any) => ({
                 username: row.username || row["用户名"],
                 email: row.email || row["邮箱"],
                 real_name: row.real_name || row["真实姓名"],
@@ -503,22 +489,24 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             items={users.filter((user: User) => selectedUsers.includes(user.id))}
             onCreate={handleImportUsers}
             onUpdateStatus={async (ids: number[], status: string) => {
-              let successCount = 0
               for (const userId of ids) {
-                const result = await updateUser(userId, { status })
-                if (result.success) successCount++
+                try {
+                  await updateUser(userId, { status: status as any })
+                } catch {
+                  // 忽略单个失败，继续处理
+                }
               }
               setSelectedUsers([])
-              return successCount > 0
             }}
             onDelete={async (ids: number[]) => {
-              let successCount = 0
               for (const userId of ids) {
-                const result = await deleteUser(userId)
-                if (result.success) successCount++
+                try {
+                  await deleteUser(userId)
+                } catch {
+                  // 忽略单个失败，继续处理
+                }
               }
               setSelectedUsers([])
-              return successCount > 0
             }}
             getItemId={(user: User) => user.id}
             disabled={selectedUsers.length === 0}
@@ -660,8 +648,8 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                             className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                           />
                           <div className="relative">
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-                              {user.real_name.charAt(0)}
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                              {(user.real_name || '').charAt(0)}
                             </div>
                             {user.status === "active" && (
                               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
@@ -743,7 +731,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-bold text-lg">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-linear-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-bold text-lg">
                         {role.name.charAt(0)}
                       </div>
                       <div className="flex-1">
@@ -783,7 +771,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white font-bold text-lg">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-linear-to-br from-green-500 to-teal-600 flex items-center justify-center text-white font-bold text-lg">
                         {permission.name.charAt(0)}
                       </div>
                       <div className="flex-1">
@@ -809,7 +797,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       </Tabs>
 
       <Dialog open={showUserDialog} onOpenChange={setShowUserDialog}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle>{editingUser ? "编辑用户" : "创建用户"}</DialogTitle>
             <DialogDescription>

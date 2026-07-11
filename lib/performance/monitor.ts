@@ -88,7 +88,7 @@ function getRating(metricName: string, value: number): 'good' | 'needs-improveme
 // ==========================================
 
 function collectDeviceInfo(): DeviceInfo {
-  const navigator = window.navigator as unknown;
+  const navigator = window.navigator as any;
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   return {
@@ -319,7 +319,7 @@ export function measureCustomMetric(name: string, measureFn: () => void) {
     timestamp: Date.now(),
   };
 
-  (performanceStore as unknown).setMetric(metric);
+  (performanceStore as unknown as { setMetric: (metric: unknown) => void }).setMetric(metric);
 
   // 清理marks
   performance.clearMarks(startMark);
@@ -379,14 +379,14 @@ export function calculatePerformanceScore(report: PerformanceReport): number {
 export async function initPerformanceMonitoring() {
   // 动态导入web-vitals（减小初始包大小）
   try {
-    const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('web-vitals');
+    const webVitals = await import('web-vitals');
 
     // 监控核心Web Vitals
-    getCLS(reportWebVitals);
-    getFID(reportWebVitals);
-    getFCP(reportWebVitals);
-    getLCP(reportWebVitals);
-    getTTFB(reportWebVitals);
+    webVitals.onCLS(reportWebVitals);
+    webVitals.onINP(reportWebVitals);
+    webVitals.onFCP(reportWebVitals);
+    webVitals.onLCP(reportWebVitals);
+    webVitals.onTTFB(reportWebVitals);
 
     // console.log('[Performance] Monitoring initialized');
   } catch (error) {

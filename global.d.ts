@@ -8,39 +8,4 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
-// Next.js 编译输出模块声明
-declare module '../../../../app/advanced-bi/page.js' {
-  const value: any;
-  export default value;
-}
-
-declare module '../../../../app/about/page.js' {
-  const value: any;
-  export default value;
-}
-
-declare module '../../../../app/admin/page.js' {
-  const value: any;
-  export default value;
-}
-
-declare module '../../../../app/ai-consultant/page.js' {
-  const value: any;
-  export default value;
-}
-
-declare module '../../../../app/analytics/page.js' {
-  const value: any;
-  export default value;
-}
-
-// 通用模式声明
-declare module '../../../../app/*/*.js' {
-  const value: any;
-  export default value;
-}
-
-declare module '../../../../app/**/**.js' {
-  const value: any;
-  export default value;
-}
+export { };

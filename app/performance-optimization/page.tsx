@@ -12,7 +12,7 @@ export default function PerformanceOptimizationPage() {
       className="p-6"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <PerformanceOptimization showTitle={false} />
+        <PerformanceOptimization />
       </div>
       <FloatingNavButtons />
     </PageContainer>

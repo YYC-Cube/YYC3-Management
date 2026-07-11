@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useEffect, useMemo, useCallback } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 interface VirtualScrollProps<T> {
   items: T[]
@@ -22,7 +22,7 @@ export function VirtualScroll<T>({
   style = {},
 }: VirtualScrollProps<T>) {
   const [scrollTop, setScrollTop] = useState(0)
-  const [containerWidth, setContainerWidth] = useState(0)
+  const [, setContainerWidth] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollElementRef = useRef<HTMLDivElement>(null)
 
@@ -81,31 +81,32 @@ export function VirtualScroll<T>({
     setScrollTop(e.currentTarget.scrollTop)
   }, [])
 
-  const scrollToIndex = useCallback(
-    (index: number) => {
-      let offset = 0
-      for (let i = 0; i < index; i++) {
-        offset += getItemHeight(i)
-      }
+  // scrollToIndex - 保留实现供未来使用
+  // const scrollToIndex = useCallback(
+  //   (index: number) => {
+  //     let offset = 0
+  //     for (let i = 0; i < index; i++) {
+  //       offset += getItemHeight(i)
+  //     }
+  //
+  //     if (scrollElementRef.current) {
+  //       scrollElementRef.current.scrollTop = offset
+  //     }
+  //   },
+  //   [getItemHeight]
+  // )
 
-      if (scrollElementRef.current) {
-        scrollElementRef.current.scrollTop = offset
-      }
-    },
-    [getItemHeight]
-  )
+  // const scrollToTop = useCallback(() => {
+  //   if (scrollElementRef.current) {
+  //     scrollElementRef.current.scrollTop = 0
+  //   }
+  // }, [])
 
-  const scrollToTop = useCallback(() => {
-    if (scrollElementRef.current) {
-      scrollElementRef.current.scrollTop = 0
-    }
-  }, [])
-
-  const scrollToBottom = useCallback(() => {
-    if (scrollElementRef.current) {
-      scrollElementRef.current.scrollTop = totalHeight
-    }
-  }, [totalHeight])
+  // const scrollToBottom = useCallback(() => {
+  //   if (scrollElementRef.current) {
+  //     scrollElementRef.current.scrollTop = totalHeight
+  //   }
+  // }, [totalHeight])
 
   return (
     <div

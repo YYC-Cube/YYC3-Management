@@ -55,12 +55,12 @@ export function ModuleCards() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* 数据总览 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-green-50 to-lime-50 border-green-200 border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-green-50 to-lime-50 border-green-200 border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)]"
         onClick={() => handleModuleClick("dashboard")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-green-500 to-lime-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-green-500 to-lime-600 rounded-xl">
               <BarChart3 className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-green-100 text-green-800 border-green-300 border-r-2 border-r-green-500">核心功能</Badge>
@@ -76,12 +76,12 @@ export function ModuleCards() {
 
       {/* 用户管理 - 橙色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200 border-r-[5px] border-r-orange-500 hover:border-r-orange-600 shadow-[4px_0_12px_rgba(249,115,22,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-orange-50 to-amber-50 border-orange-200 border-r-[5px] border-r-orange-500 hover:border-r-orange-600 shadow-[4px_0_12px_rgba(249,115,22,0.15)]"
         onClick={() => handleModuleClick("users")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-orange-500 to-amber-600 rounded-xl">
               <Users className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-orange-100 text-orange-800 border-orange-300 border-r-2 border-r-orange-500">权限控制</Badge>
@@ -97,12 +97,12 @@ export function ModuleCards() {
 
       {/* 系统设置 - 蓝色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-sky-50 to-blue-50 border-sky-200 border-r-[5px] border-r-sky-500 hover:border-r-sky-600 shadow-[4px_0_12px_rgba(14,165,233,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-sky-50 to-blue-50 border-sky-200 border-r-[5px] border-r-sky-500 hover:border-r-sky-600 shadow-[4px_0_12px_rgba(14,165,233,0.15)]"
         onClick={() => handleModuleClick("settings")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-sky-500 to-blue-600 rounded-xl">
               <Settings className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-sky-100 text-sky-800 border-sky-300 border-r-2 border-r-sky-500">个性定制</Badge>
@@ -118,12 +118,12 @@ export function ModuleCards() {
 
       {/* AI智能助手 - 紫色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200 border-r-[5px] border-r-purple-500 hover:border-r-purple-600 shadow-[4px_0_12px_rgba(168,85,247,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-purple-50 to-blue-50 border-purple-200 border-r-[5px] border-r-purple-500 hover:border-r-purple-600 shadow-[4px_0_12px_rgba(168,85,247,0.15)]"
         onClick={() => handleModuleClick("ai-assistant")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-purple-500 to-blue-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-purple-500 to-blue-600 rounded-xl">
               <Bot className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-purple-100 text-purple-800 border-purple-300 border-r-2 border-r-purple-500">AI驱动</Badge>
@@ -139,12 +139,12 @@ export function ModuleCards() {
 
       {/* 多租户管理 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200 border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-[4px_0_12px_rgba(16,185,129,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-emerald-50 to-teal-50 border-emerald-200 border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-[4px_0_12px_rgba(16,185,129,0.15)]"
         onClick={() => handleModuleClick("tenant-management")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-emerald-500 to-teal-600 rounded-xl">
               <Building2 className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 border-r-2 border-r-emerald-500">企业级</Badge>
@@ -160,12 +160,12 @@ export function ModuleCards() {
 
       {/* 高级BI分析 - 紫色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200 border-r-[5px] border-r-indigo-500 hover:border-r-indigo-600 shadow-[4px_0_12px_rgba(99,102,241,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-indigo-50 to-purple-50 border-indigo-200 border-r-[5px] border-r-indigo-500 hover:border-r-indigo-600 shadow-[4px_0_12px_rgba(99,102,241,0.15)]"
         onClick={() => handleModuleClick("advanced-bi")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-indigo-500 to-purple-600 rounded-xl">
               <Brain className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-indigo-100 text-indigo-800 border-indigo-300 border-r-2 border-r-indigo-500">智能分析</Badge>
@@ -181,12 +181,12 @@ export function ModuleCards() {
 
       {/* 移动端应用 - 玫瑰色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-rose-50 to-pink-50 border-rose-200 border-r-[5px] border-r-rose-500 hover:border-r-rose-600 shadow-[4px_0_12px_rgba(244,63,94,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-rose-50 to-pink-50 border-rose-200 border-r-[5px] border-r-rose-500 hover:border-r-rose-600 shadow-[4px_0_12px_rgba(244,63,94,0.15)]"
         onClick={() => handleModuleClick("mobile-app")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-rose-500 to-pink-600 rounded-xl">
               <Smartphone className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-rose-100 text-rose-800 border-rose-300 border-r-2 border-r-rose-500">移动优先</Badge>
@@ -202,12 +202,12 @@ export function ModuleCards() {
 
       {/* 安全中心 - 橙色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-red-50 to-orange-50 border-red-200 border-r-[5px] border-r-red-500 hover:border-r-red-600 shadow-[4px_0_12px_rgba(239,68,68,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-red-50 to-orange-50 border-red-200 border-r-[5px] border-r-red-500 hover:border-r-red-600 shadow-[4px_0_12px_rgba(239,68,68,0.15)]"
         onClick={() => handleModuleClick("security")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-red-500 to-orange-600 rounded-xl">
               <Shield className="w-8 h-8 text-white" />
             </div>
             <Badge className="bg-red-100 text-red-800 border-red-300 border-r-2 border-r-red-500">安全防护</Badge>

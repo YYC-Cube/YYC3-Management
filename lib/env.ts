@@ -75,7 +75,7 @@ interface EnvironmentVariables {
 
 // 环境变量验证函数
 function validateEnv(): EnvironmentVariables {
-  const env = process.env as unknown
+  const env = process.env as Record<string, string | undefined>
 
   // 必需的环境变量
   const required = ["NEXT_PUBLIC_APP_NAME", "NEXT_PUBLIC_API_BASE_URL", "JWT_SECRET", "NEXTAUTH_SECRET"]
@@ -87,7 +87,7 @@ function validateEnv(): EnvironmentVariables {
     }
   }
 
-  return env
+  return env as unknown as EnvironmentVariables
 }
 
 // 获取环境变量

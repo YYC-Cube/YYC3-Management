@@ -86,6 +86,25 @@ export type {
 // 便捷导出 - 常用组合
 // ==========================================
 
+import {
+  initPerformanceMonitoring,
+  exportPerformanceData,
+  calculatePerformanceScore,
+} from './monitor';
+import {
+  lazyLoad,
+  CacheManager,
+  useDebounce,
+  useThrottle,
+} from './optimization';
+import {
+  VirtualList,
+  VirtualGrid,
+  DebouncedInput,
+  LazyImage,
+  InfiniteScroll,
+} from './react-optimization';
+
 /**
  * 性能监控和优化工具套件
  */

@@ -1,9 +1,9 @@
 import {
-  IndustryConfiguration,
-  AIWidgetInstance,
   AITool,
-  PersonaConfiguration,
+  AIWidgetInstance,
+  IndustryConfiguration,
   OperationalConstraints,
+  PersonaConfiguration,
   UIConfiguration,
   createAITool
 } from './types';
@@ -47,7 +47,7 @@ export class IndustryAdapter {
       throw new Error(`不支持的行业: ${industry}`);
     }
 
-    const personaConfig = await this.getPersonaConfiguration(userPersona, config);
+    await this.getPersonaConfiguration(userPersona, config);
 
     return createAutonomousAIWidget({
       apiType: 'internal',
@@ -90,7 +90,7 @@ export class IndustryAdapter {
     };
   }
 
-  private async getOperationalConstraints(industry: string): Promise<OperationalConstraints> {
+  private async getOperationalConstraints(_industry: string): Promise<OperationalConstraints> {
     return {
       maxConcurrentRequests: 10,
       rateLimitPerMinute: 60,
@@ -99,7 +99,7 @@ export class IndustryAdapter {
     };
   }
 
-  private async getIndustryUIConfig(industry: string, userPersona: string): Promise<UIConfiguration> {
+  private async getIndustryUIConfig(_industry: string, _userPersona: string): Promise<UIConfiguration> {
     return {
       theme: 'default',
       layout: 'standard',
@@ -193,13 +193,13 @@ export class IndustryAdapter {
   }
 }
 
-async function createAutonomousAIWidget(config: any): Promise<AIWidgetInstance> {
+async function createAutonomousAIWidget(_config: any): Promise<AIWidgetInstance> {
   return {
-    sendMessage: async (message) => ({
+    sendMessage: async (_message) => ({
       data: null,
       immediate_action_required: false
     }),
-    registerTool: async (tool) => {}
+    registerTool: async (_tool) => { }
   };
 }
 

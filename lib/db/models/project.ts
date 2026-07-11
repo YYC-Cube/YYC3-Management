@@ -3,6 +3,7 @@ export interface Project {
   name: string
   description?: string
   manager_id?: number
+  manager_name?: string
   team_size: number
   progress: number
   status: '计划中' | '进行中' | '已完成' | '已暂停' | '延期'

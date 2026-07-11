@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
-import { CheckCircle, AlertCircle, Info, XCircle, Code, List, Grid3x3, ExternalLink, Copy, Download, Share2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { AlertCircle, CheckCircle, Code, Copy, Info, XCircle } from 'lucide-react';
+import React from 'react';
 
 export interface AIResponseTemplate {
   type: 'text' | 'code' | 'list' | 'table' | 'action' | 'card' | 'timeline' | 'status' | 'tool_call';
   content: string;
-  data?: unknown;
+  data?: Record<string, any>;
   actions?: ResponseAction[];
   metadata?: {
     confidence?: number;
@@ -118,7 +118,7 @@ const ListResponse: React.FC<{ template: AIResponseTemplate }> = ({ template }) 
     <div className="space-y-2">
       {template.content && <p className="text-sm">{template.content}</p>}
       <div className={listType === 'bullet' ? 'list-disc pl-4 space-y-1' : 'list-decimal pl-4 space-y-1'}>
-        {items.map((item: unknown, index: number) => (
+        {items.map((item: any, index: number) => (
           <li key={index} className="text-sm">
             {typeof item === 'string' ? item : (
               <div className="flex items-start gap-2">
@@ -152,9 +152,9 @@ const TableResponse: React.FC<{ template: AIResponseTemplate }> = ({ template })
             </tr>
           </thead>
           <tbody>
-            {rows?.map((row: unknown[], rowIndex: number) => (
+            {rows?.map((row: any[], rowIndex: number) => (
               <tr key={rowIndex} className="border-b last:border-0">
-                {row.map((cell: unknown, cellIndex: number) => (
+                {row.map((cell: any, cellIndex: number) => (
                   <td key={cellIndex} className="py-2 px-3">
                     {cell}
                   </td>
@@ -199,7 +199,7 @@ const CardResponse: React.FC<{ template: AIResponseTemplate }> = ({ template }) 
     <div className="space-y-2">
       {template.content && <p className="text-sm">{template.content}</p>}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {cards.map((card: unknown, index: number) => (
+        {cards.map((card: any, index: number) => (
           <div key={index} className="border rounded-lg p-3 hover:border-primary/50 transition-colors">
             <div className="flex items-start justify-between mb-2">
               <h4 className="font-medium text-sm">{card.title}</h4>
@@ -229,13 +229,12 @@ const TimelineResponse: React.FC<{ template: AIResponseTemplate }> = ({ template
     <div className="space-y-2">
       {template.content && <p className="text-sm">{template.content}</p>}
       <div className="relative pl-4 border-l-2 border-primary/20">
-        {events.map((event: unknown, index: number) => (
+        {events.map((event: any, index: number) => (
           <div key={index} className="relative pb-4 last:pb-0">
-            <div className={`absolute -left-[21px] top-1 w-3 h-3 rounded-full ${
-              event.status === 'completed' ? 'bg-green-500' :
+            <div className={`absolute -left-[21px] top-1 w-3 h-3 rounded-full ${event.status === 'completed' ? 'bg-green-500' :
               event.status === 'pending' ? 'bg-yellow-500' :
-              event.status === 'error' ? 'bg-red-500' : 'bg-primary'
-            }`} />
+                event.status === 'error' ? 'bg-red-500' : 'bg-primary'
+              }`} />
             <div className="ml-2">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-medium">{event.title}</span>
@@ -269,7 +268,7 @@ const StatusResponse: React.FC<{ template: AIResponseTemplate }> = ({ template }
 
   return (
     <div className={`flex items-start gap-3 p-3 rounded-lg ${config.bgColor}`}>
-      <Icon className={`w-5 h-5 flex-shrink-0 ${config.color}`} />
+      <Icon className={`w-5 h-5 shrink-0 ${config.color}`} />
       <div className="flex-1 space-y-1">
         {template.data?.title && (
           <h4 className="font-medium text-sm">{template.data.title}</h4>
@@ -292,7 +291,7 @@ const ToolCallResponse: React.FC<{ template: AIResponseTemplate }> = ({ template
     <div className="space-y-2">
       {template.content && <p className="text-sm">{template.content}</p>}
       <div className="space-y-2">
-        {toolCalls.map((toolCall: unknown, index: number) => (
+        {toolCalls.map((toolCall: any, index: number) => (
           <div key={index} className="border rounded-lg p-3 bg-muted/50">
             <div className="flex items-center gap-2 mb-2">
               <Code className="w-4 h-4 text-primary" />

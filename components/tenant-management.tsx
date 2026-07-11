@@ -56,7 +56,6 @@ interface User {
 
 export function TenantManagement() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedTenant, setSelectedTenant] = useState<string | null>(null)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
 
   const tenants: Tenant[] = [

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ApiErrorHandler, successResponse, createdResponse, messageResponse } from './response-handler'
-import { ApiLogger, logApiRequest, logApiError, extractRequestInfo } from './logger'
-import { UnauthorizedError, ForbiddenError, NotFoundError } from './validation'
 import { verifyToken as verifyJwtToken } from './auth-guard'
+import { extractRequestInfo, logApiError, logApiRequest } from './logger'
+import { ApiErrorHandler } from './response-handler'
 
 export interface AuthUser {
   id: string | number
@@ -66,10 +65,10 @@ export async function withAuth(
   }
 }
 
-export async function withPermission(
+export function withPermission(
   requiredPermissions: string[]
 ): ApiMiddleware {
-  return async (context: ApiMiddlewareContext) => {
+  return async (context: ApiMiddlewareContext): Promise<NextResponse | void> => {
     if (!context.user) {
       return ApiErrorHandler.unauthorized()
     }
@@ -83,16 +82,17 @@ export async function withPermission(
     if (!hasPermission) {
       return ApiErrorHandler.forbidden('权限不足')
     }
+    return
   }
 }
 
-export async function withRateLimit(
+export function withRateLimit(
   limit: number = 100,
   windowMs: number = 60000
 ): ApiMiddleware {
   const requests = new Map<string, number[]>()
 
-  return async (context: ApiMiddlewareContext) => {
+  return async (context: ApiMiddlewareContext): Promise<NextResponse | void> => {
     const ip = extractRequestInfo(context.request).ip_address || 'unknown'
     const now = Date.now()
     const windowStart = now - windowMs
@@ -106,15 +106,16 @@ export async function withRateLimit(
 
     validRequests.push(now)
     requests.set(ip, validRequests)
+    return
   }
 }
 
-export async function withLogging(
+export function withLogging(
   action: string,
   module?: string
 ): ApiMiddleware {
   return async (context: ApiMiddlewareContext) => {
-    await logApiRequest(context.request, action, module, context.userId)
+    await logApiRequest(context.request, action, module, context.userId as number | undefined)
   }
 }
 

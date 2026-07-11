@@ -286,8 +286,8 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                     key={project.name}
                     className="flex items-center justify-between p-4 rounded-lg transition-all duration-200 relative"
                     style={{
-                      ['--project-border' as unknown]: projectTheme.border,
-                      ['--project-bg' as unknown]: projectTheme.bg,
+                      ['--project-border' as any]: projectTheme.border,
+                      ['--project-bg' as any]: projectTheme.bg,
                       borderLeft: '4px solid var(--project-border)',
                       backgroundColor: 'var(--project-bg)',
                     } as React.CSSProperties}

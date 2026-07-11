@@ -1,7 +1,7 @@
 export interface SearchFilter {
   field: string
   operator: "equals" | "contains" | "startsWith" | "endsWith" | "greaterThan" | "lessThan" | "between" | "in" | "notIn"
-  value: unknown
+  value: any
   label?: string
 }
 
@@ -46,7 +46,7 @@ export class AdvancedSearch<T> {
     if (!searchTerm) return true
 
     const term = searchTerm.toLowerCase()
-    const itemValues = Object.values(item as unknown)
+    const itemValues = Object.values(item as Record<string, unknown>)
 
     return itemValues.some((value) => {
       if (value === null || value === undefined) return false
@@ -58,7 +58,7 @@ export class AdvancedSearch<T> {
     if (filters.length === 0) return true
 
     return filters.every((filter) => {
-      const itemValue = (item as unknown)[filter.field]
+      const itemValue = (item as Record<string, unknown>)[filter.field]
       return this.applyFilter(itemValue, filter)
     })
   }
@@ -170,7 +170,7 @@ export class AdvancedSearch<T> {
     const suggestions = new Set<string>()
 
     data.forEach((item) => {
-      const value = String((item as unknown)[field] || "")
+      const value = String((item as Record<string, unknown>)[field] || "")
       if (value.toLowerCase().includes(term)) {
         suggestions.add(value)
       }

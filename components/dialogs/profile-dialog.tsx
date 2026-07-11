@@ -98,7 +98,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                   <div className="relative">
                     <Avatar className="w-20 h-20">
                       <AvatarImage src={profile.avatar || "/placeholder-user.jpg"} alt="头像" onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder-user.jpg' }} />
-                      <AvatarFallback className="bg-gradient-to-br from-sky-400 to-blue-500 text-white text-xl">
+                      <AvatarFallback className="bg-linear-to-br from-sky-400 to-blue-500 text-white text-xl">
                         管理
                       </AvatarFallback>
                     </Avatar>

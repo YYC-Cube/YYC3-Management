@@ -82,6 +82,7 @@ export function InteractiveProgress({
         document.removeEventListener("mouseup", handleMouseUp)
       }
     }
+    return undefined
   }, [isDragging, handleMouseMove, handleMouseUp])
 
   useEffect(() => {
@@ -116,7 +117,7 @@ export function InteractiveProgress({
           style={{ width: `${currentValue}%` }}
         >
           {animated && (
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
           )}
         </div>
 

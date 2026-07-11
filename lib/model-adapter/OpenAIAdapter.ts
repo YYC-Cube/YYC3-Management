@@ -9,12 +9,12 @@
 
 import {
   BaseModelAdapter,
-  ModelInfo,
-  ModelConfig,
   CompletionRequest,
   CompletionResponse,
   EmbeddingRequest,
-  EmbeddingResponse
+  EmbeddingResponse,
+  ModelConfig,
+  ModelInfo
 } from './ModelAdapter';
 
 export interface OpenAIConfig extends ModelConfig {
@@ -29,7 +29,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
   private organization?: string;
   private baseURL: string;
   private model: string;
-  
+
   constructor(config: OpenAIConfig) {
     super(config);
     this.apiKey = config.apiKey;
@@ -37,7 +37,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
     this.baseURL = config.baseURL || 'https://api.openai.com/v1';
     this.model = config.model;
   }
-  
+
   getModelInfo(): ModelInfo {
     return {
       id: this.model,
@@ -49,7 +49,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
       supportedLanguages: ['en', 'zh', 'es', 'fr', 'de', 'ja', 'ko']
     };
   }
-  
+
   protected async callModelAPI(request: CompletionRequest): Promise<unknown> {
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: 'POST',
@@ -70,15 +70,15 @@ export class OpenAIAdapter extends BaseModelAdapter {
       }),
       signal: AbortSignal.timeout(this.config.timeout)
     });
-    
+
     if (!response.ok) {
       throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
     }
-    
+
     return response.json();
   }
-  
-  protected async *callModelStream(request: unknown): AsyncIterable<unknown> {
+
+  protected async *callModelStream(request: any): AsyncIterable<any> {
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -94,33 +94,33 @@ export class OpenAIAdapter extends BaseModelAdapter {
         stream: true
       })
     });
-    
+
     if (!response.ok) {
       throw new Error(`OpenAI API error: ${response.status}`);
     }
-    
+
     const reader = response.body?.getReader();
     if (!reader) {
       throw new Error('Failed to get response reader');
     }
-    
+
     const decoder = new TextDecoder();
-    
+
     try {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        
+
         const chunk = decoder.decode(value);
         const lines = chunk.split('\n').filter(line => line.trim() !== '');
-        
+
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
             if (data === '[DONE]') {
               return;
             }
-            
+
             try {
               yield JSON.parse(data);
             } catch (e) {
@@ -133,10 +133,10 @@ export class OpenAIAdapter extends BaseModelAdapter {
       reader.releaseLock();
     }
   }
-  
-  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+
+  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
     const choice = rawResponse.choices[0];
-    
+
     return {
       id: rawResponse.id,
       text: choice.message.content,
@@ -153,24 +153,24 @@ export class OpenAIAdapter extends BaseModelAdapter {
       }
     };
   }
-  
-  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+
+  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     if (!chunk.choices || chunk.choices.length === 0) {
       return { text: '', finished: false };
     }
-    
+
     const choice = chunk.choices[0];
     const content = choice.delta?.content || '';
     const finished = choice.finish_reason !== null;
-    
+
     return {
       text: content,
       finished,
       metadata: { finishReason: choice.finish_reason }
     };
   }
-  
-  async generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse> {
+
+  override async generateEmbedding(request: EmbeddingRequest): Promise<EmbeddingResponse> {
     const response = await fetch(`${this.baseURL}/embeddings`, {
       method: 'POST',
       headers: {
@@ -183,15 +183,15 @@ export class OpenAIAdapter extends BaseModelAdapter {
         input: request.input
       })
     });
-    
+
     if (!response.ok) {
       throw new Error(`OpenAI embedding API error: ${response.status}`);
     }
-    
+
     const data = await response.json();
-    
+
     return {
-      embeddings: data.data.map((item: unknown) => item.embedding),
+      embeddings: data.data.map((item: any) => item.embedding),
       usage: {
         totalTokens: data.usage.total_tokens
       },
@@ -202,7 +202,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
       }
     };
   }
-  
+
   private getMaxTokens(model: string): number {
     const tokenLimits: Record<string, number> = {
       'gpt-4': 8192,
@@ -211,7 +211,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
       'gpt-3.5-turbo': 4096,
       'gpt-3.5-turbo-16k': 16384
     };
-    
+
     return tokenLimits[model] || 4096;
   }
 }

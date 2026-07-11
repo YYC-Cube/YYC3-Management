@@ -18,7 +18,7 @@ Guide for AI coding agents working in the **YYC³ 企业智能管理系统 v3.0*
 - **i18n**: Self-built `@yyc3/i18n-core` engine (`lib/i18n/`)
 - **Auth**: JWT (HMAC-SHA256) + Middleware route protection + API auth-guard
 - **Primary UI language**: Chinese (zh-CN), with i18n support for en
-- **Multi-platform**: Responsive PC/PWA/Mobile H5 (no monorepo); spec: `docs/YYC3-团队通用-标规文档/YYC3-多端适配-规范文档.md`
+- **Multi-platform**: Responsive PC/PWA/Mobile H5 (no monorepo); spec: `docs/dev-guide/standard/YYC3-多端适配-规范文档.md`
 
 ## 2. Essential Commands
 
@@ -39,6 +39,7 @@ bun run security:scan    # Security scan
 ## 3. Environment Setup
 
 Copy `.env.example` → `.env.local`:
+
 - `DATABASE_URL` — PostgreSQL connection
 - `REDIS_URL` — Redis for caching
 - `ZHIPU_API_KEY` — AI service (GLM-4)
@@ -68,18 +69,22 @@ migrations/              12 SQL migrations (auto-run in Docker)
 ```
 
 ### Path alias
+
 `@/*` → repo root (configured in `tsconfig.json` and `vitest.config.ts`).
 
 ## 5. Code Conventions
 
 ### Data fetching pattern
+
 Always use `useSWRResource` for list/CRUD pages:
+
 ```typescript
 import { useSWRResource } from '@/hooks/use-swr-resource'
 const { items, create, update, remove, isLoading } = useSWRResource<Customer>('/api/customers', { page: 1 })
 ```
 
 ### API routes
+
 - Import `authenticateApiRequest` from `@/lib/api/auth-guard`
 - Import `withCache` / `invalidateResourceCache` from `@/lib/db/cache`
 - Use `checkDatabaseConnection()` before DB operations
@@ -87,6 +92,7 @@ const { items, create, update, remove, isLoading } = useSWRResource<Customer>('/
 - Return `{ success, data, pagination? }` envelope
 
 ### Caching pattern
+
 ```typescript
 const cacheKey = buildCacheKey('customers', params)
 const result = await withCache(cacheKey, () => repo.findAll(params), 300)
@@ -95,11 +101,13 @@ await invalidateResourceCache('customers')
 ```
 
 ### Repository pattern
+
 - All SQL in `lib/db/repositories/*.repository.ts`
 - **Column whitelists** on `update()` methods (SQL injection protection)
 - Always use parameterized queries (`$1`, `$2`, ...)
 
 ### File header comment block
+
 ```typescript
 /**
  * @fileoverview <purpose>
@@ -130,7 +138,7 @@ await invalidateResourceCache('customers')
 
 ## 8. Multi-Platform Adaptation
 
-Adaptation strategy follows the team spec (`docs/YYC3-团队通用-标规文档/YYC3-多端适配-规范文档.md`), implemented **within the single Next.js app** (no monorepo/component extraction).
+Adaptation strategy follows the team spec (`docs/dev-guide/standard/YYC3-多端适配-规范文档.md`), implemented **within the single Next.js app** (no monorepo/component extraction).
 
 ### Responsive breakpoints (Tailwind)
 

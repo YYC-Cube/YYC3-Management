@@ -94,7 +94,7 @@ export default function EnhancedAIFloatingDemo() {
     <PageContainer 
       title="增强版AI浮窗系统" 
       description="集成自治AI引擎、模型适配器、三层学习系统的智能交互界面"
-      className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 p-8"
+      className="bg-linear-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 p-8"
     >
       <div className="max-w-6xl mx-auto space-y-8">
         
@@ -190,7 +190,7 @@ export default function EnhancedAIFloatingDemo() {
         </div>
 
         {/* 系统统计 */}
-        <Card className="p-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
+        <Card className="p-6 bg-linear-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
           <h3 className="text-xl font-semibold mb-4 text-slate-900 dark:text-white">
             实时系统统计
           </h3>
@@ -240,7 +240,7 @@ export default function EnhancedAIFloatingDemo() {
               onClick={() => setShowWidget(true)}
               disabled={!agenticCore || showWidget}
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+              className="bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
             >
               <Sparkles className="w-5 h-5 mr-2" />
               {showWidget ? '浮窗已打开' : '打开AI浮窗'}

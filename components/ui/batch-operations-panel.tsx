@@ -1,15 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Progress } from "@/components/ui/progress"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { CheckCircle2, XCircle, AlertTriangle, Download, Trash2, Edit, Play, Pause } from "lucide-react"
-import { BatchOperations, BatchOperationResult, BatchOperationOptions } from "@/lib/utils/batch-operations"
-import { toast } from "sonner"
+import { toast } from "@/hooks/use-toast"
+import { BatchOperationResult, BatchOperations } from "@/lib/utils/batch-operations"
+import { CheckCircle2, Download, Edit, Play, Trash2, XCircle } from "lucide-react"
+import { useState } from "react"
 
 interface BatchOperationsPanelProps<T> {
   items: T[]
@@ -24,10 +22,10 @@ interface BatchOperationsPanelProps<T> {
 export function BatchOperationsPanel<T>({
   items,
   onCreate,
-  onUpdate,
+  onUpdate: _onUpdate,
   onDelete,
   onUpdateStatus,
-  getItemId = (item) => (item as unknown).id,
+  getItemId = (item) => (item as Record<string, unknown>).id as number,
   disabled = false,
 }: BatchOperationsPanelProps<T>) {
   const [isOpen, setIsOpen] = useState(false)
@@ -145,7 +143,7 @@ export function BatchOperationsPanel<T>({
         ids,
         selectedStatus,
         async (id, data) => {
-          await onUpdateStatus([id], data.status as string)
+          await onUpdateStatus([id], (data as any).status as string)
           return { success: true }
         },
         {
@@ -336,7 +334,7 @@ export function BatchOperationsPanel<T>({
                   <div className="space-y-1">
                     {result.failed.map(({ item, error }, index) => (
                       <div key={index} className="flex items-start gap-2 p-2 bg-red-50 rounded text-sm">
-                        <XCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+                        <XCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                         <div className="flex-1 min-w-0">
                           <div className="font-medium truncate">{JSON.stringify(item)}</div>
                           <div className="text-red-700">{error}</div>

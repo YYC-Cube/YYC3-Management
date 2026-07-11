@@ -9,17 +9,17 @@
 
 import {
   BaseModelAdapter,
-  ModelInfo,
-  ModelConfig,
   CompletionRequest,
-  CompletionResponse
+  CompletionResponse,
+  ModelConfig,
+  ModelInfo
 } from './ModelAdapter';
 
 export class LocalModelAdapter extends BaseModelAdapter {
   constructor(config: ModelConfig) {
     super(config);
   }
-  
+
   getModelInfo(): ModelInfo {
     return {
       id: this.config.modelName,
@@ -31,16 +31,16 @@ export class LocalModelAdapter extends BaseModelAdapter {
       supportedLanguages: ['zh', 'en']
     };
   }
-  
+
   protected async callModelAPI(request: CompletionRequest): Promise<unknown> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     };
-    
+
     if (this.config.apiKey) {
       headers['Authorization'] = `Bearer ${this.config.apiKey}`;
     }
-    
+
     const response = await fetch(`${this.config.baseURL}/v1/chat/completions`, {
       method: 'POST',
       headers,
@@ -53,23 +53,23 @@ export class LocalModelAdapter extends BaseModelAdapter {
       }),
       signal: AbortSignal.timeout(this.config.timeout)
     });
-    
+
     if (!response.ok) {
       throw new Error(`Local model API error: ${response.status} ${response.statusText}`);
     }
-    
+
     return response.json();
   }
-  
-  protected async *callModelStream(request: unknown): AsyncIterable<unknown> {
+
+  protected async *callModelStream(request: any): AsyncIterable<any> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     };
-    
+
     if (this.config.apiKey) {
       headers['Authorization'] = `Bearer ${this.config.apiKey}`;
     }
-    
+
     const response = await fetch(`${this.config.baseURL}/v1/chat/completions`, {
       method: 'POST',
       headers,
@@ -81,33 +81,33 @@ export class LocalModelAdapter extends BaseModelAdapter {
         stream: true
       })
     });
-    
+
     if (!response.ok) {
       throw new Error(`Local model stream error: ${response.status}`);
     }
-    
+
     const reader = response.body?.getReader();
     if (!reader) {
       throw new Error('Failed to get response reader');
     }
-    
+
     const decoder = new TextDecoder();
-    
+
     try {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        
+
         const chunk = decoder.decode(value);
         const lines = chunk.split('\n').filter(line => line.trim() !== '');
-        
+
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
             if (data === '[DONE]') {
               return;
             }
-            
+
             try {
               yield JSON.parse(data);
             } catch (e) {
@@ -120,10 +120,10 @@ export class LocalModelAdapter extends BaseModelAdapter {
       reader.releaseLock();
     }
   }
-  
-  protected async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+
+  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
     const choice = rawResponse.choices[0];
-    
+
     return {
       id: rawResponse.id || `local-${Date.now()}`,
       text: choice.message?.content || choice.text || '',
@@ -140,16 +140,16 @@ export class LocalModelAdapter extends BaseModelAdapter {
       }
     };
   }
-  
-  protected parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+
+  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
     if (!chunk.choices || chunk.choices.length === 0) {
       return { text: '', finished: false };
     }
-    
+
     const choice = chunk.choices[0];
     const content = choice.delta?.content || choice.text || '';
     const finished = choice.finish_reason !== null && choice.finish_reason !== undefined;
-    
+
     return {
       text: content,
       finished,

@@ -11,7 +11,7 @@
 
 "use client"
 
-import { useState } from "react"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -19,28 +19,28 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
+import { toast } from "@/hooks/use-toast"
 import {
-  MessageSquare,
-  Settings,
-  Menu,
-  Bell,
   BarChart3,
-  Save,
-  TestTube,
+  Bell,
+  CheckCircle,
+  Edit,
   Eye,
   EyeOff,
-  CheckCircle,
-  XCircle,
-  Users,
+  Menu,
   MessageCircle,
+  MessageSquare,
   MousePointer,
-  TrendingUp,
   Plus,
+  Save,
+  Settings,
+  TestTube,
   Trash2,
-  Edit,
+  TrendingUp,
+  Users,
+  XCircle,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import { useState } from "react"
 
 interface MenuButton {
   id: string
@@ -84,7 +84,7 @@ export function WechatConfiguration() {
     enabled: true,
   })
 
-  const [menuButtons, setMenuButtons] = useState<MenuButton[]>([
+  const [menuButtons] = useState<MenuButton[]>([
     {
       id: "1",
       name: "产品中心",
@@ -483,7 +483,7 @@ export function WechatConfiguration() {
                     {button.subButtons && button.subButtons.length > 0 && (
                       <div className="space-y-4">
                         <h5 className="font-medium text-sm text-slate-700">子菜单</h5>
-                        {button.subButtons.map((subButton, subIndex) => (
+                        {button.subButtons.map((subButton, _subIndex) => (
                           <div key={subButton.id} className="bg-slate-50 p-3 rounded-md">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                               <div className="space-y-1">

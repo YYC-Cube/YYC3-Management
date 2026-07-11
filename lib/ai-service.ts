@@ -73,7 +73,7 @@ export class AIService {
   }
 
   private async callLocalModel(model: AIModel, request: ChatRequest): Promise<ChatResponse> {
-    const { messages, temperature = model.temperature, maxTokens = model.maxTokens } = request
+    const { messages, temperature: _temperature = model.temperature, maxTokens: _maxTokens = model.maxTokens } = request
 
     // 模拟本地模型调用
     await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -90,7 +90,7 @@ export class AIService {
   }
 
   private async callCloudModel(model: AIModel, request: ChatRequest): Promise<ChatResponse> {
-    const { messages, temperature = model.temperature, maxTokens = model.maxTokens } = request
+    const { messages, temperature: _temperature = model.temperature, maxTokens: _maxTokens = model.maxTokens } = request
 
     // 模拟云端模型调用
     await new Promise((resolve) => setTimeout(resolve, 1500))
