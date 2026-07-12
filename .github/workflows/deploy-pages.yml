@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NODE_VERSION: "20"
+  NODE_VERSION: "24"
   BUN_VERSION: "1.2.2"
 
 jobs:
@@ -57,10 +57,7 @@ jobs:
         continue-on-error: true
 
       - name: Build static export
-        run: |
-          # 禁用 pnpm minimum-release-age 检查，防止 Next.js 16 后置安装 TypeScript 时触发供给链策略失败
-          pnpm config set minimum-release-age 0
-          node_modules/.bin/next build
+        run: node_modules/.bin/next build
         env:
           # 激活静态导出模式
           NEXT_STATIC_EXPORT: "true"
@@ -68,7 +65,7 @@ jobs:
           # 使用自定义域名，无需 basePath
           NEXT_PUBLIC_CUSTOM_DOMAIN: "true"
           NEXT_PUBLIC_SITE_URL: "https://management.yyc3.vip"
-          # 禁用 pnpm minimum-release-age 检查（环境变量覆盖全局配置）
+          # 禁用 pnpm minimum-release-age 检查，防止 Next.js 16 后置安装 TypeScript 时触发供给链策略失败
           pnpm_minimum_release_age: "0"
 
       - name: Verify CNAME exists in output
