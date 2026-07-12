@@ -519,7 +519,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       </div>
 
       <div className="responsive-grid-4">
-        <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -534,7 +534,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -555,7 +555,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="responsive-card border-r-[5px] border-r-purple-500 shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -570,7 +570,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="responsive-card border-r-[5px] border-r-orange-500 shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -586,7 +586,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
         </Card>
       </div>
 
-      <Card className="responsive-card border-r-[5px] border-r-indigo-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+      <Card className="responsive-card border-r-[5px] border-r-indigo-500 shadow-md">
         <CardContent className="p-4 sm:p-6">
           <AdvancedSearchBar
             data={users}
@@ -629,7 +629,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
               renderItem={(user) => (
                 <Card
                   key={user.id}
-                  className="m-2 hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
+                  className="m-2 hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
                 >
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start justify-between">
@@ -726,7 +726,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             {roles.map((role) => (
               <Card
                 key={role.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
+                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
@@ -766,7 +766,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             {permissions.map((permission) => (
               <Card
                 key={permission.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]"
+                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">

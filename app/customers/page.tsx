@@ -222,14 +222,14 @@ export default function CustomersPage() {
     <PageContainer title="客户管理" description="管理和维护客户关系">
       <div className="space-y-6">
         <div className="flex items-center justify-end">
-          <EnhancedButton onClick={openCreateDialog} className="bg-green-600 hover:bg-green-700 border-r-4 border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)]">
+          <EnhancedButton onClick={openCreateDialog} className="bg-green-600 hover:bg-green-700 border-r-4 border-r-green-500 shadow-md">
             <UserPlus className="w-4 h-4 mr-2 text-white" />
             新增客户
           </EnhancedButton>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总客户数</p>
@@ -242,7 +242,7 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">活跃客户</p>
@@ -255,7 +255,7 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">VIP客户</p>
@@ -268,7 +268,7 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(34,197,94,0.15)] hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">新增客户</p>
@@ -319,7 +319,7 @@ export default function CustomersPage() {
               {filteredCustomers.map((customer) => (
                 <div
                   key={customer.id}
-                  className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-green-500 shadow-[2px_0_8px_rgba(34,197,94,0.1)]"
+                  className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-green-500 shadow-md"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">

@@ -55,7 +55,7 @@ export function ModuleCards() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* 数据总览 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-green-50 to-lime-50 border-green-200 border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-[4px_0_12px_rgba(34,197,94,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-green-50 to-lime-50 border-green-200 border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-md"
         onClick={() => handleModuleClick("dashboard")}
       >
         <CardContent className="p-6">
@@ -76,7 +76,7 @@ export function ModuleCards() {
 
       {/* 用户管理 - 橙色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-orange-50 to-amber-50 border-orange-200 border-r-[5px] border-r-orange-500 hover:border-r-orange-600 shadow-[4px_0_12px_rgba(249,115,22,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-orange-50 to-amber-50 border-orange-200 border-r-[5px] border-r-orange-500 hover:border-r-orange-600 shadow-md"
         onClick={() => handleModuleClick("users")}
       >
         <CardContent className="p-6">
@@ -97,7 +97,7 @@ export function ModuleCards() {
 
       {/* 系统设置 - 蓝色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-sky-50 to-blue-50 border-sky-200 border-r-[5px] border-r-sky-500 hover:border-r-sky-600 shadow-[4px_0_12px_rgba(14,165,233,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-sky-50 to-blue-50 border-sky-200 border-r-[5px] border-r-sky-500 hover:border-r-sky-600 shadow-md"
         onClick={() => handleModuleClick("settings")}
       >
         <CardContent className="p-6">
@@ -118,7 +118,7 @@ export function ModuleCards() {
 
       {/* AI智能助手 - 紫色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-purple-50 to-blue-50 border-purple-200 border-r-[5px] border-r-purple-500 hover:border-r-purple-600 shadow-[4px_0_12px_rgba(168,85,247,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-purple-50 to-blue-50 border-purple-200 border-r-[5px] border-r-purple-500 hover:border-r-purple-600 shadow-md"
         onClick={() => handleModuleClick("ai-assistant")}
       >
         <CardContent className="p-6">
@@ -139,7 +139,7 @@ export function ModuleCards() {
 
       {/* 多租户管理 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-emerald-50 to-teal-50 border-emerald-200 border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-[4px_0_12px_rgba(16,185,129,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-emerald-50 to-teal-50 border-emerald-200 border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-md"
         onClick={() => handleModuleClick("tenant-management")}
       >
         <CardContent className="p-6">
@@ -160,7 +160,7 @@ export function ModuleCards() {
 
       {/* 高级BI分析 - 紫色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-indigo-50 to-purple-50 border-indigo-200 border-r-[5px] border-r-indigo-500 hover:border-r-indigo-600 shadow-[4px_0_12px_rgba(99,102,241,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-indigo-50 to-purple-50 border-indigo-200 border-r-[5px] border-r-indigo-500 hover:border-r-indigo-600 shadow-md"
         onClick={() => handleModuleClick("advanced-bi")}
       >
         <CardContent className="p-6">
@@ -181,7 +181,7 @@ export function ModuleCards() {
 
       {/* 移动端应用 - 玫瑰色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-rose-50 to-pink-50 border-rose-200 border-r-[5px] border-r-rose-500 hover:border-r-rose-600 shadow-[4px_0_12px_rgba(244,63,94,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-rose-50 to-pink-50 border-rose-200 border-r-[5px] border-r-rose-500 hover:border-r-rose-600 shadow-md"
         onClick={() => handleModuleClick("mobile-app")}
       >
         <CardContent className="p-6">
@@ -202,7 +202,7 @@ export function ModuleCards() {
 
       {/* 安全中心 - 橙色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-red-50 to-orange-50 border-red-200 border-r-[5px] border-r-red-500 hover:border-r-red-600 shadow-[4px_0_12px_rgba(239,68,68,0.15)]"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-red-50 to-orange-50 border-red-200 border-r-[5px] border-r-red-500 hover:border-r-red-600 shadow-md"
         onClick={() => handleModuleClick("security")}
       >
         <CardContent className="p-6">

@@ -247,7 +247,7 @@ export function AiCustomerData() {
       {/* 核心指标卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* 总客户数 */}
-        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -272,7 +272,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 转化率 */}
-        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -297,7 +297,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* 平均客单价 */}
-        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -322,7 +322,7 @@ export function AiCustomerData() {
         </Card>
 
         {/* AI预测准确率 */}
-        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="relative overflow-hidden border-0 bg-linear-to-br from-purple-50 via-white to-purple-50/30 shadow-lg hover:shadow-xl transition-all duration-500 group border-r-[5px] border-r-purple-400 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -358,7 +358,7 @@ export function AiCustomerData() {
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 客户分布图 */}
-            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <PieChart className="w-5 h-5 text-purple-600" />
@@ -415,7 +415,7 @@ export function AiCustomerData() {
             </Card>
 
             {/* 客户价值分析 */}
-            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-purple-600" />
@@ -514,7 +514,7 @@ export function AiCustomerData() {
           </div>
 
           {/* 阶段转化漏斗 */}
-          <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-0 shadow-xl bg-linear-to-br from-white via-slate-50/50 to-white hover:shadow-2xl transition-all duration-500 border-r-[5px] border-r-purple-400 shadow-md">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-600" />

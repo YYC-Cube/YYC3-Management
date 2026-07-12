@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
+          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-slate-800">销售趋势</h2>
               <EnhancedButton variant="outline" size="sm">
@@ -96,7 +96,7 @@ export default function AnalyticsPage() {
             <SalesChart />
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
+          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-slate-800">财务概览</h2>
               <EnhancedButton variant="outline" size="sm">
@@ -108,7 +108,7 @@ export default function AnalyticsPage() {
           </EnhancedCard>
         </div>
 
-        <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(6,182,212,0.15)]">
+        <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-800">性能分析</h2>
             <div className="flex gap-2">

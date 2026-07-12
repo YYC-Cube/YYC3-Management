@@ -89,7 +89,7 @@ export function StatisticsDashboard({
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(59,130,246,0.15)]">
+        <Card className="border-r-[5px] border-r-blue-500 shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">总用户数</CardTitle>
           </CardHeader>
@@ -110,7 +110,7 @@ export function StatisticsDashboard({
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(16,185,129,0.15)]">
+        <Card className="border-r-[5px] border-r-green-500 shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">活跃用户</CardTitle>
           </CardHeader>
@@ -131,7 +131,7 @@ export function StatisticsDashboard({
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
+        <Card className="border-r-[5px] border-r-orange-500 shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">项目总数</CardTitle>
           </CardHeader>
@@ -152,7 +152,7 @@ export function StatisticsDashboard({
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(139,92,246,0.15)]">
+        <Card className="border-r-[5px] border-r-purple-500 shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">任务完成率</CardTitle>
           </CardHeader>
