@@ -156,7 +156,7 @@ jobs:
           fi
 
       - name: Build application
-        run: bun run build
+        run: node_modules/.bin/next build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
