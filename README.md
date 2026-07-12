@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="Family-001.png">
-  <source media="(prefers-color-scheme: light)" srcset="Family-001.png">
-  <img alt="YYC³ 企业智能管理系统" src="Family-001.png" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="public/Family-001.png">
+  <source media="(prefers-color-scheme: light)" srcset="public/Family-001.png">
+  <img alt="YYC³ 企业智能管理系统" src="public/Family-001.png" width="100%">
 </picture>
 
 # 🔖 YYC³ 企业智能管理系统 v3.0
