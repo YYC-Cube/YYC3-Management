@@ -114,7 +114,11 @@ jobs:
           fi
 
       - name: Build application
-        run: node_modules/.bin/next build
+        run: |
+          pnpm config set minimum-release-age 0
+          node_modules/.bin/next build
+        env:
+          pnpm_minimum_release_age: "0"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

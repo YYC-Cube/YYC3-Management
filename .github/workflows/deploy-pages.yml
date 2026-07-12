@@ -58,7 +58,8 @@ jobs:
 
       - name: Build static export
         run: |
-          # 直接使用 node_modules/.bin/next 构建，避免 bunx 触发 pnpm supply-chain 策略
+          # 禁用 pnpm minimum-release-age 检查，防止 Next.js 16 后置安装 TypeScript 时触发供给链策略失败
+          pnpm config set minimum-release-age 0
           node_modules/.bin/next build
         env:
           # 激活静态导出模式
@@ -67,6 +68,8 @@ jobs:
           # 使用自定义域名，无需 basePath
           NEXT_PUBLIC_CUSTOM_DOMAIN: "true"
           NEXT_PUBLIC_SITE_URL: "https://management.yyc3.vip"
+          # 禁用 pnpm minimum-release-age 检查（环境变量覆盖全局配置）
+          pnpm_minimum_release_age: "0"
 
       - name: Verify CNAME exists in output
         run: |
