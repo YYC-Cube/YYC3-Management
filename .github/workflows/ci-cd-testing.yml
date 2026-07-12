@@ -15,6 +15,7 @@ on:
 
 env:
   BUN_VERSION: "1.2.2"
+  NODE_VERSION: "24"
 
 jobs:
   lint:
@@ -156,9 +157,7 @@ jobs:
           fi
 
       - name: Build application
-        run: |
-          pnpm config set minimum-release-age 0
-          node_modules/.bin/next build
+        run: node_modules/.bin/next build
         env:
           pnpm_minimum_release_age: "0"
 
