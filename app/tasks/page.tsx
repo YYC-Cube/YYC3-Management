@@ -280,14 +280,14 @@ export default function TasksPage() {
     <PageContainer title="任务管理" description="跟踪和管理团队任务进度">
       <div className="space-y-6">
         <div className="flex items-center justify-end">
-          <EnhancedButton onClick={openCreateDialog} className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
+          <EnhancedButton onClick={openCreateDialog} className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-md">
             <Plus className="w-4 h-4 mr-2 text-white" />
             新建任务
           </EnhancedButton>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总任务数</p>
@@ -300,7 +300,7 @@ export default function TasksPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
@@ -315,7 +315,7 @@ export default function TasksPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">进行中</p>
@@ -328,7 +328,7 @@ export default function TasksPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">逾期任务</p>
@@ -374,7 +374,7 @@ export default function TasksPage() {
 
           <div className="space-y-4">
             {filteredTasks.map((task) => (
-              <div key={task.id} className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-[2px_0_8px_rgba(249,115,22,0.1)]">
+              <div key={task.id} className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-md">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <h3 className="font-medium text-slate-800">{task.title}</h3>

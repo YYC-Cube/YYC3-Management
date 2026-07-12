@@ -514,7 +514,7 @@ export function ChannelCenter() {
 
       {/* 总览指标 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="border-r-[5px] border-r-blue-500 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -526,7 +526,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="border-r-[5px] border-r-green-500 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -538,7 +538,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="border-r-[5px] border-r-orange-500 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -550,7 +550,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-purple-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="border-r-[5px] border-r-purple-500 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -562,7 +562,7 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-red-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+        <Card className="border-r-[5px] border-r-red-500 shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>

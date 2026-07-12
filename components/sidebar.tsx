@@ -230,7 +230,7 @@ export function Sidebar() {
                           isCollapsed ? "px-2" : "px-3",
                           `border-r-4 border-r-${colorClass}-500`,
                           isActive
-                            ? `text-white hover:opacity-90 border-r-${colorClass}-600 shadow-[2px_0_8px_rgba(var(--color-${colorClass}-500),0.3)]`
+                            ? `text-white hover:opacity-90 border-r-${colorClass}-600 shadow-md`
                             : `text-slate-700 hover:bg-slate-50 hover:text-slate-900 hover:border-r-${colorClass}-400`,
                         )}
                         style={

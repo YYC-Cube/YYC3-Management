@@ -307,7 +307,7 @@ export function SystemManagementOverview() {
         {systemStatuses.map((status, index) => (
           <Card
             key={index}
-            className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${status.borderColor.replace('border-l-', 'border-r-')} shadow-[4px_0_12px_rgba(0,0,0,0.1)] p-4 group`}
+            className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${status.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
             onClick={() => router.push(status.route)}
           >
             <div className="flex items-center justify-between mb-3">
@@ -391,7 +391,7 @@ export function SystemManagementOverview() {
             {quickActions.map((action, index) => (
               <Card
                 key={index}
-                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${action.borderColor.replace('border-l-', 'border-r-')} shadow-[4px_0_12px_rgba(0,0,0,0.1)] p-4 group`}
+                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${action.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
                 onClick={action.action}
               >
                 <div className="flex items-center gap-4">
@@ -415,7 +415,7 @@ export function SystemManagementOverview() {
             {recentActivities.map((activity) => (
               <Card
                 key={activity.id}
-                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] ${activity.borderColor.replace('border-l-', 'border-r-')} shadow-[4px_0_12px_rgba(0,0,0,0.1)] p-4`}
+                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] ${activity.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4`}
               >
                 <div className="flex items-center gap-4">
                   <div className={`p-2 rounded-lg ${getActivityColor(activity.status)}`}>

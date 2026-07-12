@@ -277,14 +277,14 @@ export default function ProjectsPage() {
     <PageContainer title="项目管理" description="跟踪和管理项目进度">
       <div className="space-y-6">
         <div className="flex items-center justify-end">
-          <EnhancedButton onClick={openCreateDialog} className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)]">
+          <EnhancedButton onClick={openCreateDialog} className="bg-orange-600 hover:bg-orange-700 border-r-4 border-r-orange-500 shadow-md">
             <Plus className="w-4 h-4 mr-2 text-white" />
             新建项目
           </EnhancedButton>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总项目数</p>
@@ -297,7 +297,7 @@ export default function ProjectsPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
@@ -312,7 +312,7 @@ export default function ProjectsPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">进行中</p>
@@ -325,7 +325,7 @@ export default function ProjectsPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-[4px_0_12px_rgba(249,115,22,0.15)] hover:border-r-orange-600">
+          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">延期项目</p>
@@ -371,7 +371,7 @@ export default function ProjectsPage() {
 
           <div className="space-y-4">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="border border-slate-200 rounded-lg p-6 hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-[2px_0_8px_rgba(249,115,22,0.1)]">
+              <div key={project.id} className="border border-slate-200 rounded-lg p-6 hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-md">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <h3 className="text-lg font-semibold text-slate-800">{project.name}</h3>

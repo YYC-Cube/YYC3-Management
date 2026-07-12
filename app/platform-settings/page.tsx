@@ -365,7 +365,7 @@ export default function PlatformSettingsPage() {
 
         {/* 微信公众号配置 */}
         <TabsContent value="wechat" className="space-y-6">
-          <Card className="border-r-[5px] border-r-green-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-green-500 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -472,7 +472,7 @@ export default function PlatformSettingsPage() {
 
         {/* 企业微信配置 */}
         <TabsContent value="enterprise" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-blue-500 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -576,7 +576,7 @@ export default function PlatformSettingsPage() {
 
         {/* 飞书配置 */}
         <TabsContent value="feishu" className="space-y-6">
-          <Card className="border-r-[5px] border-r-cyan-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-cyan-500 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -676,7 +676,7 @@ export default function PlatformSettingsPage() {
 
         {/* 钉钉配置 */}
         <TabsContent value="dingtalk" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-600 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-blue-600 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -774,7 +774,7 @@ export default function PlatformSettingsPage() {
 
         {/* 抖音配置 */}
         <TabsContent value="douyin" className="space-y-6">
-          <Card className="border-r-[5px] border-r-pink-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-pink-500 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -876,7 +876,7 @@ export default function PlatformSettingsPage() {
 
         {/* 支付宝配置 */}
         <TabsContent value="alipay" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-500 shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+          <Card className="border-r-[5px] border-r-blue-500 shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
