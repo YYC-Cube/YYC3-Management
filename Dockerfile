@@ -21,7 +21,7 @@ RUN bun install --frozen-lockfile
 COPY . .
 
 # 应用与 CI 一致的 Next.js 兼容性补丁
-RUN bash scripts/patch-next-prerender.sh
+RUN sh scripts/patch-next-prerender.sh
 
 # 构建 standalone 产物（next.config.mjs 根据 NEXT_STATIC_EXPORT 决定输出模式）
 RUN bun run build
