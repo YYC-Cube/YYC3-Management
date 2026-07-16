@@ -8,7 +8,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { EnhancedAIWidget } from '@/components/ai-floating-widget';
 import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/AgenticCore';
 import { Card } from '@/components/ui/card';
