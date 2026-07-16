@@ -104,7 +104,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Patch Next.js /_global-error 预渲染 Bug
-        run: bash scripts/patch-next-prerender.sh
+        run: sh scripts/patch-next-prerender.sh
 
       - name: Build application
         run: node_modules/.bin/next build

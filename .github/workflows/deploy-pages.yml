@@ -55,7 +55,7 @@ jobs:
           uname -m
 
       - name: Patch Next.js /_global-error 预渲染 Bug
-        run: bash scripts/patch-next-prerender.sh
+        run: sh scripts/patch-next-prerender.sh
 
       - name: Prepare static export (移除后端 API / proxy)
         run: bash scripts/prepare-static-export.sh
