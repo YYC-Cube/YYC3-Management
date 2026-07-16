@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUN_VERSION: "1.2.2"
+  BUN_VERSION: "latest"
   NODE_VERSION: "22"
 
 jobs:
@@ -44,14 +44,20 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Diagnostic — versions & native modules
+        run: |
+          echo "=== Versions ==="
+          node --version
+          bun --version
+          echo "=== Sharp native binary check ==="
+          node -e "try{require('sharp');console.log('sharp: OK')}catch(e){console.log('sharp:',e.message)}"
+          echo "=== Platform ==="
+          uname -m
+
       - name: Patch Next.js /_global-error 预渲染 Bug
-        # Next.js 16.2.x 对 /_global-error 硬编码 appConfig: {} 导致 React SSR
-        # 绑定为 null，使全部页面预渲染失败。详见 scripts/patch-next-prerender.sh
         run: bash scripts/patch-next-prerender.sh
 
       - name: Prepare static export (移除后端 API / proxy)
-        # output: 'export' 不支持 API 路由与 middleware/proxy，Pages 本就不运行后端。
-        # 仅在此导出构建中移除 app/api、middleware.ts、proxy.ts，不影响 Docker 源码。
         run: bash scripts/prepare-static-export.sh
 
       - name: Run type check
@@ -65,23 +71,17 @@ jobs:
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Next.js build failed (exit code $BUILD_EXIT)"
-            echo "=== Last 80 lines of build output ==="
-            tail -80 /tmp/build-output.log
+            echo "=== Full build output ==="
+            cat /tmp/build-output.log
             exit 1
           fi
         env:
-          # 必须显式设置：仓库内 .env 含 NODE_ENV=development 会污染构建，
-          # 显式 production 可覆盖（Next.js 不以 .env 覆盖已存在的 process.env）
           NODE_ENV: production
-          # 增加 Node 内存上限，防止大项目 OOM
           NODE_OPTIONS: "--max-old-space-size=4096"
-          # 激活静态导出模式
           NEXT_STATIC_EXPORT: "true"
           NEXT_PUBLIC_GITHUB_PAGES: "true"
-          # 使用自定义域名，无需 basePath
           NEXT_PUBLIC_CUSTOM_DOMAIN: "true"
           NEXT_PUBLIC_SITE_URL: "https://management.yyc3.vip"
-          # 禁用 Next.js 遥测
           NEXT_TELEMETRY_DISABLED: "1"
 
       - name: Verify CNAME exists in output
