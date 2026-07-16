@@ -103,21 +103,14 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Ensure TypeScript symlink for Next.js resolution
-        run: |
-          TS_DIR=$(ls -d node_modules/.pnpm/typescript*/node_modules/typescript 2>/dev/null | head -1)
-          if [ -n "$TS_DIR" ] && [ ! -e node_modules/typescript ]; then
-            ln -sf "$TS_DIR" node_modules/typescript
-          elif [ -n "$TS_DIR" ]; then
-            echo "TypeScript symlink OK"
-          else
-            echo "TypeScript not found in .pnpm"
-          fi
+      - name: Patch Next.js /_global-error 预渲染 Bug
+        run: bash scripts/patch-next-prerender.sh
 
       - name: Build application
         run: node_modules/.bin/next build
         env:
-          pnpm_minimum_release_age: "0"
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: "1"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

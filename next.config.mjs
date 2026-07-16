@@ -89,6 +89,14 @@ const nextConfig = {
 
     // CSS优化（Tailwind 4 原生已优化，关闭避免构建错误）
     optimizeCss: false,
+
+    // ==========================================
+    // 静态生成并发控制
+    // React 19 + Turbopack 多 worker 并行预渲染存在竞态条件，
+    // 限制为单线程预渲染以提升稳定性。
+    // ==========================================
+    workerThreads: false,
+    cpus: 1,
   },
 
   // ==========================================
@@ -98,8 +106,12 @@ const nextConfig = {
 
   // ==========================================
   // Turbopack 配置（Next.js 16 默认构建器）
+  // 明确指定 root 为项目目录，防止因父目录存在 bun.lock
+  // 而误判 workspace root 导致模块解析异常
   // ==========================================
-  turbopack: {},
+  turbopack: {
+    root: import.meta.dirname,
+  },
 
   // ==========================================
   // Webpack 配置（仅在 --webpack 模式下生效）
@@ -189,13 +201,14 @@ const nextConfig = {
 
   // ==========================================
   // Headers配置（安全性和缓存）
+  // 注意：output:export 模式下 headers/redirects 不生效，跳过以避免构建错误
   // ==========================================
   async headers() {
+    if (isStaticExport) return [];
     return [
       {
         source: '/:path*',
         headers: [
-          // 安全头部
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
@@ -255,6 +268,7 @@ const nextConfig = {
   // 重定向配置
   // ==========================================
   async redirects() {
+    if (isStaticExport) return [];
     return [];
   },
 

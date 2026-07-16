@@ -1,185 +1,224 @@
 # AGENTS.md
 
-Guide for AI coding agents working in the **YYC³ 企业智能管理系统 v3.0** repository.
+Guidance for AI coding agents working in the **YYC³ 企业智能管理系统** (YYC3-Management) repository. This complements `.github/copilot-instructions.md` — read both. Only patterns actually observed in the codebase are documented here.
+
+> **Package manager is Bun.** All commands below assume `bun run <script>`. npm/pnpm are CI-compatible but Bun is canonical (see `bun.lock`).
 
 ---
 
-## 1. Project Overview
+## 1. Essential Commands
 
-- **Stack**: Next.js 16 (App Router) + React 19 + TypeScript 7 + Tailwind CSS 4
-- **Data fetching**: SWR (shared `useSWRResource<T>()` hook with optimistic updates)
-- **Caching**: Redis (`withCache()` / `invalidateResourceCache()`)
-- **State**: Zustand stores in `store/` (user, task, project, customer)
-- **UI system**: shadcn/ui primitives + Tailwind CSS variables + `class-variance-authority`
-- **Icons**: `lucide-react`
-- **Database**: PostgreSQL via `pg` (Repository pattern, parameterized SQL)
-- **Validation**: Zod schemas (`lib/validations/schemas.ts`)
-- **AI**: Real GLM-4 via ZhipuAdapter + ModelAdapterFactory + AgenticCore
-- **i18n**: Self-built `@yyc3/i18n-core` engine (`lib/i18n/`)
-- **Auth**: JWT (HMAC-SHA256) + Middleware route protection + API auth-guard
-- **Primary UI language**: Chinese (zh-CN), with i18n support for en
-- **Multi-platform**: Responsive PC/PWA/Mobile H5 (no monorepo); spec: `docs/dev-guide/standard/YYC3-多端适配-规范文档.md`
+Scripts are defined in `package.json`:
 
-## 2. Essential Commands
+| Task | Command | Notes |
+|------|---------|-------|
+| Install | `bun install` | Use `--frozen-lockfile` in CI |
+| Dev server | `bun run dev` | Port **3223** (Next.js) |
+| Production build | `bun run build` | Turbopack (Next 16 default) |
+| Start prod | `bun run start` | Port **3223** |
+| Type check | `bun run type-check` | `tsc --noEmit`, **strict mode** |
+| Lint | `bun run lint` / `bun run lint:fix` | ESLint flat config (`eslint.config.mjs`) |
+| Tests (all) | `bun run test` | `vitest run` |
+| Tests (watch) | `bun run test:watch` | |
+| Coverage | `bun run test:coverage` | Istanbul provider → `./coverage` |
+| Tests (lib only) | `bun run test:lib` | |
+| Tests (components) | `bun run test:components` | |
+| Tests (perf) | `bun run test:performance` | `lib/performance/` |
+| Security audit | `bun run security:audit` | `bun audit` |
+| DB migrate | `bun run db:migrate` | Runs `scripts/run-migrations.ts` |
 
-```bash
-bun run dev              # Dev server on port 3223
-bun run build            # Production build (standalone)
-bun run start            # Production server on port 3223
-bun run lint             # ESLint
-bun run type-check       # tsc --noEmit
-bun run test             # vitest run
-bun run test:coverage    # vitest run --coverage
-bun run db:migrate       # Run database migrations
-bun run security:scan    # Security scan
-```
+**Always run `bun run type-check` before considering work complete** — TS strict mode (`strict`, `noUnusedLocals`, `noUnusedParameters`, `noImplicitReturns`, etc.) is enforced via `tsconfig.json`.
 
-**Port**: Dev/prod = 3223 (`package.json`), Docker = 3000 (`Dockerfile`)
+---
 
-## 3. Environment Setup
+## 2. Tech Stack & Architecture
 
-Copy `.env.example` → `.env.local`:
-
-- `DATABASE_URL` — PostgreSQL connection
-- `REDIS_URL` — Redis for caching
-- `ZHIPU_API_KEY` — AI service (GLM-4)
-- `JWT_SECRET` — Auth token signing (min 32 chars)
-- `NEXT_PUBLIC_API_BASE_URL` — API base URL
-
-## 4. Code Organization
-
-```
-app/                     Next.js App Router (49 pages, 22 API routes)
-  api/                   Route handlers (all auth-gated except /api/health)
-  (feature)/page.tsx     Feature pages
-  layout.tsx             Root layout (I18nProvider + AIWidgetProvider)
-components/               Business + UI components
-hooks/                   9 hooks (SWR-driven via use-swr-resource.ts)
-lib/
-  api/                   auth-guard, response-handler, cache, middleware, logger
-  db/                    client, redis, cache.ts, repositories/, models/
-  i18n/                  Self-built i18n engine + locales
-  model-adapter/         AI multi-model adapters (Zhipu, OpenAI, Local)
-  agentic-core/          Agent engine (AgenticCore, MessageBus, TaskScheduler)
-  validations/           Zod schemas
-  audit/                 Audit logger
-  utils.ts               cn(), formatters, validators
-store/                   Zustand stores (user, task, project, customer)
-migrations/              12 SQL migrations (auto-run in Docker)
-```
+- **Framework**: Next.js 16 (App Router) + React 19 + TypeScript 7
+- **Build**: Turbopack default; webpack config in `next.config.mjs` only applies with `--webpack`
+- **Styling**: Tailwind CSS v4 via `@tailwindcss/postcss`; `darkMode: 'class'`; tokens as CSS variables in `tailwind.config.ts`
+- **UI primitives**: shadcn-style components in `components/ui/**` (Radix UI + CVA)
+- **Data fetching**: SWR (`hooks/use-*-resource.ts`, `hooks/use-swr-resource.ts`)
+- **Client state**: Zustand (`store/*-store.ts`)
+- **Forms**: `react-hook-form`
+- **Validation**: Zod schemas in `lib/validations/schemas.ts`
+- **Database**: PostgreSQL via `pg` (`lib/db/client.ts`), repository pattern in `lib/db/repositories/`
+- **Cache**: Redis (`lib/db/redis.ts`) + `lib/db/cache.ts` (`withCache`, `invalidateResourceCache`, `buildCacheKey`)
+- **i18n**: Custom engine at `lib/i18n/` (10 locales; `en` is default, 9 others lazy-loaded)
+- **AI**: `ai` SDK + custom model adapters in `lib/model-adapter/`; floating widget in `components/ai-floating-widget/`
 
 ### Path alias
+`@/*` → repo root (configured in `tsconfig.json` `paths` and `vitest.config.ts` `resolve.alias`). Prefer `@/components/...`, `@/lib/...`, `@/hooks/...`.
 
-`@/*` → repo root (configured in `tsconfig.json` and `vitest.config.ts`).
+---
 
-## 5. Code Conventions
+## 3. Directory Layout
 
-### Data fetching pattern
-
-Always use `useSWRResource` for list/CRUD pages:
-
-```typescript
-import { useSWRResource } from '@/hooks/use-swr-resource'
-const { items, create, update, remove, isLoading } = useSWRResource<Customer>('/api/customers', { page: 1 })
+```
+app/                  Next.js App Router routes (each feature = folder with page.tsx)
+  <feature>/
+    page.tsx          Client component ('use client') — the feature UI
+    layout.tsx        Optional per-feature layout
+    loading.tsx       Suspense fallback
+    page.test.tsx     Co-located test (when present)
+  api/                Route handlers (route.ts) — REST endpoints
+components/
+  ui/                 Reusable primitives (Button, Card, Dialog, …)
+  *.tsx               Feature-level composite components
+  ai-floating-widget/ Global AI widget (provider + widget)
+  charts/, dialogs/, settings/, layout/
+hooks/                React hooks (mostly SWR wrappers: use-customers, use-tasks, …)
+store/                Zustand stores (user/task/project/customer)
+lib/
+  api/                auth-guard, logger, middleware, response-handler, validation
+  db/                 client (pg Pool), redis, cache, models/, repositories/
+  validations/        Zod schemas
+  i18n/               engine, registry, locales/, provider
+  utils.ts            cn(), formatCurrency/Date/Number, debounce, etc.
+  security/           csrf, signature, alerts
+core/                 ⚠️ LEGACY/ARCHIVED — excluded from type-check, lint, tests, build
+docs/                 Chinese documentation tree (excluded from TS/lint)
+migrations/           SQL migrations (001–014)
+scripts/              deploy.sh, run-migrations.ts, security-scan.sh, quality-gate.ts
+k8s/                  Kubernetes manifests
+docker/               nginx, prometheus, postgres-init, mongo-init
+.github/workflows/    CI/CD pipelines (see §6)
 ```
 
-### API routes
+**Important**: `core/`, `docs/`, `scripts/`, `migrations/`, `public/`, `templates/` are **excluded** from `tsconfig.json`, ESLint, and Vitest. Do not add production source code there. The `core/` tree is explicitly archived (see `core/ARCHIVED.md`).
 
-- Import `authenticateApiRequest` from `@/lib/api/auth-guard`
-- Import `withCache` / `invalidateResourceCache` from `@/lib/db/cache`
-- Use `checkDatabaseConnection()` before DB operations
-- Validate with Zod (`lib/validations/schemas.ts`)
-- Return `{ success, data, pagination? }` envelope
+---
 
-### Caching pattern
+## 4. Code Patterns & Conventions
 
-```typescript
-const cacheKey = buildCacheKey('customers', params)
-const result = await withCache(cacheKey, () => repo.findAll(params), 300)
-// After mutation:
-await invalidateResourceCache('customers')
-```
+### Pages (`app/**/page.tsx`)
+- Add `"use client"` at the top for interactive pages (most are client components).
+- Compose from `components/ui/*` primitives and feature components in `components/`.
+- Use hooks from `hooks/use-*.ts` for data; do not call `fetch('/api/...')` directly in pages.
+- Wrap content with `<PageContainer>` from `components/layout/page-container.tsx`.
+- Example: `app/dashboard/page.tsx`.
 
-### Repository pattern
+### API Routes (`app/api/**/route.ts`)
+Canonical handler shape (see `app/api/customers/route.ts`):
+1. `authenticateApiRequest(request)` → returns `{ authenticated, payload | response }`.
+2. `checkDatabaseConnection()` → 503 on failure.
+3. Parse query/body; validate with the matching Zod schema (`*.safeParse`).
+4. Use the repository from `lib/db/repositories/`.
+5. Wrap reads in `withCache(cacheKey, () => repo.findAll(...), ttlSeconds)`.
+6. After writes, call `invalidateResourceCache('<resource>')`.
+7. Always return `{ success: true, data, pagination? }` or `{ success: false, error }` with proper HTTP status.
 
-- All SQL in `lib/db/repositories/*.repository.ts`
-- **Column whitelists** on `update()` methods (SQL injection protection)
-- Always use parameterized queries (`$1`, `$2`, ...)
+Public API routes are whitelisted in `lib/api/auth-guard.ts` (`PUBLIC_API_ROUTES`, currently `['/api/health']`).
 
-### File header comment block
+### Auth & Middleware
+- `middleware.ts` redirects unauthenticated browser requests to `/login` (reads `auth_token` cookie or `Authorization: Bearer` header). Static paths and `/api/*` bypass it.
+- API auth uses an HS256 JWT verified in `lib/api/auth-guard.ts` (`verifyToken`, timing-safe compare). Secret from `JWT_SECRET` (fallback `SESSION_SECRET`).
 
-```typescript
-/**
- * @fileoverview <purpose>
- * @author YYC³
- * @version 3.0.0
- * @created YYYY-MM-DD
- * @license MIT
- */
-```
+### UI Components (`components/ui/**`)
+- shadcn-style: `React.forwardRef` + `class-variance-authority` (`cva`) + `cn()` from `lib/utils.ts`.
+- Variants use Tailwind utility classes and CSS variables (`bg-primary`, `text-primary-foreground`, …).
+- Example: `components/ui/button.tsx`.
+- Prefer composing these over hand-rolling new primitives.
 
-## 6. Testing (Vitest + Testing Library)
+### State Management
+- **Server state**: SWR via `useSWRResource<T>('/api/<resource>', params)` → exposes `{ items, pagination, isLoading, isError, mutate, create, update, remove }`. Thin wrappers live in `hooks/use-<resource>.ts`.
+- **Client state**: Zustand stores in `store/` (e.g. `useUserStore`, `useTaskStore`). Re-exported from `store/index.ts`.
 
-- Setup: `vitest.setup.ts` (includes global mocks for next/navigation, next/image, Tabs, fetch, IntersectionObserver, localStorage, WebSocket)
-- Shared helpers: `__tests__/helpers/` (renderWithProviders, mockFetch, mockFactories)
-- Coverage: istanbul provider, 60% threshold
-- **Excluded**: `core/**` (archived), `docs/i18n-core/**`
+### Validation
+- All request bodies validated with Zod schemas from `lib/validations/schemas.ts`.
+- **Status/priority enums are Chinese strings** (e.g. task status `'待处理' | '进行中' | '已完成' | '已取消'`; priority `'低' | '中' | '高' | '紧急'`). Match existing enum values when extending.
 
-## 7. Key Gotchas
+### i18n
+- 10 locales: `en` (default, eager) + `zh-CN`, `zh-TW`, `ja`, `ko`, `fr`, `de`, `es`, `pt-BR`, `ar` (lazy).
+- Locale files live in `lib/i18n/locales/`. Register new locales in `lib/i18n/registry.ts` (`LAZY_LOCALE_REGISTRY`) and add the type to `lib/i18n/types.ts`.
+- App-specific overrides use `*-app.ts` files (e.g. `en-app.ts`, `zh-CN-app.ts`).
+- Provider is `I18nProvider` from `lib/i18n`, wired in `app/layout.tsx`.
 
-1. **`core/` is archived** — 77 files, not tracked in git, excluded from tsconfig and vitest
-2. **Middleware protects all routes** — unauthenticated users redirected to `/login`
-3. **API auth** — 15 routes use `authenticateApiRequest()`, only `/api/health` is public
-4. **SWR is mandatory** — never use raw `fetch()` in hooks; use `useSWRResource<T>()`
-5. **Redis degrades gracefully** — if Redis is down, `withCache()` falls through to DB
-6. **Docker includes migrator** — `docker-compose up` runs migrations automatically
-7. **Tabs mock in test** — Radix Tabs are mocked in `vitest.setup.ts` for jsdom compatibility
-8. **Multi-platform adaptation** — Sidebar becomes a slide-out drawer below `md` (<768px); a fixed bottom nav (`<BottomNav />`) appears on xs/sm; viewport uses `viewport-fit=cover` for safe-area support; PWA manifest uses `display_override` + `id`; SW has layered caches (static/runtime/api) with navigation preload.
+### File Headers
+Many files use a JSDoc `@fileoverview` header block (description, author, version, license). When touching such a file, follow the existing header style; do not strip it.
 
-## 8. Multi-Platform Adaptation
+---
 
-Adaptation strategy follows the team spec (`docs/dev-guide/standard/YYC3-多端适配-规范文档.md`), implemented **within the single Next.js app** (no monorepo/component extraction).
+## 5. Testing
 
-### Responsive breakpoints (Tailwind)
+- **Runner**: Vitest + jsdom; globals enabled; setup in `vitest.setup.ts`.
+- **Co-locate** `*.test.ts(x)` next to the unit under test (e.g. `app/dashboard/page.test.tsx`).
+- **Helpers** in `__tests__/helpers/`: `render-with-providers.tsx`, `mock-factories.ts`, `mock-fetch.ts`, `indexeddb-mock.ts`.
+- **Setup file** mocks: `next/navigation`, `next/image`, `localStorage`, `WebSocket`, `fetch`, `IntersectionObserver`, `ResizeObserver`, `matchMedia`, and `@/components/ui/tabs` (Radix Tabs don't render inactive panels in jsdom).
+- **Coverage** uses **Istanbul** (not v8) with thresholds 60% (lines/functions/branches/statements); `core/**` is excluded from coverage AND from test execution.
+- Test timeouts: 5s (`testTimeout`/`hookTimeout`). Pool: threads, 2–4 workers, `isolate: false`.
+- Prefer `@testing-library/react` + `@testing-library/jest-dom` matchers. Tests assert on visible Chinese text (e.g. `screen.getByText('仪表板')`).
+- Run a single file: `bunx vitest run path/to/file.test.tsx`.
 
-| Breakpoint | Min width | Target |
-|-----------|-----------|--------|
-| `xs` (custom) | 480px | Phone landscape / small foldable |
-| `sm` (default) | 640px | Large phone / small tablet |
-| `md` (default) | 768px | Tablet / foldable expanded |
-| `lg` (default) | 1024px | Desktop small |
-| `xl` (default) | 1280px | Desktop large |
+---
 
-### Key files
+## 6. Build & Deployment
 
-| File | Role |
-|------|------|
-| `tailwind.config.ts` | `xs: '480px'` screen added |
-| `app/globals.css` | Safe-area utilities, `.bottom-nav`, `.drawer-transform`, `.touch-target`, iOS input zoom fix, `.mobile-overlay` |
-| `components/sidebar.tsx` | Desktop: fixed collapsible sidebar; Mobile (<md): hamburger trigger + slide-out drawer + overlay + ESC/route-change auto-close |
-| `components/bottom-nav.tsx` | Bottom navigation bar (首页/任务/客户/通知), visible only on xs/sm (<768px) |
-| `components/header.tsx` | Responsive padding, left-spacer for mobile hamburger, shrink-on-small `space-x` |
-| `app/layout.tsx` | `<BottomNav />` integrated; viewport uses `viewportFit: 'cover'` + dual `themeColor` |
-| `public/manifest.json` | PWA: `id`, `display_override`, `orientation: any`, shortcuts cleaned |
-| `public/sw.js` | Layered cache (static/runtime/api) + navigation preload + trim logic |
+`next.config.mjs` switches output mode via env vars:
 
-### CSS utility classes (globals.css)
+| Env | Mode | Target |
+|-----|------|--------|
+| `NEXT_STATIC_EXPORT=true` | `output: 'export'` → `out/` | GitHub Pages |
+| (unset) | `output: 'standalone'` → `.next/standalone` | Docker |
+| `NEXT_PUBLIC_GITHUB_PAGES=true` without `NEXT_PUBLIC_CUSTOM_DOMAIN` | adds `basePath: '/YYC3-Management'` | Project Pages |
+| `NEXT_PUBLIC_CUSTOM_DOMAIN=true` | no basePath | Custom domain (`management.yyc3.vip`) |
 
-- `.safe-area-top/bottom/left/right/inset` — `env(safe-area-inset-*)` padding
-- `.pb-safe` — bottom nav safe-area padding
-- `.touch-target` — min 44×44px (WCAG 2.5.5)
-- `.no-tap-highlight` / `.no-select` — iOS tap highlight & text-select removal
-- `.bottom-nav` / `.bottom-nav-item` — mobile bottom navigation
-- `.mobile-overlay` / `.drawer-transform` — drawer overlay + transform animation
-- `.only-xs` / `.only-sm` / `.only-md-down` — breakpoint visibility helpers
+Static export auto-disables image optimization and skips `headers()`/`redirects()`.
 
-## 9. Developer Documents
+**Ports**: dev/prod scripts use **3223**; Docker container exposes **3000**.
 
-| Document | Purpose |
-|----------|---------|
-| [AUDIT-REPORT.md](./AUDIT-REPORT.md) | Full project audit (code quality, architecture, UX) |
-| [SECURITY-FIXES.md](./SECURITY-FIXES.md) | Security vulnerability fixes |
-| [TEST-AUDIT-REPORT.md](./TEST-AUDIT-REPORT.md) | Deep test infrastructure analysis |
-| [MVP-EXPANSION-PLAN.md](./MVP-EXPANSION-PLAN.md) | Feature expansion roadmap |
-| [ISSUE-LIST.md](./ISSUE-LIST.md) | Issue tracker (34 items, 100% resolved) |
-| [IMPROVEMENT-ROADMAP.md](./IMPROVEMENT-ROADMAP.md) | 6-month improvement roadmap |
+### CI/CD Workflows (`.github/workflows/`)
+| File | Purpose |
+|------|---------|
+| `deploy-pages.yml` | Push to `main` → static export → GitHub Pages (`management.yyc3.vip`) |
+| `ci-cd.yml` | lint → type-check → test → build → security → Docker → VPS deploy (main only) |
+| `ci-cd-testing.yml` | Integration testing pipeline |
+| `code-quality.yml` | ESLint, Prettier, complexity, duplicates |
+| `security-scan.yml` | CodeQL, Snyk, gitleaks, dependency audit |
+
+CI uses Bun 1.2.2 + Node 24. Note: lint/type-check/test steps use `continue-on-error: true` (non-blocking) in `ci-cd.yml`. **Don't rely on CI to catch type errors — run `bun run type-check` locally.**
+
+### Docker
+- Multi-stage `Dockerfile` produces `.next/standalone`; runner runs `node server.js`.
+- `docker-compose.yml` wires Postgres + Redis with healthchecks.
+- Variants: `docker-compose.dev.yml`, `docker-compose.prod.yml`, `docker-compose.complete.yml`.
+
+---
+
+## 7. Environment
+
+Copy `.env.example` → `.env.local`. Key variables:
+- `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`
+- `DATABASE_URL` (PostgreSQL), `DB_HOST/PORT/NAME/USER/PASSWORD` (used by `lib/db/client.ts`)
+- `REDIS_URL`
+- `JWT_SECRET` / `SESSION_SECRET` (≥32 chars; required for API auth)
+- AI provider keys: `ZHIPU_API_KEY`, `BAIDU_*`, `ALIBABA_API_KEY`, `XUNFEI_*`, `TENCENT_*`
+- Local models: `OLLAMA_BASE_URL`, `LM_STUDIO_BASE_URL`
+- WeChat (optional): `WECHAT_APP_ID`, `WECHAT_APP_SECRET`
+
+Test env defaults are injected in `vitest.setup.ts` (DB URL, JWT secret, `NODE_ENV=test`).
+
+---
+
+## 8. Gotchas & Non-Obvious Patterns
+
+- **`core/` is archived.** It's excluded everywhere (TS, ESLint, Vitest, Next build). New work must NOT go in `core/`; treat it as read-only reference.
+- **CI is non-blocking** for lint/type-check/test (`continue-on-error: true`). Green CI does not mean clean code — always run `bun run type-check` locally.
+- **`typescript.ignoreBuildErrors: true`** in `next.config.mjs` (build won't fail on TS errors by design). Type-checking is a separate explicit step.
+- **Chinese enum values** in Zod schemas and UI labels (task/project/customer status & priority). Don't translate them to English without coordinated DB/data migration.
+- **Radix Tabs mock** in `vitest.setup.ts`: tests render all `TabsContent` panels (real Radix hides inactive ones in jsdom). Don't be surprised that tab tests don't require user clicks to switch.
+- **pg ESM types**: `lib/db/client.ts` uses `@ts-expect-error` for the `pg` import; module is declared in `types.d.ts`. Preserve this when editing.
+- **System fonts, not Google Fonts**: `app/layout.tsx` intentionally avoids `next/font/google` to keep CI builds hermetic. Don't reintroduce it.
+- **Path alias `@/*`** resolves to repo root (not `src/`). Both `tsconfig.json` and `vitest.config.ts` must stay in sync.
+- **Static export constraints**: when `NEXT_STATIC_EXPORT=true`, `headers()`, `redirects()`, and image optimization are disabled. API routes and middleware do not run on GitHub Pages — only the Docker deployment has a working backend.
+- **No `pnpm` in CI**: despite a `.pnpm`-style symlink step, the workflows use Bun. Don't add `pnpm config` commands.
+
+---
+
+## 9. When Adding Code
+
+1. **New route** → create `app/<feature>/{page.tsx,loading.tsx,(layout.tsx)}`; add `"use client"` if interactive; use `@/components/ui/*` primitives.
+2. **New API endpoint** → `app/api/<resource>/route.ts`; follow the auth → DB check → Zod validate → repository → cache pattern (§4).
+3. **New entity** → add model in `lib/db/models/`, repository in `lib/db/repositories/`, Zod schema in `lib/validations/schemas.ts`, SWR hook in `hooks/use-<resource>.ts`.
+4. **New UI primitive** → add to `components/ui/`, follow `forwardRef` + `cva` + `cn()` pattern.
+5. **New locale** → add `lib/i18n/locales/<code>.ts`, register in `lib/i18n/registry.ts`, extend `Locale` type in `lib/i18n/types.ts`.
+6. **Run `bun run type-check`** before committing — strict TS is enforced.

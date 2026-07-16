@@ -5,6 +5,7 @@
   "author": "YYC³ <admin@0379.email>",
   "license": "MIT",
   "private": true,
+  "packageManager": "bun@1.2.2",
   "homepage": "https://github.com/yyc3/yyc3-mana#readme",
   "repository": {
     "type": "git",
@@ -116,7 +117,7 @@
     "postcss": "^8.5",
     "prettier": "^3.9.5",
     "tailwindcss": "^4.3.2",
-    "typescript": "^7.0.2",
+    "typescript": "7.0.2",
     "vitest": "^4.1.10"
   }
 }
