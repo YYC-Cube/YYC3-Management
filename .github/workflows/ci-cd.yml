@@ -11,6 +11,9 @@ on:
     branches: [main, develop]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   BUN_VERSION: "1.2.2"
   NODE_VERSION: "24"
