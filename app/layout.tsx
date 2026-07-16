@@ -64,9 +64,16 @@ export const metadata: Metadata = {
     ],
     shortcut: ["/yyc3-icons/favicon/favicon.ico"],
     apple: [
-      { url: "/yyc3-icons/ios/icon-180.png", sizes: "180x180", type: "image/png" },
-      { url: "/yyc3-icons/ios/icon-152.png", sizes: "152x152", type: "image/png" },
-      { url: "/yyc3-icons/ios/icon-167.png", sizes: "167x167", type: "image/png" },
+      // iPhone App Icon (60@3x = 180px)
+      { url: "/yyc3-icons/ios/icon-60@3x.png", sizes: "180x180", type: "image/png" },
+      // iPad Pro App Icon (83.5@2x = 167px)
+      { url: "/yyc3-icons/ios/icon-83.5@2x.png", sizes: "167x167", type: "image/png" },
+      // iPad App Icon (76@2x = 152px)
+      { url: "/yyc3-icons/ios/icon-76@2x.png", sizes: "152x152", type: "image/png" },
+      // iPhone Spotlight (40@3x = 120px)
+      { url: "/yyc3-icons/ios/icon-40@3x.png", sizes: "120x120", type: "image/png" },
+      // iPhone Settings (29@3x = 87px)
+      { url: "/yyc3-icons/ios/icon-29@3x.png", sizes: "87x87", type: "image/png" },
     ],
     other: [
       // Android Chrome M48+
@@ -188,25 +195,26 @@ export default function RootLayout({
         <link rel="icon" href="/yyc3-icons/pwa/icon-192x192.png" sizes="192x192" type="image/png" />
         <link rel="icon" href="/yyc3-icons/pwa/icon-512x512.png" sizes="512x512" type="image/png" />
 
-        {/* iOS / Apple Touch Icons */}
-        <link rel="apple-touch-icon" href="/yyc3-icons/ios/icon-180.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/yyc3-icons/ios/icon-152.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/yyc3-icons/ios/icon-167.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/yyc3-icons/ios/icon-180.png" />
+        {/* iOS / Apple Touch Icons（使用 @2x/@3x 命名规范） */}
+        <link rel="apple-touch-icon" href="/yyc3-icons/ios/icon-60@3x.png" />
+        <link rel="apple-touch-icon" sizes="87x87" href="/yyc3-icons/ios/icon-29@3x.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/yyc3-icons/ios/icon-40@3x.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/yyc3-icons/ios/icon-76@2x.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/yyc3-icons/ios/icon-83.5@2x.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/yyc3-icons/ios/icon-60@3x.png" />
 
         {/* PWA / Mobile Web App */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="YYC³ 管理系统" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="format-detection" content="telephone=no" />
 
-        {/* PWA 启动图 (WebP 优化) */}
-        <link rel="apple-touch-startup-image" href="/yyc3-icons/webp/icon-512x512.webp" />
+        {/* iOS 启动图（PWA 安装后启动画面，使用 1024x1024 高清 PNG） */}
+        <link rel="apple-touch-startup-image" href="/yyc3-icons/ios/icon-1024.png" />
 
-        {/* Android Chrome */}
+        {/* Android Chrome（theme-color 已在 viewport 中声明，此处不重复） */}
         <meta name="application-name" content="YYC³ 管理系统" />
-        <meta name="theme-color" content="#3b82f6" />
 
         {/* Windows Tile */}
         <meta name="msapplication-TileColor" content="#3b82f6" />
@@ -216,7 +224,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"
         >
           跳转到主要内容
         </a>

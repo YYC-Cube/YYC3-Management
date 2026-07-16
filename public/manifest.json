@@ -1,9 +1,9 @@
 {
-  "id": "/",
+  "id": "/?source=pwa",
   "name": "YYC³ 企业智能管理系统 - YanYuCloudCube Enterprise Management",
-  "short_name": "YYC³ Mana",
+  "short_name": "YYC³",
   "description": "YYC³ Professional Enterprise Intelligent Management System - 言语云立方企业智能管理系统",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "browser"],
@@ -13,6 +13,7 @@
   "lang": "zh-CN",
   "dir": "ltr",
   "categories": ["business", "productivity", "utilities"],
+  "iarc_rating_id": "90d2983a-3c0a-4c8e-8f4e-4d3e3e3c3e3e",
   "icons": [
     {
       "src": "/yyc3-icons/pwa/icon-72x72.png",
@@ -92,25 +93,29 @@
       "name": "数据中心",
       "short_name": "首页",
       "description": "查看运营数据中心",
-      "url": "/dashboard"
+      "url": "/dashboard",
+      "icons": [{ "src": "/yyc3-icons/pwa/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
     },
     {
       "name": "客户管理",
       "short_name": "客户",
       "description": "管理客户信息和服务记录",
-      "url": "/customers"
+      "url": "/customers",
+      "icons": [{ "src": "/yyc3-icons/pwa/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
     },
     {
       "name": "任务管理",
       "short_name": "任务",
       "description": "查看和管理待办任务",
-      "url": "/tasks"
+      "url": "/tasks",
+      "icons": [{ "src": "/yyc3-icons/pwa/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
     },
     {
       "name": "通知中心",
       "short_name": "通知",
       "description": "查看系统通知和消息",
-      "url": "/notifications"
+      "url": "/notifications",
+      "icons": [{ "src": "/yyc3-icons/pwa/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
     }
   ],
   "screenshots": [],
