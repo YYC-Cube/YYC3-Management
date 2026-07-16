@@ -70,7 +70,7 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          cat > /tmp/build-debug.cjs << 'WRAPPER'
+          cat > build-debug.cjs << 'WRAPPER'
           // Intercept process.exit to get stack trace
           const origExit = process.exit.bind(process);
           process.exit = (code) => {
@@ -93,7 +93,8 @@ jobs:
           process.argv = ['node', 'next-build', '--webpack'];
           require('next/dist/cli/next-build');
           WRAPPER
-          NODE_OPTIONS="--max-old-space-size=4096" node /tmp/build-debug.cjs 2>&1 | tee /tmp/build-output.log
+          NODE_OPTIONS="--max-old-space-size=4096" node build-debug.cjs 2>&1 | tee /tmp/build-output.log
+          rm -f build-debug.cjs
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Build failed (exit code $BUILD_EXIT)"
