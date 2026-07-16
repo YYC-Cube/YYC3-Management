@@ -117,6 +117,13 @@ const nextConfig = {
   // Webpack 配置（仅在 --webpack 模式下生效）
   // ==========================================
   webpack: (config, { isServer }) => {
+    // 显式设置 @ 别名（webpack 模式下 tsconfig paths 可能不被正确解析）
+    config.resolve = config.resolve || {}
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': import.meta.dirname,
+    }
+
     // 生产环境优化
     if (!isServer) {
       // 客户端包优化
