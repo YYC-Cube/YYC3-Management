@@ -67,7 +67,7 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          node_modules/.bin/next build 2>&1 | tee /tmp/build-output.log
+          node_modules/.bin/next build --debug-prerender 2>&1 | tee /tmp/build-output.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Next.js build failed (exit code $BUILD_EXIT)"
