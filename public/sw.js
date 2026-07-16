@@ -8,11 +8,20 @@ const OFFLINE_URL = "/offline"
 const STATIC_CACHE_URLS = [
   "/",
   "/offline",
+  "/manifest.json",
+  "/browserconfig.xml",
+  // Favicon 系列（PC 浏览器标签页）
+  "/yyc3-icons/favicon/favicon.ico",
+  "/yyc3-icons/favicon/favicon-16x16.png",
+  "/yyc3-icons/favicon/favicon-32x32.png",
+  "/yyc3-icons/favicon/favicon-96x96.png",
+  // PWA 图标（安装到桌面 / 启动画面）
   "/yyc3-icons/pwa/icon-192x192.png",
   "/yyc3-icons/pwa/icon-512x512.png",
   "/yyc3-icons/pwa/icon-96x96.png",
-  "/yyc3-icons/favicon/favicon-32x32.png",
-  "/manifest.json",
+  // WebP 现代格式（支持浏览器优先加载，节省带宽）
+  "/yyc3-icons/webp/icon-192x192.webp",
+  "/yyc3-icons/webp/icon-512x512.webp",
 ]
 
 // 需要运行时缓存的核心路由（首屏可用性）
