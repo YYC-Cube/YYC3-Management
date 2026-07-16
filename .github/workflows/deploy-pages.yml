@@ -70,31 +70,29 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          cat > build-debug.cjs << 'WRAPPER'
-          // Intercept process.exit to get stack trace
+          # Create a preload script that intercepts process.exit
+          cat > /tmp/exit-intercept.cjs << 'PRELOAD'
           const origExit = process.exit.bind(process);
-          process.exit = (code) => {
-            if (code !== 0) {
-              console.error('\n=== process.exit(' + code + ') intercepted ===');
+          process.exit = function(code) {
+            if (code !== 0 && code !== undefined) {
+              console.error('\n========== process.exit(' + code + ') intercepted ==========');
               console.error(new Error().stack);
             }
             origExit(code);
           };
-          process.on('uncaughtException', (e) => {
-            console.error('\n=== UNCAUGHT EXCEPTION ===');
-            console.error(e?.stack || e);
+          process.on('uncaughtException', function(e) {
+            console.error('\n========== UNCAUGHT EXCEPTION ==========');
+            console.error(e && e.stack ? e.stack : String(e));
             origExit(97);
           });
-          process.on('unhandledRejection', (e) => {
-            console.error('\n=== UNHANDLED REJECTION ===');
-            console.error(e?.stack || e);
+          process.on('unhandledRejection', function(e) {
+            console.error('\n========== UNHANDLED REJECTION ==========');
+            console.error(e && e.stack ? e.stack : String(e));
           });
-          // Run Next.js build in-process
-          process.argv = ['node', 'next-build', '--webpack'];
-          require('next/dist/cli/next-build');
-          WRAPPER
-          NODE_OPTIONS="--max-old-space-size=4096" node build-debug.cjs 2>&1 | tee /tmp/build-output.log
-          rm -f build-debug.cjs
+          PRELOAD
+
+          NODE_OPTIONS="--require /tmp/exit-intercept.cjs --max-old-space-size=4096" \
+            node_modules/.bin/next build --webpack 2>&1 | tee /tmp/build-output.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Build failed (exit code $BUILD_EXIT)"
