@@ -1,15 +1,19 @@
 # syntax=docker/dockerfile:1
 # =============================================================
 # YYC³ 企业智能管理系统 — 多阶段 Docker 构建
-# 包管理器：Bun（与 CI/CD 保持一致，bun.lock 为权威 lockfile）
+# 构建阶段使用 Node.js (Next.js 需要 worker_threads，Bun 尚未完全支持)
+# 包安装使用 Bun (保持与 CI lockfile 一致)
 # =============================================================
 
 # ==========================================
 # 构建阶段
 # ==========================================
-FROM oven/bun:1.2-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
+
+# 安装 Bun (仅用于 bun install，保持 lockfile 一致性)
+RUN npm install -g bun@1.2
 
 # 复制 lockfile 与 manifest（利用 Docker 层缓存）
 COPY bun.lock package.json ./
@@ -23,13 +27,16 @@ COPY . .
 # 应用与 CI 一致的 Next.js 兼容性补丁
 RUN sh scripts/patch-next-prerender.sh
 
-# 构建 standalone 产物（next.config.mjs 根据 NEXT_STATIC_EXPORT 决定输出模式）
-RUN bun run build
+# 构建 standalone 产物（使用 Node.js 运行，非 Bun — worker_threads 兼容）
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN node_modules/.bin/next build
 
 # ==========================================
 # 迁移阶段（用于初始化数据库）
 # ==========================================
-FROM oven/bun:1.2-alpine AS migrator
+FROM node:22-alpine AS migrator
+RUN npm install -g bun@1.2
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
