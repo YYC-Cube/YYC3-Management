@@ -70,33 +70,10 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          # Create a preload script that intercepts process.exit
-          cat > /tmp/exit-intercept.cjs << 'PRELOAD'
-          const origExit = process.exit.bind(process);
-          process.exit = function(code) {
-            if (code !== 0 && code !== undefined) {
-              console.error('\n========== process.exit(' + code + ') intercepted ==========');
-              console.error(new Error().stack);
-            }
-            origExit(code);
-          };
-          process.on('uncaughtException', function(e) {
-            console.error('\n========== UNCAUGHT EXCEPTION ==========');
-            console.error(e && e.stack ? e.stack : String(e));
-            origExit(97);
-          });
-          process.on('unhandledRejection', function(e) {
-            console.error('\n========== UNHANDLED REJECTION ==========');
-            console.error(e && e.stack ? e.stack : String(e));
-          });
-          PRELOAD
-
-          NODE_OPTIONS="--require /tmp/exit-intercept.cjs --max-old-space-size=4096" \
-            node_modules/.bin/next build --webpack 2>&1 | tee /tmp/build-output.log
+          node_modules/.bin/next build --webpack 2>&1 | tee /tmp/build-output.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Build failed (exit code $BUILD_EXIT)"
-            echo "=== Full build output ==="
             cat /tmp/build-output.log
             exit 1
           fi
