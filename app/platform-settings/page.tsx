@@ -95,8 +95,8 @@ export default function PlatformSettingsPage() {
       name: "微信公众号",
       logo: "/platforms/wechat.png",
       description: "配置微信公众号的API接口参数，实现菜单同步和消息接收",
-      color: "border-l-green-500",
-      bgColor: "bg-green-50",
+      color: "border-l-success",
+      bgColor: "bg-success/10",
       docs: "https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html",
     },
     {
@@ -205,7 +205,7 @@ export default function PlatformSettingsPage() {
     return (
       <div className="space-y-2">
         <Label htmlFor={key} className="text-sm font-medium">
-          {label} {required && <span className="text-red-500">*</span>}
+          {label} {required && <span className="text-destructive">*</span>}
         </Label>
         <div className="relative">
           <Input
@@ -263,7 +263,7 @@ export default function PlatformSettingsPage() {
     return (
       <div className="space-y-2">
         <Label htmlFor={key} className="text-sm font-medium">
-          {label} {required && <span className="text-red-500">*</span>}
+          {label} {required && <span className="text-destructive">*</span>}
         </Label>
         <div className="relative">
           {multiline ? (
@@ -271,7 +271,7 @@ export default function PlatformSettingsPage() {
               id={key}
               value={value}
               placeholder={placeholder}
-              className="pr-10 min-h-[100px]"
+              className="pr-10 min-h-25"
               onChange={(e) => {
                 setFormData((prev) => ({
                   ...prev,
@@ -352,9 +352,9 @@ export default function PlatformSettingsPage() {
                     className="rounded-lg"
                   />
                   {connectionStatus[platform.id] ? (
-                    <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-green-500 bg-white rounded-full" />
+                    <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-success bg-white rounded-full" />
                   ) : (
-                    <XCircle className="absolute -top-1 -right-1 w-4 h-4 text-red-500 bg-white rounded-full" />
+                    <XCircle className="absolute -top-1 -right-1 w-4 h-4 text-destructive bg-white rounded-full" />
                   )}
                 </div>
                 <span className="text-xs font-medium text-center">{platform.name}</span>
@@ -365,7 +365,7 @@ export default function PlatformSettingsPage() {
 
         {/* 微信公众号配置 */}
         <TabsContent value="wechat" className="space-y-6">
-          <Card className="border-r-[5px] border-r-green-500 shadow-md">
+          <Card className="border-r-[5px] border-r-success shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -377,14 +377,14 @@ export default function PlatformSettingsPage() {
                     className="rounded-lg"
                   />
                   <div>
-                    <CardTitle className="text-xl text-green-700">微信公众号对接配置</CardTitle>
+                    <CardTitle className="text-xl text-success">微信公众号对接配置</CardTitle>
                     <CardDescription>配置微信公众号的API接口参数，实现菜单同步和消息接收</CardDescription>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Badge
                     variant={connectionStatus.wechat ? "default" : "secondary"}
-                    className="bg-green-100 text-green-800"
+                    className="bg-success/10 text-success"
                   >
                     {connectionStatus.wechat ? "已连接" : "未连接"}
                   </Badge>
@@ -449,7 +449,7 @@ export default function PlatformSettingsPage() {
                   </Button>
                   <Button
                     onClick={() => saveConfiguration("wechat")}
-                    className="flex items-center space-x-2 bg-green-600 hover:bg-green-700"
+                    className="flex items-center space-x-2 bg-success/10 hover:bg-success/20"
                   >
                     <Save className="w-4 h-4" />
                     <span>保存配置</span>
@@ -681,7 +681,7 @@ export default function PlatformSettingsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Image
-                    src="/images/platforms/dingtalk.png"
+                    src="/platforms/dingtalk.png"
                     alt="钉钉"
                     width={40}
                     height={40}
