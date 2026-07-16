@@ -85,8 +85,8 @@ export default function FinancePage() {
                     {summaryLoading ? "—" : formatCurrency(summary?.totalIncome ?? 0)}
                   </p>
                 </div>
-                <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 bg-success/10 dark:bg-success/10/20 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-success" />
                 </div>
               </div>
             </CardContent>
@@ -100,8 +100,8 @@ export default function FinancePage() {
                     {summaryLoading ? "—" : formatCurrency(summary?.totalExpense ?? 0)}
                   </p>
                 </div>
-                <div className="w-10 h-10 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
-                  <TrendingDown className="w-5 h-5 text-red-600" />
+                <div className="w-10 h-10 bg-destructive/10 dark:bg-destructive/10/20 rounded-lg flex items-center justify-center">
+                  <TrendingDown className="w-5 h-5 text-destructive" />
                 </div>
               </div>
             </CardContent>
@@ -111,7 +111,7 @@ export default function FinancePage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">净利润</p>
-                  <p className={`text-2xl font-bold ${(summary?.netProfit ?? 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className={`text-2xl font-bold ${(summary?.netProfit ?? 0) >= 0 ? 'text-success' : 'text-destructive'}`}>
                     {summaryLoading ? "—" : formatCurrency(summary?.netProfit ?? 0)}
                   </p>
                 </div>
@@ -148,7 +148,7 @@ export default function FinancePage() {
                 {summary.incomeByCategory.map((item) => (
                   <div key={item.category} className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">{item.category}</span>
-                    <span className="font-medium text-green-600">{formatCurrency(item.amount)}</span>
+                    <span className="font-medium text-success">{formatCurrency(item.amount)}</span>
                   </div>
                 ))}
               </CardContent>
@@ -159,7 +159,7 @@ export default function FinancePage() {
                 {summary.expenseByCategory.map((item) => (
                   <div key={item.category} className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">{item.category}</span>
-                    <span className="font-medium text-red-600">{formatCurrency(item.amount)}</span>
+                    <span className="font-medium text-destructive">{formatCurrency(item.amount)}</span>
                   </div>
                 ))}
               </CardContent>
@@ -185,12 +185,12 @@ export default function FinancePage() {
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                         record.type === 'income'
-                          ? 'bg-green-100 dark:bg-green-900/20'
-                          : 'bg-red-100 dark:bg-red-900/20'
+                          ? 'bg-success/10 dark:bg-success/10/20'
+                          : 'bg-destructive/10 dark:bg-destructive/10/20'
                       }`}>
                         {record.type === 'income'
-                          ? <TrendingUp className="w-4 h-4 text-green-600" />
-                          : <TrendingDown className="w-4 h-4 text-red-600" />
+                          ? <TrendingUp className="w-4 h-4 text-success" />
+                          : <TrendingDown className="w-4 h-4 text-destructive" />
                         }
                       </div>
                       <div>
@@ -203,7 +203,7 @@ export default function FinancePage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className={`font-medium ${record.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>
+                      <p className={`font-medium ${record.type === 'income' ? 'text-success' : 'text-destructive'}`}>
                         {record.type === 'income' ? '+' : '-'}{formatCurrency(record.amount)}
                       </p>
                       <StatusBadge variant="neutral">{record.category}</StatusBadge>

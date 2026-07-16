@@ -98,114 +98,112 @@ export const shadows = {
 }
 
 // 通用样式配置
+// NOTE: 全部使用语义 token（bg-primary、bg-muted 等），深色模式自动切换。
+// 历史的 sky-*/blue-*/slate-* 硬编码已于 2026-07-17 全部替换。
 export const commonStyles = {
   layout: {
-    container: "min-h-screen bg-linear-to-br from-slate-50 to-sky-50/30 p-6",
+    container: "min-h-screen bg-background p-6",
     pageHeader: "flex items-center justify-between mb-6",
-    pageTitle: "text-2xl font-bold text-slate-900",
-    pageDescription: "text-slate-600 mt-1",
+    pageTitle: "text-2xl font-bold text-foreground",
+    pageDescription: "text-muted-foreground mt-1",
     grid: "grid gap-6",
   },
   card: {
-    base: "bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200",
-    header: "p-6 border-b border-sky-100",
+    base: "bg-card text-card-foreground border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200",
+    header: "p-6 border-b border-border",
     content: "p-6",
-    footer: "p-6 border-t border-sky-100",
+    footer: "p-6 border-t border-border",
     statCard: "border-l-4 hover:shadow-md transition-shadow",
     enhanced:
-      "bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300",
+      "bg-card border border-border rounded-xl shadow-sm hover:shadow-lg transition-all duration-300",
   },
   button: {
     primary:
-      "bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md",
+      "bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md",
     secondary:
-      "bg-white border border-sky-200 text-sky-700 hover:bg-sky-50 hover:border-sky-300 font-medium px-4 py-2 rounded-lg transition-all duration-200",
+      "bg-secondary text-secondary-foreground hover:bg-secondary/80 font-medium px-4 py-2 rounded-lg transition-all duration-200",
     outline:
-      "border border-sky-200 text-sky-700 hover:bg-sky-50 hover:border-sky-300 px-4 py-2 rounded-lg transition-all duration-200",
-    ghost: "text-slate-600 hover:text-slate-900 hover:bg-slate-100 px-4 py-2 rounded-lg transition-all duration-200",
+      "border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-lg transition-all duration-200",
+    ghost: "text-foreground hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-lg transition-all duration-200",
   },
   input: {
-    base: "w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200",
+    base: "w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200 bg-background text-foreground",
     search:
-      "pl-10 pr-4 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent bg-sky-50/50 transition-all duration-200",
+      "pl-10 pr-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-muted/50 transition-all duration-200",
   },
   badge: {
-    primary: "bg-sky-100 text-sky-800 border-sky-200",
-    success: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    warning: "bg-amber-100 text-amber-800 border-amber-200",
-    error: "bg-red-100 text-red-800 border-red-200",
-    secondary: "bg-slate-100 text-slate-800 border-slate-200",
+    primary: "bg-primary/10 text-primary border-primary/20",
+    success: "bg-success/10 text-success border-success/20",
+    warning: "bg-warning/10 text-warning border-warning/20",
+    error: "bg-destructive/10 text-destructive border-destructive/20",
+    secondary: "bg-muted text-muted-foreground border-border",
   },
   text: {
-    title: "text-2xl font-bold text-slate-900",
-    subtitle: "text-lg font-semibold text-slate-800",
-    body: "text-slate-700",
-    caption: "text-sm text-slate-600",
-    muted: "text-xs text-slate-500",
+    title: "text-2xl font-bold text-foreground",
+    subtitle: "text-lg font-semibold text-foreground",
+    body: "text-foreground",
+    caption: "text-sm text-muted-foreground",
+    muted: "text-xs text-muted-foreground",
   },
   status: {
-    active: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    inactive: "bg-slate-100 text-slate-800 border-slate-200",
-    pending: "bg-amber-100 text-amber-800 border-amber-200",
-    completed: "bg-sky-100 text-sky-800 border-sky-200",
-    cancelled: "bg-red-100 text-red-800 border-red-200",
+    active: "bg-success/10 text-success border-success/20",
+    inactive: "bg-muted text-muted-foreground border-border",
+    pending: "bg-warning/10 text-warning border-warning/20",
+    completed: "bg-primary/10 text-primary border-primary/20",
+    cancelled: "bg-destructive/10 text-destructive border-destructive/20",
   },
 }
 
-// 进度条颜色配置 - 统一使用彩色渐变
+// 进度条颜色配置 - 统一使用语义 token
 export const getProgressColor = (progress: number, status?: string): string => {
-  if (status === "completed") return "bg-linear-to-r from-emerald-400 to-emerald-500"
-  if (status === "cancelled") return "bg-linear-to-r from-red-400 to-red-500"
-  if (status === "critical") return "bg-linear-to-r from-red-400 to-red-500"
-  if (status === "warning") return "bg-linear-to-r from-amber-400 to-amber-500"
-  if (status === "excellent") return "bg-linear-to-r from-emerald-400 to-emerald-500"
-  if (status === "good") return "bg-linear-to-r from-sky-400 to-sky-500"
-  if (status === "at-risk") return "bg-linear-to-r from-amber-400 to-amber-500"
-  if (status === "off-track") return "bg-linear-to-r from-red-400 to-red-500"
-  if (status === "on-track") return "bg-linear-to-r from-emerald-400 to-emerald-500"
+  if (status === "completed") return "bg-success"
+  if (status === "cancelled" || status === "critical" || status === "off-track") return "bg-destructive"
+  if (status === "warning" || status === "at-risk") return "bg-warning"
+  if (status === "excellent" || status === "on-track") return "bg-success"
+  if (status === "good") return "bg-primary"
 
-  // 根据进度值返回彩色渐变
-  if (progress >= 90) return "bg-linear-to-r from-emerald-400 to-emerald-500"
-  if (progress >= 70) return "bg-linear-to-r from-sky-400 to-sky-500"
-  if (progress >= 50) return "bg-linear-to-r from-amber-400 to-amber-500"
-  return "bg-linear-to-r from-red-400 to-red-500"
+  // 根据进度值返回阶梯色
+  if (progress >= 90) return "bg-success"
+  if (progress >= 70) return "bg-primary"
+  if (progress >= 50) return "bg-warning"
+  return "bg-destructive"
 }
 
-// 状态配置
+// 状态配置（保持业务语义不变，但颜色类全部使用 token）
 export const statusConfig = {
   task: {
-    todo: { label: "待开始", color: "bg-slate-100 text-slate-800", icon: "Clock" },
-    "in-progress": { label: "进行中", color: "bg-sky-100 text-sky-800", icon: "Play" },
-    review: { label: "待审核", color: "bg-amber-100 text-amber-800", icon: "Eye" },
-    completed: { label: "已完成", color: "bg-emerald-100 text-emerald-800", icon: "Check" },
+    todo: { label: "待开始", color: "bg-muted text-muted-foreground", icon: "Clock" },
+    "in-progress": { label: "进行中", color: "bg-primary/10 text-primary", icon: "Play" },
+    review: { label: "待审核", color: "bg-warning/10 text-warning", icon: "Eye" },
+    completed: { label: "已完成", color: "bg-success/10 text-success", icon: "Check" },
   },
   approval: {
-    pending: { label: "待审批", color: "bg-amber-100 text-amber-800", icon: "Clock", bgColor: "bg-amber-100" },
-    approved: { label: "已批准", color: "bg-emerald-100 text-emerald-800", icon: "Check", bgColor: "bg-emerald-100" },
-    rejected: { label: "已拒绝", color: "bg-red-100 text-red-800", icon: "X", bgColor: "bg-red-100" },
-    cancelled: { label: "已取消", color: "bg-slate-100 text-slate-800", icon: "Ban", bgColor: "bg-slate-100" },
-    draft: { label: "草稿", color: "bg-blue-100 text-blue-800", icon: "FileText", bgColor: "bg-blue-100" },
+    pending: { label: "待审批", color: "bg-warning/10 text-warning", icon: "Clock", bgColor: "bg-warning/10" },
+    approved: { label: "已批准", color: "bg-success/10 text-success", icon: "Check", bgColor: "bg-success/10" },
+    rejected: { label: "已拒绝", color: "bg-destructive/10 text-destructive", icon: "X", bgColor: "bg-destructive/10" },
+    cancelled: { label: "已取消", color: "bg-muted text-muted-foreground", icon: "Ban", bgColor: "bg-muted" },
+    draft: { label: "草稿", color: "bg-primary/10 text-primary", icon: "FileText", bgColor: "bg-primary/10" },
   },
   customer: {
-    active: { label: "活跃", color: "bg-emerald-100 text-emerald-800", icon: "UserCheck" },
-    inactive: { label: "非活跃", color: "bg-slate-100 text-slate-800", icon: "UserX" },
-    potential: { label: "潜在", color: "bg-amber-100 text-amber-800", icon: "User" },
+    active: { label: "活跃", color: "bg-success/10 text-success", icon: "UserCheck" },
+    inactive: { label: "非活跃", color: "bg-muted text-muted-foreground", icon: "UserX" },
+    potential: { label: "潜在", color: "bg-warning/10 text-warning", icon: "User" },
   },
 }
 
 // 通知配置
 export const notificationConfig = {
   types: {
-    info: { color: "bg-sky-100 text-sky-800 border-sky-200", icon: "Info" },
-    success: { color: "bg-emerald-100 text-emerald-800 border-emerald-200", icon: "CheckCircle" },
-    warning: { color: "bg-amber-100 text-amber-800 border-amber-200", icon: "AlertTriangle" },
-    error: { color: "bg-red-100 text-red-800 border-red-200", icon: "AlertCircle" },
+    info: { color: "bg-primary/10 text-primary border-primary/20", icon: "Info" },
+    success: { color: "bg-success/10 text-success border-success/20", icon: "CheckCircle" },
+    warning: { color: "bg-warning/10 text-warning border-warning/20", icon: "AlertTriangle" },
+    error: { color: "bg-destructive/10 text-destructive border-destructive/20", icon: "AlertCircle" },
   },
   priorities: {
-    low: { label: "低", color: "bg-slate-100 text-slate-800" },
-    medium: { label: "中", color: "bg-sky-100 text-sky-800" },
-    high: { label: "高", color: "bg-amber-100 text-amber-800" },
-    urgent: { label: "紧急", color: "bg-red-100 text-red-800" },
+    low: { label: "低", color: "bg-muted text-muted-foreground" },
+    medium: { label: "中", color: "bg-primary/10 text-primary" },
+    high: { label: "高", color: "bg-warning/10 text-warning" },
+    urgent: { label: "紧急", color: "bg-destructive/10 text-destructive" },
   },
 }
 
@@ -214,9 +212,9 @@ export const getStatusStyle = (type: string, status: string) => {
   const config = statusConfig[type as keyof typeof statusConfig];
   const result = config?.[status as keyof typeof config] || {
     label: status,
-    color: "bg-slate-100 text-slate-800",
+    color: "bg-muted text-muted-foreground",
     icon: "Circle",
-    bgColor: "bg-slate-100",
+    bgColor: "bg-muted",
   };
   return result as { label: string; color: string; icon: string; bgColor?: string };
 }
@@ -225,7 +223,7 @@ export const getPriorityStyle = (priority: string) => {
   return (
     notificationConfig.priorities[priority as keyof typeof notificationConfig.priorities] || {
       label: priority,
-      color: "bg-slate-100 text-slate-800",
+      color: "bg-muted text-muted-foreground",
     }
   )
 }

@@ -171,7 +171,7 @@ export function OKRManagement() {
       case "at-risk":
         return "bg-amber-100 text-amber-800 border-amber-200"
       case "off-track":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }

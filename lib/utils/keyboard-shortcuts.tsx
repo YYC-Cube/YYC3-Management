@@ -129,6 +129,22 @@ export interface UseKeyboardShortcutsOptions extends KeyboardShortcutOptions {
   onShortcutTriggered?: (shortcut: KeyboardShortcut) => void
 }
 
+/**
+ * useKeyboardShortcuts — 稳定的全局快捷键 Hook
+ *
+ * 修复历史问题（v3.1.0）：
+ * 1. 双重监听：原实现在 `global: true` 时，Manager 构造函数绑一次 document，
+ *    第二个 useEffect 又绑一次，导致同一事件被处理两次。现已移除冗余监听。
+ * 2. shortcuts 数组依赖不稳定：原实现将 `shortcuts` 作为 useEffect 依赖，
+ *    每次 render 都会重建 Manager。现改用 useRef 保存最新 shortcuts，
+ *    Manager 仅在挂载时创建一次。
+ *
+ * @example
+ * useKeyboardShortcuts({
+ *   shortcuts: [{ key: 'k', meta: true, description: '打开搜索', action: openSearch }],
+ *   global: true,
+ * })
+ */
 export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions) {
   const {
     shortcuts,
@@ -138,36 +154,38 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions) {
   } = options
 
   const managerRef = useRef<KeyboardShortcutManager | null>(null)
+  // 保存最新的 shortcuts 引用，避免作为 useEffect 依赖导致频繁重建
+  const shortcutsRef = useRef(shortcuts)
+  shortcutsRef.current = shortcuts
 
+  // 仅在 enabled / global 变化时重建 Manager（不再依赖 shortcuts 数组）
   useEffect(() => {
-    managerRef.current = new KeyboardShortcutManager({ enabled, global })
+    const manager = new KeyboardShortcutManager({ enabled, global })
 
+    // 注册初始 shortcuts
+    shortcutsRef.current.forEach((shortcut) => {
+      manager.register(shortcut)
+    })
+
+    managerRef.current = manager
+
+    return () => {
+      manager.clear()
+      if (global) {
+        manager.detachGlobalListener()
+      }
+      managerRef.current = null
+    }
+  }, [enabled, global])
+
+  // 当 shortcuts 变化时同步到现有 Manager（不重建）
+  useEffect(() => {
+    if (!managerRef.current) return
+    managerRef.current.clear()
     shortcuts.forEach((shortcut) => {
       managerRef.current?.register(shortcut)
     })
-
-    return () => {
-      managerRef.current?.clear()
-      if (global) {
-        managerRef.current?.detachGlobalListener()
-      }
-    }
-  }, [shortcuts, enabled, global])
-
-  useEffect(() => {
-    if (!managerRef.current || !global) {
-      return
-    }
-
-    const handler = (event: KeyboardEvent) => {
-      managerRef.current?.handleKeyDown(event)
-    }
-
-    document.addEventListener("keydown", handler)
-    return () => {
-      document.removeEventListener("keydown", handler)
-    }
-  }, [global, shortcuts])
+  }, [shortcuts])
 
   const registerShortcut = useCallback((shortcut: KeyboardShortcut) => {
     managerRef.current?.register(shortcut)

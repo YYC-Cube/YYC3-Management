@@ -269,11 +269,11 @@ export function HelpCenter() {
   const getDifficultyBadge = (difficulty: HelpArticle["difficulty"]) => {
     switch (difficulty) {
       case "beginner":
-        return <Badge className="bg-green-100 text-green-800">初级</Badge>
+        return <Badge className="bg-success/10 text-success">初级</Badge>
       case "intermediate":
         return <Badge className="bg-yellow-100 text-yellow-800">中级</Badge>
       case "advanced":
-        return <Badge className="bg-red-100 text-red-800">高级</Badge>
+        return <Badge className="bg-destructive/10 text-destructive">高级</Badge>
       default:
         return <Badge className="bg-slate-100 text-slate-800">未知</Badge>
     }
@@ -333,14 +333,14 @@ export function HelpCenter() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-lg font-bold text-slate-900">视频教程</p>
-                <p className="text-2xl font-bold text-green-600 mt-1">{videos.length}</p>
+                <p className="text-2xl font-bold text-success mt-1">{videos.length}</p>
               </div>
-              <Video className="w-8 h-8 text-green-500" />
+              <Video className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>
@@ -559,7 +559,7 @@ export function HelpCenter() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleFeedback("helpful", faq.id)}
-                              className="text-green-600 hover:text-green-700 hover:bg-green-50"
+                              className="text-success hover:text-success/80 hover:bg-success/20"
                             >
                               <ThumbsUp className="w-4 h-4 mr-1" />
                               有帮助 ({faq.helpful})
@@ -568,7 +568,7 @@ export function HelpCenter() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleFeedback("notHelpful", faq.id)}
-                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                              className="text-destructive hover:text-destructive/80 hover:bg-destructive/20"
                             >
                               <ThumbsDown className="w-4 h-4 mr-1" />
                               没帮助 ({faq.notHelpful})

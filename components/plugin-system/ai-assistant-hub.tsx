@@ -415,7 +415,7 @@ export function AIAssistantHub({
                             className="absolute top-2 right-2 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-muted"
                           >
                             {copiedId === msg.id ? (
-                              <Check className="w-3 h-3 text-green-500" />
+                              <Check className="w-3 h-3 text-success" />
                             ) : (
                               <Copy
                                 className="w-3 h-3"
@@ -462,7 +462,7 @@ export function AIAssistantHub({
                   {voiceSupported && (
                     <button
                       onClick={isListening ? stopListening : startListening}
-                      className={`p-2.5 rounded-xl min-w-[40px] min-h-[40px] flex items-center justify-center ${isListening ? "bg-red-500/20 border border-red-500/40 animate-pulse" : ""}`}
+                      className={`p-2.5 rounded-xl min-w-[40px] min-h-[40px] flex items-center justify-center ${isListening ? "bg-destructive/10/20 border border-destructive/20/40 animate-pulse" : ""}`}
                       style={{
                         background:
                           isListening ? undefined : "rgba(0,40,80,0.4)",
@@ -472,7 +472,7 @@ export function AIAssistantHub({
                       }}
                     >
                       {isListening ? (
-                        <MicOff className="w-4 h-4 text-red-400" />
+                        <MicOff className="w-4 h-4 text-destructive" />
                       ) : (
                         <Mic
                           className="w-4 h-4"

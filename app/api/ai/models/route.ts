@@ -1,12 +1,12 @@
 /**
  * @fileoverview api/ai/models/route.ts — AI模型管理 CRUD + Ollama扫描
- * @author YYC³ @version 3.0.0 @license MIT
+ * @author YYC³ @version 3.1.0 @license MIT
  */
-import { NextRequest, NextResponse } from 'next/server'
 import { authenticateApiRequest } from '@/lib/api/auth-guard'
-import { AIModelRepository } from '@/lib/db/repositories/ai-model.repository'
-import { checkDatabaseConnection } from '@/lib/db/client'
 import { writeAuditLog } from '@/lib/audit/logger'
+import { checkDatabaseConnection } from '@/lib/db/client'
+import { AIModelRepository } from '@/lib/db/repositories/ai-model.repository'
+import { NextRequest, NextResponse } from 'next/server'
 
 const repo = new AIModelRepository()
 

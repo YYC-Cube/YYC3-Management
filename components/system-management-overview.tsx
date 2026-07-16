@@ -68,7 +68,7 @@ export function SystemManagementOverview() {
       icon: Zap,
       route: "/performance",
       colorTheme: "green",
-      borderColor: "border-l-green-500",
+      borderColor: "border-l-success",
       progressColor: "bg-linear-to-r from-green-400 to-green-500",
     },
     {
@@ -125,8 +125,8 @@ export function SystemManagementOverview() {
       icon: Zap,
       action: () => router.push("/performance"),
       colorTheme: "green",
-      borderColor: "border-l-green-500",
-      bgColor: "bg-green-500",
+      borderColor: "border-l-success",
+      bgColor: "bg-success/10",
     },
     {
       name: "数据同步",
@@ -165,7 +165,7 @@ export function SystemManagementOverview() {
       timestamp: new Date(Date.now() - 15 * 60 * 1000),
       status: "success",
       colorTheme: "green",
-      borderColor: "border-l-green-500",
+      borderColor: "border-l-success",
     },
     {
       id: "3",
@@ -206,11 +206,11 @@ export function SystemManagementOverview() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "good":
-        return "text-green-600"
+        return "text-success"
       case "warning":
         return "text-yellow-600"
       case "critical":
-        return "text-red-600"
+        return "text-destructive"
       default:
         return "text-slate-600"
     }
@@ -219,11 +219,11 @@ export function SystemManagementOverview() {
   const getStatusBg = (status: string) => {
     switch (status) {
       case "good":
-        return "bg-green-100"
+        return "bg-success/10"
       case "warning":
         return "bg-yellow-100"
       case "critical":
-        return "bg-red-100"
+        return "bg-destructive/10"
       default:
         return "bg-slate-100"
     }
@@ -249,11 +249,11 @@ export function SystemManagementOverview() {
   const getActivityColor = (status: string) => {
     switch (status) {
       case "success":
-        return "text-green-600 bg-green-100"
+        return "text-success bg-success/10"
       case "warning":
         return "text-yellow-600 bg-yellow-100"
       case "error":
-        return "text-red-600 bg-red-100"
+        return "text-destructive bg-destructive/10"
       default:
         return "text-blue-600 bg-blue-100"
     }
@@ -289,7 +289,7 @@ export function SystemManagementOverview() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">系统健康度</h2>
           <div className="flex items-center gap-2">
-            <span className="text-3xl font-bold text-green-600">{overallScore}</span>
+            <span className="text-3xl font-bold text-success">{overallScore}</span>
             <span className="text-slate-600">/100</span>
           </div>
         </div>
@@ -349,7 +349,7 @@ export function SystemManagementOverview() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600">内存使用率</span>
-                  <span className="font-semibold text-green-600">68%</span>
+                  <span className="font-semibold text-success">68%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600">磁盘使用率</span>
@@ -361,20 +361,20 @@ export function SystemManagementOverview() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600">在线用户</span>
-                  <span className="font-semibold text-red-600">24</span>
+                  <span className="font-semibold text-destructive">24</span>
                 </div>
               </div>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 p-6">
+            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-success p-6">
               <h3 className="text-lg font-semibold mb-4">功能状态</h3>
               <div className="space-y-3">
                 {[
-                  { name: "AI智能助手", status: "正常", color: "text-green-600" },
-                  { name: "多租户管理", status: "正常", color: "text-green-600" },
-                  { name: "BI分析系统", status: "正常", color: "text-green-600" },
+                  { name: "AI智能助手", status: "正常", color: "text-success" },
+                  { name: "多租户管理", status: "正常", color: "text-success" },
+                  { name: "BI分析系统", status: "正常", color: "text-success" },
                   { name: "移动端应用", status: "维护中", color: "text-yellow-600" },
-                  { name: "安全中心", status: "正常", color: "text-green-600" },
+                  { name: "安全中心", status: "正常", color: "text-success" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">{item.name}</span>
@@ -426,7 +426,7 @@ export function SystemManagementOverview() {
                     <p className="text-xs text-slate-500">{activity.timestamp.toLocaleString()}</p>
                   </div>
                   <div className="flex items-center gap-1">
-                    {activity.status === "success" && <CheckCircle className="w-4 h-4 text-green-600" />}
+                    {activity.status === "success" && <CheckCircle className="w-4 h-4 text-success" />}
                     {activity.status === "warning" && <AlertTriangle className="w-4 h-4 text-yellow-600" />}
                     {activity.status === "info" && <TrendingUp className="w-4 h-4 text-blue-600" />}
                   </div>

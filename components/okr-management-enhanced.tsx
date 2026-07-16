@@ -351,7 +351,7 @@ export function OKRManagementEnhanced() {
       case "at-risk":
         return "bg-amber-100 text-amber-800 border-amber-200"
       case "off-track":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -373,11 +373,11 @@ export function OKRManagementEnhanced() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "high":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       case "medium":
         return "bg-yellow-100 text-yellow-800 border-yellow-200"
       case "low":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -414,10 +414,10 @@ export function OKRManagementEnhanced() {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {[
-            { letter: "S", word: "Specific", desc: "具体明确", color: "bg-red-100 text-red-800" },
+            { letter: "S", word: "Specific", desc: "具体明确", color: "bg-destructive/10 text-destructive" },
             { letter: "M", word: "Measurable", desc: "可衡量", color: "bg-orange-100 text-orange-800" },
             { letter: "A", word: "Achievable", desc: "可实现", color: "bg-yellow-100 text-yellow-800" },
-            { letter: "R", word: "Relevant", desc: "相关性", color: "bg-green-100 text-green-800" },
+            { letter: "R", word: "Relevant", desc: "相关性", color: "bg-success/10 text-success" },
             { letter: "T", word: "Time-bound", desc: "有时限", color: "bg-blue-100 text-blue-800" },
           ].map((item, index) => (
             <div key={index} className="text-center">
@@ -445,7 +445,7 @@ export function OKRManagementEnhanced() {
             variant="outline"
             size="sm"
             onClick={handleAutoRefresh}
-            className={`${isAutoRefresh ? "bg-green-50 border-green-200 text-green-700" : ""}`}
+            className={`${isAutoRefresh ? "bg-success/10 border-success/20 text-success" : ""}`}
           >
             <RefreshCw className={`w-4 h-4 mr-2 ${isAutoRefresh ? "animate-spin" : ""}`} />
             {isAutoRefresh ? "自动刷新中" : "开启自动刷新"}
@@ -714,13 +714,13 @@ export function OKRManagementEnhanced() {
                                   className="flex items-center gap-1 px-2 py-1 rounded-md bg-white border border-sky-200 hover:border-sky-300 hover:bg-sky-50 transition-all duration-200 group"
                                 >
                                   {milestone.completed ? (
-                                    <CheckCircle className="w-4 h-4 text-green-500 group-hover:scale-110 transition-transform" />
+                                    <CheckCircle className="w-4 h-4 text-success group-hover:scale-110 transition-transform" />
                                   ) : (
                                     <Clock className="w-4 h-4 text-slate-400 group-hover:text-sky-500 transition-colors" />
                                   )}
                                   <span
                                     className={`text-xs ${milestone.completed
-                                      ? "text-green-600 line-through"
+                                      ? "text-success line-through"
                                       : "text-slate-600 group-hover:text-sky-700"
                                       } transition-colors`}
                                   >

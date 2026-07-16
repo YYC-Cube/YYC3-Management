@@ -190,13 +190,13 @@ export default function ProjectsPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "urgent":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       case "high":
         return "text-orange-600 bg-orange-50"
       case "medium":
         return "text-yellow-600 bg-yellow-50"
       case "low":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -205,7 +205,7 @@ export default function ProjectsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "planning":
@@ -213,7 +213,7 @@ export default function ProjectsPage() {
       case "on_hold":
         return "text-orange-600 bg-orange-50"
       case "cancelled":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -302,12 +302,12 @@ export default function ProjectsPage() {
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
                 <p className="text-2xl font-bold text-slate-800">{projectStats.completedProjects}</p>
-                <p className="text-xs text-green-600 mt-1">
+                <p className="text-xs text-success mt-1">
                   完成率 {projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0}%
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-success" />
               </div>
             </div>
           </EnhancedCard>
@@ -330,10 +330,10 @@ export default function ProjectsPage() {
               <div>
                 <p className="text-sm text-slate-600">延期项目</p>
                 <p className="text-2xl font-bold text-slate-800">{projectStats.delayedProjects}</p>
-                <p className="text-xs text-red-600 mt-1">需要关注</p>
+                <p className="text-xs text-destructive mt-1">需要关注</p>
               </div>
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
+              <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
+                <AlertTriangle className="w-6 h-6 text-destructive" />
               </div>
             </div>
           </EnhancedCard>
@@ -390,7 +390,7 @@ export default function ProjectsPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleDeleteProject(project.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-destructive hover:text-destructive/80"
                     >
                       <Trash2 className="w-4 h-4" />
                     </EnhancedButton>
@@ -436,7 +436,7 @@ export default function ProjectsPage() {
             <div className="space-y-3">
               {[
                 { status: "进行中", count: projectStats.inProgressProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.inProgressProjects / projectStats.totalProjects) * 100) : 0, color: "bg-blue-500" },
-                { status: "已完成", count: projectStats.completedProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
+                { status: "已完成", count: projectStats.completedProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0, color: "bg-success/10" },
                 { status: "规划中", count: projects.filter((p) => p.status === "计划中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "计划中").length / projectStats.totalProjects) * 100) : 0, color: "bg-slate-500" },
                 { status: "暂停", count: projects.filter((p) => p.status === "已暂停").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "已暂停").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
               ].map((item, index) => (
@@ -462,7 +462,7 @@ export default function ProjectsPage() {
               {[
                 { priority: "高", count: projects.filter((p) => p.priority === "高").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "高").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
                 { priority: "中", count: projects.filter((p) => p.priority === "中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "中").length / projectStats.totalProjects) * 100) : 0, color: "bg-yellow-500" },
-                { priority: "低", count: projects.filter((p) => p.priority === "低").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "低").length / projectStats.totalProjects) * 100) : 0, color: "bg-green-500" },
+                { priority: "低", count: projects.filter((p) => p.priority === "低").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "低").length / projectStats.totalProjects) * 100) : 0, color: "bg-success/10" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">

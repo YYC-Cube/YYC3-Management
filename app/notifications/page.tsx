@@ -83,7 +83,7 @@ export default function NotificationsPage() {
       case "task":
         return <CheckCircle className="w-5 h-5 text-blue-500" />
       case "meeting":
-        return <Calendar className="w-5 h-5 text-green-500" />
+        return <Calendar className="w-5 h-5 text-success" />
       case "approval":
         return <Users className="w-5 h-5 text-purple-500" />
       case "system":
@@ -98,11 +98,11 @@ export default function NotificationsPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "high":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       case "medium":
         return "bg-yellow-100 text-yellow-800 border-yellow-200"
       case "low":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -147,14 +147,14 @@ export default function NotificationsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-red-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-destructive hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">{unreadCount}</p>
                 <p className="text-xs text-slate-500 mt-1">未读消息</p>
               </div>
-              <AlertCircle className="w-8 h-8 text-red-500" />
+              <AlertCircle className="w-8 h-8 text-destructive" />
             </div>
           </CardContent>
         </Card>
@@ -171,14 +171,14 @@ export default function NotificationsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-success hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">95%</p>
                 <p className="text-xs text-slate-500 mt-1">处理率</p>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-500" />
+              <CheckCircle className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>

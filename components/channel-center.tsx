@@ -253,11 +253,11 @@ export function ChannelCenter() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "connected":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       case "disconnected":
         return "bg-slate-100 text-slate-800 border-slate-200"
       case "error":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       case "syncing":
         return "bg-blue-100 text-blue-800 border-blue-200"
       default:
@@ -526,14 +526,14 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-600">活跃用户</p>
                 <p className="text-2xl font-bold text-slate-900">{totalMetrics.activeUsers.toLocaleString()}</p>
               </div>
-              <Activity className="w-8 h-8 text-green-600" />
+              <Activity className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>
@@ -562,14 +562,14 @@ export function ChannelCenter() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-red-500 shadow-md">
+        <Card className="border-r-[5px] border-r-destructive shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-600">总收入</p>
                 <p className="text-2xl font-bold text-slate-900">¥{(totalMetrics.revenue / 10000).toFixed(1)}万</p>
               </div>
-              <BarChart3 className="w-8 h-8 text-red-600" />
+              <BarChart3 className="w-8 h-8 text-destructive" />
             </div>
           </CardContent>
         </Card>
@@ -622,7 +622,7 @@ export function ChannelCenter() {
                       <Download className="w-4 h-4 mr-2" />
                       导出数据
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="text-red-600" onClick={() => handleDeleteChannel(channel.id)}>
+                    <DropdownMenuItem className="text-destructive" onClick={() => handleDeleteChannel(channel.id)}>
                       <Trash2 className="w-4 h-4 mr-2" />
                       删除渠道
                     </DropdownMenuItem>

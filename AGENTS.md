@@ -110,8 +110,10 @@ Canonical handler shape (see `app/api/customers/route.ts`):
 Public API routes are whitelisted in `lib/api/auth-guard.ts` (`PUBLIC_API_ROUTES`, currently `['/api/health']`).
 
 ### Auth & Middleware
-- `middleware.ts` redirects unauthenticated browser requests to `/login` (reads `auth_token` cookie or `Authorization: Bearer` header). Static paths and `/api/*` bypass it.
-- API auth uses an HS256 JWT verified in `lib/api/auth-guard.ts` (`verifyToken`, timing-safe compare). Secret from `JWT_SECRET` (fallback `SESSION_SECRET`).
+- **No Next.js root `middleware.ts`** — authentication is enforced at the API layer.
+- API auth uses an HS256 JWT verified in `lib/api/auth-guard.ts` (`authenticateApiRequest`, `verifyToken`, timing-safe compare). Secret from `JWT_SECRET` (fallback `SESSION_SECRET`).
+- `lib/api/middleware.ts` provides `withAuth` / `withMiddleware` helpers for API route handlers.
+- Browser requests to protected pages rely on client-side auth checks (the login page at `/login` handles the auth UI).
 
 ### UI Components (`components/ui/**`)
 - shadcn-style: `React.forwardRef` + `class-variance-authority` (`cva`) + `cn()` from `lib/utils.ts`.

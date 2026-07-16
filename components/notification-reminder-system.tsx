@@ -217,7 +217,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <p className="text-slate-600 mt-1">智能提醒系统，确保目标按时完成</p>
         </div>
         <div className="flex items-center space-x-3">
-          <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
+          <Badge variant="outline" className="bg-destructive/10 text-destructive border-destructive/20">
             {urgentCount} 紧急
           </Badge>
           <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
@@ -237,15 +237,15 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
 
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-red-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-destructive hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">即将到期</p>
-                <p className="text-3xl font-bold text-red-600">3</p>
+                <p className="text-3xl font-bold text-destructive">3</p>
                 <p className="text-xs text-slate-500 mt-1">7天内到期目标</p>
               </div>
-              <Clock className="w-8 h-8 text-red-400" />
+              <Clock className="w-8 h-8 text-destructive" />
             </div>
           </CardContent>
         </Card>
@@ -263,15 +263,15 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-success hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">里程碑完成</p>
-                <p className="text-3xl font-bold text-green-600">8</p>
+                <p className="text-3xl font-bold text-success">8</p>
                 <p className="text-xs text-slate-500 mt-1">本周完成数量</p>
               </div>
-              <Target className="w-8 h-8 text-green-400" />
+              <Target className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>
@@ -366,7 +366,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                             variant="ghost"
                             size="sm"
                             onClick={() => deleteNotification(notification.id)}
-                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="text-destructive hover:text-destructive/80 hover:bg-destructive/20"
                           >
                             <XCircle className="w-4 h-4" />
                           </Button>
@@ -396,7 +396,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-red-500" />
+                        <Clock className="w-4 h-4 text-destructive" />
                         <span className="text-sm">截止日期提醒</span>
                       </div>
                       <Switch
@@ -416,7 +416,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Target className="w-4 h-4 text-green-500" />
+                        <Target className="w-4 h-4 text-success" />
                         <span className="text-sm">里程碑通知</span>
                       </div>
                       <Switch
@@ -507,7 +507,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                     <div className="p-4 border border-sky-200 rounded-lg">
                       <div className="flex items-center justify-between mb-2">
                         <h5 className="font-medium text-slate-800">周进度报告</h5>
-                        <Badge className="bg-green-100 text-green-800">已启用</Badge>
+                        <Badge className="bg-success/10 text-success">已启用</Badge>
                       </div>
                       <p className="text-sm text-slate-600 mb-3">每周一自动发送OKR进度汇总</p>
                       <Button size="sm" variant="outline" className="bg-transparent">
@@ -517,7 +517,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                     <div className="p-4 border border-sky-200 rounded-lg">
                       <div className="flex items-center justify-between mb-2">
                         <h5 className="font-medium text-slate-800">月度总结</h5>
-                        <Badge className="bg-green-100 text-green-800">已启用</Badge>
+                        <Badge className="bg-success/10 text-success">已启用</Badge>
                       </div>
                       <p className="text-sm text-slate-600 mb-3">每月末生成详细分析报告</p>
                       <Button size="sm" variant="outline" className="bg-transparent">

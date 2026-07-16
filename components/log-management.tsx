@@ -281,7 +281,7 @@ export default function LogManagement() {
       case "warn":
         return "text-yellow-600 bg-yellow-50"
       case "error":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -290,11 +290,11 @@ export default function LogManagement() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "security":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       case "system":
         return "text-blue-600 bg-blue-50"
       case "user":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -307,7 +307,7 @@ export default function LogManagement() {
       case "warn":
         return <AlertTriangle className="w-4 h-4 text-yellow-600" />
       case "error":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       default:
         return <Info className="w-4 h-4" />
     }
@@ -367,7 +367,7 @@ export default function LogManagement() {
               <p className="text-sm text-muted-foreground">今日日志</p>
               <p className="text-2xl font-bold">{logStats.todayLogs}</p>
             </div>
-            <Calendar className="w-8 h-8 text-green-500" />
+            <Calendar className="w-8 h-8 text-success" />
           </div>
         </Card>
         <Card className="p-4">
@@ -376,7 +376,7 @@ export default function LogManagement() {
               <p className="text-sm text-muted-foreground">错误日志</p>
               <p className="text-2xl font-bold">{logStats.errorLogs}</p>
             </div>
-            <XCircle className="w-8 h-8 text-red-500" />
+            <XCircle className="w-8 h-8 text-destructive" />
           </div>
         </Card>
         <Card className="p-4">

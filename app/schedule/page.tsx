@@ -47,11 +47,11 @@ export default function SchedulePage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "confirmed":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200"
       case "cancelled":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -126,14 +126,14 @@ export default function SchedulePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
+          <Card className="border-r-[5px] border-r-success hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-3xl font-bold text-slate-900">2</p>
                   <p className="text-xs text-slate-500 mt-1">待确认</p>
                 </div>
-                <Clock className="w-8 h-8 text-green-500" />
+                <Clock className="w-8 h-8 text-success" />
               </div>
             </CardContent>
           </Card>
@@ -205,7 +205,7 @@ export default function SchedulePage() {
                     <Button variant="outline" size="sm">
                       编辑
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
+                    <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive/80">
                       取消
                     </Button>
                   </div>

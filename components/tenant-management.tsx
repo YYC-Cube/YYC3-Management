@@ -156,7 +156,7 @@ export function TenantManagement() {
       case "professional":
         return "bg-blue-100 text-blue-800 border-blue-200"
       case "basic":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -165,11 +165,11 @@ export function TenantManagement() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "trial":
         return "bg-yellow-100 text-yellow-800"
       case "suspended":
-        return "bg-red-100 text-red-800"
+        return "bg-destructive/10 text-destructive"
       default:
         return "bg-slate-100 text-slate-800"
     }
@@ -300,7 +300,7 @@ export function TenantManagement() {
                         <DropdownMenuItem>查看详情</DropdownMenuItem>
                         <DropdownMenuItem>编辑设置</DropdownMenuItem>
                         <DropdownMenuItem>管理用户</DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600">暂停服务</DropdownMenuItem>
+                        <DropdownMenuItem className="text-destructive">暂停服务</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
@@ -328,7 +328,7 @@ export function TenantManagement() {
                         </Badge>
                         <Badge
                           className={
-                            user.status === "active" ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"
+                            user.status === "active" ? "bg-success/10 text-success" : "bg-slate-100 text-slate-800"
                           }
                         >
                           {user.status === "active" ? "活跃" : "非活跃"}

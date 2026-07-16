@@ -308,9 +308,9 @@ export function SystemTesting() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "passed":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-success" />
       case "failed":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       case "running":
         return <Clock className="w-4 h-4 text-blue-600 animate-spin" />
       default:
@@ -321,9 +321,9 @@ export function SystemTesting() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "passed":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "failed":
-        return "bg-red-100 text-red-800"
+        return "bg-destructive/10 text-destructive"
       case "running":
         return "bg-blue-100 text-blue-800"
       default:
@@ -504,8 +504,8 @@ export function SystemTesting() {
                   </div>
 
                   {result.error && (
-                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg mb-3">
-                      <p className="text-sm text-red-800">{result.error}</p>
+                    <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg mb-3">
+                      <p className="text-sm text-destructive">{result.error}</p>
                     </div>
                   )}
 

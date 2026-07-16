@@ -217,7 +217,7 @@ export function AiSmartForms() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "已提交":
-        return "bg-green-100 text-green-700 border-green-300"
+        return "bg-success/10 text-success border-success/20"
       case "草稿":
         return "bg-amber-100 text-amber-700 border-amber-300"
       case "处理中":
@@ -230,7 +230,7 @@ export function AiSmartForms() {
   const getTemplateColor = (color: string) => {
     const colors = {
       blue: "bg-blue-50 border-blue-200 text-blue-700",
-      green: "bg-green-50 border-green-200 text-green-700",
+      green: "bg-success/10 border-success/20 text-success",
       purple: "bg-purple-50 border-purple-200 text-purple-700",
       orange: "bg-orange-50 border-orange-200 text-orange-700",
     }
@@ -266,7 +266,7 @@ export function AiSmartForms() {
           <Button
             variant="outline"
             onClick={handleVoiceRecord}
-            className={`flex items-center gap-2 ${isRecording ? "border-red-500 text-red-500" : "border-blue-200"} hover:bg-blue-50 bg-transparent`}
+            className={`flex items-center gap-2 ${isRecording ? "border-destructive/20 text-destructive" : "border-blue-200"} hover:bg-blue-50 bg-transparent`}
           >
             {isRecording ? <Loader className="w-4 h-4 animate-spin" /> : <Mic className="w-4 h-4" />}
             {isRecording ? "录音中..." : "语音输入"}
@@ -274,7 +274,7 @@ export function AiSmartForms() {
           <Button
             variant="outline"
             onClick={handleAIFill}
-            className="flex items-center gap-2 border-green-200 hover:bg-green-50 bg-transparent"
+            className="flex items-center gap-2 border-success/20 hover:bg-success/20 bg-transparent"
             disabled={isProcessing}
           >
             {isProcessing ? <Loader className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
@@ -313,7 +313,7 @@ export function AiSmartForms() {
                       template.color === "blue"
                         ? "bg-blue-100 text-blue-600"
                         : template.color === "green"
-                          ? "bg-green-100 text-green-600"
+                          ? "bg-success/10 text-success"
                           : template.color === "purple"
                             ? "bg-purple-100 text-purple-600"
                             : "bg-orange-100 text-orange-600"

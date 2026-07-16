@@ -111,7 +111,7 @@ export default function CommunicationPage() {
                         {group.name.charAt(0)}
                       </div>
                       {group.online && (
-                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-success/10 rounded-full border-2 border-white"></div>
                       )}
                     </div>
                     <div>
@@ -119,7 +119,7 @@ export default function CommunicationPage() {
                       <p className="text-sm text-slate-600">{group.members} 成员</p>
                     </div>
                   </div>
-                  {group.unread > 0 && <Badge className="bg-red-500 text-white">{group.unread}</Badge>}
+                  {group.unread > 0 && <Badge className="bg-destructive/10 text-white">{group.unread}</Badge>}
                 </div>
               ))}
             </div>

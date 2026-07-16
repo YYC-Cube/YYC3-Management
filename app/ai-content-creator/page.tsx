@@ -584,7 +584,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                               <div className="flex items-center space-x-3">
                                 <div
                                   className={`p-2 rounded-full ${isPublished
-                                    ? "bg-green-100 text-green-600"
+                                    ? "bg-success/10 text-success"
                                     : isProcessing
                                       ? "bg-blue-100 text-blue-600"
                                       : "bg-slate-100 text-slate-600"
@@ -603,7 +603,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                                   </p>
                                   <p
                                     className={`text-sm ${isPublished
-                                      ? "text-green-600"
+                                      ? "text-success"
                                       : isProcessing
                                         ? "text-blue-600"
                                         : "text-slate-500"

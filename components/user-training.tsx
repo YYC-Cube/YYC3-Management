@@ -230,11 +230,11 @@ export function UserTraining() {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "beginner":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "intermediate":
         return "bg-yellow-100 text-yellow-800"
       case "advanced":
-        return "bg-red-100 text-red-800"
+        return "bg-destructive/10 text-destructive"
       default:
         return "bg-slate-100 text-slate-800"
     }
@@ -378,10 +378,10 @@ export function UserTraining() {
                   <p className="text-sm text-orange-700 mt-1">AI智能助手高级功能培训课程现已上线</p>
                   <p className="text-xs text-orange-600 mt-2">2小时前</p>
                 </div>
-                <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <h4 className="font-medium text-green-900">培训证书更新</h4>
-                  <p className="text-sm text-green-700 mt-1">完成培训可获得官方认证证书</p>
-                  <p className="text-xs text-green-600 mt-2">1天前</p>
+                <div className="p-3 bg-success/10 border border-success/20 rounded-lg">
+                  <h4 className="font-medium text-success">培训证书更新</h4>
+                  <p className="text-sm text-success mt-1">完成培训可获得官方认证证书</p>
+                  <p className="text-xs text-success mt-2">1天前</p>
                 </div>
                 <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <h4 className="font-medium text-yellow-900">在线答疑活动</h4>
@@ -433,7 +433,7 @@ export function UserTraining() {
                         <Badge className={getDifficultyColor(module.difficulty)}>
                           {getDifficultyText(module.difficulty)}
                         </Badge>
-                        {module.completed && <CheckCircle className="w-4 h-4 text-green-600" />}
+                        {module.completed && <CheckCircle className="w-4 h-4 text-success" />}
                       </div>
                       <p className="text-sm text-slate-600 mb-2">{module.description}</p>
                       <div className="flex items-center gap-4 text-xs text-slate-500">
@@ -534,7 +534,7 @@ export function UserTraining() {
                             <>
                               {getTypeIcon(moduleItem.type)}
                               <span>{moduleItem.title}</span>
-                              {moduleItem.completed && <CheckCircle className="w-3 h-3 text-green-600" />}
+                              {moduleItem.completed && <CheckCircle className="w-3 h-3 text-success" />}
                             </>
                           )}
                         </div>
@@ -624,9 +624,9 @@ export function UserTraining() {
               <div>
                 <h4 className="font-medium mb-3">用户反馈</h4>
                 <div className="space-y-3">
-                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-sm text-green-800">"培训内容很实用，帮助我快速掌握了新功能"</p>
-                    <p className="text-xs text-green-600 mt-1">- 张总经理</p>
+                  <div className="p-3 bg-success/10 border border-success/20 rounded-lg">
+                    <p className="text-sm text-success">"培训内容很实用，帮助我快速掌握了新功能"</p>
+                    <p className="text-xs text-success mt-1">- 张总经理</p>
                   </div>
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                     <p className="text-sm text-blue-800">"视频教程制作精良，讲解清晰易懂"</p>

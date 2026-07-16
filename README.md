@@ -4,58 +4,147 @@
   <img alt="YYC³ 企业智能管理系统" src="public/Family-001.png" width="100%">
 </picture>
 
-# 🔖 YYC³ 企业智能管理系统 v3.0
+<h1 align="center">🔖 YYC³ 企业智能管理系统 v3.0</h1>
 
-> 「YanYuCloudCube」
-> 「<admin@0379.email>」
-> 「万象归元于云枢 丨深栈智启新纪元」
+<p align="center">
+  <strong>「YanYuCloudCube」言语云立方</strong><br/>
+  <em>言启千行代码 丨 语枢万物智能</em><br/>
+  <sub>万象归元于云枢 丨 深栈智启新纪元</sub>
+</p>
+
+<p align="center">
+  <!-- 核心状态徽章 -->
+  <a href="https://github.com/YYC-Cube/YYC3-Management/releases"><img alt="Version" src="https://img.shields.io/badge/Version-3.0.0-blue.svg?style=flat-square"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/YYC-Cube/YYC3-Management?style=flat-square&color=gold"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/forks"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/YYC-Cube/YYC3-Management?style=flat-square&color=teal"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/YYC-Cube/YYC3-Management?style=flat-square&color=orange"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <!-- CI/CD 徽章 -->
+  <a href="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/deploy-pages.yml"><img alt="Deploy Pages" src="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/deploy-pages.yml/badge.svg?style=flat-square"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/ci-cd.yml"><img alt="CI/CD Pipeline" src="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/ci-cd.yml/badge.svg?style=flat-square"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/code-quality.yml"><img alt="Code Quality" src="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/code-quality.yml/badge.svg?style=flat-square"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/security-scan.yml"><img alt="Security Scan" src="https://github.com/YYC-Cube/YYC3-Management/actions/workflows/security-scan.yml/badge.svg?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <!-- 技术栈徽章 -->
+  <a href="https://nextjs.org"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black.svg?style=flat-square&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://react.dev"><img alt="React" src="https://img.shields.io/badge/React-19-61dafb.svg?style=flat-square&logo=react&logoColor=white"></a>
+  <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-7.0-3178c6.svg?style=flat-square&logo=typescript&logoColor=white"></a>
+  <a href="https://tailwindcss.com"><img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-38bdf8.svg?style=flat-square&logo=tailwindcss&logoColor=white"></a>
+  <a href="https://ui.shadcn.com"><img alt="shadcn/ui" src="https://img.shields.io/badge/shadcn%2Fui-latest-000000.svg?style=flat-square"></a>
+  <a href="https://www.radix-ui.com"><img alt="Radix UI" src="https://img.shields.io/badge/Radix_UI-latest-8b5cf6.svg?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <!-- 运行时徽章 -->
+  <a href="https://bun.sh"><img alt="Bun" src="https://img.shields.io/badge/Bun-1.2-f9f9f9.svg?style=flat-square&logo=bun&logoColor=black"></a>
+  <a href="https://swr.vercel.app"><img alt="SWR" src="https://img.shields.io/badge/SWR-2.4-teal.svg?style=flat-square"></a>
+  <a href="https://zustand-demo.pmnd.rs"><img alt="Zustand" src="https://img.shields.io/badge/Zustand-5-orange.svg?style=flat-square"></a>
+  <a href="https://zod.dev"><img alt="Zod" src="https://img.shields.io/badge/Zod-4-3e67b1.svg?style=flat-square"></a>
+  <a href="https://vitest.dev"><img alt="Vitest" src="https://img.shields.io/badge/Vitest-4-6e9f18.svg?style=flat-square&logo=vitest&logoColor=white"></a>
+  <a href="https://www.postgresql.org"><img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-15+-336791.svg?style=flat-square&logo=postgresql&logoColor=white"></a>
+  <a href="https://redis.io"><img alt="Redis" src="https://img.shields.io/badge/Redis-7-dc382d.svg?style=flat-square&logo=redis&logoColor=white"></a>
+</p>
+
+<p align="center">
+  <!-- 部署徽章 -->
+  <a href="https://management.yyc3.vip"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-deployed-222.svg?style=flat-square&logo=github&logoColor=white"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/blob/main/Dockerfile"><img alt="Docker" src="https://img.shields.io/badge/Docker-ready-2496ed.svg?style=flat-square&logo=docker&logoColor=white"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management/blob/main/docs/YYC3-Menu-部署发布/架构类/01-YYC3-Menu-架构类-部署架构实施文档.md"><img alt="K8s" src="https://img.shields.io/badge/Kubernetes-ready-326ce5.svg?style=flat-square&logo=kubernetes&logoColor=white"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/YYC-Cube/YYC3-Management?style=flat-square&color=lightgrey"></a>
+  <a href="https://github.com/YYC-Cube/YYC3-Management"><img alt="Repo Size" src="https://img.shields.io/github/repo-size/YYC-Cube/YYC3-Management?style=flat-square&color=blueviolet"></a>
+</p>
 
 ---
 
-[![Version](https://img.shields.io/badge/Version-3.0.0-blue.svg)](https://github.com/yyc3/yyc3-mana/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Deploy Pages](https://github.com/yyc3/yyc3-mana/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/deploy-pages.yml)
-[![CI/CD Pipeline](https://github.com/yyc3/yyc3-mana/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/ci-cd.yml)
-[![Code Quality](https://github.com/yyc3/yyc3-mana/actions/workflows/code-quality.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/code-quality.yml)
-[![Security Scan](https://github.com/yyc3/yyc3-mana/actions/workflows/security-scan.yml/badge.svg)](https://github.com/yyc3/yyc3-mana/actions/workflows/security-scan.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-7-3178c6.svg)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8.svg)](https://tailwindcss.com)
-[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-latest-000000.svg)](https://ui.shadcn.com)
-[![SWR](https://img.shields.io/badge/SWR-2.4-teal.svg)](https://swr.vercel.app)
-[![Zustand](https://img.shields.io/badge/Zustand-5-orange.svg)](https://zustand-demo.pmnd.rs)
-[![Zod](https://img.shields.io/badge/Zod-4-3e67b1.svg)](https://zod.dev)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791.svg)](https://postgresql.org)
-[![Redis](https://img.shields.io/badge/Redis-7-dc382d.svg)](https://redis.io)
-[![Bun](https://img.shields.io/badge/Bun-1.1-f9f9f9.svg)](https://bun.sh)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-222.svg)](https://management.yyc3.vip)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/yyc3/yyc3-mana/pulls)
-
-**YYC³ 管理项目是一款现代化的企业级智能管理系统，基于 Next.js 16 + React 19 + TypeScript 7 构建**，涵盖客户管理、任务管理、项目管理、AI 助手、多平台渠道管理等核心业务模块，支持模型自主编辑配置、Ollama 本地扫描、可视化模型测试、统一认证架构。
+**YYC³ 管理项目是一款现代化的企业级智能管理系统**，基于 **Next.js 16 + React 19 + TypeScript 7** 构建，采用 **shadcn/ui + Radix UI** 组件体系，涵盖客户管理、任务管理、项目管理、AI 助手、多平台渠道管理等核心业务模块，支持模型自主编辑配置、Ollama 本地扫描、可视化模型测试、统一认证架构。
 
 ---
 
 ## 📋 目录
 
+- [架构总览](#-架构总览)
 - [快速开始](#-快速开始)
 - [核心功能](#-核心功能)
 - [技术栈](#-技术栈)
 - [项目结构](#-项目结构)
 - [API 文档](#-api-文档)
 - [开发指南](#-开发指南)
-- [部署](#-部署指南)
+- [文档架构全景](#-文档架构全景)
+- [部署指南](#-部署指南)
+
+---
+
+## 🏗️ 架构总览
+
+```mermaid
+graph TB
+    subgraph Frontend["🎨 前端层 (Next.js 16 App Router)"]
+        UI["shadcn/ui + Radix UI<br/>Tailwind CSS 4"]
+        SWR["SWR 数据获取"]
+        Zustand["Zustand 状态管理"]
+        I18n["自研 i18n 引擎 (10 语言)"]
+        PWA["PWA 离线支持"]
+    end
+
+    subgraph Backend["⚙️ 后端层 (API Routes)"]
+        Auth["JWT 认证守卫"]
+        Cache["Redis 缓存层"]
+        Repo["Repository Pattern"]
+        Zod["Zod 输入验证"]
+        MW["Middleware 路由保护"]
+    end
+
+    subgraph Data["💾 数据层"]
+        PG[("PostgreSQL 15+")]
+        Redis[("Redis 7")]
+        Migrations["14 个 SQL 迁移"]
+    end
+
+    subgraph AI["🤖 AI 智能层"]
+        GLM["智谱 GLM-4"]
+        Ollama["Ollama 本地模型"]
+        Adapter["多模型适配器"]
+        Agent["Agent 引擎"]
+        Widget["AI 浮窗组件"]
+    end
+
+    subgraph DevOps["🔧 DevOps"]
+        Bun["Bun 包管理"]
+        Docker["Docker 容器化"]
+        K8s["K8s 编排"]
+        CICD["5 条 CI/CD 工作流"]
+        Pages["GitHub Pages 静态部署"]
+    end
+
+    UI --> SWR
+    SWR --> Auth
+    Auth --> Cache
+    Cache --> Repo
+    Repo --> PG
+    Cache --> Redis
+    Auth --> Zod
+    Widget --> Adapter
+    Adapter --> GLM
+    Adapter --> Ollama
+    Adapter --> Agent
+```
 
 ---
 
 ## ⚡ 快速开始
 
 ```bash
-git clone https://github.com/yyc3/yyc3-mana.git
-cd yyc3-mana
-bun install     # 或 npm install
+git clone https://github.com/YYC-Cube/YYC3-Management.git
+cd YYC3-Management
+bun install              # 安装依赖 (Bun 1.2+)
 cp .env.example .env.local   # 配置环境变量
-bun run dev      # 启动开发服务器 → localhost:3223
+bun run dev              # 启动开发服务器 → localhost:3223
 ```
 
 ### 环境变量
@@ -77,11 +166,13 @@ JWT_SECRET=your_secret_min_32_chars
 NEXT_PUBLIC_API_BASE_URL=http://localhost:3223
 ```
 
+完整变量说明见 [.env.example](./.env.example)。
+
 ---
 
 ## 🚀 核心功能
 
-### 真实可用 (生产级)
+### 真实可用（生产级）
 
 | 模块 | 说明 |
 |------|------|
@@ -90,7 +181,7 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3223
 | **项目管理** | 团队协作 + 预算控制 + 进度可视化 |
 | **用户管理** | RBAC角色 + 部门管理 + 在线状态 |
 | **财务管理** | 收支记录 + 分类统计 + 汇总报表 |
-| **AI助手** | 真实GLM-4对话 + 多模型支持 |
+| **AI助手** | 真实GLM-4对话 + 多模型支持 + Ollama本地扫描 |
 | **全局搜索** | 跨表并行搜索 (用户/客户/任务/项目) |
 | **仪表板** | 真实聚合统计 (4表并行查询) |
 
@@ -102,11 +193,11 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3223
 | **数据获取** | SWR (去重/缓存/乐观更新/自动重验证) |
 | **缓存** | Redis (列表缓存 + 标签失效) |
 | **安全** | SQL注入防护(列名白名单) + XSS防护 + CSRF |
-| **国际化** | 自研i18n引擎 (zh-CN/en) |
+| **国际化** | 自研i18n引擎 (10语言: en/zh-CN/zh-TW/ja/ko/fr/de/es/pt-BR/ar) |
 | **PWA** | Service Worker + 离线支持 + 全端图标 |
 | **多端适配** | PC/平板/手机响应式 + 移动端底部导航 + 侧边栏抽屉 + 安全区域适配 |
 | **审计** | 操作日志记录 (system_logs表) |
-| **无障碍** | Skip-link + ARIA landmarks + 焦点管理 |
+| **无障碍** | Skip-link + ARIA landmarks + 焦点管理 + WCAG 2.5.5 触摸目标 |
 
 ---
 
@@ -114,39 +205,44 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3223
 
 | 层 | 技术 | 版本 |
 |---|---|---|
-| 前端框架 | Next.js (App Router) | 16.x |
-| UI | React + TypeScript | 19 / 7.x |
-| 样式 | Tailwind CSS + shadcn/ui | 4.x |
+| 前端框架 | Next.js (App Router) | 16.2+ |
+| UI | React + TypeScript | 19 / 7.0 |
+| 样式 | Tailwind CSS + shadcn/ui + Radix UI | 4.x |
 | 状态 | Zustand + SWR | 5.x / 2.4 |
 | 数据库 | PostgreSQL (pg) + Redis | 15+ / 7 |
 | 验证 | Zod | 4.x |
 | AI | Vercel AI SDK + ZhipuAdapter | 7.x |
 | 测试 | Vitest + Testing Library | 4.x |
 | i18n | 自研 @yyc3/i18n-core | 2.3 |
+| 包管理 | Bun | 1.2+ |
 
 ---
 
 ## 📁 项目结构
 
 ```
-app/                    Next.js App Router (49页面, 22 API路由)
-  api/                  22个API路由 (含认证+验证+缓存)
-  (feature)/page.tsx   功能页面
-  layout.tsx           根布局 (I18nProvider + AIWidget)
-components/             React组件 (33个业务 + UI组件库)
-  sidebar.tsx          响应式侧边栏 (桌面固定/移动端抽屉)
-  bottom-nav.tsx       移动端底部导航 (xs/sm显示)
-  header.tsx           响应式头部
-hooks/                  9个自定义Hook (SWR驱动)
-lib/                    12个核心模块
-  api/                 API工具 (auth-guard, response-handler, cache)
-  db/                  数据层 (repositories + cache + redis)
-  i18n/                自研i18n引擎
-  model-adapter/       AI多模型适配器
-  agentic-core/        Agent引擎
-  validations/         Zod schemas
-store/                  Zustand状态 (4 stores)
-migrations/             12个SQL迁移
+app/                     Next.js App Router (53 页面, 30 API路由)
+  api/                   30个API路由 (含认证+验证+缓存)
+  (feature)/page.tsx     功能页面
+  layout.tsx             根布局 (I18nProvider + AIWidget)
+components/              React组件 (34 业务组件 + UI组件库)
+  ui/                    shadcn/ui 组件库 (Radix UI + CVA)
+  ai-floating-widget/    全局AI浮窗 (Provider + Widget)
+  charts/                图表组件 (Recharts)
+  sidebar.tsx            响应式侧边栏 (桌面固定/移动端抽屉)
+  bottom-nav.tsx         移动端底部导航 (xs/sm显示)
+hooks/                   11个自定义Hook (SWR驱动)
+lib/                     15个核心模块
+  api/                   API工具 (auth-guard, response-handler, cache)
+  db/                    数据层 (repositories + cache + redis + models)
+  i18n/                  自研i18n引擎 (10 locales)
+  model-adapter/         AI多模型适配器
+  agentic-core/          Agent引擎
+  validations/           Zod schemas
+  security/              CSRF + 签名 + 告警
+  performance/           性能监控
+store/                   Zustand状态 (5 stores)
+migrations/              14个SQL迁移
 ```
 
 ---
@@ -168,6 +264,7 @@ Authorization: Bearer <jwt_token>
 | GET/POST | `/api/customers` | 客户列表/创建 |
 | GET/PUT/DELETE | `/api/customers/:id` | 客户详情/更新/删除 |
 | GET/POST | `/api/tasks` | 任务列表/创建 |
+| GET/PUT/DELETE | `/api/tasks/:id` | 任务详情/更新/删除 |
 | GET/POST | `/api/projects` | 项目列表/创建 |
 | GET/POST | `/api/users` | 用户列表/创建 |
 | GET/POST | `/api/finance` | 财务记录列表/创建 |
@@ -176,7 +273,12 @@ Authorization: Bearer <jwt_token>
 | GET | `/api/search?q=` | 全局搜索 |
 | POST | `/api/ai/chat` | AI对话 (GLM-4) |
 | GET | `/api/ai/models` | 可用AI模型列表 |
-| GET | `/api/health` | 健康检查 |
+| GET | `/api/ai/ollama/scan` | Ollama本地模型扫描 |
+| GET | `/api/notifications` | 通知列表 |
+| GET | `/api/system/monitor` | 系统监控 |
+| GET | `/api/health` | 健康检查 (无需认证) |
+
+完整API文档详见 [开发实施/API文档](./docs/YYC3-Menu-开发实施/架构类/YYC3-Menu-架构类-API接口文档.md)。
 
 ---
 
@@ -185,28 +287,32 @@ Authorization: Bearer <jwt_token>
 ### 常用命令
 
 ```bash
-bun run dev           # 开发服务器 (port 3223)
-bun run build         # 生产构建
-bun run start         # 生产服务器
-bun run lint          # ESLint
-bun run type-check    # TypeScript检查
-bun run test          # 运行测试
-bun run test:coverage # 覆盖率报告
-bun run db:migrate    # 数据库迁移
+bun run dev              # 开发服务器 (port 3223)
+bun run build            # 生产构建
+bun run start            # 生产服务器
+bun run lint             # ESLint
+bun run type-check       # TypeScript严格检查
+bun run test             # 运行测试
+bun run test:coverage    # 覆盖率报告
+bun run db:migrate       # 数据库迁移
+bun run security:audit   # 安全审计
 ```
+
+> **包管理器是 Bun。** 所有命令使用 `bun run <script>`。详见 [AGENTS.md](./AGENTS.md)。
 
 ### 代码规范
 
-- TypeScript strict模式 (零 `any`)
-- Zod验证所有API输入
-- Repository Pattern (SQL仅在 `lib/db/repositories/`)
+- TypeScript **strict 模式**（零 `any`，`noUnusedLocals`，`noImplicitReturns`）
+- **Zod 验证**所有 API 输入
+- **Repository Pattern**（SQL 仅在 `lib/db/repositories/`）
 - `@/` 路径别名 → 项目根
-- SWR驱动数据获取 (`useSWRResource<T>()`)
-- Redis缓存列表查询 (`withCache()`)
+- **SWR 驱动**数据获取（`useSWRResource<T>()`）
+- **Redis 缓存**列表查询（`withCache()`）
+- **Chinese enum values**（状态/优先级使用中文字符串）
 
 ### 多端适配
 
-系统遵循 [YYC3-多端适配-规范文档](./docs/YYC3-团队通用-标规文档/YYC3-多端适配-规范文档.md)，在单一 Next.js 应用内实现 PC / 平板 / 手机 H5 / PWA 的全端适配：
+系统遵循 [多端适配规范文档](./docs/YYC3-Menu-团队规范/YYC3-多端适配-规范文档.md)，在单一 Next.js 应用内实现 PC / 平板 / 手机 H5 / PWA 的全端适配：
 
 | 特性 | 实现方式 |
 |------|---------|
@@ -218,86 +324,66 @@ bun run db:migrate    # 数据库迁移
 | **触摸优化** | iOS 输入框 16px 防缩放、点击高亮移除、文字防选中 |
 | **无障碍** | WCAG 2.5.5 触摸目标 ≥ 44px、ARIA landmarks、焦点管理 |
 
-### 文档架构全景
+---
 
+## 📚 文档架构全景
+
+> **文档总数: 130 篇** | 覆盖全生命周期：需求 → 架构 → 开发 → 测试 → 部署 → 运维 → 迭代
+
+```mermaid
+graph LR
+    Root["📁 docs/ (130篇)"]
+    Root --> A["🏗️ 架构设计<br/>(28篇)"]
+    Root --> B["💻 开发实施<br/>(17篇)"]
+    Root --> C["🧪 测试验证<br/>(18篇)"]
+    Root --> D["📖 文档规范<br/>(13篇)"]
+    Root --> E["⚙️ 运维运营<br/>(12篇)"]
+    Root --> F["🚀 部署发布<br/>(12篇)"]
+    Root --> G["📋 需求规划<br/>(9篇)"]
+    Root --> H["� 团队规范<br/>(6篇)"]
+    Root --> I["🔄 归类迭代<br/>(6篇)"]
+    Root --> J["📊 实施总结<br/>(4篇)"]
+    Root --> K["🔄 演进拓展<br/>(3篇)"]
 ```
-📁 docs/                                    # 全量文档库 (80+ 文档)
-├── 📋 YYC3-Menu-文档索引-总览.md            # 文档总索引
-├── 📋 README.md                            # 文档库说明
-│
-├── 🏗️ YYC3-Menu-架构设计/                   # 架构设计 (20+ 文档)
-│   ├── 📐 架构类/                           #   总体/微服务/数据/安全/接口/AI 架构
-│   └── 💡 技巧类/                           #   架构评审、微服务拆分、性能优化
-│
-├── 💻 YYC3-Menu-开发实施/                    # 开发实施 (10+ 文档)
-│   ├── 📐 架构类/                           #   代码架构、API接口、组件开发、AI集成
-│   └── 💡 技巧类/                           #   TypeScript规范、编码规范、版本控制
-│
-├── 🔌 YYC3-Menu-需求规划/                    # 需求规划 (8 文档)
-│   ├── 📐 架构类/                           #   业务架构、数据架构、智能化能力
-│   └── 💡 技巧类/                           #   需求编写、跨部门协同、优先级排序
-│
-├── 🧪 YYC3-Menu-测试验证/                    # 测试验证 (15+ 文档)
-│   ├── 📐 架构类/                           #   测试架构、性能/安全/AI专项测试
-│   └── 💡 技巧类/                           #   用例设计、自动化脚本、缺陷管理
-│
-├── 🚀 YYC3-Menu-部署发布/                    # 部署发布 (8 文档)
-│   ├── 📐 架构类/                           #   CICD流水线、多环境部署、灰度发布
-│   └── 💡 技巧类/                           #   Docker/K8s部署、问题排查
-│
-├── ⚙️ YYC3-Menu-运维运营/                    # 运维运营 (8 文档)
-│   ├── 📐 架构类/                           #   运维架构、智能运维、灾备、系统扩容
-│   └── 💡 技巧类/                           #   监控告警、日志分析、性能优化
-│
-├── 📊 YYC3-Menu-实施总结/                    # 实施总结 (30+ 文档)
-│   └── 📋 各阶段实施报告/                    #   Phase1-3、Week1-6、性能优化、UI增强
-│
-├── 📖 YYC3-Menu-文档规范/                    # 文档规范 (8 文档)
-│   └── 📋 规范文件/                         #   文档架构、术语表、团队规范、安全策略
-│
-├── 🔄 YYC3-Menu-归类迭代/                    # 归类迭代 (3 文档)
-│   └── 📋 迭代文件/                         #   归档架构、系统迭代、资产沉淀
-│
-├── 📋 YYC3-Menu-团队规范/                    # 团队规范 (3 文档)
-├── 📋 YYC3-Menu-审核分析/                    # 审核分析 (6 文档)
-├── 📋 YYC3-Menu-业务管理/                    # 业务管理 (1 文档)
-│
-├── 📋 YYC3-Mune-文档规范/                    # Mune文档规范 (9 文档)
-├── 📋 YYC3-团队通用-标规文档/                # 团队通用标准 (5 文档)
-├── 📋 YYC3-安全审计与修复报告.md
-├── 📋 YYC3-分析问题汇总清单.md
-├── 📋 YYC3-深度全面审核报告.md
-├── 📋 YYC3-MVP功能拓展方案.md
-├── 📋 YYC3-深度测试审核报告.md
-├── 📋 YYC3-功能规格文档.md
-├── 📋 YYC3-功能拓展实施计划.md
-├── 📋 YYC3-功能拓展规划报告.md
-├── 📋 YYC3-统一化规范文档.md
-├── 📋 YYC3-分析改进路线图.md
-└── 📋 YYC3-闭环验收提示词.md
-```
+
+### 文档目录索引
+
+| 目录 | 篇数 | 说明 |
+|------|------|------|
+| 🏗️ [YYC3-Menu-架构设计](./docs/YYC3-Menu-架构设计/) | 28 | 总体/微服务/数据/安全/接口/AI 架构设计 + 架构评审技巧 |
+| 💻 [YYC3-Menu-开发实施](./docs/YYC3-Menu-开发实施/) | 17 | 代码架构、API接口、组件开发、AI集成 + 编码规范 |
+| 🧪 [YYC3-Menu-测试验证](./docs/YYC3-Menu-测试验证/) | 18 | 测试架构、性能/安全/AI专项测试 + 用例设计技巧 |
+| � [YYC3-Menu-文档规范](./docs/YYC3-Menu-文档规范/) | 13 | 文档架构、术语表、团队规范、安全策略 + 模板 |
+| ⚙️ [YYC3-Menu-运维运营](./docs/YYC3-Menu-运维运营/) | 12 | 运维架构、智能运维、灾备、系统扩容 + 运维手册 |
+| 🚀 [YYC3-Menu-部署发布](./docs/YYC3-Menu-部署发布/) | 12 | CICD流水线、多环境部署、灰度发布 + Docker/K8s |
+| 📋 [YYC3-Menu-需求规划](./docs/YYC3-Menu-需求规划/) | 9 | 业务架构、数据架构、智能化能力 + 需求编写技巧 |
+| � [YYC3-Menu-团队规范](./docs/YYC3-Menu-团队规范/) | 6 | 五维驱动核心机制、开发标准、文档闭环、多端适配 |
+| 🔄 [YYC3-Menu-归类迭代](./docs/YYC3-Menu-归类迭代/) | 6 | 归档架构、系统迭代规划、资产沉淀 + 评审技巧 |
+| � [YYC3-Menu-实施总结](./docs/YYC3-Menu-实施总结/) | 4 | 全局闭环报告、深度架构完成报告、最终实施报告 |
+| � [YYC3-Menu-演进拓展](./docs/YYC3-Menu-演进拓展/) | 3 | MVP功能拓展方案、功能拓展实施计划与规划 |
 
 ### 快速导航
 
 | 文档 | 说明 |
 |------|------|
-| [AGENTS.md](./AGENTS.md) | AI Agent 开发指南 |
-| [AUDIT-REPORT.md](./AUDIT-REPORT.md) | 项目全面审核报告 |
-| [SECURITY-FIXES.md](./SECURITY-FIXES.md) | 安全修复记录 |
-| [TEST-AUDIT-REPORT.md](./TEST-AUDIT-REPORT.md) | 测试深度审核 |
-| [MVP-EXPANSION-PLAN.md](./MVP-EXPANSION-PLAN.md) | 功能拓展方案 |
-| [ISSUE-LIST.md](./ISSUE-LIST.md) | 问题追踪清单 |
-| [IMPROVEMENT-ROADMAP.md](./IMPROVEMENT-ROADMAP.md) | 改进路线图 |
-| [docs/YYC3-Menu-文档索引-总览.md](./docs/YYC3-Menu-文档索引-总览.md) | 全量文档索引总览 |
-| [docs/YYC3-Menu-架构设计/架构类/01-YYC3-Menu-架构类-总体架构设计文档.md](./docs/YYC3-Menu-架构设计/架构类/01-YYC3-Menu-架构类-总体架构设计文档.md) | 总体架构设计 |
-| [docs/YYC3-Menu-开发实施/架构类/01-YYC3-Menu-架构类-代码架构实现说明书.md](./docs/YYC3-Menu-开发实施/架构类/01-YYC3-Menu-架构类-代码架构实现说明书.md) | 代码架构实现 |
-| [docs/YYC3-Menu-部署发布/架构类/YYC3-Menu-架构类-CICD部署文档.md](./docs/YYC3-Menu-部署发布/架构类/YYC3-Menu-架构类-CICD部署文档.md) | CICD 部署文档 |
+| [AGENTS.md](./AGENTS.md) | AI Agent 开发指南（必读） |
+| [SECURITY.md](./SECURITY.md) | 安全策略说明 |
+| [docs/README.md](./docs/README.md) | 文档库总索引 |
+| [docs/OPERATIONS.md](./docs/OPERATIONS.md) | 运维操作手册 |
+| [五维驱动核心机制](./docs/YYC3-Menu-团队规范/YYC3-团队核心-五维驱动.md) | 五高五标五化五维官方标准 |
+| [多端适配规范](./docs/YYC3-Menu-团队规范/YYC3-多端适配-规范文档.md) | 全端适配方案与规范 |
+| [开发标准](./docs/YYC3-Menu-团队规范/YYC3-团队规范-开发标准.md) | 团队开发规范标准 |
+| [总体架构设计](./docs/YYC3-Menu-架构设计/架构类/01-YYC3-Menu-架构类-总体架构设计文档.md) | 系统总体架构设计文档 |
+| [代码架构实现](./docs/YYC3-Menu-开发实施/架构类/01-YYC3-Menu-架构类-代码架构实现说明书.md) | 代码架构实现说明书 |
+| [API接口文档](./docs/YYC3-Menu-开发实施/架构类/YYC3-Menu-架构类-API接口文档.md) | REST API 完整文档 |
+| [CICD部署文档](./docs/YYC3-Menu-部署发布/架构类/YYC3-Menu-架构类-CICD部署文档.md) | CI/CD 部署流程文档 |
+| [完整部署指南](./docs/YYC3-Menu-运维运营/架构类/YYC3-Menu-部署运维-完整部署指南.md) | 全链路部署指南 |
 
 ---
 
 ## 🐳 部署指南
 
-### GitHub Pages (静态部署)
+### GitHub Pages（静态部署）
 
 项目支持通过 GitHub Pages 进行静态部署，自动推送 `main` 分支即触发部署。
 
@@ -323,7 +409,7 @@ NEXT_STATIC_EXPORT=true NEXT_PUBLIC_GITHUB_PAGES=true NEXT_PUBLIC_CUSTOM_DOMAIN=
 # 输出目录: ./out/
 ```
 
-### Docker (全功能部署)
+### Docker（全功能部署）
 
 ```bash
 docker-compose up -d    # 启动 (含迁移)
@@ -351,4 +437,11 @@ docker-compose up -d    # 启动 (含迁移)
 
 ## 📄 许可证
 
-MIT License © YYC³ Team
+MIT License © YYC³ Team — 详见 [LICENSE](./LICENSE)
+
+---
+
+<p align="center">
+  <sub>® YYC³（YanYuCloudCube）言语云立方 — 言启千行代码，语枢万物智能</sub><br/>
+  <sub>📧 admin@0379.email 丨 🌐 management.yyc3.vip</sub>
+</p>

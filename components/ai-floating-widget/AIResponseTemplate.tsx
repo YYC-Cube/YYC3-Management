@@ -231,9 +231,9 @@ const TimelineResponse: React.FC<{ template: AIResponseTemplate }> = ({ template
       <div className="relative pl-4 border-l-2 border-primary/20">
         {events.map((event: any, index: number) => (
           <div key={index} className="relative pb-4 last:pb-0">
-            <div className={`absolute -left-[21px] top-1 w-3 h-3 rounded-full ${event.status === 'completed' ? 'bg-green-500' :
+            <div className={`absolute -left-[21px] top-1 w-3 h-3 rounded-full ${event.status === 'completed' ? 'bg-success/10' :
               event.status === 'pending' ? 'bg-yellow-500' :
-                event.status === 'error' ? 'bg-red-500' : 'bg-primary'
+                event.status === 'error' ? 'bg-destructive/10' : 'bg-primary'
               }`} />
             <div className="ml-2">
               <div className="flex items-center gap-2 mb-1">
@@ -257,9 +257,9 @@ const TimelineResponse: React.FC<{ template: AIResponseTemplate }> = ({ template
 const StatusResponse: React.FC<{ template: AIResponseTemplate }> = ({ template }) => {
   const status = template.data?.status || 'info';
   const statusConfig = {
-    success: { icon: CheckCircle, color: 'text-green-500', bgColor: 'bg-green-50 dark:bg-green-900/20' },
+    success: { icon: CheckCircle, color: 'text-success', bgColor: 'bg-success/10 dark:bg-success/10/20' },
     warning: { icon: AlertCircle, color: 'text-yellow-500', bgColor: 'bg-yellow-50 dark:bg-yellow-900/20' },
-    error: { icon: XCircle, color: 'text-red-500', bgColor: 'bg-red-50 dark:bg-red-900/20' },
+    error: { icon: XCircle, color: 'text-destructive', bgColor: 'bg-destructive/10 dark:bg-destructive/10/20' },
     info: { icon: Info, color: 'text-blue-500', bgColor: 'bg-blue-50 dark:bg-blue-900/20' },
   };
 

@@ -149,9 +149,9 @@ export function PermissionManagement() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "inactive":
-        return "bg-red-100 text-red-800"
+        return "bg-destructive/10 text-destructive"
       case "pending":
         return "bg-yellow-100 text-yellow-800"
       default:

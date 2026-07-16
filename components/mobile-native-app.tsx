@@ -128,7 +128,7 @@ export function MobileNativeApp() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "available":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "development":
         return "bg-yellow-100 text-yellow-800"
       case "planned":
@@ -210,9 +210,9 @@ export function MobileNativeApp() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   {isOfflineMode ? (
-                    <WifiOff className="w-5 h-5 text-red-600" />
+                    <WifiOff className="w-5 h-5 text-destructive" />
                   ) : (
-                    <Wifi className="w-5 h-5 text-green-600" />
+                    <Wifi className="w-5 h-5 text-success" />
                   )}
                   离线模式管理
                 </CardTitle>
@@ -240,10 +240,10 @@ export function MobileNativeApp() {
                     <p className="text-2xl font-bold text-blue-600 mt-2">2.3 GB</p>
                     <p className="text-sm text-blue-700">包含客户、产品、订单数据</p>
                   </div>
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-semibold text-green-900">离线可用功能</h4>
-                    <p className="text-2xl font-bold text-green-600 mt-2">8/12</p>
-                    <p className="text-sm text-green-700">核心功能离线可用</p>
+                  <div className="p-4 bg-success/10 rounded-lg">
+                    <h4 className="font-semibold text-success">离线可用功能</h4>
+                    <p className="text-2xl font-bold text-success mt-2">8/12</p>
+                    <p className="text-sm text-success">核心功能离线可用</p>
                   </div>
                 </div>
 

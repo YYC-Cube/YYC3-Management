@@ -428,16 +428,16 @@ curl http://localhost:8080/health
 
 ### Docker资源限制
 
-| 服务 | CPU限制 | 内存限制 | CPU保留 | 内存保留 |
-|------|---------|----------|---------|----------|
-| autonomous-engine | 2核 | 2GB | 1核 | 1GB |
-| model-adapter | 1核 | 4GB | 0.5核 | 2GB |
-| learning-system | 4核 | 8GB | 2核 | 4GB |
-| goal-management | 1核 | 2GB | - | - |
-| frontend | 1核 | 1GB | - | - |
-| redis | 0.5核 | 2GB | - | - |
-| mongo | 2核 | 4GB | - | - |
-| postgres | 1核 | 2GB | - | - |
+| 服务　　　　　　　| CPU限制 | 内存限制 | CPU保留 | 内存保留 |
+| -------------------| ---------| ----------| ---------| ----------|
+| autonomous-engine | 2核　　 | 2GB　　　| 1核　　 | 1GB　　　|
+| model-adapter　　 | 1核　　 | 4GB　　　| 0.5核　 | 2GB　　　|
+| learning-system　 | 4核　　 | 8GB　　　| 2核　　 | 4GB　　　|
+| goal-management　 | 1核　　 | 2GB　　　| -　　　 | -　　　　|
+| frontend　　　　　| 1核　　 | 1GB　　　| -　　　 | -　　　　|
+| redis　　　　　　 | 0.5核　 | 2GB　　　| -　　　 | -　　　　|
+| mongo　　　　　　 | 2核　　 | 4GB　　　| -　　　 | -　　　　|
+| postgres　　　　　| 1核　　 | 2GB　　　| -　　　 | -　　　　|
 
 ---
 
@@ -760,12 +760,12 @@ services:
 server {
     listen 443 ssl http2;
     server_name yourdomain.com;
-    
+
     ssl_certificate /etc/nginx/ssl/cert.pem;
     ssl_certificate_key /etc/nginx/ssl/key.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
-    
+
     # HSTS
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 }

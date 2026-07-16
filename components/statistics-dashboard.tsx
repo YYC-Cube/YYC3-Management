@@ -97,7 +97,7 @@ export function StatisticsDashboard({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">{finalStats.totalUsers}</p>
-                <div className="flex items-center mt-2 text-sm text-green-600">
+                <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+12.5%</span>
                   <span className="text-slate-500 ml-1">较上月</span>
@@ -110,7 +110,7 @@ export function StatisticsDashboard({
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="border-r-[5px] border-r-success shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">活跃用户</CardTitle>
           </CardHeader>
@@ -118,14 +118,14 @@ export function StatisticsDashboard({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">{finalStats.activeUsers}</p>
-                <div className="flex items-center mt-2 text-sm text-green-600">
+                <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+8.3%</span>
                   <span className="text-slate-500 ml-1">较上月</span>
                 </div>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-success" />
               </div>
             </div>
           </CardContent>
@@ -139,7 +139,7 @@ export function StatisticsDashboard({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-slate-900">{finalStats.totalProjects}</p>
-                <div className="flex items-center mt-2 text-sm text-green-600">
+                <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+15.2%</span>
                   <span className="text-slate-500 ml-1">较上月</span>
@@ -162,7 +162,7 @@ export function StatisticsDashboard({
                 <p className="text-3xl font-bold text-slate-900">
                   {(finalStats.totalTasks || 0) > 0 ? Math.round(((finalStats.completedTasks || 0) / (finalStats.totalTasks || 1)) * 100) : 0}%
                 </p>
-                <div className="flex items-center mt-2 text-sm text-green-600">
+                <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+5.7%</span>
                   <span className="text-slate-500 ml-1">较上月</span>
@@ -220,12 +220,12 @@ export function StatisticsDashboard({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-green-50 rounded-lg">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="text-center p-6 bg-success/10 rounded-lg">
+              <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-success" />
               </div>
-              <p className="text-3xl font-bold text-green-700">{finalStats.completedTasks}</p>
-              <p className="text-sm text-green-600 mt-2">已完成任务</p>
+              <p className="text-3xl font-bold text-success">{finalStats.completedTasks}</p>
+              <p className="text-sm text-success mt-2">已完成任务</p>
             </div>
             <div className="text-center p-6 bg-orange-50 rounded-lg">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -234,14 +234,14 @@ export function StatisticsDashboard({
               <p className="text-3xl font-bold text-orange-700">{finalStats.pendingTasks}</p>
               <p className="text-sm text-orange-600 mt-2">进行中任务</p>
             </div>
-            <div className="text-center p-6 bg-red-50 rounded-lg">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-8 h-8 text-red-600" />
+            <div className="text-center p-6 bg-destructive/10 rounded-lg">
+              <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertTriangle className="w-8 h-8 text-destructive" />
               </div>
-              <p className="text-3xl font-bold text-red-700">
+              <p className="text-3xl font-bold text-destructive">
                 {(finalStats.totalTasks || 0) - (finalStats.completedTasks || 0) - (finalStats.pendingTasks || 0)}
               </p>
-              <p className="text-sm text-red-600 mt-2">逾期任务</p>
+              <p className="text-sm text-destructive mt-2">逾期任务</p>
             </div>
           </div>
         </CardContent>
