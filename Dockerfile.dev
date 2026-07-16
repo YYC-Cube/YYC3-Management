@@ -1,5 +1,5 @@
-# 开发环境Dockerfile
-FROM node:18-alpine
+# 开发环境 Dockerfile
+FROM oven/bun:1.2-alpine
 
 # 安装开发工具
 RUN apk add --no-cache git
@@ -7,14 +7,14 @@ RUN apk add --no-cache git
 # 设置工作目录
 WORKDIR /app
 
-# 复制package文件
-COPY package*.json ./
+# 复制 lockfile 与 manifest
+COPY bun.lock package.json ./
 
 # 安装依赖
-RUN npm install
+RUN bun install --frozen-lockfile
 
 # 暴露端口
-EXPOSE 3000
+EXPOSE 3223
 
 # 启动开发服务器
-CMD ["npm", "run", "dev"]
+CMD ["bun", "run", "dev"]
