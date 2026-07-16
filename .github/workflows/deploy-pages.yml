@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUN_VERSION: "latest"
+  BUN_VERSION: "1.2.2"
   NODE_VERSION: "22"
 
 jobs:

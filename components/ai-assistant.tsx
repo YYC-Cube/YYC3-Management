@@ -11,36 +11,36 @@
 
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { AI_MODELS, type AIModel, getModelsByType } from "@/lib/ai-models"
+import type { ChatMessage, ChatRequest } from "@/lib/ai-service"
 import {
+  AlertTriangle,
+  BarChart3,
   Bot,
-  Send,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Cloud,
+  DollarSign,
+  Lightbulb,
   Mic,
   MicOff,
-  Lightbulb,
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  Users,
-  DollarSign,
-  BarChart3,
-  Zap,
-  Cloud,
+  Send,
   Server,
-  ChevronRight,
+  Users,
+  Zap,
 } from "lucide-react"
-import { aiService, type ChatMessage, type ChatRequest } from "@/lib/ai-service"
-import { AI_MODELS, type AIModel, getModelsByType } from "@/lib/ai-models"
+import { useEffect, useRef, useState } from "react"
 
 interface Insight {
   id: string
@@ -185,19 +185,30 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
         stream: streamMode,
       }
 
-      const response = await aiService.chat(request)
+      const response = await fetch("/api/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: request.modelId,
+          messages: request.messages,
+          temperature: request.temperature,
+          maxTokens: request.maxTokens,
+          stream: request.stream,
+        }),
+      })
+      const data = await response.json()
 
-      if (response.success) {
+      if (data.success) {
         const aiResponse: ChatMessage = {
           role: "assistant",
-          content: response.content,
+          content: data.content,
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, aiResponse])
       } else {
         const errorMessage: ChatMessage = {
           role: "assistant",
-          content: `抱歉，AI服务调用失败：${response.error}`,
+          content: `抱歉，AI服务调用失败：${data.error}`,
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, errorMessage])
@@ -232,19 +243,29 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
         maxTokens: maxTokens[0],
       }
 
-      const response = await aiService.chat(request)
+      const response = await fetch("/api/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: request.modelId,
+          messages: request.messages,
+          temperature: request.temperature,
+          maxTokens: request.maxTokens,
+        }),
+      })
+      const data = await response.json()
 
-      if (response.success) {
+      if (data.success) {
         const responseMessage: ChatMessage = {
           role: "assistant",
-          content: response.content,
+          content: data.content,
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, responseMessage])
       } else {
         const errorMessage: ChatMessage = {
           role: "assistant",
-          content: `操作执行失败：${response.error}`,
+          content: `操作执行失败：${data.error}`,
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, errorMessage])
@@ -360,11 +381,10 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                             </Avatar>
                           )}
                           <div
-                            className={`max-w-[80%] rounded-lg p-3 ${
-                              message.role === "user"
-                                ? "bg-linear-to-r from-purple-500 to-purple-600 text-white"
-                                : "bg-purple-50 text-slate-900 border border-purple-200"
-                            }`}
+                            className={`max-w-[80%] rounded-lg p-3 ${message.role === "user"
+                              ? "bg-linear-to-r from-purple-500 to-purple-600 text-white"
+                              : "bg-purple-50 text-slate-900 border border-purple-200"
+                              }`}
                           >
                             <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                             <p className="text-xs opacity-70 mt-1">{message.timestamp?.toLocaleTimeString()}</p>
@@ -514,13 +534,12 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
               >
                 <div className="flex items-start gap-3">
                   <div
-                    className={`p-2 rounded-lg ${
-                      insight.type === "warning"
-                        ? "bg-amber-100"
-                        : insight.type === "success"
-                          ? "bg-success/10"
-                          : "bg-purple-100"
-                    }`}
+                    className={`p-2 rounded-lg ${insight.type === "warning"
+                      ? "bg-amber-100"
+                      : insight.type === "success"
+                        ? "bg-success/10"
+                        : "bg-purple-100"
+                      }`}
                   >
                     {insight.type === "warning" && <AlertTriangle className="w-5 h-5 text-amber-600" />}
                     {insight.type === "success" && <CheckCircle className="w-5 h-5 text-success" />}

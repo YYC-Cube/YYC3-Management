@@ -9,6 +9,9 @@
  * @license MIT
  */
 
+// 标记为服务端专用 — 防止被客户端组件误导入（会导致 pg/fs 模块进入浏览器打包）
+import 'server-only'
+
 import { type AIModel, getModelById } from "./ai-models"
 
 export interface ChatMessage {
