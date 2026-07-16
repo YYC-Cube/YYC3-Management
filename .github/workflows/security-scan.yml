@@ -12,6 +12,10 @@ on:
   schedule:
     - cron: "0 2 * * *"
 
+permissions:
+  contents: read
+  security-events: write
+
 env:
   NODE_VERSION: "24"
   BUN_VERSION: "1.2.2"

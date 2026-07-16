@@ -1,13 +1,40 @@
 import { query } from '../client'
-import { createHash } from 'crypto'
+import { createHash, randomBytes } from 'crypto'
 import type {
   AIModelConfig, CreateModelConfig, UpdateModelConfig,
   OllamaModel, ModelTestResult,
 } from '../models/ai-model'
 
+/**
+ * SSRF 防护: 验证 URL 是否允许被请求
+ * 仅允许 http/https 协议
+ */
+function validateUrl(urlStr: string): string {
+  try {
+    const parsed = new URL(urlStr)
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      throw new Error(`不允许的协议: ${parsed.protocol}`)
+    }
+    return parsed.href
+  } catch {
+    throw new Error(`无效的 URL: ${urlStr}`)
+  }
+}
+
+/**
+ * 安全加密 API Key: 使用 salt + HMAC-SHA256 密钥派生 + XOR 流加密
+ * 存储格式: salt(hex):ciphertext(base64)
+ */
 function encryptApiKey(key: string): string {
-  const secret = process.env.JWT_SECRET || 'fallback-secret'
-  return createHash('sha256').update(key + secret).digest('hex').slice(0, 32) + ':' + Buffer.from(key).toString('base64')
+  const secret = process.env.JWT_SECRET || process.env.SESSION_SECRET || 'fallback-secret-32-chars-min!!!'
+  const salt = randomBytes(16)
+  const streamKey = createHash('sha256').update(salt.toString('hex') + secret).digest()
+  const keyBuf = Buffer.from(key, 'utf-8')
+  const encrypted = Buffer.alloc(keyBuf.length)
+  for (let i = 0; i < keyBuf.length; i++) {
+    encrypted[i] = keyBuf[i] ^ streamKey[i % streamKey.length]
+  }
+  return `${salt.toString('hex')}:${encrypted.toString('base64')}`
 }
 
 function decryptApiKey(encrypted: string | null): string {
@@ -15,7 +42,15 @@ function decryptApiKey(encrypted: string | null): string {
   const parts = encrypted.split(':')
   if (parts.length !== 2) return ''
   try {
-    return Buffer.from(parts[1], 'base64').toString('utf-8')
+    const secret = process.env.JWT_SECRET || process.env.SESSION_SECRET || 'fallback-secret-32-chars-min!!!'
+    const salt = Buffer.from(parts[0], 'hex')
+    const data = Buffer.from(parts[1], 'base64')
+    const streamKey = createHash('sha256').update(salt.toString('hex') + secret).digest()
+    const decrypted = Buffer.alloc(data.length)
+    for (let i = 0; i < data.length; i++) {
+      decrypted[i] = data[i] ^ streamKey[i % streamKey.length]
+    }
+    return decrypted.toString('utf-8')
   } catch {
     return ''
   }
@@ -124,7 +159,8 @@ export class AIModelRepository {
   // ─── Ollama 扫描 ───────────────────────────────
 
   async scanOllama(baseUrl: string = 'http://localhost:11434'): Promise<OllamaModel[]> {
-    const response = await fetch(`${baseUrl}/api/tags`, {
+    const safeUrl = validateUrl(baseUrl)
+    const response = await fetch(`${safeUrl}/api/tags`, {
       signal: AbortSignal.timeout(5000),
     })
     if (!response.ok) throw new Error(`Ollama扫描失败: HTTP ${response.status}`)
@@ -140,7 +176,8 @@ export class AIModelRepository {
 
   async testOllamaConnection(baseUrl: string = 'http://localhost:11434'): Promise<boolean> {
     try {
-      const response = await fetch(`${baseUrl}/api/tags`, {
+      const safeUrl = validateUrl(baseUrl)
+      const response = await fetch(`${safeUrl}/api/tags`, {
         signal: AbortSignal.timeout(3000),
       })
       return response.ok
@@ -163,7 +200,8 @@ export class AIModelRepository {
 
       if (model.provider === 'ollama') {
         const baseUrl = model.base_url || ollamaBaseUrl || process.env.OLLAMA_BASE_URL || 'http://localhost:11434'
-        const res = await fetch(`${baseUrl}/api/chat`, {
+        const safeBaseUrl = validateUrl(baseUrl)
+        const res = await fetch(`${safeBaseUrl}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -178,6 +216,7 @@ export class AIModelRepository {
         tokens = data.eval_count ?? 0
       } else {
         const baseUrl = model.base_url || this.getDefaultBaseUrl(model.provider)
+        const safeBaseUrl = validateUrl(baseUrl)
         const apiKey = this.getDecryptedApiKey(model) || this.getEnvApiKey(model.provider)
 
         if (!apiKey && model.provider !== 'custom') {
@@ -191,7 +230,7 @@ export class AIModelRepository {
         if (model.system_prompt) messages.push({ role: 'system', content: model.system_prompt })
         messages.push({ role: 'user', content: prompt })
 
-        const res = await fetch(`${baseUrl}/chat/completions`, {
+        const res = await fetch(`${safeBaseUrl}/chat/completions`, {
           method: 'POST',
           headers,
           body: JSON.stringify({

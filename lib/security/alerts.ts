@@ -536,8 +536,8 @@ export function detectSQLInjection(input: string): boolean {
  */
 export function detectXSS(input: string): boolean {
   const xssPatterns = [
-    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-    /<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi,
+    /<script\b[^<]*(?:(?!<\/script\s*>)[^<]*)*<\/script\s*>/gi,
+    /<iframe\b[^<]*(?:(?!<\/iframe\s*>)[^<]*)*<\/iframe\s*>/gi,
     /javascript:/gi,
     /on\w+\s*=/gi,  // 事件处理器
     /<.*?on\w+.*?>/gi,
