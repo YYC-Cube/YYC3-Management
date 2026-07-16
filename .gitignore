@@ -69,3 +69,6 @@ coverage/
 
 # Uploaded files
 public/uploads/
+
+# IDE plugins
+.crossnote/
