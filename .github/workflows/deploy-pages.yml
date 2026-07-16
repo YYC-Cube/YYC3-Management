@@ -70,7 +70,28 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          node_modules/.bin/next build --webpack 2>&1 | tee /tmp/build-output.log
+          cat > /tmp/build-wrapper.js << 'WRAPPER'
+          process.on('uncaughtException', (e) => {
+            console.error('=== UNCAUGHT EXCEPTION ===');
+            console.error(e && e.stack ? e.stack : e);
+            process.exit(99);
+          });
+          process.on('unhandledRejection', (e) => {
+            console.error('=== UNHANDLED REJECTION ===');
+            console.error(e && e.stack ? e.stack : e);
+            process.exit(98);
+          });
+          process.on('exit', (code) => {
+            if (code !== 0) console.error('=== PROCESS EXIT CODE:', code, '===');
+          });
+          // Load and invoke Next.js build CLI
+          require('child_process').execFileSync(
+            process.execPath,
+            ['--max-old-space-size=4096', 'node_modules/.bin/next', 'build', '--webpack'],
+            { stdio: 'inherit', env: process.env, cwd: process.cwd() }
+          );
+          WRAPPER
+          node /tmp/build-wrapper.js 2>&1 | tee /tmp/build-output.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
             echo "::error::Next.js build failed (exit code $BUILD_EXIT)"
