@@ -70,31 +70,33 @@ jobs:
       - name: Build static export
         run: |
           set +e
-          cat > /tmp/build-wrapper.js << 'WRAPPER'
+          cat > /tmp/build-debug.cjs << 'WRAPPER'
+          // Intercept process.exit to get stack trace
+          const origExit = process.exit.bind(process);
+          process.exit = (code) => {
+            if (code !== 0) {
+              console.error('\n=== process.exit(' + code + ') intercepted ===');
+              console.error(new Error().stack);
+            }
+            origExit(code);
+          };
           process.on('uncaughtException', (e) => {
-            console.error('=== UNCAUGHT EXCEPTION ===');
-            console.error(e && e.stack ? e.stack : e);
-            process.exit(99);
+            console.error('\n=== UNCAUGHT EXCEPTION ===');
+            console.error(e?.stack || e);
+            origExit(97);
           });
           process.on('unhandledRejection', (e) => {
-            console.error('=== UNHANDLED REJECTION ===');
-            console.error(e && e.stack ? e.stack : e);
-            process.exit(98);
+            console.error('\n=== UNHANDLED REJECTION ===');
+            console.error(e?.stack || e);
           });
-          process.on('exit', (code) => {
-            if (code !== 0) console.error('=== PROCESS EXIT CODE:', code, '===');
-          });
-          // Load and invoke Next.js build CLI
-          require('child_process').execFileSync(
-            process.execPath,
-            ['--max-old-space-size=4096', 'node_modules/.bin/next', 'build', '--webpack'],
-            { stdio: 'inherit', env: process.env, cwd: process.cwd() }
-          );
+          // Run Next.js build in-process
+          process.argv = ['node', 'next-build', '--webpack'];
+          require('next/dist/cli/next-build');
           WRAPPER
-          node /tmp/build-wrapper.js 2>&1 | tee /tmp/build-output.log
+          NODE_OPTIONS="--max-old-space-size=4096" node /tmp/build-debug.cjs 2>&1 | tee /tmp/build-output.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
-            echo "::error::Next.js build failed (exit code $BUILD_EXIT)"
+            echo "::error::Build failed (exit code $BUILD_EXIT)"
             echo "=== Full build output ==="
             cat /tmp/build-output.log
             exit 1
