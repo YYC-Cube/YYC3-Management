@@ -21,6 +21,7 @@ concurrency:
 
 env:
   BUN_VERSION: "1.2.2"
+  NODE_VERSION: "22"
 
 jobs:
   build:
@@ -29,6 +30,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -53,11 +59,22 @@ jobs:
         continue-on-error: true
 
       - name: Build static export
-        run: node_modules/.bin/next build
+        run: |
+          set +e
+          node_modules/.bin/next build 2>&1 | tee /tmp/build-output.log
+          BUILD_EXIT=${PIPESTATUS[0]}
+          if [ $BUILD_EXIT -ne 0 ]; then
+            echo "::error::Next.js build failed (exit code $BUILD_EXIT)"
+            echo "=== Last 80 lines of build output ==="
+            tail -80 /tmp/build-output.log
+            exit 1
+          fi
         env:
           # 必须显式设置：仓库内 .env 含 NODE_ENV=development 会污染构建，
           # 显式 production 可覆盖（Next.js 不以 .env 覆盖已存在的 process.env）
           NODE_ENV: production
+          # 增加 Node 内存上限，防止大项目 OOM
+          NODE_OPTIONS: "--max-old-space-size=4096"
           # 激活静态导出模式
           NEXT_STATIC_EXPORT: "true"
           NEXT_PUBLIC_GITHUB_PAGES: "true"
