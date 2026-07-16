@@ -203,7 +203,8 @@ jobs:
     name: Deploy to Production
     runs-on: ubuntu-latest
     needs: [docker-build]
-    if: github.ref == 'refs/heads/main'
+    # 仅在 main 分支且配置了部署密钥时执行
+    if: github.ref == 'refs/heads/main' && secrets.DEPLOY_HOST != ''
     env:
       DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
@@ -232,10 +233,25 @@ jobs:
             echo "Health check passed" || \
             echo "Health check failed (may need more time for cold start)"
 
+  deploy-skip:
+    name: Deploy Skipped (No VPS Secrets)
+    runs-on: ubuntu-latest
+    needs: [docker-build]
+    if: github.ref == 'refs/heads/main' && secrets.DEPLOY_HOST == ''
+    steps:
+      - name: Log skip reason
+        run: |
+          echo "### Deploy Skipped" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Docker image built and pushed to ghcr.io successfully." >> $GITHUB_STEP_SUMMARY
+          echo "VPS deploy skipped: `DEPLOY_HOST` secret not configured." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "To enable: Settings → Secrets → add DEPLOY_HOST, DEPLOY_USER, DEPLOY_KEY" >> $GITHUB_STEP_SUMMARY
+
   notify:
     name: Notify Team
     runs-on: ubuntu-latest
-    needs: [deploy]
+    needs: [deploy, deploy-skip]
     if: ${{ always() && github.ref == 'refs/heads/main' }}
     env:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -244,7 +260,7 @@ jobs:
         if: env.SLACK_WEBHOOK != ''
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ needs.deploy.result }}
+          status: success
           fields: repo,message,commit,author,action,eventName,ref,workflow
         env:
           SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK }}
