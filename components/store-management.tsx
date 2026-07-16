@@ -161,7 +161,7 @@ export function StoreManagement() {
       case "standard":
         return "bg-blue-100 text-blue-800 border-blue-200"
       case "outlet":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -170,7 +170,7 @@ export function StoreManagement() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "inactive":
         return "bg-slate-100 text-slate-800"
       case "maintenance":
@@ -267,7 +267,7 @@ export function StoreManagement() {
             {filteredStores.map((store) => (
               <Card
                 key={store.id}
-                className="p-4 border-r-[5px] border-r-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+                className="p-4 border-r-[5px] border-r-success hover:shadow-xl hover:scale-105 transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -310,7 +310,7 @@ export function StoreManagement() {
                           <span className="font-medium">{store.employees}人</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <DollarSign className="w-4 h-4 text-green-500" />
+                          <DollarSign className="w-4 h-4 text-success" />
                           <span className="font-medium">¥{(store.monthlyRevenue / 10000).toFixed(1)}万</span>
                         </div>
                       </div>
@@ -329,7 +329,7 @@ export function StoreManagement() {
                         <DropdownMenuItem>编辑信息</DropdownMenuItem>
                         <DropdownMenuItem>员工管理</DropdownMenuItem>
                         <DropdownMenuItem>销售报表</DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600">暂停营业</DropdownMenuItem>
+                        <DropdownMenuItem className="text-destructive">暂停营业</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
@@ -362,7 +362,7 @@ export function StoreManagement() {
                         </Badge>
                         <Badge
                           className={
-                            employee.status === "active" ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"
+                            employee.status === "active" ? "bg-success/10 text-success" : "bg-slate-100 text-slate-800"
                           }
                         >
                           {employee.status === "active" ? "在职" : "离职"}
@@ -385,7 +385,7 @@ export function StoreManagement() {
 
         <TabsContent value="analytics" className="space-y-4">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="p-6 border-r-[5px] border-r-green-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+            <Card className="p-6 border-r-[5px] border-r-success hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600">总门店数</p>
@@ -393,7 +393,7 @@ export function StoreManagement() {
                     {stores.length}
                   </p>
                 </div>
-                <DollarSign className="w-8 h-8 text-green-500 group-hover:scale-110 transition-all duration-300" />
+                <DollarSign className="w-8 h-8 text-success group-hover:scale-110 transition-all duration-300" />
               </div>
               <div className="mt-4">
                 <div

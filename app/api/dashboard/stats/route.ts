@@ -2,7 +2,7 @@
  * @fileoverview api/dashboard/stats/route.ts
  * @description YYC³ API路由 — 认证守卫 + 数据验证 + Redis缓存
  * @author YYC³
- * @version 3.0.0
+ * @version 3.1.0
  * @license MIT
  */
 

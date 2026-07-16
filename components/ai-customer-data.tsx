@@ -77,9 +77,9 @@ export function AiCustomerData() {
       name: "意向客户期",
       count: 285,
       percentage: 35,
-      color: "bg-green-500",
-      bgColor: "bg-green-50",
-      textColor: "text-green-700",
+      color: "bg-success/10",
+      bgColor: "bg-success/10",
+      textColor: "text-success",
     },
     {
       name: "准备成交期",
@@ -100,9 +100,9 @@ export function AiCustomerData() {
       action: "立即跟进",
       icon: Target,
       color: "green",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
-      textColor: "text-green-700",
+      bgColor: "bg-success/10",
+      borderColor: "border-success/20",
+      textColor: "text-success",
     },
     {
       type: "warning",
@@ -199,7 +199,7 @@ export function AiCustomerData() {
   const getActivityColor = (status: string) => {
     switch (status) {
       case "success":
-        return "text-green-600 bg-green-100"
+        return "text-success bg-success/10"
       case "warning":
         return "text-amber-600 bg-amber-100"
       case "info":
@@ -261,9 +261,9 @@ export function AiCustomerData() {
             </div>
             <div className="mt-3">
               <div className="flex items-center space-x-2">
-                <div className="flex items-center space-x-1 px-2 py-1 bg-green-100 rounded-full">
-                  <ArrowUpRight className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600 font-medium">+8.2%</span>
+                <div className="flex items-center space-x-1 px-2 py-1 bg-success/10 rounded-full">
+                  <ArrowUpRight className="h-3 w-3 text-success" />
+                  <span className="text-xs text-success font-medium">+8.2%</span>
                 </div>
                 <span className="text-xs text-slate-500">较上月</span>
               </div>
@@ -311,9 +311,9 @@ export function AiCustomerData() {
             </div>
             <div className="mt-3">
               <div className="flex items-center space-x-2">
-                <div className="flex items-center space-x-1 px-2 py-1 bg-green-100 rounded-full">
-                  <ArrowUpRight className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600 font-medium">+12.8%</span>
+                <div className="flex items-center space-x-1 px-2 py-1 bg-success/10 rounded-full">
+                  <ArrowUpRight className="h-3 w-3 text-success" />
+                  <span className="text-xs text-success font-medium">+12.8%</span>
                 </div>
                 <span className="text-xs text-slate-500">较上月</span>
               </div>
@@ -401,7 +401,7 @@ export function AiCustomerData() {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-slate-700">金融服务</span>
-                      <span className="text-sm font-bold text-green-600">22%</span>
+                      <span className="text-sm font-bold text-success">22%</span>
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
                       <div
@@ -426,9 +426,9 @@ export function AiCustomerData() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 gap-2">
-                    <div className="text-center p-3 bg-linear-to-br from-green-50 to-green-100 rounded-lg border border-green-200/50">
-                      <div className="text-lg font-bold text-green-700">156</div>
-                      <div className="text-xs text-green-600">高价值</div>
+                    <div className="text-center p-3 bg-linear-to-br from-green-50 to-green-100 rounded-lg border border-success/20/50">
+                      <div className="text-lg font-bold text-success">156</div>
+                      <div className="text-xs text-success">高价值</div>
                     </div>
                     <div className="text-center p-3 bg-linear-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200/50">
                       <div className="text-lg font-bold text-blue-700">892</div>
@@ -443,7 +443,7 @@ export function AiCustomerData() {
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span className="text-slate-700">高价值客户贡献</span>
-                        <span className="font-medium text-green-600">68%</span>
+                        <span className="font-medium text-success">68%</span>
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
@@ -529,8 +529,8 @@ export function AiCustomerData() {
                     <div className="text-2xl font-bold text-blue-600">78%</div>
                     <div className="text-sm text-slate-600 mt-1">潜在→意向转化率</div>
                   </div>
-                  <div className="text-center p-4 bg-linear-to-br from-green-50 to-green-100 rounded-xl border border-green-200/50">
-                    <div className="text-2xl font-bold text-green-600">65%</div>
+                  <div className="text-center p-4 bg-linear-to-br from-green-50 to-green-100 rounded-xl border border-success/20/50">
+                    <div className="text-2xl font-bold text-success">65%</div>
                     <div className="text-sm text-slate-600 mt-1">意向→成交转化率</div>
                   </div>
                   <div className="text-center p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">

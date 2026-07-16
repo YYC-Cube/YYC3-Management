@@ -111,9 +111,9 @@ export function BackupRecovery() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "completed":
-        return <Badge className="bg-green-100 text-green-800">完成</Badge>
+        return <Badge className="bg-success/10 text-success">完成</Badge>
       case "failed":
-        return <Badge className="bg-red-100 text-red-800">失败</Badge>
+        return <Badge className="bg-destructive/10 text-destructive">失败</Badge>
       case "running":
         return <Badge className="bg-blue-100 text-blue-800">运行中</Badge>
       default:
@@ -124,9 +124,9 @@ export function BackupRecovery() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
-        return <CheckCircle className="w-4 h-4 text-green-500" />
+        return <CheckCircle className="w-4 h-4 text-success" />
       case "failed":
-        return <XCircle className="w-4 h-4 text-red-500" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       case "running":
         return <Clock className="w-4 h-4 text-blue-500 animate-spin" />
       default:
@@ -137,7 +137,7 @@ export function BackupRecovery() {
   const getTypeBadge = (type: string) => {
     const typeConfig = {
       full: { label: "完整", className: "bg-blue-100 text-blue-800" },
-      incremental: { label: "增量", className: "bg-green-100 text-green-800" },
+      incremental: { label: "增量", className: "bg-success/10 text-success" },
       differential: { label: "差异", className: "bg-orange-100 text-orange-800" },
     }
 
@@ -243,26 +243,26 @@ export function BackupRecovery() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-lg font-bold text-slate-900">成功备份</p>
-                <p className="text-2xl font-bold text-green-600 mt-1">{backupStats.completed}</p>
+                <p className="text-2xl font-bold text-success mt-1">{backupStats.completed}</p>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-500" />
+              <CheckCircle className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-red-500 shadow-md">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-destructive shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-lg font-bold text-slate-900">失败备份</p>
-                <p className="text-2xl font-bold text-red-600 mt-1">{backupStats.failed}</p>
+                <p className="text-2xl font-bold text-destructive mt-1">{backupStats.failed}</p>
               </div>
-              <XCircle className="w-8 h-8 text-red-500" />
+              <XCircle className="w-8 h-8 text-destructive" />
             </div>
           </CardContent>
         </Card>

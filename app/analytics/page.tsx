@@ -154,7 +154,7 @@ export default function AnalyticsPage() {
             <div className="space-y-3">
               {[
                 { source: "直接访问", users: "5,234", color: "bg-sky-500" },
-                { source: "搜索引擎", users: "3,456", color: "bg-green-500" },
+                { source: "搜索引擎", users: "3,456", color: "bg-success/10" },
                 { source: "社交媒体", users: "2,345", color: "bg-yellow-500" },
                 { source: "邮件营销", users: "1,234", color: "bg-purple-500" },
               ].map((item, index) => (

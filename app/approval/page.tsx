@@ -41,28 +41,28 @@ export default function ApprovalPage() {
               </div>
             </EnhancedCard>
 
-            <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md">
+            <EnhancedCard className="border-r-[5px] border-r-success shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">已通过</p>
                   <p className="text-2xl font-bold text-slate-800">45</p>
-                  <p className="text-xs text-green-600 mt-1">本月通过</p>
+                  <p className="text-xs text-success mt-1">本月通过</p>
                 </div>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-success" />
                 </div>
               </div>
             </EnhancedCard>
 
-            <EnhancedCard className="border-r-[5px] border-r-red-500 shadow-md">
+            <EnhancedCard className="border-r-[5px] border-r-destructive shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">已拒绝</p>
                   <p className="text-2xl font-bold text-slate-800">3</p>
-                  <p className="text-xs text-red-600 mt-1">本月拒绝</p>
+                  <p className="text-xs text-destructive mt-1">本月拒绝</p>
                 </div>
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                  <XCircle className="w-6 h-6 text-red-600" />
+                <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
+                  <XCircle className="w-6 h-6 text-destructive" />
                 </div>
               </div>
             </EnhancedCard>
@@ -171,14 +171,14 @@ export default function ApprovalPage() {
                           <EnhancedButton
                             size="sm"
                             variant="outline"
-                            className="text-green-600 border-green-600 hover:bg-green-50"
+                            className="text-success border-success/20 hover:bg-success/20"
                           >
                             通过
                           </EnhancedButton>
                           <EnhancedButton
                             size="sm"
                             variant="outline"
-                            className="text-red-600 border-red-600 hover:bg-red-50"
+                            className="text-destructive border-destructive/20 hover:bg-destructive/20"
                           >
                             拒绝
                           </EnhancedButton>
@@ -214,7 +214,7 @@ export default function ApprovalPage() {
               <div className="space-y-3">
                 {[
                   { type: "请假申请", count: 23, percentage: 35, color: "bg-sky-500" },
-                  { type: "报销申请", count: 18, percentage: 28, color: "bg-green-500" },
+                  { type: "报销申请", count: 18, percentage: 28, color: "bg-success/10" },
                   { type: "采购申请", count: 12, percentage: 18, color: "bg-yellow-500" },
                   { type: "培训申请", count: 8, percentage: 12, color: "bg-purple-500" },
                   { type: "其他申请", count: 5, percentage: 7, color: "bg-slate-500" },
@@ -258,7 +258,7 @@ export default function ApprovalPage() {
                     <p className="text-sm text-slate-600">审批通过的比例</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-green-600">94%</p>
+                    <p className="text-2xl font-bold text-success">94%</p>
                     <p className="text-sm text-slate-600">本月</p>
                   </div>
                 </div>

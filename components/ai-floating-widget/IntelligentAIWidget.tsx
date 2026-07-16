@@ -955,7 +955,7 @@ export const IntelligentAIWidget: React.FC<{
                           {message.role === 'user' && message.sentiment && (
                             <div className="mt-1 flex items-center">
                               <span
-                                className={`text-xs px-1.5 py-0.5 rounded-full mr-1 ${message.sentiment.label === 'very-negative' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100' : message.sentiment.label === 'negative' ? 'bg-red-50 text-red-700 dark:bg-red-800 dark:text-red-200' : message.sentiment.label === 'neutral' ? 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200' : message.sentiment.label === 'positive' ? 'bg-green-50 text-green-700 dark:bg-green-800 dark:text-green-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100'}`}
+                                className={`text-xs px-1.5 py-0.5 rounded-full mr-1 ${message.sentiment.label === 'very-negative' ? 'bg-destructive/10 text-destructive dark:bg-destructive/10 dark:text-destructive' : message.sentiment.label === 'negative' ? 'bg-destructive/10 text-destructive dark:bg-destructive/10 dark:text-destructive' : message.sentiment.label === 'neutral' ? 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200' : message.sentiment.label === 'positive' ? 'bg-success/10 text-success dark:bg-success/10 dark:text-success' : 'bg-success/10 text-success dark:bg-success/10 dark:text-success'}`}
                               >
                                 {message.sentiment.label === 'very-negative' ? '非常消极' : message.sentiment.label === 'negative' ? '消极' : message.sentiment.label === 'neutral' ? '中性' : message.sentiment.label === 'positive' ? '积极' : '非常积极'}
                               </span>

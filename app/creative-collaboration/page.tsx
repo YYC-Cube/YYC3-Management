@@ -144,7 +144,7 @@ export default function CreativeCollaborationPage() {
       case "review":
         return "bg-purple-100 text-purple-800"
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       default:
         return "bg-slate-100 text-slate-800"
     }
@@ -168,11 +168,11 @@ export default function CreativeCollaborationPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "high":
-        return "text-red-600"
+        return "text-destructive"
       case "medium":
         return "text-orange-600"
       case "low":
-        return "text-green-600"
+        return "text-success"
       default:
         return "text-slate-600"
     }
@@ -238,7 +238,7 @@ export default function CreativeCollaborationPage() {
                 <Rocket className="w-8 h-8 text-purple-500" />
               </div>
               <div className="mt-4">
-                <div className="flex items-center text-sm text-green-600">
+                <div className="flex items-center text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+15% 本月</span>
                 </div>
@@ -256,7 +256,7 @@ export default function CreativeCollaborationPage() {
                 <Lightbulb className="w-8 h-8 text-pink-500" />
               </div>
               <div className="mt-4">
-                <div className="flex items-center text-sm text-green-600">
+                <div className="flex items-center text-sm text-success">
                   <Sparkles className="w-4 h-4 mr-1" />
                   <span>+8 今日新增</span>
                 </div>
@@ -282,17 +282,17 @@ export default function CreativeCollaborationPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/90 backdrop-blur-sm border border-green-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-green-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md">
+          <Card className="bg-white/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-lg font-bold text-slate-900">AI辅助率</p>
-                  <p className="text-2xl font-bold text-green-600 mt-1">85%</p>
+                  <p className="text-2xl font-bold text-success mt-1">85%</p>
                 </div>
-                <Brain className="w-8 h-8 text-green-500" />
+                <Brain className="w-8 h-8 text-success" />
               </div>
               <div className="mt-4">
-                <div className="flex items-center text-sm text-green-600">
+                <div className="flex items-center text-sm text-success">
                   <Zap className="w-4 h-4 mr-1" />
                   <span>效率提升40%</span>
                 </div>
@@ -532,14 +532,14 @@ export default function CreativeCollaborationPage() {
                             </Avatar>
                             <div>
                               <p className="font-medium text-slate-900">{member}</p>
-                              <p className="text-sm text-green-600">在线</p>
+                              <p className="text-sm text-success">在线</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="sm">
                               <MessageSquare className="w-4 h-4" />
                             </Button>
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-success/10 rounded-full"></div>
                           </div>
                         </div>
                       ))}
@@ -547,18 +547,18 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-white/90 backdrop-blur-sm border border-green-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-green-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 shadow-md">
+                <Card className="bg-white/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success shadow-md">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <MessageSquare className="w-5 h-5 mr-2 text-green-600" />
+                      <MessageSquare className="w-5 h-5 mr-2 text-success" />
                       实时协作动态
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-start gap-3 p-3 bg-success/10 rounded-lg">
                         <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs bg-green-100 text-green-600">张</AvatarFallback>
+                          <AvatarFallback className="text-xs bg-success/10 text-success">张</AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
                           <p className="text-sm">
@@ -567,9 +567,9 @@ export default function CreativeCollaborationPage() {
                           <p className="text-xs text-slate-500">2分钟前</p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-start gap-3 p-3 bg-success/10 rounded-lg">
                         <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs bg-green-100 text-green-600">李</AvatarFallback>
+                          <AvatarFallback className="text-xs bg-success/10 text-success">李</AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
                           <p className="text-sm">
@@ -578,9 +578,9 @@ export default function CreativeCollaborationPage() {
                           <p className="text-xs text-slate-500">5分钟前</p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-start gap-3 p-3 bg-success/10 rounded-lg">
                         <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs bg-green-100 text-green-600">AI</AvatarFallback>
+                          <AvatarFallback className="text-xs bg-success/10 text-success">AI</AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
                           <p className="text-sm">
@@ -664,10 +664,10 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-white/90 backdrop-blur-sm border border-green-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-green-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 group cursor-pointer">
+                <Card className="bg-white/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Target className="w-6 h-6 mr-2 text-green-600" />
+                      <Target className="w-6 h-6 mr-2 text-success" />
                       市场趋势分析
                     </CardTitle>
                     <CardDescription>AI分析市场数据，预测行业趋势和用户需求</CardDescription>
@@ -676,7 +676,7 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">数据源</span>
-                        <Badge className="bg-green-100 text-green-800">实时更新</Badge>
+                        <Badge className="bg-success/10 text-success">实时更新</Badge>
                       </div>
                       <Button className="w-full bg-linear-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800">
                         <TrendingUp className="w-4 h-4 mr-2" />
@@ -765,10 +765,10 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-white/90 backdrop-blur-sm border border-green-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-green-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 shadow-md">
+                <Card className="bg-white/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success shadow-md">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Users className="w-5 h-5 mr-2 text-green-600" />
+                      <Users className="w-5 h-5 mr-2 text-success" />
                       团队协作效率
                     </CardTitle>
                   </CardHeader>
@@ -776,19 +776,19 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">项目按时完成率</span>
-                        <span className="font-semibold text-green-600">91%</span>
+                        <span className="font-semibold text-success">91%</span>
                       </div>
                       <Progress value={91} className="h-2" />
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">团队满意度</span>
-                        <span className="font-semibold text-green-600">4.8/5.0</span>
+                        <span className="font-semibold text-success">4.8/5.0</span>
                       </div>
                       <Progress value={96} className="h-2" />
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">沟通效率提升</span>
-                        <span className="font-semibold text-green-600">+45%</span>
+                        <span className="font-semibold text-success">+45%</span>
                       </div>
                       <Progress value={45} className="h-2" />
                     </div>

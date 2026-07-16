@@ -204,7 +204,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
       case "at-risk":
         return "bg-amber-100 text-amber-800 border-amber-200"
       case "off-track":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -217,7 +217,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
       case "at-risk":
         return <AlertCircle className="w-4 h-4 text-amber-500" />
       case "off-track":
-        return <AlertCircle className="w-4 h-4 text-red-500" />
+        return <AlertCircle className="w-4 h-4 text-destructive" />
       default:
         return <Clock className="w-4 h-4 text-slate-500" />
     }
@@ -226,7 +226,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
   const getUserStatusColor = (status: string) => {
     switch (status) {
       case "online":
-        return "bg-green-500"
+        return "bg-success/10"
       case "busy":
         return "bg-amber-500"
       case "offline":
@@ -296,15 +296,15 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-green-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-success hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">共享目标</p>
-                <p className="text-3xl font-bold text-green-600">{sharedOKRs.length}</p>
+                <p className="text-3xl font-bold text-success">{sharedOKRs.length}</p>
                 <p className="text-xs text-slate-500 mt-1">正在协作中</p>
               </div>
-              <Target className="w-8 h-8 text-green-400" />
+              <Target className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>

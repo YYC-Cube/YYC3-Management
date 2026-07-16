@@ -101,7 +101,7 @@ export default function EnhancedAIFloatingDemo() {
         {/* 标题区域 - 移除了手动h1，使用PageContainer提供的标题 */}
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
-            <Badge variant="secondary" className="bg-green-100 text-green-800">
+            <Badge variant="secondary" className="bg-success/10 text-success">
               <Activity className="w-3 h-3 mr-1" />
               2.0.0
             </Badge>
@@ -220,7 +220,7 @@ export default function EnhancedAIFloatingDemo() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-3xl font-bold text-success dark:text-success">
                 {systemStats.modelAccuracy.toFixed(1)}%
               </div>
               <div className="text-sm text-slate-600 dark:text-slate-400">
@@ -289,7 +289,7 @@ export default function EnhancedAIFloatingDemo() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-green-600 dark:text-green-400 mb-2">
+              <h4 className="font-semibold text-success dark:text-success mb-2">
                 自治能力
               </h4>
               <ul className="text-slate-600 dark:text-slate-300 space-y-1">

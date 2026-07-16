@@ -69,8 +69,8 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
       change: "+8.2%",
       changeType: "increase" as const,
       icon: DollarSign,
-      color: "text-green-600",
-      bgColor: "bg-green-50",
+      color: "text-success",
+      bgColor: "bg-success/10",
       themeColor: "finance",
     },
     {
@@ -149,7 +149,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
 
   const quickActions = [
     { name: "新建客户", icon: Users, color: "bg-primary hover:bg-primary/90", themeColor: "customers" },
-    { name: "创建任务", icon: CheckCircle, color: "bg-green-500 hover:bg-green-600", themeColor: "tasks" },
+    { name: "创建任务", icon: CheckCircle, color: "bg-success/10 hover:bg-success/20", themeColor: "tasks" },
     { name: "发起会议", icon: MessageSquare, color: "bg-purple-500 hover:bg-purple-600", themeColor: "communication" },
     { name: "生成报告", icon: FileText, color: "bg-orange-500 hover:bg-orange-600", themeColor: "analytics" },
   ]
@@ -198,13 +198,13 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                     <p className="text-2xl font-bold text-slate-900 mt-2">{stat.value}</p>
                     <div className="flex items-center mt-2">
                       {stat.changeType === "increase" ? (
-                        <ArrowUpRight className="h-4 w-4 text-green-500" />
+                        <ArrowUpRight className="h-4 w-4 text-success" />
                       ) : (
-                        <ArrowDownRight className="h-4 w-4 text-red-500" />
+                        <ArrowDownRight className="h-4 w-4 text-destructive" />
                       )}
                       <span
                         className={`text-sm font-medium ml-1 ${
-                          stat.changeType === "increase" ? "text-green-600" : "text-red-600"
+                          stat.changeType === "increase" ? "text-success" : "text-destructive"
                         }`}
                       >
                         {stat.change}

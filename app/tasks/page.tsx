@@ -197,13 +197,13 @@ export default function TasksPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "urgent":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       case "high":
         return "text-orange-600 bg-orange-50"
       case "medium":
         return "text-yellow-600 bg-yellow-50"
       case "low":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -212,13 +212,13 @@ export default function TasksPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "pending":
         return "text-slate-600 bg-slate-50"
       case "cancelled":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -305,12 +305,12 @@ export default function TasksPage() {
               <div>
                 <p className="text-sm text-slate-600">已完成</p>
                 <p className="text-2xl font-bold text-slate-800">{taskStats.completedTasks}</p>
-                <p className="text-xs text-green-600 mt-1">
+                <p className="text-xs text-success mt-1">
                   完成率 {taskStats.totalTasks > 0 ? Math.round((taskStats.completedTasks / taskStats.totalTasks) * 100) : 0}%
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-success" />
               </div>
             </div>
           </EnhancedCard>
@@ -333,10 +333,10 @@ export default function TasksPage() {
               <div>
                 <p className="text-sm text-slate-600">逾期任务</p>
                 <p className="text-2xl font-bold text-slate-800">{taskStats.overdueTasks}</p>
-                <p className="text-xs text-red-600 mt-1">需要关注</p>
+                <p className="text-xs text-destructive mt-1">需要关注</p>
               </div>
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <AlertCircle className="w-6 h-6 text-red-600" />
+              <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
+                <AlertCircle className="w-6 h-6 text-destructive" />
               </div>
             </div>
           </EnhancedCard>
@@ -393,7 +393,7 @@ export default function TasksPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleDeleteTask(task.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-destructive hover:text-destructive/80"
                     >
                       <Trash2 className="w-4 h-4" />
                     </EnhancedButton>

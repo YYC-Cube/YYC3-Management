@@ -1,15 +1,20 @@
 /**
- * @fileoverview form-error.tsx
- * @description 表单错误显示组件
+ * @fileoverview form-error.tsx — 表单错误显示组件
+ * @description 使用语义 token（destructive）的表单错误组件，自动适配深色模式
  * @author YYC³
- * @version 3.0.0
+ * @version 3.1.0
  * @created 2025-01-19
- * @copyright Copyright (c) 2025 YYC³
+ * @modified 2026-07-17
+ * @copyright Copyright (c) 2025-2026 YYC³
  * @license MIT
+ *
+ * @note 修复历史：
+ *   - v3.0.0：硬编码 text-red-600/bg-red-50/border-red-200 等，深色模式不自适应
+ *   - v3.1.0：全部改用语义 token（text-destructive/bg-destructive/10 等）
  */
 
-import { AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { AlertCircle } from "lucide-react"
 
 interface FormErrorProps {
   message?: string
@@ -22,7 +27,7 @@ export function FormError({ message, className }: FormErrorProps) {
   }
 
   return (
-    <div className={cn("flex items-center gap-2 text-sm text-red-600 mt-1", className)}>
+    <div className={cn("flex items-center gap-2 text-sm text-destructive mt-1", className)}>
       <AlertCircle className="w-4 h-4 shrink-0" />
       <span>{message}</span>
     </div>
@@ -42,14 +47,14 @@ export function FormErrors({ errors, className }: FormErrorsProps) {
   }
 
   return (
-    <div className={cn("bg-red-50 border border-red-200 rounded-lg p-4", className)}>
+    <div className={cn("bg-destructive/10 border border-destructive/20 rounded-lg p-4", className)}>
       <div className="flex items-start gap-3">
-        <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+        <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
         <div className="flex-1">
-          <h4 className="font-medium text-red-800 mb-2">表单验证错误</h4>
+          <h4 className="font-medium text-destructive mb-2">表单验证错误</h4>
           <ul className="space-y-1">
             {errorMessages.map((error, index) => (
-              <li key={index} className="text-sm text-red-700">
+              <li key={index} className="text-sm text-destructive">
                 • {error}
               </li>
             ))}

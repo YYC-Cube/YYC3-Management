@@ -179,15 +179,15 @@ export function OAApproval() {
       label: "已通过",
       value: approvals.filter((item) => item.status === "approved").length,
       icon: CheckCircle,
-      color: "text-green-600",
-      bgColor: "bg-green-100",
+      color: "text-success",
+      bgColor: "bg-success/10",
     },
     {
       label: "已拒绝",
       value: approvals.filter((item) => item.status === "rejected").length,
       icon: XCircle,
-      color: "text-red-600",
-      bgColor: "bg-red-100",
+      color: "text-destructive",
+      bgColor: "bg-destructive/10",
     },
     {
       label: "总申请",
@@ -239,11 +239,11 @@ export function OAApproval() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "high":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       case "medium":
         return "bg-amber-100 text-amber-800 border-amber-200"
       case "low":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-success/10 text-success border-success/20"
       default:
         return "bg-slate-100 text-slate-800 border-slate-200"
     }
@@ -499,7 +499,7 @@ export function OAApproval() {
                           </Button>
                           {item.status === "pending" && (
                             <>
-                              <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                              <Button size="sm" className="bg-success/10 hover:bg-success/20 text-white">
                                 <CheckCircle className="w-4 h-4 mr-2" />
                                 通过
                               </Button>
@@ -649,7 +649,7 @@ export function OAApproval() {
                             <p className="text-slate-500">申请数</p>
                           </div>
                           <div className="text-center">
-                            <p className="font-medium text-green-600">{Math.floor(Math.random() * 30) + 70}%</p>
+                            <p className="font-medium text-success">{Math.floor(Math.random() * 30) + 70}%</p>
                             <p className="text-slate-500">通过率</p>
                           </div>
                         </div>

@@ -243,7 +243,7 @@ export function BatchOperationsPanel<T>({
                 onClick={() => setActiveOperation("updateStatus")}
                 disabled={isProcessing}
               >
-                <Edit className="w-8 h-8 text-green-600" />
+                <Edit className="w-8 h-8 text-success" />
                 <div className="text-sm font-medium">批量更新状态</div>
                 <div className="text-xs text-slate-500">更新数据状态</div>
               </Button>
@@ -256,7 +256,7 @@ export function BatchOperationsPanel<T>({
                 onClick={handleBatchDelete}
                 disabled={isProcessing}
               >
-                <Trash2 className="w-8 h-8 text-red-600" />
+                <Trash2 className="w-8 h-8 text-destructive" />
                 <div className="text-sm font-medium">批量删除</div>
                 <div className="text-xs text-slate-500">删除选中数据</div>
               </Button>
@@ -303,9 +303,9 @@ export function BatchOperationsPanel<T>({
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               {result.success ? (
-                <CheckCircle2 className="w-5 h-5 text-green-600" />
+                <CheckCircle2 className="w-5 h-5 text-success" />
               ) : (
-                <XCircle className="w-5 h-5 text-red-600" />
+                <XCircle className="w-5 h-5 text-destructive" />
               )}
               <span className="font-medium">
                 {result.success ? "操作成功" : "操作完成（有错误）"}
@@ -317,12 +317,12 @@ export function BatchOperationsPanel<T>({
                 <div className="text-2xl font-bold text-slate-900">{result.processed}</div>
                 <div className="text-sm text-slate-600">处理总数</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{result.succeeded.length}</div>
+              <div className="text-center p-4 bg-success/10 rounded-lg">
+                <div className="text-2xl font-bold text-success">{result.succeeded.length}</div>
                 <div className="text-sm text-slate-600">成功</div>
               </div>
-              <div className="text-center p-4 bg-red-50 rounded-lg">
-                <div className="text-2xl font-bold text-red-600">{result.failed.length}</div>
+              <div className="text-center p-4 bg-destructive/10 rounded-lg">
+                <div className="text-2xl font-bold text-destructive">{result.failed.length}</div>
                 <div className="text-sm text-slate-600">失败</div>
               </div>
             </div>
@@ -333,11 +333,11 @@ export function BatchOperationsPanel<T>({
                 <ScrollArea className="max-h-40">
                   <div className="space-y-1">
                     {result.failed.map(({ item, error }, index) => (
-                      <div key={index} className="flex items-start gap-2 p-2 bg-red-50 rounded text-sm">
-                        <XCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                      <div key={index} className="flex items-start gap-2 p-2 bg-destructive/10 rounded text-sm">
+                        <XCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                         <div className="flex-1 min-w-0">
                           <div className="font-medium truncate">{JSON.stringify(item)}</div>
-                          <div className="text-red-700">{error}</div>
+                          <div className="text-destructive">{error}</div>
                         </div>
                       </div>
                     ))}

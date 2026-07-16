@@ -1,8 +1,15 @@
 /**
- * Rate Limiting Middleware
- * 速率限制中间件
+ * Rate Limiting Middleware — 速率限制中间件
  *
- * 防止API滥用和DDoS攻击
+ * 防止 API 滥用和 DDoS 攻击。
+ * 服务端使用单例 + 定时清理，客户端使用 window 定时器。
+ * 支持滑动窗口、固定窗口、IP/用户维度限流。
+ *
+ * @author YYC³
+ * @version 3.1.0
+ * @created 2025-01-30
+ * @modified 2026-07-17
+ * @license MIT
  */
 
 interface RateLimitConfig {
@@ -62,6 +69,11 @@ export const defaultLimits = {
   },
 } as const;
 
+// ---- 全局单例管理（防止多实例 + 确保服务端定时器正确运行） ----
+
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000 // 5分钟
+const MAX_STORE_SIZE = 10000 // 最大存储条目，防止内存无限增长
+
 /**
  * 速率限制器类
  */
@@ -70,18 +82,43 @@ export class RateLimiter {
   private windowMs: number;
   private maxRequests: number;
   private keyGenerator: (req: Request) => string;
+  private cleanupTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(config: RateLimitConfig) {
     this.windowMs = config.windowMs;
     this.maxRequests = config.maxRequests;
     this.keyGenerator = config.keyGenerator;
 
-    // 定期清理过期记录 (每5分钟)
-    if (typeof window !== 'undefined') {
-      setInterval(() => {
-        this.cleanup(Date.now());
-      }, 5 * 60 * 1000);
+    // 服务端 & 客户端都启动定时清理
+    this.startCleanupInterval();
+  }
+
+  /**
+   * 启动定时清理（服务端/客户端通用）
+   */
+  private startCleanupInterval(): void {
+    // 防止重复启动
+    if (this.cleanupTimer) return;
+
+    this.cleanupTimer = setInterval(() => {
+      this.cleanup(Date.now());
+    }, CLEANUP_INTERVAL_MS);
+
+    // Node.js 环境下允许进程退出（不阻止事件循环）
+    if (typeof this.cleanupTimer === 'object' && 'unref' in this.cleanupTimer) {
+      this.cleanupTimer.unref();
     }
+  }
+
+  /**
+   * 停止定时清理
+   */
+  destroy(): void {
+    if (this.cleanupTimer) {
+      clearInterval(this.cleanupTimer);
+      this.cleanupTimer = null;
+    }
+    this.store = {};
   }
 
   /**
@@ -139,13 +176,27 @@ export class RateLimiter {
   }
 
   /**
-   * 清理过期记录
+   * 清理过期记录（带上限保护，防止内存泄漏）
    */
   private cleanup(now: number): void {
+    let size = 0;
     for (const key in this.store) {
       if (this.store[key].resetTime < now) {
         delete this.store[key];
+      } else {
+        size++;
       }
+    }
+
+    // 内存保护：超过上限时强制清理最旧的记录
+    if (size > MAX_STORE_SIZE) {
+      const entries = Object.entries(this.store)
+        .sort((a, b) => a[1].resetTime - b[1].resetTime);
+      const toDelete = entries.slice(0, size - MAX_STORE_SIZE);
+      for (const [key] of toDelete) {
+        delete this.store[key];
+      }
+      console.warn(`[RateLimiter] 存储条目超过上限(${MAX_STORE_SIZE})，已清理 ${toDelete.length} 条旧记录`);
     }
   }
 
@@ -157,11 +208,30 @@ export class RateLimiter {
   }
 }
 
+// ---- 全局单例注册表（防止多实例内存泄漏） ----
+
+const limiterRegistry = new Map<string, RateLimiter>();
+
 /**
- * 创建速率限制器的工厂函数
+ * 创建或获取速率限制器单例
+ * 相同配置的限流器复用同一个实例，避免内存泄漏
  */
 export function createRateLimiter(config: RateLimitConfig): RateLimiter {
-  return new RateLimiter(config);
+  const key = `${config.windowMs}:${config.maxRequests}`;
+  if (!limiterRegistry.has(key)) {
+    limiterRegistry.set(key, new RateLimiter(config));
+  }
+  return limiterRegistry.get(key)!;
+}
+
+/**
+ * 销毁所有限流器实例（用于热重载/测试清理）
+ */
+export function destroyAllLimiters(): void {
+  for (const limiter of limiterRegistry.values()) {
+    limiter.destroy();
+  }
+  limiterRegistry.clear();
 }
 
 /**

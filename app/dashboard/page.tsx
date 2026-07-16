@@ -4,10 +4,8 @@ import { StatisticsDashboard } from "@/components/statistics-dashboard"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { useCustomers } from "@/hooks/use-customers"
+import { useDashboardStats } from "@/hooks/use-dashboard-stats"
 import { useProjects } from "@/hooks/use-projects"
-import { useTasks } from "@/hooks/use-tasks"
-import { useUsers } from "@/hooks/use-users"
 import {
   BarChart3,
   CheckSquare,
@@ -18,24 +16,17 @@ import { useEffect, useMemo } from "react"
 
 export default function DashboardPage() {
   const router = useRouter()
-  const { users, fetchUsers } = useUsers({ page: 1, limit: 1000 })
-  const { fetchCustomers } = useCustomers({ page: 1, limit: 1000 })
-  const { tasks, fetchTasks } = useTasks({ page: 1, limit: 1000 })
-  const { projects, fetchProjects } = useProjects({ page: 1, limit: 1000 })
+  const { stats, isLoading } = useDashboardStats()
+  const { projects, fetchProjects } = useProjects({ page: 1, limit: 5 })
 
   useEffect(() => {
-    fetchUsers()
-    fetchCustomers()
-    fetchTasks()
     fetchProjects()
   }, [])
 
-  const activeUsers = useMemo(() => users.filter((u) => u.status === "active").length, [users])
-  const completedTasks = useMemo(() => tasks.filter((t) => t.status === "已完成").length, [tasks])
-  const pendingTasks = useMemo(() => tasks.filter((t) => t.status === "进行中").length, [tasks])
-  const completedProjects = useMemo(() => projects.filter((p) => p.status === "已完成").length, [projects])
-  // 活跃客户数（保留实现供未来使用）
-  // const activeCustomers = useMemo(() => customers.filter((c) => c.status === "active").length, [customers])
+  const activeUsers = stats?.users?.active ?? 0
+  const completedTasks = stats?.tasks?.completed ?? 0
+  const pendingTasks = stats?.tasks?.in_progress ?? 0
+  const completedProjects = stats?.projects?.completed ?? 0
 
   const monthNames = useMemo(() => {
     const now = new Date()
@@ -48,12 +39,12 @@ export default function DashboardPage() {
   }, [])
 
   const userGrowthData = useMemo(() => {
-    const base = Math.max(users.length, 1)
+    const base = Math.max(stats?.users?.total ?? 0, 1)
     return monthNames.map((name, i) => ({
       name,
-      value: i === 5 ? users.length : Math.round(base * (0.4 + i * 0.1)),
+      value: i === 5 ? (stats?.users?.total ?? 0) : Math.round(base * (0.4 + i * 0.1)),
     }))
-  }, [users.length, monthNames])
+  }, [stats?.users?.total, monthNames])
 
   const taskCompletionData = useMemo(() => {
     const base = Math.max(completedTasks, 1)
@@ -81,86 +72,96 @@ export default function DashboardPage() {
 
   return (
     <PageContainer title="数据中心" description="欢迎回到企业管理系统">
-      <div className="space-y-6">
-        <StatisticsDashboard
-          userGrowthData={userGrowthData}
-          taskCompletionData={taskCompletionData}
-          projectStatusData={projectStatusData}
-          userActivityData={userActivityData}
-          stats={{
-            totalUsers: users.length,
-            activeUsers: activeUsers,
-            totalProjects: projects.length,
-            completedProjects: completedProjects,
-            totalTasks: tasks.length,
-            completedTasks: completedTasks,
-            pendingTasks: pendingTasks,
-          }}
-        />
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>项目进度</CardTitle>
-                <CardDescription>当前进行中的项目状态</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {projects.slice(0, 5).map((project) => (
-                  <div key={project.id} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">{project.name}</span>
-                      <span className="text-sm text-muted-foreground">{project.progress}%</span>
-                    </div>
-                    <Progress value={project.progress} className="h-2" />
-                  </div>
-                ))}
-                {projects.length === 0 && (
-                  <p className="text-sm text-muted-foreground text-center py-4">暂无项目数据</p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>快速操作</CardTitle>
-                <CardDescription>常用功能快捷入口</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start bg-transparent"
-                  onClick={() => router.push("/customers")}
-                  aria-label="前往客户管理添加新客户"
-                >
-                  <Users className="mr-2 h-4 w-4" />
-                  添加新客户
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start bg-transparent"
-                  onClick={() => router.push("/tasks")}
-                  aria-label="前往任务管理创建新任务"
-                >
-                  <CheckSquare className="mr-2 h-4 w-4" />
-                  创建任务
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start bg-transparent"
-                  onClick={() => router.push("/analytics")}
-                  aria-label="前往数据分析查看报告"
-                >
-                  <BarChart3 className="mr-2 h-4 w-4" />
-                  生成报告
-                </Button>
-              </CardContent>
-            </Card>
+      {isLoading ? (
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-32 rounded-lg bg-muted animate-pulse" />
+            ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="space-y-6">
+          <StatisticsDashboard
+            userGrowthData={userGrowthData}
+            taskCompletionData={taskCompletionData}
+            projectStatusData={projectStatusData}
+            userActivityData={userActivityData}
+            stats={{
+              totalUsers: stats?.users?.total ?? 0,
+              activeUsers: activeUsers,
+              totalProjects: stats?.projects?.total ?? 0,
+              completedProjects: completedProjects,
+              totalTasks: stats?.tasks?.total ?? 0,
+              completedTasks: completedTasks,
+              pendingTasks: pendingTasks,
+            }}
+          />
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="lg:col-span-2 space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>项目进度</CardTitle>
+                  <CardDescription>当前进行中的项目状态</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {projects.slice(0, 5).map((project) => (
+                    <div key={project.id} className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">{project.name}</span>
+                        <span className="text-sm text-muted-foreground">{project.progress}%</span>
+                      </div>
+                      <Progress value={project.progress} className="h-2" />
+                    </div>
+                  ))}
+                  {projects.length === 0 && (
+                    <p className="text-sm text-muted-foreground text-center py-4">暂无项目数据</p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>快速操作</CardTitle>
+                  <CardDescription>常用功能快捷入口</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start bg-transparent"
+                    onClick={() => router.push("/customers")}
+                    aria-label="前往客户管理添加新客户"
+                  >
+                    <Users className="mr-2 h-4 w-4" />
+                    添加新客户
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start bg-transparent"
+                    onClick={() => router.push("/tasks")}
+                    aria-label="前往任务管理创建新任务"
+                  >
+                    <CheckSquare className="mr-2 h-4 w-4" />
+                    创建任务
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start bg-transparent"
+                    onClick={() => router.push("/analytics")}
+                    aria-label="前往数据分析查看报告"
+                  >
+                    <BarChart3 className="mr-2 h-4 w-4" />
+                    生成报告
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      )}
     </PageContainer>
   )
 }

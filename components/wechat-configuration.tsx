@@ -225,9 +225,9 @@ export function WechatConfiguration() {
   const getConnectionStatusIcon = () => {
     switch (connectionStatus) {
       case "connected":
-        return <CheckCircle className="w-5 h-5 text-green-500" />
+        return <CheckCircle className="w-5 h-5 text-success" />
       case "disconnected":
-        return <XCircle className="w-5 h-5 text-red-500" />
+        return <XCircle className="w-5 h-5 text-destructive" />
       case "testing":
         return <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
       default:
@@ -287,14 +287,14 @@ export function WechatConfiguration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-lg font-bold text-slate-900">消息量</p>
-                <p className="text-2xl font-bold text-green-600 mt-1">{stats.messages.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-success mt-1">{stats.messages.toLocaleString()}</p>
               </div>
-              <MessageCircle className="w-8 h-8 text-green-500" />
+              <MessageCircle className="w-8 h-8 text-success" />
             </div>
           </CardContent>
         </Card>
@@ -433,7 +433,7 @@ export function WechatConfiguration() {
         </TabsContent>
 
         <TabsContent value="menu" className="space-y-6">
-          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-green-500 shadow-md">
+          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-success shadow-md">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>

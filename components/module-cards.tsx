@@ -55,7 +55,7 @@ export function ModuleCards() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* 数据总览 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-green-50 to-lime-50 border-green-200 border-r-[5px] border-r-green-500 hover:border-r-green-600 shadow-md"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-green-50 to-lime-50 border-success/20 border-r-[5px] border-r-success hover:border-r-success shadow-md"
         onClick={() => handleModuleClick("dashboard")}
       >
         <CardContent className="p-6">
@@ -63,13 +63,13 @@ export function ModuleCards() {
             <div className="p-3 bg-linear-to-r from-green-500 to-lime-600 rounded-xl">
               <BarChart3 className="w-8 h-8 text-white" />
             </div>
-            <Badge className="bg-green-100 text-green-800 border-green-300 border-r-2 border-r-green-500">核心功能</Badge>
+            <Badge className="bg-success/10 text-success border-success/20 border-r-2 border-r-success">核心功能</Badge>
           </div>
           <h3 className="text-xl font-bold text-slate-900 mb-2">数据总览</h3>
           <p className="text-slate-600 text-sm mb-4">核心数据指标监控面板</p>
-          <div className="flex items-center text-green-600 text-sm font-medium">
+          <div className="flex items-center text-success text-sm font-medium">
             <span>查看报表</span>
-            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-green-500" />
+            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-success" />
           </div>
         </CardContent>
       </Card>
@@ -202,7 +202,7 @@ export function ModuleCards() {
 
       {/* 安全中心 - 橙色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-red-50 to-orange-50 border-red-200 border-r-[5px] border-r-red-500 hover:border-r-red-600 shadow-md"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-red-50 to-orange-50 border-destructive/20 border-r-[5px] border-r-destructive hover:border-r-destructive shadow-md"
         onClick={() => handleModuleClick("security")}
       >
         <CardContent className="p-6">
@@ -210,13 +210,13 @@ export function ModuleCards() {
             <div className="p-3 bg-linear-to-r from-red-500 to-orange-600 rounded-xl">
               <Shield className="w-8 h-8 text-white" />
             </div>
-            <Badge className="bg-red-100 text-red-800 border-red-300 border-r-2 border-r-red-500">安全防护</Badge>
+            <Badge className="bg-destructive/10 text-destructive border-destructive/20 border-r-2 border-r-destructive">安全防护</Badge>
           </div>
           <h3 className="text-xl font-bold text-slate-900 mb-2">安全中心</h3>
           <p className="text-slate-600 text-sm mb-4">系统安全监控和威胁防护</p>
-          <div className="flex items-center text-red-600 text-sm font-medium">
+          <div className="flex items-center text-destructive text-sm font-medium">
             <span>安全管理</span>
-            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-red-500" />
+            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-destructive" />
           </div>
         </CardContent>
       </Card>

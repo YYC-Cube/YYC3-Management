@@ -32,6 +32,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Sidebar 语义变量（与 tailwind.config.ts 对齐） */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 221.2 83.2% 53.3%;
   }
 
   .dark {
@@ -59,6 +69,16 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Sidebar 语义变量（深色模式） */
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 94.1%;
   }
 }
 
@@ -256,7 +276,7 @@
 
   /* 渐变文本 */
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
   }
 
   /* 玻璃效果 */
@@ -276,7 +296,7 @@
 
   .button-glow::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    @apply absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent;
     transform: translateX(-100%);
     transition: transform 0.6s;
   }
@@ -402,9 +422,7 @@
     animation: fadeIn 0.5s ease-in-out;
   }
 
-  .animate-slide-in {
-    animation: slideIn 0.3s ease-out;
-  }
+  /* .animate-slide-in 已在上方 @layer utilities 中定义，此处不再重复 */
 
   .animate-shake {
     animation: shake 0.5s ease-in-out;

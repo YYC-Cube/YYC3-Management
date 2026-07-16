@@ -1,7 +1,7 @@
 # YYC³ 企业智能管理系统 — 运维文档
 
-> **最后更新**: 2026-07-16  
-> **版本**: 3.0.0  
+> **最后更新**: 2026-07-16
+> **版本**: 3.0.0
 > **维护团队**: YYC³
 
 ---
@@ -191,9 +191,10 @@ components/plugin-system/
 
 ### 6.1 Deploy to Production 失败
 
-**现象**: CI/CD Pipeline 中 `Deploy to Production` job 失败  
-**原因**: GitHub Secrets `DEPLOY_HOST`、`DEPLOY_USER`、`DEPLOY_KEY` 未配置  
+**现象**: CI/CD Pipeline 中 `Deploy to Production` job 失败
+**原因**: GitHub Secrets `DEPLOY_HOST`、`DEPLOY_USER`、`DEPLOY_KEY` 未配置
 **解决**: 在 GitHub repo → Settings → Secrets and variables → Actions 中添加：
+
 ```
 DEPLOY_HOST=<VPS IP>
 DEPLOY_USER=<SSH 用户名>
@@ -202,15 +203,16 @@ DEPLOY_KEY=<SSH 私钥>
 
 ### 6.2 Node 20 Deprecation 警告
 
-**现象**: CI 日志出现 `Node.js 20 is deprecated` 警告  
-**原因**: 部分 GitHub Actions (checkout@v4 等) 内部仍用 Node 20  
-**影响**: 仅警告，不影响功能。GitHub 会自动将 actions 强制运行在 Node 24  
+**现象**: CI 日志出现 `Node.js 20 is deprecated` 警告
+**原因**: 部分 GitHub Actions (checkout@v4 等) 内部仍用 Node 20
+**影响**: 仅警告，不影响功能。GitHub 会自动将 actions 强制运行在 Node 24
 **处理**: 无需操作，等待 actions 发布更新版本
 
 ### 6.3 既有测试失败
 
-**现象**: 全量 `bun run test` 有 ~447 个测试失败  
+**现象**: 全量 `bun run test` 有 ~447 个测试失败
 **原因**: 多为既有问题，与本次修改无关：
+
 - `chaos-engineering-examples.test.ts` — CPU 负载注入在 jsdom 中不工作
 - `mutation-testing.test.ts` — 变异测试框架逻辑问题
 - `offline-support.test.ts` — IndexedDB 在 jsdom 中不可用
@@ -243,8 +245,8 @@ NEXT_PUBLIC_API_BASE_URL: "https://api.0379.love"
 
 ### 7.3 安全注意
 
-> ⚠️ `.env` 和 `.env.local` 虽然在 `.gitignore` 中，但由于历史原因仍被 Git 跟踪。  
-> 其中含 `NODE_ENV=development` 会污染 CI 构建。  
+> ⚠️ `.env` 和 `.env.local` 虽然在 `.gitignore` 中，但由于历史原因仍被 Git 跟踪。
+> 其中含 `NODE_ENV=development` 会污染 CI 构建。
 > Pages 构建步骤已通过显式设置 `NODE_ENV=production` 覆盖。
 
 ---
@@ -293,6 +295,7 @@ docker run -p 3000:3000 yyc3-management
 ```bash
 sh scripts/patch-next-prerender.sh
 ```
+
 该脚本幂等安全：已打过则跳过，匹配不到则视为已修复。
 
 ---

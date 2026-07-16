@@ -150,8 +150,8 @@ export default function AIFloatingDemoPage() {
 
           <Card className="border-2 hover:border-primary/50 transition-colors">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-green-500" />
+              <div className="w-12 h-12 rounded-lg bg-success/10/10 flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-success" />
               </div>
               <CardTitle className="text-lg">可插拔架构</CardTitle>
               <CardDescription>
@@ -188,13 +188,13 @@ export default function AIFloatingDemoPage() {
                 <div className="text-sm text-muted-foreground">总任务数</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">
+                <div className="text-3xl font-bold text-success mb-2">
                   {metrics.completedTasks}
                 </div>
                 <div className="text-sm text-muted-foreground">已完成</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-red-600 mb-2">
+                <div className="text-3xl font-bold text-destructive mb-2">
                   {metrics.failedTasks}
                 </div>
                 <div className="text-sm text-muted-foreground">失败数</div>

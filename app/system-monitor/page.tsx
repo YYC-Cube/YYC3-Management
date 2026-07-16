@@ -229,12 +229,12 @@ export default function SystemMonitorPage() {
     switch (status) {
       case "running":
       case "normal":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "warning":
         return "text-yellow-600 bg-yellow-50"
       case "stopped":
       case "critical":
-        return "text-red-600 bg-red-50"
+        return "text-destructive bg-destructive/10"
       default:
         return "text-slate-600 bg-slate-50"
     }
@@ -244,12 +244,12 @@ export default function SystemMonitorPage() {
     switch (status) {
       case "running":
       case "normal":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-success" />
       case "warning":
         return <AlertTriangle className="w-4 h-4 text-yellow-600" />
       case "stopped":
       case "critical":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       default:
         return <Activity className="w-4 h-4 text-slate-600" />
     }
@@ -258,7 +258,7 @@ export default function SystemMonitorPage() {
   const getAlertIcon = (level: string) => {
     switch (level) {
       case "error":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       case "warning":
         return <AlertTriangle className="w-4 h-4 text-yellow-600" />
       case "info":
@@ -357,10 +357,10 @@ export default function SystemMonitorPage() {
         </div>
 
         {/* 自动刷新控制 */}
-        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="responsive-card border-r-[5px] border-r-success shadow-md">
           <CardHeader>
             <CardTitle className="text-base sm:text-lg flex items-center gap-2">
-              <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+              <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-success" />
               监控设置
             </CardTitle>
           </CardHeader>
@@ -529,10 +529,10 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
+              <Card className="responsive-card border-r-[5px] border-r-success shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
-                    <MemoryStick className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
+                    <MemoryStick className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-success" />
                     内存使用
                   </CardTitle>
                 </CardHeader>
@@ -606,10 +606,10 @@ export default function SystemMonitorPage() {
           {/* 安全状态 */}
           <TabsContent value="security" className="responsive-spacing">
             <div className="responsive-grid-3">
-              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
+              <Card className="responsive-card border-r-[5px] border-r-success shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
-                    <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
+                    <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-success" />
                     防火墙状态
                   </CardTitle>
                 </CardHeader>
@@ -617,7 +617,7 @@ export default function SystemMonitorPage() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">状态</span>
-                      <Badge className="bg-green-100 text-green-800">运行中</Badge>
+                      <Badge className="bg-success/10 text-success">运行中</Badge>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">规则数</span>
@@ -716,9 +716,9 @@ export default function SystemMonitorPage() {
                       <span className="text-yellow-600 ml-2">[WARN]</span>
                       <span className="ml-2">内存使用率超过阈值 - 68%</span>
                     </div>
-                    <div className="p-2 bg-red-50 rounded">
+                    <div className="p-2 bg-destructive/10 rounded">
                       <span className="text-slate-500">[2024-01-02 14:25:10]</span>
-                      <span className="text-red-600 ml-2">[ERROR]</span>
+                      <span className="text-destructive ml-2">[ERROR]</span>
                       <span className="ml-2">Elasticsearch服务连接失败</span>
                     </div>
                     <div className="p-2 bg-slate-50 rounded">
@@ -740,10 +740,10 @@ export default function SystemMonitorPage() {
           {/* 监控报告 */}
           <TabsContent value="reports" className="responsive-spacing">
             <div className="responsive-grid-2">
-              <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
+              <Card className="responsive-card border-r-[5px] border-r-success shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
-                    <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
+                    <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-success" />
                     性能报告
                   </CardTitle>
                 </CardHeader>
@@ -807,10 +807,10 @@ export default function SystemMonitorPage() {
         </Tabs>
 
         {/* 告警信息 */}
-        <Card className="responsive-card border-r-[5px] border-r-red-500 shadow-md">
+        <Card className="responsive-card border-r-[5px] border-r-destructive shadow-md">
           <CardHeader>
             <CardTitle className="text-base sm:text-lg flex items-center">
-              <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-600" />
+              <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-destructive" />
               系统告警
             </CardTitle>
           </CardHeader>

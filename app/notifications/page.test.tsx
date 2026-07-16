@@ -20,7 +20,7 @@ describe('NotificationsPage', () => {
 
     // 检查未读消息卡片
     expect(screen.getByText('未读消息')).toBeInTheDocument()
-    const unreadCard = screen.getByText('未读消息').closest('.border-r-red-400')
+    const unreadCard = screen.getByText('未读消息').closest('.border-r-destructive')
     expect(unreadCard?.querySelector('.text-3xl')).toHaveTextContent('2')
 
     // 检查重要通知卡片
@@ -30,7 +30,7 @@ describe('NotificationsPage', () => {
 
     // 检查处理率卡片
     expect(screen.getByText('处理率')).toBeInTheDocument()
-    const rateCard = screen.getByText('处理率').closest('.border-r-green-400')
+    const rateCard = screen.getByText('处理率').closest('.border-r-success')
     expect(rateCard?.querySelector('.text-3xl')).toHaveTextContent('95%')
   })
 

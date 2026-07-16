@@ -94,7 +94,7 @@ export function Header() {
           日程
         </Button>
 
-        <Button variant="ghost" size="sm" className="hidden md:flex text-green-500 hover:text-green-600 hover:bg-green-50">
+        <Button variant="ghost" size="sm" className="hidden md:flex text-success hover:text-success/80 hover:bg-success/20">
           <MessageSquare className="h-4 w-4 mr-2" />
           消息
         </Button>
@@ -117,7 +117,7 @@ export function Header() {
             <Button variant="ghost" size="sm" className="relative h-9 w-9 p-0 text-blue-500 hover:text-blue-600 hover:bg-blue-50">
               <Bell className="h-4 w-4" />
               {unreadCount > 0 && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500 hover:bg-red-600">
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-destructive/10 hover:bg-destructive/20">
                   {unreadCount}
                 </Badge>
               )}
@@ -151,7 +151,7 @@ export function Header() {
         {/* 设置 */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-green-500 hover:text-green-600 hover:bg-green-50">
+            <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-success hover:text-success/80 hover:bg-success/20">
               <Settings className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -204,7 +204,7 @@ export function Header() {
               帮助支持
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">
+            <DropdownMenuItem className="text-destructive">
               <LogOut className="mr-2 h-4 w-4" />
               退出登录
             </DropdownMenuItem>

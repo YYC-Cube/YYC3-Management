@@ -175,7 +175,7 @@ export default function CustomersPage() {
       case "重要":
         return "text-blue-600 bg-blue-50"
       case "普通":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "潜在":
         return "text-slate-600 bg-slate-50"
       default:
@@ -186,7 +186,7 @@ export default function CustomersPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "inactive":
         return "text-slate-600 bg-slate-50"
       default:
@@ -212,7 +212,7 @@ export default function CustomersPage() {
     return (
       <PageContainer title="客户管理" description="管理和维护客户关系">
         <div className="flex items-center justify-center min-h-100">
-          <Loader2 className="w-8 h-8 animate-spin text-green-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-success" />
         </div>
       </PageContainer>
     )
@@ -222,40 +222,40 @@ export default function CustomersPage() {
     <PageContainer title="客户管理" description="管理和维护客户关系">
       <div className="space-y-6">
         <div className="flex items-center justify-end">
-          <EnhancedButton onClick={openCreateDialog} className="bg-green-600 hover:bg-green-700 border-r-4 border-r-green-500 shadow-md">
+          <EnhancedButton onClick={openCreateDialog} className="bg-success/10 hover:bg-success/20 border-r-4 border-r-success shadow-md">
             <UserPlus className="w-4 h-4 mr-2 text-white" />
             新增客户
           </EnhancedButton>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">总客户数</p>
                 <p className="text-2xl font-bold text-slate-800">{customerStats.totalCustomers}</p>
-                <p className="text-xs text-green-600 mt-1">系统注册客户</p>
+                <p className="text-xs text-success mt-1">系统注册客户</p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Users className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-success" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">活跃客户</p>
                 <p className="text-2xl font-bold text-slate-800">{customerStats.activeCustomers}</p>
-                <p className="text-xs text-green-600 mt-1">当前活跃</p>
+                <p className="text-xs text-success mt-1">当前活跃</p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-6 h-6 text-success" />
               </div>
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">VIP客户</p>
@@ -268,15 +268,15 @@ export default function CustomersPage() {
             </div>
           </EnhancedCard>
 
-          <EnhancedCard className="border-r-[5px] border-r-green-500 shadow-md hover:border-r-green-600">
+          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">新增客户</p>
                 <p className="text-2xl font-bold text-slate-800">{customerStats.newCustomers}</p>
-                <p className="text-xs text-green-600 mt-1">今日新增</p>
+                <p className="text-xs text-success mt-1">今日新增</p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <UserPlus className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <UserPlus className="w-6 h-6 text-success" />
               </div>
             </div>
           </EnhancedCard>
@@ -301,7 +301,7 @@ export default function CustomersPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-success"
               >
                 <option value="all">全部客户</option>
                 <option value="active">活跃客户</option>
@@ -319,7 +319,7 @@ export default function CustomersPage() {
               {filteredCustomers.map((customer) => (
                 <div
                   key={customer.id}
-                  className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-green-500 shadow-md"
+                  className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-success shadow-md"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
@@ -357,7 +357,7 @@ export default function CustomersPage() {
                         size="sm"
                         variant="outline"
                         onClick={() => handleDeleteCustomer(customer.id)}
-                        className="text-red-600 hover:text-red-700"
+                        className="text-destructive hover:text-destructive/80"
                       >
                         <Trash2 className="w-4 h-4" />
                       </EnhancedButton>

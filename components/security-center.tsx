@@ -352,7 +352,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   const getLevelColor = (level: string) => {
     switch (level) {
       case "critical":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-destructive/10 text-destructive border-destructive/20"
       case "high":
         return "bg-orange-100 text-orange-800 border-orange-200"
       case "medium":
@@ -367,11 +367,11 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "new":
-        return "bg-red-100 text-red-800"
+        return "bg-destructive/10 text-destructive"
       case "investigating":
         return "bg-yellow-100 text-yellow-800"
       case "resolved":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "ignored":
         return "bg-slate-100 text-slate-800"
       default:
@@ -484,7 +484,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
 
       {/* 安全概览 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -492,38 +492,38 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                 <p className="text-3xl font-bold text-slate-900">{securityScore}</p>
                 <div className="flex items-center mt-2">
                   {securityScore >= 80 ? (
-                    <TrendingUp className="w-4 h-4 text-green-500" />
+                    <TrendingUp className="w-4 h-4 text-success" />
                   ) : (
-                    <TrendingDown className="w-4 h-4 text-red-500" />
+                    <TrendingDown className="w-4 h-4 text-destructive" />
                   )}
-                  <span className={`text-sm ml-1 ${securityScore >= 80 ? "text-green-600" : "text-red-600"}`}>
+                  <span className={`text-sm ml-1 ${securityScore >= 80 ? "text-success" : "text-destructive"}`}>
                     {securityScore >= 80 ? "安全" : "需要关注"}
                   </span>
                 </div>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Shield className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <Shield className="w-6 h-6 text-success" />
               </div>
             </div>
             <Progress value={securityScore} className="mt-4" />
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-red-500 shadow-md">
+        <Card className="border-r-[5px] border-r-destructive shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-600">安全事件</p>
                 <p className="text-3xl font-bold text-slate-900">{events.length}</p>
                 <div className="flex items-center mt-2">
-                  <AlertTriangle className="w-4 h-4 text-red-500" />
-                  <span className="text-sm text-red-600 ml-1">
+                  <AlertTriangle className="w-4 h-4 text-destructive" />
+                  <span className="text-sm text-destructive ml-1">
                     {events.filter((e) => e.status === "new").length} 待处理
                   </span>
                 </div>
               </div>
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <ShieldAlert className="w-6 h-6 text-red-600" />
+              <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
+                <ShieldAlert className="w-6 h-6 text-destructive" />
               </div>
             </div>
           </CardContent>
@@ -904,7 +904,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm">异常连接</span>
-                    <span className="text-sm font-medium text-red-600">3</span>
+                    <span className="text-sm font-medium text-destructive">3</span>
                   </div>
                 </div>
               </CardContent>
@@ -933,7 +933,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm">异常登录</span>
-                    <span className="text-sm font-medium text-red-600">2</span>
+                    <span className="text-sm font-medium text-destructive">2</span>
                   </div>
                 </div>
               </CardContent>

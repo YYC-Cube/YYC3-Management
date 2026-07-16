@@ -400,7 +400,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "text-green-600 bg-green-50"
+        return "text-success bg-success/10"
       case "inactive":
         return "text-slate-600 bg-slate-50"
       default:
@@ -411,7 +411,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "active":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-success" />
       case "inactive":
         return <XCircle className="w-4 h-4 text-slate-600" />
       default:
@@ -426,7 +426,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "manager":
         return <Star className="w-4 h-4 text-blue-600" />
       case "user":
-        return <Users className="w-4 h-4 text-green-600" />
+        return <Users className="w-4 h-4 text-success" />
       default:
         return <Users className="w-4 h-4 text-slate-600" />
     }
@@ -534,19 +534,19 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           </CardContent>
         </Card>
 
-        <Card className="responsive-card border-r-[5px] border-r-green-500 shadow-md">
+        <Card className="responsive-card border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-600">活跃用户</p>
                 <p className="text-xl sm:text-2xl font-bold text-slate-900">{userStats.activeUsers}</p>
                 <div className="flex items-center mt-1">
-                  <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-1" />
-                  <span className="text-xs sm:text-sm text-green-600">{userStats.loginRate.toFixed(1)}%</span>
+                  <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-success mr-1" />
+                  <span className="text-xs sm:text-sm text-success">{userStats.loginRate.toFixed(1)}%</span>
                 </div>
               </div>
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-success" />
               </div>
             </div>
             <div className="mt-3 sm:mt-4">
@@ -652,7 +652,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                               {(user.real_name || '').charAt(0)}
                             </div>
                             {user.status === "active" && (
-                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-success/10 rounded-full border-2 border-white"></div>
                             )}
                           </div>
                         </div>
@@ -700,7 +700,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                           variant="ghost"
                           size="sm"
                           onClick={() => handleUserAction(user.id, user.status === "active" ? "deactivate" : "activate")}
-                          className={user.status === "active" ? "text-red-600 hover:text-red-700" : "text-green-600 hover:text-green-700"}
+                          className={user.status === "active" ? "text-destructive hover:text-destructive/80" : "text-success hover:text-success/80"}
                         >
                           {user.status === "active" ? <UserX className="w-4 h-4" /> : <UserCheck className="w-4 h-4" />}
                         </Button>
@@ -708,7 +708,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                           variant="ghost"
                           size="sm"
                           onClick={() => handleDeleteUser(user.id)}
-                          className="text-red-600 hover:text-red-700"
+                          className="text-destructive hover:text-destructive/80"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -766,7 +766,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             {permissions.map((permission) => (
               <Card
                 key={permission.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-green-500 shadow-md"
+                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
@@ -815,7 +815,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.username}
                   onChange={(e) => handleChange("username", e.target.value)}
                   onBlur={() => handleBlur("username")}
-                  className={formErrors.username ? "border-red-500" : ""}
+                  className={formErrors.username ? "border-destructive/20" : ""}
                   disabled={!!editingUser}
                 />
                 <FormFieldError fieldName="username" errors={formErrors} />
@@ -832,7 +832,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.email}
                   onChange={(e) => handleChange("email", e.target.value)}
                   onBlur={() => handleBlur("email")}
-                  className={formErrors.email ? "border-red-500" : ""}
+                  className={formErrors.email ? "border-destructive/20" : ""}
                 />
                 <FormFieldError fieldName="email" errors={formErrors} />
               </div>
@@ -847,7 +847,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.real_name}
                   onChange={(e) => handleChange("real_name", e.target.value)}
                   onBlur={() => handleBlur("real_name")}
-                  className={formErrors.real_name ? "border-red-500" : ""}
+                  className={formErrors.real_name ? "border-destructive/20" : ""}
                 />
                 <FormFieldError fieldName="real_name" errors={formErrors} />
               </div>
@@ -861,7 +861,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.role}
                   onValueChange={(value) => handleChange("role", value)}
                 >
-                  <SelectTrigger className={formErrors.role ? "border-red-500" : ""}>
+                  <SelectTrigger className={formErrors.role ? "border-destructive/20" : ""}>
                     <SelectValue placeholder="选择角色" />
                   </SelectTrigger>
                   <SelectContent>
@@ -883,7 +883,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.department}
                   onChange={(e) => handleChange("department", e.target.value)}
                   onBlur={() => handleBlur("department")}
-                  className={formErrors.department ? "border-red-500" : ""}
+                  className={formErrors.department ? "border-destructive/20" : ""}
                 />
                 <FormFieldError fieldName="department" errors={formErrors} />
               </div>
@@ -897,7 +897,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                   value={formData.status}
                   onValueChange={(value) => handleChange("status", value as "active" | "inactive")}
                 >
-                  <SelectTrigger className={formErrors.status ? "border-red-500" : ""}>
+                  <SelectTrigger className={formErrors.status ? "border-destructive/20" : ""}>
                     <SelectValue placeholder="选择状态" />
                   </SelectTrigger>
                   <SelectContent>

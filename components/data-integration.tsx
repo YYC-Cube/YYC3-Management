@@ -97,11 +97,11 @@ export function DataIntegration() {
   const getStatusIcon = (status: DataSource["status"]) => {
     switch (status) {
       case "connected":
-        return <CheckCircle className="h-4 w-4 text-green-500" />
+        return <CheckCircle className="h-4 w-4 text-success" />
       case "disconnected":
         return <XCircle className="h-4 w-4 text-slate-400" />
       case "error":
-        return <AlertCircle className="h-4 w-4 text-red-500" />
+        return <AlertCircle className="h-4 w-4 text-destructive" />
     }
   }
 
@@ -121,9 +121,9 @@ export function DataIntegration() {
       case "mysql":
         return <Database className="h-5 w-5 text-blue-500" />
       case "redis":
-        return <Server className="h-5 w-5 text-red-500" />
+        return <Server className="h-5 w-5 text-destructive" />
       case "api":
-        return <Globe className="h-5 w-5 text-green-500" />
+        return <Globe className="h-5 w-5 text-success" />
       case "file":
         return <FileText className="h-5 w-5 text-orange-500" />
     }
@@ -373,9 +373,9 @@ export function DataIntegration() {
                     <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         {log.status === "success" ? (
-                          <CheckCircle className="h-4 w-4 text-green-500" />
+                          <CheckCircle className="h-4 w-4 text-success" />
                         ) : (
-                          <XCircle className="h-4 w-4 text-red-500" />
+                          <XCircle className="h-4 w-4 text-destructive" />
                         )}
                         <div>
                           <div className="font-medium text-sm">

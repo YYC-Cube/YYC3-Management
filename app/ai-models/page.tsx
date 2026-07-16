@@ -260,9 +260,9 @@ export default function AIModelManagementPage() {
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     {ollamaStatus === 'online' ? (
-                      <Wifi className="w-5 h-5 text-green-600" />
+                      <Wifi className="w-5 h-5 text-success" />
                     ) : ollamaStatus === 'offline' ? (
-                      <WifiOff className="w-5 h-5 text-red-600" />
+                      <WifiOff className="w-5 h-5 text-destructive" />
                     ) : (
                       <Search className="w-5 h-5" />
                     )}
@@ -357,14 +357,14 @@ export default function AIModelManagementPage() {
                   {testResults.map((result, i) => (
                     <div
                       key={i}
-                      className={`p-4 border rounded-lg ${result.success ? 'border-green-200 dark:border-green-800' : 'border-red-200 dark:border-red-800'}`}
+                      className={`p-4 border rounded-lg ${result.success ? 'border-success/20 dark:border-success/20' : 'border-destructive/20 dark:border-destructive/20'}`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
                           {result.success ? (
-                            <CheckCircle className="w-4 h-4 text-green-600" />
+                            <CheckCircle className="w-4 h-4 text-success" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-red-600" />
+                            <XCircle className="w-4 h-4 text-destructive" />
                           )}
                           <span className="font-medium">{result.model}</span>
                           <Badge variant="outline" className="text-xs">{result.provider}</Badge>
@@ -384,7 +384,7 @@ export default function AIModelManagementPage() {
                       {result.success ? (
                         <p className="text-sm text-foreground whitespace-pre-wrap">{result.response}</p>
                       ) : (
-                        <p className="text-sm text-red-600">{result.error}</p>
+                        <p className="text-sm text-destructive">{result.error}</p>
                       )}
                     </div>
                   ))}

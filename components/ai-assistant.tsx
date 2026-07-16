@@ -276,7 +276,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
 
   const getModelBadgeColor = (model: AIModel) => {
     if (model.type === "local") {
-      return "bg-green-100 text-green-800 border-green-200"
+      return "bg-success/10 text-success border-success/20"
     } else {
       return "bg-purple-100 text-purple-800 border-purple-200"
     }
@@ -414,10 +414,10 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       onClick={toggleVoiceInput}
                       variant="outline"
                       size="icon"
-                      className={`border-purple-200 ${isListening ? "bg-red-50 border-red-200" : "hover:bg-purple-50"}`}
+                      className={`border-purple-200 ${isListening ? "bg-destructive/10 border-destructive/20" : "hover:bg-purple-50"}`}
                     >
                       {isListening ? (
-                        <MicOff className="w-4 h-4 text-red-600" />
+                        <MicOff className="w-4 h-4 text-destructive" />
                       ) : (
                         <Mic className="w-4 h-4 text-purple-600" />
                       )}
@@ -518,12 +518,12 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       insight.type === "warning"
                         ? "bg-amber-100"
                         : insight.type === "success"
-                          ? "bg-green-100"
+                          ? "bg-success/10"
                           : "bg-purple-100"
                     }`}
                   >
                     {insight.type === "warning" && <AlertTriangle className="w-5 h-5 text-amber-600" />}
-                    {insight.type === "success" && <CheckCircle className="w-5 h-5 text-green-600" />}
+                    {insight.type === "success" && <CheckCircle className="w-5 h-5 text-success" />}
                     {insight.type === "info" && <Lightbulb className="w-5 h-5 text-purple-600" />}
                   </div>
                   <div className="flex-1">
@@ -569,24 +569,24 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
 
         <TabsContent value="settings" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="border-r-[5px] border-r-green-400 bg-white/80 backdrop-blur-sm border border-green-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+            <Card className="border-r-[5px] border-r-success bg-white/80 backdrop-blur-sm border border-success/20 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-4">本地模型</h3>
               <div className="space-y-4">
                 {getModelsByType("local").map((model) => (
                   <div
                     key={model.id}
-                    className="flex items-center justify-between p-3 border border-green-200 rounded-lg hover:bg-green-50 transition-all duration-200"
+                    className="flex items-center justify-between p-3 border border-success/20 rounded-lg hover:bg-success/20 transition-all duration-200"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-green-100 rounded-lg">
-                        <Server className="w-5 h-5 text-green-600" />
+                      <div className="p-2 bg-success/10 rounded-lg">
+                        <Server className="w-5 h-5 text-success" />
                       </div>
                       <div>
                         <h4 className="font-medium text-slate-900">{model.name}</h4>
                         <p className="text-sm text-slate-600">{model.description}</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200">
+                    <Badge variant="outline" className="bg-success/10 text-success border-success/20">
                       本地部署
                     </Badge>
                   </div>

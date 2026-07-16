@@ -171,7 +171,7 @@ export function AdvancedBIReports() {
       case "sales":
         return "bg-blue-100 text-blue-800"
       case "finance":
-        return "bg-green-100 text-green-800"
+        return "bg-success/10 text-success"
       case "customer":
         return "bg-purple-100 text-purple-800"
       case "operation":
@@ -277,7 +277,7 @@ export function AdvancedBIReports() {
             <Card className="p-6">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-2">
-                  <PieChart className="w-5 h-5 text-green-600" />
+                  <PieChart className="w-5 h-5 text-success" />
                   产品分类占比
                 </CardTitle>
               </CardHeader>
@@ -454,10 +454,10 @@ export function AdvancedBIReports() {
                     <p className="text-2xl font-bold text-blue-600 mt-2">↗ 15.2%</p>
                     <p className="text-sm text-blue-700">下月预计增长</p>
                   </div>
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-semibold text-green-900">客户增长</h4>
-                    <p className="text-2xl font-bold text-green-600 mt-2">+234</p>
-                    <p className="text-sm text-green-700">预计新增客户</p>
+                  <div className="p-4 bg-success/10 rounded-lg">
+                    <h4 className="font-semibold text-success">客户增长</h4>
+                    <p className="text-2xl font-bold text-success mt-2">+234</p>
+                    <p className="text-sm text-success">预计新增客户</p>
                   </div>
                   <div className="p-4 bg-purple-50 rounded-lg">
                     <h4 className="font-semibold text-purple-900">库存优化</h4>

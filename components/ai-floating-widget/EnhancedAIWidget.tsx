@@ -74,8 +74,6 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
   useEffect(() => {
     const initializeSystem = async () => {
       try {
-        // console.log('[EnhancedAIWidget] 开始初始化增强AI系统...');
-
         // 1. 初始化自治AI引擎
         const engineConfig: EngineConfig = {
           version: '2.0.0',
@@ -90,10 +88,7 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
 
         // 注册消息处理器
         newEngine.registerMessageHandler(MessageType.USER_INPUT, async (message, context) => {
-          // console.log('[EnhancedAIWidget] 处理用户输入:', message);
-
-          // 这里集成模型适配器来处理实际的AI推理
-          // 简化实现：返回模拟响应
+          // 集成模型适配器来处理实际的AI推理（简化实现：返回模拟响应）
           return {
             id: `response-${Date.now()}`,
             success: true,
@@ -111,12 +106,10 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
 
         await newEngine.start();
         setEngine(newEngine);
-        // console.log('[EnhancedAIWidget] 自治AI引擎初始化完成');
 
         // 2. 初始化学习系统
         const newLearningSystem = new UnifiedLearningSystem();
         setLearningSystem(newLearningSystem);
-        // console.log('[EnhancedAIWidget] 学习系统初始化完成');
 
         // 3. 初始化模型适配器
         const adapters = new Map<string, IModelAdapter>();
@@ -133,9 +126,11 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
           });
 
           adapters.set('local', localAdapter);
-          // console.log('[EnhancedAIWidget] 本地模型适配器初始化完成');
         } catch (error) {
-          // console.warn('[EnhancedAIWidget] 本地模型适配器初始化失败，将在运行时降级:', error);
+          // 本地模型不可用时降级处理（仅开发环境记录）
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('[EnhancedAIWidget] 本地模型适配器降级:', error);
+          }
         }
 
         setModelAdapters(adapters);
@@ -144,7 +139,6 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
         updateSystemStatus(newEngine, newLearningSystem, adapters);
 
         setSystemReady(true);
-        // console.log('[EnhancedAIWidget] 增强AI系统初始化完成');
 
       } catch (error) {
         console.error('[EnhancedAIWidget] 系统初始化失败:', error);
@@ -160,7 +154,6 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
     // 清理函数
     return () => {
       if (engine) {
-        // console.log('[EnhancedAIWidget] 关闭自治AI引擎...');
         engine.shutdown().catch(console.error);
       }
     };
@@ -221,7 +214,6 @@ export const EnhancedAIWidget: React.FC<EnhancedAIWidgetProps> = ({
       };
 
       learningSystem.getBehavioralLayer().recordBehavior(behavior);
-      // console.log('[EnhancedAIWidget] 记录用户行为:', action);
     },
     [learningSystem, userId]
   );

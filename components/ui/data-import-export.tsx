@@ -225,9 +225,9 @@ export function DataImportExport<T>({
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   {importResult.success ? (
-                    <CheckCircle2 className="w-5 h-5 text-green-600" />
+                    <CheckCircle2 className="w-5 h-5 text-success" />
                   ) : (
-                    <XCircle className="w-5 h-5 text-red-600" />
+                    <XCircle className="w-5 h-5 text-destructive" />
                   )}
                   <span className="font-medium">
                     {importResult.success ? "导入成功" : "导入完成（有错误）"}
@@ -239,12 +239,12 @@ export function DataImportExport<T>({
                     <div className="text-2xl font-bold text-slate-900">{importResult.totalRows}</div>
                     <div className="text-sm text-slate-600">总行数</div>
                   </div>
-                  <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <div className="text-2xl font-bold text-green-600">{importResult.validRows}</div>
+                  <div className="text-center p-4 bg-success/10 rounded-lg">
+                    <div className="text-2xl font-bold text-success">{importResult.validRows}</div>
                     <div className="text-sm text-slate-600">成功</div>
                   </div>
-                  <div className="text-center p-4 bg-red-50 rounded-lg">
-                    <div className="text-2xl font-bold text-red-600">{importResult.invalidRows}</div>
+                  <div className="text-center p-4 bg-destructive/10 rounded-lg">
+                    <div className="text-2xl font-bold text-destructive">{importResult.invalidRows}</div>
                     <div className="text-sm text-slate-600">失败</div>
                   </div>
                 </div>
@@ -255,8 +255,8 @@ export function DataImportExport<T>({
                     <div className="max-h-40 overflow-y-auto space-y-1">
                       {importResult.errors.map((error, index) => (
                         <div key={index} className="flex items-start gap-2 text-sm">
-                          <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                          <span className="text-red-700">{error}</span>
+                          <AlertCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
+                          <span className="text-destructive">{error}</span>
                         </div>
                       ))}
                     </div>
@@ -287,7 +287,7 @@ export function DataImportExport<T>({
                   className="flex flex-col items-center gap-2 h-auto py-6"
                   onClick={() => handleExport("csv")}
                 >
-                  <FileSpreadsheet className="w-8 h-8 text-green-600" />
+                  <FileSpreadsheet className="w-8 h-8 text-success" />
                   <div className="text-sm font-medium">CSV 格式</div>
                   <div className="text-xs text-slate-500">逗号分隔值</div>
                 </Button>

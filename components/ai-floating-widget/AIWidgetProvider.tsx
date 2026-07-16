@@ -11,9 +11,10 @@
 
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/index';
 import { IntelligentAIWidget } from '@/components/ai-floating-widget/IntelligentAIWidget';
+import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/index';
+import { useKeyboardShortcuts, type KeyboardShortcut } from '@/lib/utils/keyboard-shortcuts';
+import React, { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 
 // ====================================
 // 上下文类型
@@ -101,20 +102,27 @@ export const AIWidgetProvider: React.FC<{
   // 控制方法
   const showWidget = () => setIsWidgetVisible(true);
   const hideWidget = () => setIsWidgetVisible(false);
-  const toggleWidget = () => setIsWidgetVisible(prev => !prev);
+  const toggleWidget = useCallback(() => setIsWidgetVisible(prev => !prev), []);
 
-  // 快捷键支持 (Ctrl/Cmd + K)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        toggleWidget();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  // 快捷键支持 (Ctrl/Cmd + K) — 使用标准 useKeyboardShortcuts Hook
+  // 分别注册 Cmd+K (macOS) 和 Ctrl+K (Windows/Linux)
+  const aiShortcuts: KeyboardShortcut[] = [
+    {
+      key: 'k',
+      meta: true,
+      description: '切换 AI 浮窗 (macOS)',
+      action: toggleWidget,
+      preventDefault: true,
+    },
+    {
+      key: 'k',
+      ctrl: true,
+      description: '切换 AI 浮窗 (Windows/Linux)',
+      action: toggleWidget,
+      preventDefault: true,
+    },
+  ];
+  useKeyboardShortcuts({ shortcuts: aiShortcuts, global: true });
 
   return (
     <AIWidgetContext.Provider
@@ -128,7 +136,7 @@ export const AIWidgetProvider: React.FC<{
     >
       {children}
       {isWidgetVisible && agenticCore && (
-        <IntelligentAIWidget 
+        <IntelligentAIWidget
           agenticCore={agenticCore}
           onClose={hideWidget}
         />

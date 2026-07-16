@@ -445,11 +445,11 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                     strokeWidth="4"
                     fill="transparent"
                     strokeDasharray={`${2 * Math.PI * 30 * 0.01 * systemStatus.memory} ${2 * Math.PI * 30}`}
-                    className="text-green-600 transition-all duration-500"
+                    className="text-success transition-all duration-500"
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Memory className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
+                  <Memory className="w-6 h-6 sm:w-8 sm:h-8 text-success" />
                 </div>
               </div>
               <div className="text-lg sm:text-xl font-bold text-slate-800">{systemStatus.memory}%</div>
@@ -733,7 +733,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   <RefreshCw className={`w-3 h-3 mr-1 ${loading ? "animate-spin" : ""}`} />
                   测试连接
                 </Button>
-                <Badge className="bg-green-100 text-green-800">
+                <Badge className="bg-success/10 text-success">
                   <CheckCircle className="w-3 h-3 mr-1" />
                   已连接
                 </Badge>
@@ -896,7 +896,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
                   测试连接
                 </Button>
                 <Badge
-                  className={systemConfig.cache.enabled ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-800"}
+                  className={systemConfig.cache.enabled ? "bg-success/10 text-success" : "bg-slate-100 text-slate-800"}
                 >
                   {systemConfig.cache.enabled ? "已启用" : "已禁用"}
                 </Badge>
@@ -1014,7 +1014,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
             <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-md">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
-                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-600" />
+                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-destructive" />
                   访问安全
                 </CardTitle>
               </CardHeader>
@@ -1145,7 +1145,7 @@ export default function SystemSettings({ showTitle = true }: SystemSettingsProps
             <Card className="responsive-card border-r-[5px] border-r-slate-500 shadow-md">
               <CardHeader>
                 <CardTitle className="text-base sm:text-lg flex items-center">
-                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-green-600" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-success" />
                   邮件通知
                 </CardTitle>
                 <div className="flex items-center gap-2">
