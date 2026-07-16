@@ -33,18 +33,42 @@ fi
 
 # 已打过补丁则直接退出
 if grep -q "appConfig: { revalidate: 0 }" "$UTILS" 2>/dev/null; then
-  echo "==> [patch-next] 补丁已存在，跳过"
-  exit 0
+  echo "==> [patch-next] /_global-error 补丁已存在，跳过"
+else
+  # 目标：仅替换 _global-error 早返回分支内的 appConfig: {}
+  # 用 perl 做多行精确匹配，避免误伤其他 appConfig 赋值
+  if perl -0pi -e 's/(isNextImageImported: false,\s*\n\s*)appConfig: \{\}/$1appConfig: { revalidate: 0 }/' "$UTILS"; then
+    if grep -q "appConfig: { revalidate: 0 }" "$UTILS"; then
+      echo "==> [patch-next] 已修补 /_global-error 预渲染 Bug (appConfig: {} → { revalidate: 0 })"
+    else
+      echo "==> [patch-next] 未匹配到目标代码 —— 可能该 Next.js 版本已修复，跳过"
+    fi
+  else
+    echo "==> [patch-next] perl 替换失败，跳过（不阻断构建）"
+  fi
 fi
 
-# 目标：仅替换 _global-error 早返回分支内的 appConfig: {}
-# 用 perl 做多行精确匹配，避免误伤其他 appConfig 赋值
-if perl -0pi -e 's/(isNextImageImported: false,\s*\n\s*)appConfig: \{\}/$1appConfig: { revalidate: 0 }/' "$UTILS"; then
-  if grep -q "appConfig: { revalidate: 0 }" "$UTILS"; then
-    echo "==> [patch-next] 已修补 /_global-error 预渲染 Bug (appConfig: {} → { revalidate: 0 })"
-  else
-    echo "==> [patch-next] 未匹配到目标代码 —— 可能该 Next.js 版本已修复，跳过"
+# ==========================================
+# 补丁 2：TypeScript 7.0 兼容性
+# ==========================================
+# Next.js 16.2.x 的 verify-typescript-setup.js 检查 typescript/lib/typescript.js
+# 是否存在来判断 TypeScript 是否安装。但 TypeScript 7.0 是原生 Go 编译器，
+# 不再有 lib/typescript.js 文件，导致 Next.js 在 CI 中误判 TypeScript 缺失并
+# 调用 process.exit(1) 静默崩溃（CI 不允许自动安装依赖）。
+#
+# 修复：将检查路径从 typescript/lib/typescript.js 改为 typescript/package.json
+#
+VERIFY_TS="$ROOT_DIR/node_modules/next/dist/lib/verify-typescript-setup.js"
+
+if [ -f "$VERIFY_TS" ]; then
+  if grep -q "typescript/package.json" "$VERIFY_TS" 2>/dev/null && ! grep -q "typescript/lib/typescript.js" "$VERIFY_TS" 2>/dev/null; then
+    echo "==> [patch-next] TS 7.0 兼容补丁已存在，跳过"
+  elif grep -q "typescript/lib/typescript.js" "$VERIFY_TS" 2>/dev/null; then
+    sed -i.bak "s|typescript/lib/typescript.js|typescript/package.json|g" "$VERIFY_TS" && rm -f "$VERIFY_TS.bak"
+    if grep -q "typescript/package.json" "$VERIFY_TS" 2>/dev/null; then
+      echo "==> [patch-next] 已修补 TypeScript 7.0 兼容性 (lib/typescript.js → package.json)"
+    else
+      echo "==> [patch-next] TS 7.0 补丁替换失败，跳过"
+    fi
   fi
-else
-  echo "==> [patch-next] perl 替换失败，跳过（不阻断构建）"
 fi
