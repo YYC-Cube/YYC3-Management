@@ -549,7 +549,7 @@ export function OKRManagementEnhanced() {
               </CardContent>
             </Card>
 
-            <Card className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-all duration-200 hover:scale-105">
+            <Card className="border-r-[5px] border-r-chart-1 hover:shadow-md transition-all duration-200 hover:scale-105">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>

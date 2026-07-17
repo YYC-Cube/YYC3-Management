@@ -269,7 +269,7 @@ export function OAApproval() {
         {stats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <Card key={index} className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-shadow">
+            <Card key={index} className="border-r-[5px] border-r-primary hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
