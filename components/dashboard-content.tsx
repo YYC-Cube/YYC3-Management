@@ -155,20 +155,20 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
   ]
 
   return (
-    <div className="p-6 space-y-6 bg-slate-50 min-h-full">
+    <div className="p-6 space-y-6 bg-muted min-h-full">
       {/* 页面标题和时间 */}
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
-            <h1 className="text-3xl font-bold text-slate-900">运营中心</h1>
+            <h1 className="text-3xl font-bold text-foreground">运营中心</h1>
           )}
-          <p className="text-slate-600 mt-1">欢迎回来，这里是您的企业管理控制台</p>
+          <p className="text-muted-foreground mt-1">欢迎回来，这里是您的企业管理控制台</p>
         </div>
         <div className="text-right" suppressHydrationWarning>
-          <div className="text-2xl font-bold text-slate-900" suppressHydrationWarning>
+          <div className="text-2xl font-bold text-foreground" suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleTimeString("zh-CN", { hour12: false }) : "--:--:--"}
           </div>
-          <div className="text-sm text-slate-500" suppressHydrationWarning>
+          <div className="text-sm text-muted-foreground" suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
@@ -194,8 +194,8 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-600">{stat.title}</p>
-                    <p className="text-2xl font-bold text-slate-900 mt-2">{stat.value}</p>
+                    <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                    <p className="text-2xl font-bold text-foreground mt-2">{stat.value}</p>
                     <div className="flex items-center mt-2">
                       {stat.changeType === "increase" ? (
                         <ArrowUpRight className="h-4 w-4 text-success" />
@@ -208,7 +208,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                       >
                         {stat.change}
                       </span>
-                      <span className="text-sm text-slate-500 ml-1">vs 上月</span>
+                      <span className="text-sm text-muted-foreground ml-1">vs 上月</span>
                     </div>
                   </div>
                   <div className={`p-3 rounded-full ${stat.bgColor}`}>
@@ -293,7 +293,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                   >
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-slate-900">{project.name}</h4>
+                        <h4 className="font-medium text-foreground">{project.name}</h4>
                         <Badge
                           variant={
                             project.status === "即将完成"
@@ -306,7 +306,7 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                           {project.status}
                         </Badge>
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-slate-500">
+                      <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                         <span className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {project.dueDate}
@@ -354,11 +354,11 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                     <AvatarFallback>{activity.user[0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-slate-900">
+                    <p className="text-sm text-foreground">
                       <span className="font-medium">{activity.user}</span> {activity.action}{" "}
                       <span className="font-medium text-blue-600">{activity.target}</span>
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">{activity.time}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
                   </div>
                 </div>
               ))}

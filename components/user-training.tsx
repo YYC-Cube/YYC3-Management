@@ -236,7 +236,7 @@ export function UserTraining() {
       case "advanced":
         return "bg-destructive/10 text-destructive"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -281,12 +281,12 @@ export function UserTraining() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">总体进度</p>
+              <p className="text-sm text-muted-foreground">总体进度</p>
               <p className="text-2xl font-bold text-orange-600">{overallProgress}%</p>
             </div>
             <TrendingUp className="w-8 h-8 text-orange-400" />
           </div>
-          <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
+          <div className="w-full bg-muted rounded-full h-2 mt-2">
             <div
               className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${overallProgress}%` }}
@@ -297,7 +297,7 @@ export function UserTraining() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">已完成模块</p>
+              <p className="text-sm text-muted-foreground">已完成模块</p>
               <p className="text-2xl font-bold text-orange-600">{trainingModules.filter((m) => m.completed).length}</p>
             </div>
             <CheckCircle className="w-8 h-8 text-orange-400" />
@@ -307,7 +307,7 @@ export function UserTraining() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">学习时长</p>
+              <p className="text-sm text-muted-foreground">学习时长</p>
               <p className="text-2xl font-bold text-orange-600">
                 {trainingModules.filter((m) => m.completed).reduce((sum, m) => sum + m.duration, 0)}分钟
               </p>
@@ -319,7 +319,7 @@ export function UserTraining() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">获得证书</p>
+              <p className="text-sm text-muted-foreground">获得证书</p>
               <p className="text-2xl font-bold text-orange-600">
                 {userProgress.reduce((sum, user) => sum + user.certificates, 0)}
               </p>
@@ -351,7 +351,7 @@ export function UserTraining() {
                         <div className="p-2 bg-orange-100 rounded-lg">{getTypeIcon(module.type)}</div>
                         <div>
                           <h4 className="font-medium text-sm">{module.title}</h4>
-                          <p className="text-xs text-slate-600">{module.duration}分钟</p>
+                          <p className="text-xs text-muted-foreground">{module.duration}分钟</p>
                         </div>
                       </div>
                       <Button
@@ -393,11 +393,11 @@ export function UserTraining() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-600 mb-2">{trainingModules.length}</div>
-                <p className="text-slate-600">培训模块</p>
+                <p className="text-muted-foreground">培训模块</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-600 mb-2">{userProgress.length}</div>
-                <p className="text-slate-600">参与用户</p>
+                <p className="text-muted-foreground">参与用户</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-600 mb-2">
@@ -405,7 +405,7 @@ export function UserTraining() {
                     (trainingModules.reduce((sum, module) => sum + module.rating, 0) / trainingModules.length) * 10,
                   ) / 10}
                 </div>
-                <p className="text-slate-600">平均评分</p>
+                <p className="text-muted-foreground">平均评分</p>
               </div>
             </div>
           </Card>
@@ -423,7 +423,7 @@ export function UserTraining() {
                     <div className="p-3 bg-orange-100 rounded-lg">{getTypeIcon(module.type)}</div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                        <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                           {module.title}
                         </h3>
                         <Badge className={getDifficultyColor(module.difficulty)}>
@@ -431,8 +431,8 @@ export function UserTraining() {
                         </Badge>
                         {module.completed && <CheckCircle className="w-4 h-4 text-success" />}
                       </div>
-                      <p className="text-sm text-slate-600 mb-2">{module.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-slate-500">
+                      <p className="text-sm text-muted-foreground mb-2">{module.description}</p>
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
                           {module.duration}分钟
@@ -445,7 +445,7 @@ export function UserTraining() {
                           <Users className="w-3 h-3" />
                           {module.enrollments}人学习
                         </span>
-                        <span className="text-slate-400">#{module.category}</span>
+                        <span className="text-muted-foreground">#{module.category}</span>
                       </div>
                       {module.progress > 0 && !module.completed && (
                         <div className="mt-2">
@@ -453,7 +453,7 @@ export function UserTraining() {
                             <span>学习进度</span>
                             <span>{module.progress}%</span>
                           </div>
-                          <div className="w-full bg-slate-200 rounded-full h-1">
+                          <div className="w-full bg-muted rounded-full h-1">
                             <div
                               className="bg-linear-to-r from-orange-400 to-orange-500 h-1 rounded-full transition-all duration-1000 ease-out"
                               style={{ width: `${module.progress}%` }}
@@ -496,10 +496,10 @@ export function UserTraining() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                       {path.name}
                     </h3>
-                    <p className="text-slate-600 mt-1">{path.description}</p>
+                    <p className="text-muted-foreground mt-1">{path.description}</p>
                   </div>
                   <Badge className={getDifficultyColor(path.difficulty)}>{getDifficultyText(path.difficulty)}</Badge>
                 </div>
@@ -507,15 +507,15 @@ export function UserTraining() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="text-center p-3 bg-orange-50 rounded-lg">
                     <div className="text-xl font-bold text-orange-600">{path.modules.length}</div>
-                    <p className="text-sm text-slate-600">培训模块</p>
+                    <p className="text-sm text-muted-foreground">培训模块</p>
                   </div>
                   <div className="text-center p-3 bg-orange-50 rounded-lg">
                     <div className="text-xl font-bold text-orange-600">{path.estimatedTime}分钟</div>
-                    <p className="text-sm text-slate-600">预计时长</p>
+                    <p className="text-sm text-muted-foreground">预计时长</p>
                   </div>
                   <div className="text-center p-3 bg-orange-50 rounded-lg">
                     <div className="text-xl font-bold text-orange-600">{path.completionRate}%</div>
-                    <p className="text-sm text-slate-600">完成率</p>
+                    <p className="text-sm text-muted-foreground">完成率</p>
                   </div>
                 </div>
 
@@ -561,13 +561,13 @@ export function UserTraining() {
                       <Users className="w-6 h-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                      <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                         {user.userName}
                       </h3>
-                      <p className="text-sm text-slate-600">
+                      <p className="text-sm text-muted-foreground">
                         已完成 {user.completedModules}/{user.totalModules} 个模块
                       </p>
-                      <p className="text-xs text-slate-500">最后活动: {user.lastActivity.toLocaleString()}</p>
+                      <p className="text-xs text-muted-foreground">最后活动: {user.lastActivity.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -575,14 +575,14 @@ export function UserTraining() {
                     <div className="flex items-center gap-4 mb-2">
                       <div className="text-center">
                         <div className="text-lg font-bold text-orange-600">{user.totalHours}h</div>
-                        <p className="text-xs text-slate-600">学习时长</p>
+                        <p className="text-xs text-muted-foreground">学习时长</p>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-bold text-orange-600">{user.certificates}</div>
-                        <p className="text-xs text-slate-600">获得证书</p>
+                        <p className="text-xs text-muted-foreground">获得证书</p>
                       </div>
                     </div>
-                    <div className="w-32 bg-slate-200 rounded-full h-2">
+                    <div className="w-32 bg-muted rounded-full h-2">
                       <div
                         className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${(user.completedModules / user.totalModules) * 100}%` }}
@@ -606,7 +606,7 @@ export function UserTraining() {
                         <span>{category}</span>
                         <span>{85 - index * 5}%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="bg-linear-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000 ease-out"
                           style={{ width: `${85 - index * 5}%` }}

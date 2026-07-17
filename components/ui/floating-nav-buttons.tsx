@@ -36,7 +36,7 @@ export function FloatingNavButtons({ className }: FloatingNavButtonsProps) {
           group relative w-14 h-14 rounded-full
           bg-linear-to-br from-slate-400 via-slate-500 to-slate-600
           shadow-lg hover:shadow-xl
-          border-2 border-slate-300
+          border-2 border-input
           transition-all duration-300 ease-out
           ${isBackHovered ? "scale-110 -translate-y-1" : "scale-100"}
           before:absolute before:inset-0 before:rounded-full
@@ -56,7 +56,7 @@ export function FloatingNavButtons({ className }: FloatingNavButtonsProps) {
         {/* 光晕效果 */}
         <div
           className={`
-          absolute inset-0 rounded-full bg-slate-400/30 blur-md
+          absolute inset-0 rounded-full bg-muted-foreground/30/30 blur-md
           transition-all duration-300
           ${isBackHovered ? "scale-150 opacity-60" : "scale-100 opacity-0"}
         `}

@@ -360,7 +360,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       case "low":
         return "bg-blue-100 text-blue-800 border-blue-200"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -373,9 +373,9 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       case "resolved":
         return "bg-success/10 text-success"
       case "ignored":
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -446,13 +446,13 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <div className="h-8 bg-slate-200 rounded w-48 animate-pulse"></div>
-            <div className="h-4 bg-slate-200 rounded w-64 mt-2 animate-pulse"></div>
+            <div className="h-8 bg-muted rounded w-48 animate-pulse"></div>
+            <div className="h-4 bg-muted rounded w-64 mt-2 animate-pulse"></div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-32 bg-slate-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-32 bg-muted rounded-xl animate-pulse"></div>
           ))}
         </div>
         <div className="h-96 bg-muted rounded-xl animate-pulse"></div>
@@ -466,9 +466,9 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
-            <h1 className="text-3xl font-bold text-slate-900">安全中心</h1>
+            <h1 className="text-3xl font-bold text-foreground">安全中心</h1>
           )}
-          <p className="text-slate-600 mt-2">监控和管理系统安全状态</p>
+          <p className="text-muted-foreground mt-2">监控和管理系统安全状态</p>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="sm">
@@ -488,8 +488,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">安全评分</p>
-                <p className="text-3xl font-bold text-slate-900">{securityScore}</p>
+                <p className="text-sm font-medium text-muted-foreground">安全评分</p>
+                <p className="text-3xl font-bold text-foreground">{securityScore}</p>
                 <div className="flex items-center mt-2">
                   {securityScore >= 80 ? (
                     <TrendingUp className="w-4 h-4 text-success" />
@@ -513,8 +513,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">安全事件</p>
-                <p className="text-3xl font-bold text-slate-900">{events.length}</p>
+                <p className="text-sm font-medium text-muted-foreground">安全事件</p>
+                <p className="text-3xl font-bold text-foreground">{events.length}</p>
                 <div className="flex items-center mt-2">
                   <AlertTriangle className="w-4 h-4 text-destructive" />
                   <span className="text-sm text-destructive ml-1">
@@ -533,8 +533,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">安全策略</p>
-                <p className="text-3xl font-bold text-slate-900">{policies.filter((p) => p.enabled).length}</p>
+                <p className="text-sm font-medium text-muted-foreground">安全策略</p>
+                <p className="text-3xl font-bold text-foreground">{policies.filter((p) => p.enabled).length}</p>
                 <div className="flex items-center mt-2">
                   <CheckCircle className="w-4 h-4 text-blue-500" />
                   <span className="text-sm text-blue-600 ml-1">/ {policies.length} 已启用</span>
@@ -551,8 +551,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">威胁情报</p>
-                <p className="text-3xl font-bold text-slate-900">{threats.length}</p>
+                <p className="text-sm font-medium text-muted-foreground">威胁情报</p>
+                <p className="text-3xl font-bold text-foreground">{threats.length}</p>
                 <div className="flex items-center mt-2">
                   <Zap className="w-4 h-4 text-orange-500" />
                   <span className="text-sm text-orange-600 ml-1">
@@ -661,7 +661,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                 {events.slice(0, 5).map((event) => (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-slate-50 cursor-pointer"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted cursor-pointer"
                     onClick={() => {
                       setSelectedEvent(event)
                       setIsEventDialogOpen(true)
@@ -671,8 +671,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                       <div className={`p-2 rounded-full ${getLevelColor(event.level)}`}>{getTypeIcon(event.type)}</div>
                       <div>
                         <h4 className="font-medium">{event.title}</h4>
-                        <p className="text-sm text-slate-600">{event.description}</p>
-                        <p className="text-xs text-slate-500 mt-1">{event.timestamp}</p>
+                        <p className="text-sm text-muted-foreground">{event.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{event.timestamp}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -690,7 +690,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           {/* 搜索和筛选 */}
           <div className="flex items-center gap-4">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="搜索安全事件..."
                 value={searchQuery}
@@ -723,7 +723,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                 {filteredEvents.map((event) => (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-slate-50"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted"
                   >
                     <div className="flex items-center gap-4 flex-1">
                       <div className={`p-2 rounded-full ${getLevelColor(event.level)}`}>{getTypeIcon(event.type)}</div>
@@ -733,8 +733,8 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                           <Badge className={getLevelColor(event.level)}>{event.level}</Badge>
                           <Badge className={getStatusColor(event.status)}>{event.status}</Badge>
                         </div>
-                        <p className="text-sm text-slate-600 mb-2">{event.description}</p>
-                        <div className="flex items-center gap-4 text-xs text-slate-500">
+                        <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
                           <span>来源: {event.source}</span>
                           <span>时间: {event.timestamp}</span>
                           {event.details.ip && <span>IP: {event.details.ip}</span>}
@@ -785,13 +785,13 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <h4 className="font-medium">{policy.name}</h4>
-                        <p className="text-sm text-slate-600">{policy.description}</p>
+                        <p className="text-sm text-muted-foreground">{policy.description}</p>
                       </div>
                       <Switch checked={policy.enabled} onCheckedChange={() => handlePolicyToggle(policy.id)} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {policy.rules.map((rule) => (
-                        <div key={rule.id} className="flex items-center justify-between p-2 bg-slate-50 rounded">
+                        <div key={rule.id} className="flex items-center justify-between p-2 bg-muted rounded">
                           <span className="text-sm">{rule.name}</span>
                           <div className="flex items-center gap-2">
                             {typeof rule.value === "boolean" ? (
@@ -825,9 +825,9 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                         <h4 className="font-medium">{threat.title}</h4>
                         <Badge className={getLevelColor(threat.severity)}>{threat.severity}</Badge>
                       </div>
-                      <span className="text-sm text-slate-500">{threat.timestamp}</span>
+                      <span className="text-sm text-muted-foreground">{threat.timestamp}</span>
                     </div>
-                    <p className="text-sm text-slate-600 mb-3">{threat.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{threat.description}</p>
                     <div className="space-y-2">
                       <div>
                         <span className="text-sm font-medium">威胁指标:</span>
@@ -841,7 +841,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                       </div>
                       <div>
                         <span className="text-sm font-medium">缓解措施:</span>
-                        <p className="text-sm text-slate-600 mt-1">{threat.mitigation}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{threat.mitigation}</p>
                       </div>
                     </div>
                   </div>
@@ -985,31 +985,31 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
                   <div className="mt-2 space-y-2">
                     {selectedEvent.details.ip && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-slate-600">IP地址:</span>
+                        <span className="text-sm text-muted-foreground">IP地址:</span>
                         <span className="text-sm">{selectedEvent.details.ip}</span>
                       </div>
                     )}
                     {selectedEvent.details.user && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-slate-600">用户:</span>
+                        <span className="text-sm text-muted-foreground">用户:</span>
                         <span className="text-sm">{selectedEvent.details.user}</span>
                       </div>
                     )}
                     {selectedEvent.details.location && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-slate-600">位置:</span>
+                        <span className="text-sm text-muted-foreground">位置:</span>
                         <span className="text-sm">{selectedEvent.details.location}</span>
                       </div>
                     )}
                     {selectedEvent.details.device && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-slate-600">设备:</span>
+                        <span className="text-sm text-muted-foreground">设备:</span>
                         <span className="text-sm">{selectedEvent.details.device}</span>
                       </div>
                     )}
                     {selectedEvent.details.action && (
                       <div className="flex justify-between">
-                        <span className="text-sm text-slate-600">操作:</span>
+                        <span className="text-sm text-muted-foreground">操作:</span>
                         <span className="text-sm">{selectedEvent.details.action}</span>
                       </div>
                     )}

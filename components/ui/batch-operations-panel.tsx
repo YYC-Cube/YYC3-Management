@@ -232,7 +232,7 @@ export function BatchOperationsPanel<T>({
               >
                 <Edit className="w-8 h-8 text-blue-600" />
                 <div className="text-sm font-medium">批量创建</div>
-                <div className="text-xs text-slate-500">创建新数据</div>
+                <div className="text-xs text-muted-foreground">创建新数据</div>
               </Button>
             )}
 
@@ -245,7 +245,7 @@ export function BatchOperationsPanel<T>({
               >
                 <Edit className="w-8 h-8 text-success" />
                 <div className="text-sm font-medium">批量更新状态</div>
-                <div className="text-xs text-slate-500">更新数据状态</div>
+                <div className="text-xs text-muted-foreground">更新数据状态</div>
               </Button>
             )}
 
@@ -258,7 +258,7 @@ export function BatchOperationsPanel<T>({
               >
                 <Trash2 className="w-8 h-8 text-destructive" />
                 <div className="text-sm font-medium">批量删除</div>
-                <div className="text-xs text-slate-500">删除选中数据</div>
+                <div className="text-xs text-muted-foreground">删除选中数据</div>
               </Button>
             )}
           </div>
@@ -295,7 +295,7 @@ export function BatchOperationsPanel<T>({
               </span>
             </div>
             <Progress value={(progress.processed / progress.total) * 100} />
-            <div className="text-center text-sm text-slate-600">
+            <div className="text-center text-sm text-muted-foreground">
               正在处理... 请稍候
             </div>
           </div>
@@ -313,17 +313,17 @@ export function BatchOperationsPanel<T>({
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-slate-50 rounded-lg">
-                <div className="text-2xl font-bold text-slate-900">{result.processed}</div>
-                <div className="text-sm text-slate-600">处理总数</div>
+              <div className="text-center p-4 bg-muted rounded-lg">
+                <div className="text-2xl font-bold text-foreground">{result.processed}</div>
+                <div className="text-sm text-muted-foreground">处理总数</div>
               </div>
               <div className="text-center p-4 bg-success/10 rounded-lg">
                 <div className="text-2xl font-bold text-success">{result.succeeded.length}</div>
-                <div className="text-sm text-slate-600">成功</div>
+                <div className="text-sm text-muted-foreground">成功</div>
               </div>
               <div className="text-center p-4 bg-destructive/10 rounded-lg">
                 <div className="text-2xl font-bold text-destructive">{result.failed.length}</div>
-                <div className="text-sm text-slate-600">失败</div>
+                <div className="text-sm text-muted-foreground">失败</div>
               </div>
             </div>
 

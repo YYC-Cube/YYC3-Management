@@ -126,14 +126,14 @@ export default function EnhancedAIFloatingDemo() {
                 <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
                   <Cpu className="w-6 h-6 text-purple-600 dark:text-purple-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-foreground dark:text-white">
                   自治AI引擎
                 </h3>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
+              <p className="text-sm text-muted-foreground dark:text-muted-foreground/70">
                 实现"感知-思考-行动"闭环的中央指挥系统，支持任务规划、调度、执行和监控。
               </p>
-              <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
+              <ul className="text-xs text-muted-foreground dark:text-muted-foreground space-y-2">
                 <li>✓ 消息总线架构</li>
                 <li>✓ 任务调度器</li>
                 <li>✓ 状态持久化</li>
@@ -149,14 +149,14 @@ export default function EnhancedAIFloatingDemo() {
                 <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <Brain className="w-6 h-6 text-blue-600 dark:text-blue-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-foreground dark:text-white">
                   模型适配器
                 </h3>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
+              <p className="text-sm text-muted-foreground dark:text-muted-foreground/70">
                 统一AI模型接口，支持OpenAI、本地模型等多种提供商，实现一次编码多模型运行。
               </p>
-              <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
+              <ul className="text-xs text-muted-foreground dark:text-muted-foreground space-y-2">
                 <li>✓ 统一接口设计</li>
                 <li>✓ 流式处理支持</li>
                 <li>✓ 自动缓存优化</li>
@@ -172,14 +172,14 @@ export default function EnhancedAIFloatingDemo() {
                 <div className="p-3 bg-pink-100 dark:bg-pink-900 rounded-lg">
                   <Lightbulb className="w-6 h-6 text-pink-600 dark:text-pink-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-foreground dark:text-white">
                   三层学习系统
                 </h3>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
+              <p className="text-sm text-muted-foreground dark:text-muted-foreground/70">
                 行为、策略、知识三层递进式学习架构，实现自适应智能优化。
               </p>
-              <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
+              <ul className="text-xs text-muted-foreground dark:text-muted-foreground space-y-2">
                 <li>✓ 行为模式识别</li>
                 <li>✓ 策略自动优化</li>
                 <li>✓ 知识图谱构建</li>
@@ -191,7 +191,7 @@ export default function EnhancedAIFloatingDemo() {
 
         {/* 系统统计 */}
         <Card className="p-6 bg-linear-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
-          <h3 className="text-xl font-semibold mb-4 text-slate-900 dark:text-white">
+          <h3 className="text-xl font-semibold mb-4 text-foreground dark:text-white">
             实时系统统计
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -199,7 +199,7 @@ export default function EnhancedAIFloatingDemo() {
               <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
                 {systemStats.totalInteractions}
               </div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">
+              <div className="text-sm text-muted-foreground dark:text-muted-foreground">
                 总交互次数
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function EnhancedAIFloatingDemo() {
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                 {systemStats.learningProgress.toFixed(1)}%
               </div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">
+              <div className="text-sm text-muted-foreground dark:text-muted-foreground">
                 学习进度
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function EnhancedAIFloatingDemo() {
               <div className="text-3xl font-bold text-pink-600 dark:text-pink-400">
                 {systemStats.activeSessions}
               </div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">
+              <div className="text-sm text-muted-foreground dark:text-muted-foreground">
                 活跃会话
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function EnhancedAIFloatingDemo() {
               <div className="text-3xl font-bold text-success dark:text-success">
                 {systemStats.modelAccuracy.toFixed(1)}%
               </div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">
+              <div className="text-sm text-muted-foreground dark:text-muted-foreground">
                 模型精度
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function EnhancedAIFloatingDemo() {
         {/* 控制按钮 */}
         <Card className="p-6">
           <div className="flex flex-col items-center space-y-4">
-            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+            <h3 className="text-xl font-semibold text-foreground dark:text-white">
               体验增强版AI浮窗
             </h3>
             <Button
@@ -245,7 +245,7 @@ export default function EnhancedAIFloatingDemo() {
               <Sparkles className="w-5 h-5 mr-2" />
               {showWidget ? '浮窗已打开' : '打开AI浮窗'}
             </Button>
-            <p className="text-sm text-slate-500 dark:text-slate-400 text-center max-w-md">
+            <p className="text-sm text-muted-foreground dark:text-muted-foreground text-center max-w-md">
               点击按钮体验集成了自治AI引擎、模型适配器和三层学习系统的智能交互界面。
               浮窗支持拖拽、调整大小，并能学习您的使用习惯进行个性化优化。
             </p>
@@ -254,7 +254,7 @@ export default function EnhancedAIFloatingDemo() {
 
         {/* 技术特性说明 */}
         <Card className="p-6">
-          <h3 className="text-xl font-semibold mb-4 text-slate-900 dark:text-white">
+          <h3 className="text-xl font-semibold mb-4 text-foreground dark:text-white">
             架构特性
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -262,7 +262,7 @@ export default function EnhancedAIFloatingDemo() {
               <h4 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">
                 可插拔式设计
               </h4>
-              <ul className="text-slate-600 dark:text-slate-300 space-y-1">
+              <ul className="text-muted-foreground dark:text-muted-foreground/70 space-y-1">
                 <li>• 所有核心模块都是独立的</li>
                 <li>• 通过工厂模式创建实例</li>
                 <li>• 易于替换和扩展</li>
@@ -272,7 +272,7 @@ export default function EnhancedAIFloatingDemo() {
               <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">
                 统一接口
               </h4>
-              <ul className="text-slate-600 dark:text-slate-300 space-y-1">
+              <ul className="text-muted-foreground dark:text-muted-foreground/70 space-y-1">
                 <li>• ModelAdapter提供统一模型访问</li>
                 <li>• 支持自动降级和重试</li>
                 <li>• 内置性能监控和缓存</li>
@@ -282,7 +282,7 @@ export default function EnhancedAIFloatingDemo() {
               <h4 className="font-semibold text-pink-600 dark:text-pink-400 mb-2">
                 三层学习
               </h4>
-              <ul className="text-slate-600 dark:text-slate-300 space-y-1">
+              <ul className="text-muted-foreground dark:text-muted-foreground/70 space-y-1">
                 <li>• 行为层：学习用户习惯</li>
                 <li>• 策略层：优化决策流程</li>
                 <li>• 知识层：构建知识图谱</li>
@@ -292,7 +292,7 @@ export default function EnhancedAIFloatingDemo() {
               <h4 className="font-semibold text-success dark:text-success mb-2">
                 自治能力
               </h4>
-              <ul className="text-slate-600 dark:text-slate-300 space-y-1">
+              <ul className="text-muted-foreground dark:text-muted-foreground/70 space-y-1">
                 <li>• 完整的感知-思考-行动闭环</li>
                 <li>• 任务规划、调度、执行</li>
                 <li>• 状态持久化和恢复</li>

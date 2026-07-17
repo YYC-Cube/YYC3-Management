@@ -212,7 +212,7 @@ export function SystemManagementOverview() {
       case "critical":
         return "text-destructive"
       default:
-        return "text-slate-600"
+        return "text-muted-foreground"
     }
   }
 
@@ -225,7 +225,7 @@ export function SystemManagementOverview() {
       case "critical":
         return "bg-destructive/10"
       default:
-        return "bg-slate-100"
+        return "bg-muted"
     }
   }
 
@@ -265,8 +265,8 @@ export function SystemManagementOverview() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">系统管理总览</h1>
-          <p className="text-slate-600 mt-2">系统状态监控和管理中心</p>
+          <h1 className="text-3xl font-bold text-foreground">系统管理总览</h1>
+          <p className="text-muted-foreground mt-2">系统状态监控和管理中心</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={refreshSystemStatus} disabled={isRefreshing}>
@@ -290,16 +290,16 @@ export function SystemManagementOverview() {
           <h2 className="text-xl font-semibold">系统健康度</h2>
           <div className="flex items-center gap-2">
             <span className="text-3xl font-bold text-success">{overallScore}</span>
-            <span className="text-slate-600">/100</span>
+            <span className="text-muted-foreground">/100</span>
           </div>
         </div>
-        <div className="w-full bg-slate-200 rounded-full h-3 mb-4">
+        <div className="w-full bg-muted rounded-full h-3 mb-4">
           <div
             className="bg-linear-to-r from-blue-400 to-blue-500 h-3 rounded-full transition-all duration-1000 ease-out"
             style={{ width: `${overallScore}%` }}
           ></div>
         </div>
-        <p className="text-sm text-slate-600">系统整体运行状况良好，建议定期进行维护和优化</p>
+        <p className="text-sm text-muted-foreground">系统整体运行状况良好，建议定期进行维护和优化</p>
       </Card>
 
       {/* 系统状态卡片 */}
@@ -315,18 +315,18 @@ export function SystemManagementOverview() {
                 <div className={`p-2 rounded-lg ${getStatusBg(status.status)}`}>
                   <status.icon className={`w-5 h-5 ${getStatusColor(status.status)}`} />
                 </div>
-                <h3 className="font-semibold text-slate-900">{status.category}</h3>
+                <h3 className="font-semibold text-foreground">{status.category}</h3>
               </div>
               <span className={`text-xl font-bold ${getStatusColor(status.status)}`}>{status.score}</span>
             </div>
-            <p className="text-sm text-slate-600 mb-3">{status.description}</p>
-            <div className="w-full bg-slate-200 rounded-full h-2 mb-2">
+            <p className="text-sm text-muted-foreground mb-3">{status.description}</p>
+            <div className="w-full bg-muted rounded-full h-2 mb-2">
               <div
                 className={`${status.progressColor} h-2 rounded-full transition-all duration-1000 ease-out`}
                 style={{ width: `${status.score}%` }}
               ></div>
             </div>
-            <p className="text-xs text-slate-500">最后检查: {status.lastCheck.toLocaleString()}</p>
+            <p className="text-xs text-muted-foreground">最后检查: {status.lastCheck.toLocaleString()}</p>
           </Card>
         ))}
       </div>
@@ -344,23 +344,23 @@ export function SystemManagementOverview() {
               <h3 className="text-lg font-semibold mb-4">系统指标</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">CPU使用率</span>
+                  <span className="text-sm text-muted-foreground">CPU使用率</span>
                   <span className="font-semibold text-blue-600">45%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">内存使用率</span>
+                  <span className="text-sm text-muted-foreground">内存使用率</span>
                   <span className="font-semibold text-success">68%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">磁盘使用率</span>
+                  <span className="text-sm text-muted-foreground">磁盘使用率</span>
                   <span className="font-semibold text-purple-600">32%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">网络延迟</span>
+                  <span className="text-sm text-muted-foreground">网络延迟</span>
                   <span className="font-semibold text-orange-600">85ms</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">在线用户</span>
+                  <span className="text-sm text-muted-foreground">在线用户</span>
                   <span className="font-semibold text-destructive">24</span>
                 </div>
               </div>
@@ -377,7 +377,7 @@ export function SystemManagementOverview() {
                   { name: "安全中心", status: "正常", color: "text-success" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">{item.name}</span>
+                    <span className="text-sm text-muted-foreground">{item.name}</span>
                     <span className={`text-sm font-medium ${item.color}`}>{item.status}</span>
                   </div>
                 ))}
@@ -399,10 +399,10 @@ export function SystemManagementOverview() {
                     <action.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                    <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                       {action.name}
                     </h3>
-                    <p className="text-sm text-slate-600">{action.description}</p>
+                    <p className="text-sm text-muted-foreground">{action.description}</p>
                   </div>
                 </div>
               </Card>
@@ -422,8 +422,8 @@ export function SystemManagementOverview() {
                     {getActivityIcon(activity.type)}
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-slate-900">{activity.message}</p>
-                    <p className="text-xs text-slate-500">{activity.timestamp.toLocaleString()}</p>
+                    <p className="text-sm font-medium text-foreground">{activity.message}</p>
+                    <p className="text-xs text-muted-foreground">{activity.timestamp.toLocaleString()}</p>
                   </div>
                   <div className="flex items-center gap-1">
                     {activity.status === "success" && <CheckCircle className="w-4 h-4 text-success" />}

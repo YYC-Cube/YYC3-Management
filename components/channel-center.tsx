@@ -255,13 +255,13 @@ export function ChannelCenter() {
       case "connected":
         return "bg-success/10 text-success border-success/20"
       case "disconnected":
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
       case "error":
         return "bg-destructive/10 text-destructive border-destructive/20"
       case "syncing":
         return "bg-blue-100 text-blue-800 border-blue-200"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -416,18 +416,18 @@ export function ChannelCenter() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <div className="h-8 bg-slate-200 rounded w-48 animate-pulse"></div>
-            <div className="h-4 bg-slate-200 rounded w-64 mt-2 animate-pulse"></div>
+            <div className="h-8 bg-muted rounded w-48 animate-pulse"></div>
+            <div className="h-4 bg-muted rounded w-64 mt-2 animate-pulse"></div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-32 bg-slate-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-32 bg-muted rounded-xl animate-pulse"></div>
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-64 bg-slate-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-64 bg-muted rounded-xl animate-pulse"></div>
           ))}
         </div>
       </div>
@@ -486,7 +486,7 @@ export function ChannelCenter() {
       {/* 搜索和筛选 */}
       <div className="flex items-center gap-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="搜索渠道..."
             value={searchQuery}
@@ -514,8 +514,8 @@ export function ChannelCenter() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">总用户数</p>
-                <p className="text-2xl font-bold text-slate-900">{totalMetrics.totalUsers.toLocaleString()}</p>
+                <p className="text-sm font-medium text-muted-foreground">总用户数</p>
+                <p className="text-2xl font-bold text-foreground">{totalMetrics.totalUsers.toLocaleString()}</p>
               </div>
               <Users className="w-8 h-8 text-blue-600" />
             </div>
@@ -526,8 +526,8 @@ export function ChannelCenter() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">活跃用户</p>
-                <p className="text-2xl font-bold text-slate-900">{totalMetrics.activeUsers.toLocaleString()}</p>
+                <p className="text-sm font-medium text-muted-foreground">活跃用户</p>
+                <p className="text-2xl font-bold text-foreground">{totalMetrics.activeUsers.toLocaleString()}</p>
               </div>
               <Activity className="w-8 h-8 text-success" />
             </div>
@@ -538,8 +538,8 @@ export function ChannelCenter() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">消息数</p>
-                <p className="text-2xl font-bold text-slate-900">{totalMetrics.messages.toLocaleString()}</p>
+                <p className="text-sm font-medium text-muted-foreground">消息数</p>
+                <p className="text-2xl font-bold text-foreground">{totalMetrics.messages.toLocaleString()}</p>
               </div>
               <MessageSquare className="w-8 h-8 text-orange-600" />
             </div>
@@ -550,8 +550,8 @@ export function ChannelCenter() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">订单数</p>
-                <p className="text-2xl font-bold text-slate-900">{totalMetrics.orders.toLocaleString()}</p>
+                <p className="text-sm font-medium text-muted-foreground">订单数</p>
+                <p className="text-2xl font-bold text-foreground">{totalMetrics.orders.toLocaleString()}</p>
               </div>
               <ShoppingCart className="w-8 h-8 text-purple-600" />
             </div>
@@ -562,8 +562,8 @@ export function ChannelCenter() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">总收入</p>
-                <p className="text-2xl font-bold text-slate-900">¥{(totalMetrics.revenue / 10000).toFixed(1)}万</p>
+                <p className="text-sm font-medium text-muted-foreground">总收入</p>
+                <p className="text-2xl font-bold text-foreground">¥{(totalMetrics.revenue / 10000).toFixed(1)}万</p>
               </div>
               <BarChart3 className="w-8 h-8 text-destructive" />
             </div>
@@ -639,19 +639,19 @@ export function ChannelCenter() {
               {/* 数据统计 */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-slate-600">总用户</p>
+                  <p className="text-muted-foreground">总用户</p>
                   <p className="font-semibold">{channel.metrics.totalUsers.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-slate-600">活跃用户</p>
+                  <p className="text-muted-foreground">活跃用户</p>
                   <p className="font-semibold">{channel.metrics.activeUsers.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-slate-600">消息数</p>
+                  <p className="text-muted-foreground">消息数</p>
                   <p className="font-semibold">{channel.metrics.messages.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-slate-600">订单数</p>
+                  <p className="text-muted-foreground">订单数</p>
                   <p className="font-semibold">{channel.metrics.orders.toLocaleString()}</p>
                 </div>
               </div>
@@ -663,7 +663,7 @@ export function ChannelCenter() {
                   <span className="font-semibold">¥{channel.metrics.revenue.toLocaleString()}</span>
                 </div>
                 <Progress value={(channel.metrics.activeUsers / channel.metrics.totalUsers) * 100} className="h-2" />
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   活跃率: {((channel.metrics.activeUsers / channel.metrics.totalUsers) * 100).toFixed(1)}%
                 </p>
               </div>

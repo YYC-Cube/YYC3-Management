@@ -163,7 +163,7 @@ export function StoreManagement() {
       case "outlet":
         return "bg-success/10 text-success border-success/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -172,11 +172,11 @@ export function StoreManagement() {
       case "active":
         return "bg-success/10 text-success"
       case "inactive":
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
       case "maintenance":
         return "bg-yellow-100 text-yellow-800"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -190,8 +190,8 @@ export function StoreManagement() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">多门店管理</h1>
-          <p className="text-slate-600 mt-2">管理多个门店和员工信息</p>
+          <h1 className="text-3xl font-bold text-foreground">多门店管理</h1>
+          <p className="text-muted-foreground mt-2">管理多个门店和员工信息</p>
         </div>
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
           <DialogTrigger asChild>
@@ -253,7 +253,7 @@ export function StoreManagement() {
         <TabsContent value="stores" className="space-y-4">
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="搜索门店名称或地址..."
                 value={searchTerm}
@@ -281,10 +281,10 @@ export function StoreManagement() {
                       )}
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                      <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-all duration-300">
                         {store.name}
                       </h3>
-                      <p className="text-sm text-slate-600 flex items-center gap-1">
+                      <p className="text-sm text-muted-foreground flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
                         {store.address}
                       </p>
@@ -314,8 +314,8 @@ export function StoreManagement() {
                           <span className="font-medium">¥{(store.monthlyRevenue / 10000).toFixed(1)}万</span>
                         </div>
                       </div>
-                      <p className="text-xs text-slate-600 mt-1">负责人: {store.manager}</p>
-                      <p className="text-xs text-slate-500">最后活跃: {store.lastActive.toLocaleString()}</p>
+                      <p className="text-xs text-muted-foreground mt-1">负责人: {store.manager}</p>
+                      <p className="text-xs text-muted-foreground">最后活跃: {store.lastActive.toLocaleString()}</p>
                     </div>
 
                     <DropdownMenu>
@@ -352,17 +352,17 @@ export function StoreManagement() {
                       <AvatarFallback className="bg-blue-100 text-blue-600">{employee.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                      <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-all duration-300">
                         {employee.name}
                       </h3>
-                      <p className="text-sm text-slate-600">{employee.email}</p>
+                      <p className="text-sm text-muted-foreground">{employee.email}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge variant="outline">
                           {employee.role === "manager" ? "店长" : employee.role === "supervisor" ? "主管" : "员工"}
                         </Badge>
                         <Badge
                           className={
-                            employee.status === "active" ? "bg-success/10 text-success" : "bg-slate-100 text-slate-800"
+                            employee.status === "active" ? "bg-success/10 text-success" : "bg-muted text-card-foreground"
                           }
                         >
                           {employee.status === "active" ? "在职" : "离职"}
@@ -372,8 +372,8 @@ export function StoreManagement() {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-sm text-slate-600">入职时间: {employee.joinDate.toLocaleDateString()}</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-sm text-muted-foreground">入职时间: {employee.joinDate.toLocaleDateString()}</p>
+                    <p className="text-xs text-muted-foreground">
                       所属门店: {stores.find((s) => s.id === employee.storeId)?.name}
                     </p>
                   </div>
@@ -388,8 +388,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-success hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">总门店数</p>
-                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-muted-foreground">总门店数</p>
+                  <p className="text-2xl font-bold text-foreground group-hover:translate-x-1 transition-all duration-300">
                     {stores.length}
                   </p>
                 </div>
@@ -406,8 +406,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-blue-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">总员工数</p>
-                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-muted-foreground">总员工数</p>
+                  <p className="text-2xl font-bold text-foreground group-hover:translate-x-1 transition-all duration-300">
                     {stores.reduce((sum, store) => sum + store.employees, 0)}
                   </p>
                 </div>
@@ -424,8 +424,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-purple-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">月总营收</p>
-                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-muted-foreground">月总营收</p>
+                  <p className="text-2xl font-bold text-foreground group-hover:translate-x-1 transition-all duration-300">
                     ¥{(stores.reduce((sum, store) => sum + store.monthlyRevenue, 0) / 10000).toFixed(1)}万
                   </p>
                 </div>
@@ -442,8 +442,8 @@ export function StoreManagement() {
             <Card className="p-6 border-r-[5px] border-r-orange-500 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">营业门店</p>
-                  <p className="text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-all duration-300">
+                  <p className="text-sm font-medium text-muted-foreground">营业门店</p>
+                  <p className="text-2xl font-bold text-foreground group-hover:translate-x-1 transition-all duration-300">
                     {stores.filter((store) => store.status === "active").length}
                   </p>
                 </div>

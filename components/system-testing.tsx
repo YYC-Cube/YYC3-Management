@@ -339,8 +339,8 @@ export function SystemTesting() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">系统集成测试</h1>
-          <p className="text-slate-600 mt-2">全面测试系统功能和性能</p>
+          <h1 className="text-3xl font-bold text-foreground">系统集成测试</h1>
+          <p className="text-muted-foreground mt-2">全面测试系统功能和性能</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" disabled={isRunning}>
@@ -368,7 +368,7 @@ export function SystemTesting() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">总体进度</p>
+              <p className="text-sm text-muted-foreground">总体进度</p>
               <p className="text-2xl font-bold text-blue-600">{Math.round(testProgress)}%</p>
             </div>
             <Activity className="w-8 h-8 text-blue-400" />
@@ -384,7 +384,7 @@ export function SystemTesting() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">通过率</p>
+              <p className="text-sm text-muted-foreground">通过率</p>
               <p className="text-2xl font-bold text-blue-600">{Math.round(overallPassRate)}%</p>
             </div>
             <CheckCircle className="w-8 h-8 text-blue-400" />
@@ -394,7 +394,7 @@ export function SystemTesting() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">已完成</p>
+              <p className="text-sm text-muted-foreground">已完成</p>
               <p className="text-2xl font-bold text-blue-600">{testResults.length}</p>
             </div>
             <Zap className="w-8 h-8 text-blue-400" />
@@ -404,7 +404,7 @@ export function SystemTesting() {
         <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600">失败数</p>
+              <p className="text-sm text-muted-foreground">失败数</p>
               <p className="text-2xl font-bold text-blue-600">
                 {testResults.filter((t) => t.status === "failed").length}
               </p>
@@ -447,10 +447,10 @@ export function SystemTesting() {
                       <suite.icon className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                      <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                         {suite.name}
                       </h3>
-                      <p className="text-sm text-slate-600">{suite.testCases.length} 个测试用例</p>
+                      <p className="text-sm text-muted-foreground">{suite.testCases.length} 个测试用例</p>
                     </div>
                   </div>
                   <Badge className={getStatusColor(suite.status)}>{suite.status}</Badge>
@@ -467,10 +467,10 @@ export function SystemTesting() {
                           {getStatusIcon(status)}
                           <div>
                             <h4 className="font-medium text-sm">{testCase.name}</h4>
-                            <p className="text-xs text-slate-600">{testCase.description}</p>
+                            <p className="text-xs text-muted-foreground">{testCase.description}</p>
                           </div>
                         </div>
-                        {result?.duration && <span className="text-xs text-slate-500">{result.duration}ms</span>}
+                        {result?.duration && <span className="text-xs text-muted-foreground">{result.duration}ms</span>}
                       </div>
                     )
                   })}
@@ -495,12 +495,12 @@ export function SystemTesting() {
                         <h3 className="font-semibold group-hover:translate-x-1 transition-transform duration-300">
                           {result.name}
                         </h3>
-                        <p className="text-sm text-slate-600">{result.module}</p>
+                        <p className="text-sm text-muted-foreground">{result.module}</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <Badge className={getStatusColor(result.status)}>{result.status}</Badge>
-                      {result.duration && <p className="text-xs text-slate-500 mt-1">{result.duration}ms</p>}
+                      {result.duration && <p className="text-xs text-muted-foreground mt-1">{result.duration}ms</p>}
                     </div>
                   </div>
 
@@ -517,7 +517,7 @@ export function SystemTesting() {
                           {getStatusIcon(step.status)}
                           <span>{step.name}</span>
                         </div>
-                        {step.duration && <span className="text-slate-500">{step.duration}ms</span>}
+                        {step.duration && <span className="text-muted-foreground">{step.duration}ms</span>}
                       </div>
                     ))}
                   </div>

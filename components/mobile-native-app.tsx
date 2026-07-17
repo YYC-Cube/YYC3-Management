@@ -132,9 +132,9 @@ export function MobileNativeApp() {
       case "development":
         return "bg-yellow-100 text-yellow-800"
       case "planned":
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -155,8 +155,8 @@ export function MobileNativeApp() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">移动端应用</h1>
-          <p className="text-slate-600 mt-2">原生移动端体验和功能管理</p>
+          <h1 className="text-3xl font-bold text-foreground">移动端应用</h1>
+          <p className="text-muted-foreground mt-2">原生移动端体验和功能管理</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">
@@ -188,10 +188,10 @@ export function MobileNativeApp() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-slate-900">{feature.name}</h3>
+                      <h3 className="font-semibold text-foreground">{feature.name}</h3>
                       <Badge className={getStatusColor(feature.status)}>{getStatusText(feature.status)}</Badge>
                     </div>
-                    <p className="text-sm text-slate-600">{feature.description}</p>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
                     {feature.status === "available" && (
                       <Button variant="link" className="p-0 h-auto mt-2 text-sm">
                         立即体验
@@ -221,7 +221,7 @@ export function MobileNativeApp() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">启用离线模式</h4>
-                    <p className="text-sm text-slate-600">在无网络环境下继续使用应用</p>
+                    <p className="text-sm text-muted-foreground">在无网络环境下继续使用应用</p>
                   </div>
                   <Switch checked={isOfflineMode} onCheckedChange={setIsOfflineMode} />
                 </div>
@@ -229,7 +229,7 @@ export function MobileNativeApp() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">数据同步进度</span>
-                    <span className="text-sm text-slate-600">{syncProgress}%</span>
+                    <span className="text-sm text-muted-foreground">{syncProgress}%</span>
                   </div>
                   <Progress value={syncProgress} className="w-full" />
                 </div>
@@ -271,11 +271,11 @@ export function MobileNativeApp() {
               {notificationSettings.map((setting) => (
                 <div
                   key={setting.id}
-                  className="flex items-center justify-between py-3 border-b border-slate-100 last:border-b-0"
+                  className="flex items-center justify-between py-3 border-b border-border/50 last:border-b-0"
                 >
                   <div>
                     <h4 className="font-medium">{setting.title}</h4>
-                    <p className="text-sm text-slate-600">{setting.description}</p>
+                    <p className="text-sm text-muted-foreground">{setting.description}</p>
                   </div>
                   <Switch defaultChecked={setting.enabled} />
                 </div>
@@ -303,7 +303,7 @@ export function MobileNativeApp() {
             <Card className="p-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Settings className="w-5 h-5 text-slate-600" />
+                  <Settings className="w-5 h-5 text-muted-foreground" />
                   应用设置
                 </CardTitle>
               </CardHeader>
@@ -311,7 +311,7 @@ export function MobileNativeApp() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">自动更新</h4>
-                    <p className="text-sm text-slate-600">自动下载和安装应用更新</p>
+                    <p className="text-sm text-muted-foreground">自动下载和安装应用更新</p>
                   </div>
                   <Switch defaultChecked={true} />
                 </div>
@@ -319,7 +319,7 @@ export function MobileNativeApp() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">生物识别登录</h4>
-                    <p className="text-sm text-slate-600">使用指纹或面部识别快速登录</p>
+                    <p className="text-sm text-muted-foreground">使用指纹或面部识别快速登录</p>
                   </div>
                   <Switch defaultChecked={false} />
                 </div>
@@ -327,7 +327,7 @@ export function MobileNativeApp() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">数据加密</h4>
-                    <p className="text-sm text-slate-600">本地数据端到端加密存储</p>
+                    <p className="text-sm text-muted-foreground">本地数据端到端加密存储</p>
                   </div>
                   <Switch defaultChecked={true} />
                 </div>
@@ -335,28 +335,28 @@ export function MobileNativeApp() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">崩溃报告</h4>
-                    <p className="text-sm text-slate-600">自动发送崩溃日志帮助改进应用</p>
+                    <p className="text-sm text-muted-foreground">自动发送崩溃日志帮助改进应用</p>
                   </div>
                   <Switch defaultChecked={true} />
                 </div>
 
-                <div className="mt-6 p-4 bg-slate-50 rounded-lg">
-                  <h4 className="font-semibold text-slate-900 mb-3">应用信息</h4>
+                <div className="mt-6 p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold text-foreground mb-3">应用信息</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-slate-600">版本号</span>
+                      <span className="text-muted-foreground">版本号</span>
                       <span className="font-medium">v2.1.0</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-600">构建号</span>
+                      <span className="text-muted-foreground">构建号</span>
                       <span className="font-medium">20240628</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-600">应用大小</span>
+                      <span className="text-muted-foreground">应用大小</span>
                       <span className="font-medium">45.2 MB</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-600">最后更新</span>
+                      <span className="text-muted-foreground">最后更新</span>
                       <span className="font-medium">2024年6月28日</span>
                     </div>
                   </div>

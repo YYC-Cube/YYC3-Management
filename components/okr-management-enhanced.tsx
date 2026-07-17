@@ -353,7 +353,7 @@ export function OKRManagementEnhanced() {
       case "off-track":
         return "bg-destructive/10 text-destructive border-destructive/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -379,7 +379,7 @@ export function OKRManagementEnhanced() {
       case "low":
         return "bg-success/10 text-success border-success/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -426,8 +426,8 @@ export function OKRManagementEnhanced() {
               >
                 {item.letter}
               </div>
-              <p className="font-medium text-slate-800">{item.word}</p>
-              <p className="text-sm text-slate-600">{item.desc}</p>
+              <p className="font-medium text-card-foreground">{item.word}</p>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -540,9 +540,9 @@ export function OKRManagementEnhanced() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-600">总OKR数量</p>
+                    <p className="text-sm text-muted-foreground">总OKR数量</p>
                     <p className="text-3xl font-bold text-purple-600">{filteredOKRs.length}</p>
-                    <p className="text-xs text-slate-500 mt-1">本季度活跃目标</p>
+                    <p className="text-xs text-muted-foreground mt-1">本季度活跃目标</p>
                   </div>
                   <Target className="w-8 h-8 text-purple-400" />
                 </div>
@@ -553,11 +553,11 @@ export function OKRManagementEnhanced() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-600">平均完成度</p>
+                    <p className="text-sm text-muted-foreground">平均完成度</p>
                     <p className="text-3xl font-bold text-primary">
                       {Math.round(filteredOKRs.reduce((acc, okr) => acc + okr.progress, 0) / filteredOKRs.length)}%
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">整体进展情况</p>
+                    <p className="text-xs text-muted-foreground mt-1">整体进展情况</p>
                   </div>
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
@@ -568,11 +568,11 @@ export function OKRManagementEnhanced() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-600">协作目标</p>
+                    <p className="text-sm text-muted-foreground">协作目标</p>
                     <p className="text-3xl font-bold text-emerald-600">
                       {filteredOKRs.filter((okr) => okr.sharedWith && okr.sharedWith.length > 0).length}
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">团队共享中</p>
+                    <p className="text-xs text-muted-foreground mt-1">团队共享中</p>
                   </div>
                   <Users className="w-8 h-8 text-emerald-400" />
                 </div>
@@ -583,14 +583,14 @@ export function OKRManagementEnhanced() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-600">活跃通知</p>
+                    <p className="text-sm text-muted-foreground">活跃通知</p>
                     <p className="text-3xl font-bold text-amber-600">
                       {filteredOKRs.reduce(
                         (total, okr) => total + (okr.notifications?.filter((n) => n.enabled).length || 0),
                         0,
                       )}
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">智能提醒中</p>
+                    <p className="text-xs text-muted-foreground mt-1">智能提醒中</p>
                   </div>
                   <Bell className="w-8 h-8 text-amber-400" />
                 </div>
@@ -626,8 +626,8 @@ export function OKRManagementEnhanced() {
                           </Badge>
                         )}
                       </div>
-                      <CardDescription className="text-slate-600">{okr.description}</CardDescription>
-                      <div className="flex items-center space-x-4 mt-3 text-sm text-slate-500">
+                      <CardDescription className="text-muted-foreground">{okr.description}</CardDescription>
+                      <div className="flex items-center space-x-4 mt-3 text-sm text-muted-foreground">
                         <span>负责人: {okr.owner}</span>
                         <span>部门: {okr.department}</span>
                         <span>截止: {okr.dueDate}</span>
@@ -641,7 +641,7 @@ export function OKRManagementEnhanced() {
                       </div>
                       {okr.sharedWith && okr.sharedWith.length > 0 && (
                         <div className="mt-2">
-                          <p className="text-xs text-slate-600 mb-1">协作成员:</p>
+                          <p className="text-xs text-muted-foreground mb-1">协作成员:</p>
                           <div className="flex items-center gap-1">
                             {okr.sharedWith.map((member, index) => (
                               <Badge key={index} variant="outline" className="text-xs bg-blue-50 text-blue-700">
@@ -657,7 +657,7 @@ export function OKRManagementEnhanced() {
                         {okr.quarter}
                       </Badge>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-slate-800">{okr.progress}%</div>
+                        <div className="text-2xl font-bold text-card-foreground">{okr.progress}%</div>
                         <div className="w-20 mt-1">
                           <EnhancedProgress value={okr.progress} size="sm" animated />
                         </div>
@@ -668,7 +668,7 @@ export function OKRManagementEnhanced() {
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <h4 className="font-medium text-sm text-slate-600 flex items-center gap-2">
+                      <h4 className="font-medium text-sm text-muted-foreground flex items-center gap-2">
                         <Zap className="w-4 h-4 text-primary" />
                         智能协作关键结果
                       </h4>
@@ -696,16 +696,16 @@ export function OKRManagementEnhanced() {
                         >
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex-1">
-                              <h5 className="font-medium text-slate-800">{kr.title}</h5>
-                              <p className="text-sm text-slate-600 mt-1">{kr.description}</p>
-                              <p className="text-xs text-slate-500 mt-1">最后更新: {kr.lastUpdated}</p>
+                              <h5 className="font-medium text-card-foreground">{kr.title}</h5>
+                              <p className="text-sm text-muted-foreground mt-1">{kr.description}</p>
+                              <p className="text-xs text-muted-foreground mt-1">最后更新: {kr.lastUpdated}</p>
                             </div>
                             <Badge className={getStatusColor(kr.status)}>{getStatusText(kr.status)}</Badge>
                           </div>
 
                           {/* 交互式里程碑 */}
                           <div className="mb-4">
-                            <p className="text-xs text-slate-600 mb-2">智能里程碑跟踪:</p>
+                            <p className="text-xs text-muted-foreground mb-2">智能里程碑跟踪:</p>
                             <div className="flex flex-wrap items-center gap-2">
                               {kr.milestones.map((milestone, index) => (
                                 <button
@@ -726,7 +726,7 @@ export function OKRManagementEnhanced() {
                                   >
                                     {milestone.title}
                                   </span>
-                                  {index < kr.milestones.length - 1 && <span className="text-slate-300 mx-1">→</span>}
+                                  {index < kr.milestones.length - 1 && <span className="text-muted-foreground/70 mx-1">→</span>}
                                 </button>
                               ))}
                             </div>
@@ -736,8 +736,8 @@ export function OKRManagementEnhanced() {
                           <div className="space-y-2">
                             <div className="flex justify-between items-center">
                               <div className="text-sm">
-                                <span className="font-medium text-slate-800">{kr.current}</span>
-                                <span className="text-slate-600">
+                                <span className="font-medium text-card-foreground">{kr.current}</span>
+                                <span className="text-muted-foreground">
                                   {" "}
                                   / {kr.target} {kr.unit}
                                 </span>

@@ -87,8 +87,8 @@ export default function LoginPage() {
               className="w-10 h-10 object-contain"
             />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">YYC³ 企业智能管理系统</h1>
-          <p className="text-sm text-slate-500 mt-1">YanYuCloudCube Enterprise Management</p>
+          <h1 className="text-2xl font-bold text-foreground">YYC³ 企业智能管理系统</h1>
+          <p className="text-sm text-muted-foreground mt-1">YanYuCloudCube Enterprise Management</p>
         </div>
 
         <Card className="shadow-xl border-border">
@@ -108,7 +108,7 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <Label htmlFor="username">用户名</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="username"
                     type="text"
@@ -135,7 +135,7 @@ export default function LoginPage() {
                   </button>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -150,7 +150,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground"
                     aria-label={showPassword ? "隐藏密码" : "显示密码"}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -176,7 +176,7 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-slate-400 mt-6">
+        <p className="text-center text-xs text-muted-foreground mt-6">
           © 2025 YYC³ YanYuCloudCube. All rights reserved.
         </p>
       </div>

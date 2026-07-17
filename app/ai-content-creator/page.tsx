@@ -393,19 +393,19 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                 </div>
 
                 <div className="space-y-4">
-                  <div className="border rounded-lg p-4 min-h-[500px] bg-slate-50">
+                  <div className="border rounded-lg p-4 min-h-[500px] bg-muted">
                     <h3 className="font-semibold mb-4 flex items-center">
                       <Sparkles className="w-4 h-4 mr-2 text-indigo-600" />
                       AI生成预览
                     </h3>
                     {content ? (
                       <div className="prose prose-sm max-w-none">
-                        <pre className="whitespace-pre-wrap text-sm text-slate-700 font-sans">{content}</pre>
+                        <pre className="whitespace-pre-wrap text-sm text-card-foreground font-sans">{content}</pre>
                       </div>
                     ) : (
-                      <div className="flex items-center justify-center h-64 text-slate-500">
+                      <div className="flex items-center justify-center h-64 text-muted-foreground">
                         <div className="text-center">
-                          <FileText className="w-12 h-12 mx-auto text-slate-300 mb-4" />
+                          <FileText className="w-12 h-12 mx-auto text-muted-foreground/70 mb-4" />
                           <p>AI生成的内容将显示在这里</p>
                           <p className="text-sm mt-2">请填写创作主题后点击生成</p>
                         </div>
@@ -456,7 +456,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       dangerouslySetInnerHTML={{
                         __html: content
                           ? renderContentHtml(content)
-                          : '<p class="text-slate-500">暂无内容，请先生成内容</p>',
+                          : '<p class="text-muted-foreground">暂无内容，请先生成内容</p>',
                       }}
                     />
                   </div>
@@ -504,7 +504,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                           key={platform}
                           className={`p-4 border rounded-lg cursor-pointer transition-all ${platforms.includes(platform)
                             ? "border-indigo-300 bg-indigo-50"
-                            : "border-slate-200 hover:bg-indigo-50"
+                            : "border-border hover:bg-indigo-50"
                             }`}
                           onClick={() => togglePlatform(platform)}
                         >
@@ -512,7 +512,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                             <div
                               className={`p-2 rounded-full ${platforms.includes(platform)
                                 ? "bg-indigo-100 text-indigo-600"
-                                : "bg-slate-100 text-slate-600"
+                                : "bg-muted text-muted-foreground"
                                 }`}
                             >
                               <PlatformIcon platform={platform} />
@@ -526,7 +526,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                                 {platform === "redbook" && "小红书"}
                                 {platform === "douyin" && "抖音"}
                               </p>
-                              <p className="text-sm text-slate-500">
+                              <p className="text-sm text-muted-foreground">
                                 {platforms.includes(platform) ? "已选择" : "未选择"}
                               </p>
                             </div>
@@ -542,7 +542,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       <div className="flex items-center justify-between p-4 border rounded-lg">
                         <div>
                           <p className="font-medium">立即发布</p>
-                          <p className="text-sm text-slate-600">内容生成后立即发布到所有平台</p>
+                          <p className="text-sm text-muted-foreground">内容生成后立即发布到所有平台</p>
                         </div>
                         <Switch defaultChecked />
                       </div>
@@ -550,7 +550,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       <div className="flex items-center justify-between p-4 border rounded-lg">
                         <div>
                           <p className="font-medium">定时发布</p>
-                          <p className="text-sm text-slate-600">设置具体发布时间</p>
+                          <p className="text-sm text-muted-foreground">设置具体发布时间</p>
                         </div>
                         <Switch />
                       </div>
@@ -558,7 +558,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                       <div className="flex items-center justify-between p-4 border rounded-lg">
                         <div>
                           <p className="font-medium">内容审核</p>
-                          <p className="text-sm text-slate-600">发布前自动进行内容安全审核</p>
+                          <p className="text-sm text-muted-foreground">发布前自动进行内容安全审核</p>
                         </div>
                         <Switch defaultChecked />
                       </div>
@@ -571,7 +571,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                     <h3 className="font-semibold text-lg mb-4">发布状态</h3>
 
                     {platforms.length === 0 ? (
-                      <div className="text-center py-10 text-slate-500">请至少选择一个发布平台</div>
+                      <div className="text-center py-10 text-muted-foreground">请至少选择一个发布平台</div>
                     ) : (
                       <div className="space-y-4">
                         {platforms.map((platform) => {
@@ -587,7 +587,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                                     ? "bg-success/10 text-success"
                                     : isProcessing
                                       ? "bg-blue-100 text-blue-600"
-                                      : "bg-slate-100 text-slate-600"
+                                      : "bg-muted text-muted-foreground"
                                     }`}
                                 >
                                   <PlatformIcon platform={platform} size={20} />
@@ -606,7 +606,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
                                       ? "text-success"
                                       : isProcessing
                                         ? "text-blue-600"
-                                        : "text-slate-500"
+                                        : "text-muted-foreground"
                                       }`}
                                   >
                                     {isPublished && `已发布 · ${publishStatus[platform]?.views || 0}次浏览`}
@@ -678,8 +678,8 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
             </CardHeader>
             <CardContent>
               {history.length === 0 ? (
-                <div className="text-center py-12 text-slate-500">
-                  <BookOpen className="w-12 h-12 mx-auto text-slate-300" />
+                <div className="text-center py-12 text-muted-foreground">
+                  <BookOpen className="w-12 h-12 mx-auto text-muted-foreground/70" />
                   <p className="mt-4">暂无创作历史</p>
                 </div>
               ) : (
@@ -733,7 +733,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
               <Sparkles className="w-5 h-5 mr-2 text-indigo-600" />
               开始你的创作之旅
             </h3>
-            <p className="text-slate-600 mt-2">一键生成专业内容，多平台同步发布，提升你的内容影响力</p>
+            <p className="text-muted-foreground mt-2">一键生成专业内容，多平台同步发布，提升你的内容影响力</p>
           </div>
           <Button
             className="mt-4 md:mt-0 py-3 px-4 bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"

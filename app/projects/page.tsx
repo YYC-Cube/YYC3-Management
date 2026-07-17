@@ -198,7 +198,7 @@ export default function ProjectsPage() {
       case "low":
         return "text-success bg-success/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -209,13 +209,13 @@ export default function ProjectsPage() {
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "planning":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       case "on_hold":
         return "text-orange-600 bg-orange-50"
       case "cancelled":
         return "text-destructive bg-destructive/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -287,8 +287,8 @@ export default function ProjectsPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总项目数</p>
-                <p className="text-2xl font-bold text-slate-800">{projectStats.totalProjects}</p>
+                <p className="text-sm text-muted-foreground">总项目数</p>
+                <p className="text-2xl font-bold text-card-foreground">{projectStats.totalProjects}</p>
                 <p className="text-xs text-orange-600 mt-1">活跃项目</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -300,8 +300,8 @@ export default function ProjectsPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">已完成</p>
-                <p className="text-2xl font-bold text-slate-800">{projectStats.completedProjects}</p>
+                <p className="text-sm text-muted-foreground">已完成</p>
+                <p className="text-2xl font-bold text-card-foreground">{projectStats.completedProjects}</p>
                 <p className="text-xs text-success mt-1">
                   完成率 {projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0}%
                 </p>
@@ -315,8 +315,8 @@ export default function ProjectsPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">进行中</p>
-                <p className="text-2xl font-bold text-slate-800">{projectStats.inProgressProjects}</p>
+                <p className="text-sm text-muted-foreground">进行中</p>
+                <p className="text-2xl font-bold text-card-foreground">{projectStats.inProgressProjects}</p>
                 <p className="text-xs text-orange-600 mt-1">正在执行</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -328,8 +328,8 @@ export default function ProjectsPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">延期项目</p>
-                <p className="text-2xl font-bold text-slate-800">{projectStats.delayedProjects}</p>
+                <p className="text-sm text-muted-foreground">延期项目</p>
+                <p className="text-2xl font-bold text-card-foreground">{projectStats.delayedProjects}</p>
                 <p className="text-xs text-destructive mt-1">需要关注</p>
               </div>
               <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
@@ -341,10 +341,10 @@ export default function ProjectsPage() {
 
         <EnhancedCard>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-slate-800">项目列表</h2>
+            <h2 className="text-lg font-semibold text-card-foreground">项目列表</h2>
             <div className="flex gap-2">
               <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                 <Input
                   placeholder="搜索项目..."
                   value={searchTerm}
@@ -355,7 +355,7 @@ export default function ProjectsPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-3 py-2 border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">全部项目</option>
                 <option value="planning">规划中</option>
@@ -371,10 +371,10 @@ export default function ProjectsPage() {
 
           <div className="space-y-4">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="border border-slate-200 rounded-lg p-6 hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-md">
+              <div key={project.id} className="border border-border rounded-lg p-6 hover:bg-muted transition-colors border-r-4 border-r-orange-500 shadow-md">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-lg font-semibold text-slate-800">{project.name}</h3>
+                    <h3 className="text-lg font-semibold text-card-foreground">{project.name}</h3>
                     <Badge className={getPriorityColor(project.priority)}>
                       {getPriorityLabel(project.priority)}优先级
                     </Badge>
@@ -397,7 +397,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-sm text-slate-600">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
                     项目经理: {project.manager_name}
@@ -418,10 +418,10 @@ export default function ProjectsPage() {
 
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-4">
-                    <span className="text-sm text-slate-600">项目进度</span>
-                    <span className="font-medium text-slate-800">{project.progress}%</span>
+                    <span className="text-sm text-muted-foreground">项目进度</span>
+                    <span className="font-medium text-card-foreground">{project.progress}%</span>
                   </div>
-                  <div className="text-sm text-slate-600">预算: ¥{(project.budget || 0).toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground">预算: ¥{(project.budget || 0).toLocaleString()}</div>
                 </div>
 
                 <Progress value={project.progress} className="h-2" />
@@ -432,24 +432,24 @@ export default function ProjectsPage() {
 
         <div className="responsive-grid-2">
           <EnhancedCard>
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">项目状态分布</h3>
+            <h3 className="text-lg font-semibold text-card-foreground mb-4">项目状态分布</h3>
             <div className="space-y-3">
               {[
                 { status: "进行中", count: projectStats.inProgressProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.inProgressProjects / projectStats.totalProjects) * 100) : 0, color: "bg-blue-500" },
                 { status: "已完成", count: projectStats.completedProjects, percentage: projectStats.totalProjects > 0 ? Math.round((projectStats.completedProjects / projectStats.totalProjects) * 100) : 0, color: "bg-success/10" },
-                { status: "规划中", count: projects.filter((p) => p.status === "计划中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "计划中").length / projectStats.totalProjects) * 100) : 0, color: "bg-slate-500" },
+                { status: "规划中", count: projects.filter((p) => p.status === "计划中").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "计划中").length / projectStats.totalProjects) * 100) : 0, color: "bg-muted0" },
                 { status: "暂停", count: projects.filter((p) => p.status === "已暂停").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.status === "已暂停").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                    <span className="text-slate-800">{item.status}</span>
+                    <span className="text-card-foreground">{item.status}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-20 bg-slate-200 rounded-full h-2">
+                    <div className="w-20 bg-muted rounded-full h-2">
                       <div className={`h-2 rounded-full ${item.color}`} style={{ width: `${item.percentage}%` }}></div>
                     </div>
-                    <span className="font-medium text-slate-800 w-8">{item.count}</span>
+                    <span className="font-medium text-card-foreground w-8">{item.count}</span>
                   </div>
                 </div>
               ))}
@@ -457,7 +457,7 @@ export default function ProjectsPage() {
           </EnhancedCard>
 
           <EnhancedCard>
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">项目优先级分布</h3>
+            <h3 className="text-lg font-semibold text-card-foreground mb-4">项目优先级分布</h3>
             <div className="space-y-3">
               {[
                 { priority: "高", count: projects.filter((p) => p.priority === "高").length, percentage: projectStats.totalProjects > 0 ? Math.round((projects.filter((p) => p.priority === "高").length / projectStats.totalProjects) * 100) : 0, color: "bg-orange-500" },
@@ -467,13 +467,13 @@ export default function ProjectsPage() {
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                    <span className="text-slate-800">{item.priority}</span>
+                    <span className="text-card-foreground">{item.priority}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-20 bg-slate-200 rounded-full h-2">
+                    <div className="w-20 bg-muted rounded-full h-2">
                       <div className={`h-2 rounded-full ${item.color}`} style={{ width: `${item.percentage}%` }}></div>
                     </div>
-                    <span className="font-medium text-slate-800 w-8">{item.count}</span>
+                    <span className="font-medium text-card-foreground w-8">{item.count}</span>
                   </div>
                 </div>
               ))}

@@ -122,7 +122,7 @@ export function AdvancedSearchBar<T>({
   return (
     <div className="flex items-center gap-2">
       <div className="relative flex-1">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
         <Input
           type="text"
           placeholder={placeholder}
@@ -146,7 +146,7 @@ export function AdvancedSearchBar<T>({
         {showHistory && searchHistory.length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg z-50">
             <div className="p-3 border-b flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm text-slate-600">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="w-4 h-4" />
                 <span>搜索历史</span>
               </div>
@@ -158,7 +158,7 @@ export function AdvancedSearchBar<T>({
               {searchHistory.map((item) => (
                 <div
                   key={item.id}
-                  className="p-3 hover:bg-slate-50 cursor-pointer border-b last:border-b-0"
+                  className="p-3 hover:bg-muted cursor-pointer border-b last:border-b-0"
                   onClick={() => handleHistoryClick(item)}
                 >
                   <div className="flex items-center justify-between">
@@ -180,7 +180,7 @@ export function AdvancedSearchBar<T>({
                       )}
                     </div>
                     <div className="flex items-center gap-2 ml-2">
-                      <span className="text-xs text-slate-500">{item.resultCount} 条结果</span>
+                      <span className="text-xs text-muted-foreground">{item.resultCount} 条结果</span>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -225,13 +225,13 @@ export function AdvancedSearchBar<T>({
               </div>
 
               {filters.length === 0 ? (
-                <div className="text-center py-8 text-slate-500 text-sm">
+                <div className="text-center py-8 text-muted-foreground text-sm">
                   暂无筛选条件，点击下方添加
                 </div>
               ) : (
                 <div className="space-y-2">
                   {filters.map((filter, index) => (
-                    <div key={index} className="flex items-center gap-2 p-3 bg-slate-50 rounded-lg">
+                    <div key={index} className="flex items-center gap-2 p-3 bg-muted rounded-lg">
                       <Badge variant="outline">{filter.label || filter.field}</Badge>
                       <span className="text-sm">{getFilterValue(filter)}</span>
                       <Button

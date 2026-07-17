@@ -206,7 +206,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
       case "off-track":
         return "bg-destructive/10 text-destructive border-destructive/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -219,7 +219,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
       case "off-track":
         return <AlertCircle className="w-4 h-4 text-destructive" />
       default:
-        return <Clock className="w-4 h-4 text-slate-500" />
+        return <Clock className="w-4 h-4 text-muted-foreground" />
     }
   }
 
@@ -230,9 +230,9 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
       case "busy":
         return "bg-amber-500"
       case "offline":
-        return "bg-slate-400"
+        return "bg-muted-foreground/30"
       default:
-        return "bg-slate-400"
+        return "bg-muted-foreground/30"
     }
   }
 
@@ -261,8 +261,8 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           {/* 页面头部 */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">团队协作中心</h1>
-              <p className="text-slate-600 mt-1">共享目标，协同合作，共同成长</p>
+              <h1 className="text-2xl font-bold text-foreground">团队协作中心</h1>
+              <p className="text-muted-foreground mt-1">共享目标，协同合作，共同成长</p>
             </div>
             <div className="flex items-center space-x-3">
               <Button
@@ -287,9 +287,9 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">团队成员</p>
+                <p className="text-sm text-muted-foreground">团队成员</p>
                 <p className="text-3xl font-bold text-blue-600">{teamMembers.length}</p>
-                <p className="text-xs text-slate-500 mt-1">活跃协作者</p>
+                <p className="text-xs text-muted-foreground mt-1">活跃协作者</p>
               </div>
               <Users className="w-8 h-8 text-blue-400" />
             </div>
@@ -300,9 +300,9 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">共享目标</p>
+                <p className="text-sm text-muted-foreground">共享目标</p>
                 <p className="text-3xl font-bold text-success">{sharedOKRs.length}</p>
-                <p className="text-xs text-slate-500 mt-1">正在协作中</p>
+                <p className="text-xs text-muted-foreground mt-1">正在协作中</p>
               </div>
               <Target className="w-8 h-8 text-success" />
             </div>
@@ -313,11 +313,11 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">团队评论</p>
+                <p className="text-sm text-muted-foreground">团队评论</p>
                 <p className="text-3xl font-bold text-purple-600">
                   {sharedOKRs.reduce((total, okr) => total + okr.comments.length, 0)}
                 </p>
-                <p className="text-xs text-slate-500 mt-1">本周新增</p>
+                <p className="text-xs text-muted-foreground mt-1">本周新增</p>
               </div>
               <MessageSquare className="w-8 h-8 text-purple-400" />
             </div>
@@ -328,12 +328,12 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">平均完成率</p>
+                <p className="text-sm text-muted-foreground">平均完成率</p>
                 <p className="text-3xl font-bold text-amber-600">
                   {Math.round(teamMembers.reduce((sum, member) => sum + member.completionRate, 0) / teamMembers.length)}
                   %
                 </p>
-                <p className="text-xs text-slate-500 mt-1">团队整体表现</p>
+                <p className="text-xs text-muted-foreground mt-1">团队整体表现</p>
               </div>
               <TrendingUp className="w-8 h-8 text-amber-400" />
             </div>
@@ -388,21 +388,21 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                         />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-medium text-slate-800">{member.name}</h4>
-                        <p className="text-sm text-slate-600">{member.role}</p>
-                        <p className="text-xs text-slate-500">{member.department}</p>
+                        <h4 className="font-medium text-card-foreground">{member.name}</h4>
+                        <p className="text-sm text-muted-foreground">{member.role}</p>
+                        <p className="text-xs text-muted-foreground">{member.department}</p>
                       </div>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-slate-600">OKR数量</span>
+                        <span className="text-sm text-muted-foreground">OKR数量</span>
                         <Badge variant="outline">{member.okrCount}</Badge>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-slate-600">完成率</span>
-                        <span className="text-sm font-medium text-slate-800">{member.completionRate}%</span>
+                        <span className="text-sm text-muted-foreground">完成率</span>
+                        <span className="text-sm font-medium text-card-foreground">{member.completionRate}%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="bg-linear-to-r from-primary to-primary/70 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${member.completionRate}%` }}
@@ -438,7 +438,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <CardTitle className="text-lg text-slate-800">{okr.title}</CardTitle>
+                        <CardTitle className="text-lg text-card-foreground">{okr.title}</CardTitle>
                         <Badge className={getStatusColor(okr.status)} variant="outline">
                           {getStatusIcon(okr.status)}
                           <span className="ml-1">
@@ -450,16 +450,16 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                           </span>
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-slate-600">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span>负责人: {okr.owner}</span>
                         <span>部门: {okr.department}</span>
                         <span>最后更新: {okr.lastUpdate}</span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-slate-800">{okr.progress}%</div>
+                      <div className="text-2xl font-bold text-card-foreground">{okr.progress}%</div>
                       <div className="w-20 mt-1">
-                        <div className="w-full bg-slate-200 rounded-full h-2">
+                        <div className="w-full bg-muted rounded-full h-2">
                           <div
                             className="bg-linear-to-r from-primary to-primary/70 h-2 rounded-full"
                             style={{ width: `${okr.progress}%` }}
@@ -472,7 +472,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                 <CardContent>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-medium text-sm text-slate-600 mb-2">协作成员</h4>
+                      <h4 className="font-medium text-sm text-muted-foreground mb-2">协作成员</h4>
                       <div className="flex items-center gap-2">
                         {okr.sharedWith.map((member, index) => (
                           <Badge key={index} variant="outline" className="text-xs">
@@ -530,7 +530,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                 {sharedOKRs.map((okr) => (
                   <div key={okr.id} className="border border-border rounded-lg p-4 bg-primary/5">
                     <div className="flex items-center justify-between mb-4">
-                      <h4 className="font-medium text-slate-800">{okr.title}</h4>
+                      <h4 className="font-medium text-card-foreground">{okr.title}</h4>
                       <Badge className={getStatusColor(okr.status)} variant="outline">
                         {okr.progress}%
                       </Badge>
@@ -548,10 +548,10 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                               </Avatar>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className="font-medium text-sm text-slate-800">{comment.author}</span>
-                                  <span className="text-xs text-slate-500">{comment.timestamp}</span>
+                                  <span className="font-medium text-sm text-card-foreground">{comment.author}</span>
+                                  <span className="text-xs text-muted-foreground">{comment.timestamp}</span>
                                 </div>
-                                <p className="text-sm text-slate-600 mb-2">{comment.content}</p>
+                                <p className="text-sm text-muted-foreground mb-2">{comment.content}</p>
                                 <div className="flex items-center gap-3">
                                   <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary">
                                     <ThumbsUp className="w-3 h-3" />
@@ -565,10 +565,10 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                                     {comment.replies.map((reply) => (
                                       <div key={reply.id} className="bg-primary/5 p-2 rounded">
                                         <div className="flex items-center gap-2 mb-1">
-                                          <span className="font-medium text-xs text-slate-700">{reply.author}</span>
-                                          <span className="text-xs text-slate-500">{reply.timestamp}</span>
+                                          <span className="font-medium text-xs text-card-foreground">{reply.author}</span>
+                                          <span className="text-xs text-muted-foreground">{reply.timestamp}</span>
                                         </div>
-                                        <p className="text-xs text-slate-600">{reply.content}</p>
+                                        <p className="text-xs text-muted-foreground">{reply.content}</p>
                                       </div>
                                     ))}
                                   </div>

@@ -57,8 +57,8 @@ export default function ApprovalPage() {
             <EnhancedCard className="border-r-[5px] border-r-destructive shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">已拒绝</p>
-                  <p className="text-2xl font-bold text-slate-800">3</p>
+                  <p className="text-sm text-muted-foreground">已拒绝</p>
+                  <p className="text-2xl font-bold text-card-foreground">3</p>
                   <p className="text-xs text-destructive mt-1">本月拒绝</p>
                 </div>
                 <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
@@ -70,8 +70,8 @@ export default function ApprovalPage() {
             <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">总申请</p>
-                  <p className="text-2xl font-bold text-slate-800">156</p>
+                  <p className="text-sm text-muted-foreground">总申请</p>
+                  <p className="text-2xl font-bold text-card-foreground">156</p>
                   <p className="text-xs text-purple-600 mt-1">历史总数</p>
                 </div>
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -84,7 +84,7 @@ export default function ApprovalPage() {
           {/* 审批列表 */}
           <EnhancedCard>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-slate-800">待处理审批</h2>
+              <h2 className="text-lg font-semibold text-card-foreground">待处理审批</h2>
               <div className="flex gap-2">
                 <EnhancedButton variant="outline" size="sm">
                   全部
@@ -137,10 +137,10 @@ export default function ApprovalPage() {
                   description: "参加技术培训课程，费用：8,000元",
                 },
               ].map((approval, index) => (
-                <div key={index} className="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                <div key={index} className="border border-border rounded-lg p-4 hover:bg-muted transition-colors">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <h3 className="font-medium text-slate-800">{approval.title}</h3>
+                      <h3 className="font-medium text-card-foreground">{approval.title}</h3>
                       <Badge variant="outline">{approval.type}</Badge>
                       <Badge
                         variant={
@@ -190,7 +190,7 @@ export default function ApprovalPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm text-slate-600 mb-3">
+                  <div className="flex items-center gap-6 text-sm text-muted-foreground mb-3">
                     <div className="flex items-center gap-1">
                       <User className="w-4 h-4" />
                       申请人: {approval.applicant}
@@ -201,7 +201,7 @@ export default function ApprovalPage() {
                     </div>
                   </div>
 
-                  <p className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">{approval.description}</p>
+                  <p className="text-sm text-muted-foreground bg-muted p-3 rounded-lg">{approval.description}</p>
                 </div>
               ))}
             </div>
@@ -210,19 +210,19 @@ export default function ApprovalPage() {
           {/* 审批统计 */}
           <div className="responsive-grid-2">
             <EnhancedCard>
-              <h3 className="text-lg font-semibold text-slate-800 mb-4">审批类型分布</h3>
+              <h3 className="text-lg font-semibold text-card-foreground mb-4">审批类型分布</h3>
               <div className="space-y-3">
                 {[
                   { type: "请假申请", count: 23, percentage: 35, color: "bg-chart-1" },
                   { type: "报销申请", count: 18, percentage: 28, color: "bg-chart-2" },
                   { type: "采购申请", count: 12, percentage: 18, color: "bg-yellow-500" },
                   { type: "培训申请", count: 8, percentage: 12, color: "bg-purple-500" },
-                  { type: "其他申请", count: 5, percentage: 7, color: "bg-slate-500" },
+                  { type: "其他申请", count: 5, percentage: 7, color: "bg-muted0" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                      <span className="text-slate-800">{item.type}</span>
+                      <span className="text-card-foreground">{item.type}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-20 bg-muted rounded-full h-2">
@@ -231,7 +231,7 @@ export default function ApprovalPage() {
                           style={{ width: `${item.percentage}%` }}
                         ></div>
                       </div>
-                      <span className="font-medium text-slate-800 w-8">{item.count}</span>
+                      <span className="font-medium text-card-foreground w-8">{item.count}</span>
                     </div>
                   </div>
                 ))}
@@ -239,38 +239,38 @@ export default function ApprovalPage() {
             </EnhancedCard>
 
             <EnhancedCard>
-              <h3 className="text-lg font-semibold text-slate-800 mb-4">审批效率</h3>
+              <h3 className="text-lg font-semibold text-card-foreground mb-4">审批效率</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div>
-                    <p className="font-medium text-slate-800">平均处理时间</p>
-                    <p className="text-sm text-slate-600">从申请到审批完成</p>
+                    <p className="font-medium text-card-foreground">平均处理时间</p>
+                    <p className="text-sm text-muted-foreground">从申请到审批完成</p>
                   </div>
                   <div className="text-right">
                     <p className="text-2xl font-bold text-primary">2.3</p>
-                    <p className="text-sm text-slate-600">天</p>
+                    <p className="text-sm text-muted-foreground">天</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div>
-                    <p className="font-medium text-slate-800">通过率</p>
-                    <p className="text-sm text-slate-600">审批通过的比例</p>
+                    <p className="font-medium text-card-foreground">通过率</p>
+                    <p className="text-sm text-muted-foreground">审批通过的比例</p>
                   </div>
                   <div className="text-right">
                     <p className="text-2xl font-bold text-success">94%</p>
-                    <p className="text-sm text-slate-600">本月</p>
+                    <p className="text-sm text-muted-foreground">本月</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div>
-                    <p className="font-medium text-slate-800">待处理数量</p>
-                    <p className="text-sm text-slate-600">当前需要处理的申请</p>
+                    <p className="font-medium text-card-foreground">待处理数量</p>
+                    <p className="text-sm text-muted-foreground">当前需要处理的申请</p>
                   </div>
                   <div className="text-right">
                     <p className="text-2xl font-bold text-yellow-600">8</p>
-                    <p className="text-sm text-slate-600">个</p>
+                    <p className="text-sm text-muted-foreground">个</p>
                   </div>
                 </div>
               </div>

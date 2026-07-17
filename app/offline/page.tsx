@@ -8,25 +8,25 @@ export default function OfflinePage() {
           <img src="/yyc3-icons/pwa/icon-96x96.png" alt="YYC³" className="w-12 h-12 object-contain" />
         </div>
 
-        <h1 className="text-2xl font-bold text-slate-800 mb-4">离线模式</h1>
+        <h1 className="text-2xl font-bold text-card-foreground mb-4">离线模式</h1>
 
-        <p className="text-slate-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           当前网络连接不可用，您正在使用离线版本。部分功能可能受限，请检查网络连接后重试。
         </p>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between p-3 bg-primary/5 rounded-lg">
-            <span className="text-sm text-slate-700">缓存数据</span>
+            <span className="text-sm text-card-foreground">缓存数据</span>
             <span className="text-sm font-medium text-emerald-600">可用</span>
           </div>
 
           <div className="flex items-center justify-between p-3 bg-primary/5 rounded-lg">
-            <span className="text-sm text-slate-700">基本功能</span>
+            <span className="text-sm text-card-foreground">基本功能</span>
             <span className="text-sm font-medium text-emerald-600">可用</span>
           </div>
 
           <div className="flex items-center justify-between p-3 bg-warning/5 rounded-lg">
-            <span className="text-sm text-slate-700">实时同步</span>
+            <span className="text-sm text-card-foreground">实时同步</span>
             <span className="text-sm font-medium text-orange-600">不可用</span>
           </div>
         </div>

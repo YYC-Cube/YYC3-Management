@@ -245,7 +245,7 @@ export function OAApproval() {
       case "low":
         return "bg-success/10 text-success border-success/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -273,12 +273,12 @@ export function OAApproval() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-600">{stat.label}</p>
-                    <p className="text-3xl font-bold text-slate-900">{stat.value}</p>
+                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <p className="text-3xl font-bold text-foreground">{stat.value}</p>
                     <div className="flex items-center mt-2">
                       <TrendingUp className="w-3 h-3 text-emerald-500 mr-1" />
                       <span className="text-sm text-emerald-600">+12%</span>
-                      <span className="text-xs text-slate-500 ml-1">vs 上月</span>
+                      <span className="text-xs text-muted-foreground ml-1">vs 上月</span>
                     </div>
                   </div>
                   <div className={`w-12 h-12 ${stat.bgColor} rounded-2xl flex items-center justify-center`}>
@@ -296,8 +296,8 @@ export function OAApproval() {
         <CardHeader className="border-b border-border bg-gradient-to-r from-primary/5 to-primary/3">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-xl text-slate-800">审批管理</CardTitle>
-              <CardDescription className="text-slate-600">管理和处理各类审批申请</CardDescription>
+              <CardTitle className="text-xl text-card-foreground">审批管理</CardTitle>
+              <CardDescription className="text-muted-foreground">管理和处理各类审批申请</CardDescription>
             </div>
             <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
               <DialogTrigger asChild>
@@ -440,7 +440,7 @@ export function OAApproval() {
 
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center space-x-3 mb-2">
-                              <h3 className="font-semibold text-slate-800">{item.title}</h3>
+                              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
                               <Badge variant="outline" className={getPriorityColor(item.priority)}>
                                 {getPriorityLabel(item.priority)}
                               </Badge>
@@ -449,9 +449,9 @@ export function OAApproval() {
                               </Badge>
                             </div>
 
-                            <p className="text-sm text-slate-600 mb-3">{item.description}</p>
+                            <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
 
-                            <div className="flex items-center space-x-6 text-sm text-slate-500">
+                            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
                               <div className="flex items-center">
                                 <User className="w-4 h-4 mr-1" />
                                 {item.applicant}
@@ -513,11 +513,11 @@ export function OAApproval() {
                       </div>
 
                       {item.attachments && item.attachments.length > 0 && (
-                        <div className="mt-4 pt-4 border-t border-slate-100">
-                          <p className="text-sm text-slate-600 mb-2">附件:</p>
+                        <div className="mt-4 pt-4 border-t border-border/50">
+                          <p className="text-sm text-muted-foreground mb-2">附件:</p>
                           <div className="flex space-x-2">
                             {item.attachments.map((attachment, index) => (
-                              <Badge key={index} variant="outline" className="bg-slate-50">
+                              <Badge key={index} variant="outline" className="bg-muted">
                                 {attachment}
                               </Badge>
                             ))}
@@ -526,18 +526,18 @@ export function OAApproval() {
                       )}
 
                       {item.comments && item.comments.length > 0 && (
-                        <div className="mt-4 pt-4 border-t border-slate-100">
-                          <p className="text-sm text-slate-600 mb-2">最新评论:</p>
-                          <div className="bg-slate-50 rounded-lg p-3">
+                        <div className="mt-4 pt-4 border-t border-border/50">
+                          <p className="text-sm text-muted-foreground mb-2">最新评论:</p>
+                          <div className="bg-muted rounded-lg p-3">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm font-medium text-slate-800">
+                              <span className="text-sm font-medium text-card-foreground">
                                 {item.comments[item.comments.length - 1].author}
                               </span>
-                              <span className="text-xs text-slate-500">
+                              <span className="text-xs text-muted-foreground">
                                 {item.comments[item.comments.length - 1].date}
                               </span>
                             </div>
-                            <p className="text-sm text-slate-600">{item.comments[item.comments.length - 1].content}</p>
+                            <p className="text-sm text-muted-foreground">{item.comments[item.comments.length - 1].content}</p>
                           </div>
                         </div>
                       )}
@@ -556,7 +556,7 @@ export function OAApproval() {
                   return (
                     <div key={status} className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-slate-800 flex items-center">
+                        <h3 className="font-semibold text-card-foreground flex items-center">
                           <div className={`w-3 h-3 rounded-full ${statusStyle.bgColor} mr-2`} />
                           {statusStyle.label}
                         </h3>
@@ -576,10 +576,10 @@ export function OAApproval() {
                                     <TypeIcon className="w-4 h-4 text-primary" />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <h4 className="font-medium text-slate-800 text-sm leading-tight">{item.title}</h4>
-                                    <p className="text-xs text-slate-600 mt-1 line-clamp-2">{item.description}</p>
+                                    <h4 className="font-medium text-card-foreground text-sm leading-tight">{item.title}</h4>
+                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{item.description}</p>
                                     <div className="flex items-center justify-between mt-3">
-                                      <span className="text-xs text-slate-500">{item.applicant}</span>
+                                      <span className="text-xs text-muted-foreground">{item.applicant}</span>
                                       <Badge variant="outline" className={getPriorityColor(item.priority)}>
                                         {getPriorityLabel(item.priority)}
                                       </Badge>
@@ -605,7 +605,7 @@ export function OAApproval() {
                     <CardDescription>近30天审批数量变化</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="h-64 flex items-center justify-center text-slate-500">
+                    <div className="h-64 flex items-center justify-center text-muted-foreground">
                       <div className="text-center">
                         <TrendingUp className="w-16 h-16 mx-auto mb-4 text-primary/30" />
                         <p>审批趋势图表区域</p>
@@ -620,7 +620,7 @@ export function OAApproval() {
                     <CardDescription>各类型申请数量占比</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="h-64 flex items-center justify-center text-slate-500">
+                    <div className="h-64 flex items-center justify-center text-muted-foreground">
                       <div className="text-center">
                         <FileText className="w-16 h-16 mx-auto mb-4 text-primary/30" />
                         <p>类型分布图表区域</p>
@@ -638,19 +638,19 @@ export function OAApproval() {
                 <CardContent>
                   <div className="space-y-4">
                     {["销售部", "技术部", "IT部", "人力资源部"].map((dept, _index) => (
-                      <div key={dept} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                      <div key={dept} className="flex items-center justify-between p-4 bg-muted rounded-lg">
                         <div className="flex items-center space-x-3">
-                          <Building className="w-5 h-5 text-slate-600" />
-                          <span className="font-medium text-slate-800">{dept}</span>
+                          <Building className="w-5 h-5 text-muted-foreground" />
+                          <span className="font-medium text-card-foreground">{dept}</span>
                         </div>
                         <div className="flex items-center space-x-6 text-sm">
                           <div className="text-center">
-                            <p className="font-medium text-slate-800">{Math.floor(Math.random() * 20) + 5}</p>
-                            <p className="text-slate-500">申请数</p>
+                            <p className="font-medium text-card-foreground">{Math.floor(Math.random() * 20) + 5}</p>
+                            <p className="text-muted-foreground">申请数</p>
                           </div>
                           <div className="text-center">
                             <p className="font-medium text-success">{Math.floor(Math.random() * 30) + 70}%</p>
-                            <p className="text-slate-500">通过率</p>
+                            <p className="text-muted-foreground">通过率</p>
                           </div>
                         </div>
                       </div>

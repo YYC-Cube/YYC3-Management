@@ -30,7 +30,7 @@ export function EnhancedProgress({
 
   return (
     <div className={cn("relative", className)}>
-      <div className={cn("bg-slate-200 rounded-full overflow-hidden", sizeClasses[size])}>
+      <div className={cn("bg-muted rounded-full overflow-hidden", sizeClasses[size])}>
         <div
           className={cn(
             "h-full transition-all duration-500 relative overflow-hidden",
@@ -44,7 +44,7 @@ export function EnhancedProgress({
           )}
         </div>
       </div>
-      {showLabel && <div className="text-xs text-slate-600 mt-1 text-center">{value}%</div>}
+      {showLabel && <div className="text-xs text-muted-foreground mt-1 text-center">{value}%</div>}
     </div>
   )
 }

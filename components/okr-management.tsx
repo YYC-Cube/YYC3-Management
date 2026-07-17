@@ -173,7 +173,7 @@ export function OKRManagement() {
       case "off-track":
         return "bg-destructive/10 text-destructive border-destructive/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -201,8 +201,8 @@ export function OKRManagement() {
       {/* 页面头部 - 统一风格 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">OKR目标管理</h1>
-          <p className="text-slate-600 mt-1">目标与关键结果管理系统</p>
+          <h1 className="text-2xl font-bold text-foreground">OKR目标管理</h1>
+          <p className="text-muted-foreground mt-1">目标与关键结果管理系统</p>
         </div>
         <div className="flex items-center space-x-3">
           <Select value={selectedQuarter} onValueChange={setSelectedQuarter}>
@@ -229,9 +229,9 @@ export function OKRManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总OKR数量</p>
+                <p className="text-sm text-muted-foreground">总OKR数量</p>
                 <p className="text-3xl font-bold text-purple-600">{filteredOKRs.length}</p>
-                <p className="text-xs text-slate-500 mt-1">本季度活跃目标</p>
+                <p className="text-xs text-muted-foreground mt-1">本季度活跃目标</p>
               </div>
               <Target className="w-8 h-8 text-purple-400" />
             </div>
@@ -242,11 +242,11 @@ export function OKRManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">平均完成度</p>
+                <p className="text-sm text-muted-foreground">平均完成度</p>
                 <p className="text-3xl font-bold text-primary">
                   {Math.round(filteredOKRs.reduce((acc, okr) => acc + okr.progress, 0) / filteredOKRs.length)}%
                 </p>
-                <p className="text-xs text-slate-500 mt-1">整体进展情况</p>
+                <p className="text-xs text-muted-foreground mt-1">整体进展情况</p>
               </div>
               <TrendingUp className="w-8 h-8 text-primary" />
             </div>
@@ -257,9 +257,9 @@ export function OKRManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">参与人数</p>
+                <p className="text-sm text-muted-foreground">参与人数</p>
                 <p className="text-3xl font-bold text-emerald-600">12</p>
-                <p className="text-xs text-slate-500 mt-1">涉及团队成员</p>
+                <p className="text-xs text-muted-foreground mt-1">涉及团队成员</p>
               </div>
               <Users className="w-8 h-8 text-emerald-400" />
             </div>
@@ -270,9 +270,9 @@ export function OKRManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">即将到期</p>
+                <p className="text-sm text-muted-foreground">即将到期</p>
                 <p className="text-3xl font-bold text-amber-600">2</p>
-                <p className="text-xs text-slate-500 mt-1">30天内到期</p>
+                <p className="text-xs text-muted-foreground mt-1">30天内到期</p>
               </div>
               <Calendar className="w-8 h-8 text-amber-400" />
             </div>
@@ -290,9 +290,9 @@ export function OKRManagement() {
             <CardHeader className="border-b border-border bg-linear-to-r from-primary/5 to-primary/3">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <CardTitle className="text-lg text-slate-800">{okr.title}</CardTitle>
-                  <CardDescription className="mt-2 text-slate-600">{okr.description}</CardDescription>
-                  <div className="flex items-center space-x-4 mt-3 text-sm text-slate-500">
+                  <CardTitle className="text-lg text-card-foreground">{okr.title}</CardTitle>
+                  <CardDescription className="mt-2 text-muted-foreground">{okr.description}</CardDescription>
+                  <div className="flex items-center space-x-4 mt-3 text-sm text-muted-foreground">
                     <span>负责人: {okr.owner}</span>
                     <span>部门: {okr.department}</span>
                     <span>截止: {okr.dueDate}</span>
@@ -303,7 +303,7 @@ export function OKRManagement() {
                     {okr.quarter}
                   </Badge>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-slate-800">{okr.progress}%</div>
+                    <div className="text-2xl font-bold text-card-foreground">{okr.progress}%</div>
                     <div className="w-20 mt-1">
                       <EnhancedProgress value={okr.progress} size="sm" />
                     </div>
@@ -313,21 +313,21 @@ export function OKRManagement() {
             </CardHeader>
             <CardContent className="p-6">
               <div className="space-y-4">
-                <h4 className="font-medium text-sm text-slate-600">关键结果 (Key Results)</h4>
+                <h4 className="font-medium text-sm text-muted-foreground">关键结果 (Key Results)</h4>
                 <div className="space-y-3">
                   {okr.keyResults.map((kr) => (
                     <div key={kr.id} className="border border-border rounded-lg p-4 bg-primary/5">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex-1">
-                          <h5 className="font-medium text-slate-800">{kr.title}</h5>
-                          <p className="text-sm text-slate-600 mt-1">{kr.description}</p>
+                          <h5 className="font-medium text-card-foreground">{kr.title}</h5>
+                          <p className="text-sm text-muted-foreground mt-1">{kr.description}</p>
                         </div>
                         <Badge className={getStatusColor(kr.status)}>{getStatusText(kr.status)}</Badge>
                       </div>
                       <div className="flex justify-between items-center mt-3">
                         <div className="text-sm">
-                          <span className="font-medium text-slate-800">{kr.current}</span>
-                          <span className="text-slate-600">
+                          <span className="font-medium text-card-foreground">{kr.current}</span>
+                          <span className="text-muted-foreground">
                             {" "}
                             / {kr.target} {kr.unit}
                           </span>
@@ -336,7 +336,7 @@ export function OKRManagement() {
                           <div className="w-24">
                             <EnhancedProgress value={kr.progress} status={kr.status} size="sm" />
                           </div>
-                          <span className="text-sm font-medium text-slate-700">{kr.progress}%</span>
+                          <span className="text-sm font-medium text-card-foreground">{kr.progress}%</span>
                         </div>
                       </div>
                     </div>

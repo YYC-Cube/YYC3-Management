@@ -402,9 +402,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "active":
         return "text-success bg-success/10"
       case "inactive":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -413,9 +413,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "active":
         return <CheckCircle className="w-4 h-4 text-success" />
       case "inactive":
-        return <XCircle className="w-4 h-4 text-slate-600" />
+        return <XCircle className="w-4 h-4 text-muted-foreground" />
       default:
-        return <AlertTriangle className="w-4 h-4 text-slate-600" />
+        return <AlertTriangle className="w-4 h-4 text-muted-foreground" />
     }
   }
 
@@ -428,7 +428,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       case "user":
         return <Users className="w-4 h-4 text-success" />
       default:
-        return <Users className="w-4 h-4 text-slate-600" />
+        return <Users className="w-4 h-4 text-muted-foreground" />
     }
   }
 
@@ -523,9 +523,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">总用户数</p>
-                <p className="text-xl sm:text-2xl font-bold text-slate-900">{userStats.totalUsers}</p>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">系统注册用户</p>
+                <p className="text-sm font-medium text-muted-foreground">总用户数</p>
+                <p className="text-xl sm:text-2xl font-bold text-foreground">{userStats.totalUsers}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1">系统注册用户</p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
@@ -538,8 +538,8 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">活跃用户</p>
-                <p className="text-xl sm:text-2xl font-bold text-slate-900">{userStats.activeUsers}</p>
+                <p className="text-sm font-medium text-muted-foreground">活跃用户</p>
+                <p className="text-xl sm:text-2xl font-bold text-foreground">{userStats.activeUsers}</p>
                 <div className="flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-success mr-1" />
                   <span className="text-xs sm:text-sm text-success">{userStats.loginRate.toFixed(1)}%</span>
@@ -559,9 +559,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">在线用户</p>
-                <p className="text-xl sm:text-2xl font-bold text-slate-900">{userStats.onlineUsers}</p>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">当前在线</p>
+                <p className="text-sm font-medium text-muted-foreground">在线用户</p>
+                <p className="text-xl sm:text-2xl font-bold text-foreground">{userStats.onlineUsers}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1">当前在线</p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                 <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
@@ -574,9 +574,9 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">今日新增</p>
-                <p className="text-xl sm:text-2xl font-bold text-slate-900">{userStats.newUsersToday}</p>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">新注册用户</p>
+                <p className="text-sm font-medium text-muted-foreground">今日新增</p>
+                <p className="text-xl sm:text-2xl font-bold text-foreground">{userStats.newUsersToday}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1">新注册用户</p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                 <UserPlus className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600" />
@@ -645,7 +645,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                                 setSelectedUsers(selectedUsers.filter((id) => id !== user.id))
                               }
                             }}
-                            className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
+                            className="w-4 h-4 text-blue-600 border-input rounded focus:ring-blue-500"
                           />
                           <div className="relative">
                             <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
@@ -658,14 +658,14 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-slate-900">{user.real_name}</h3>
+                            <h3 className="font-semibold text-foreground">{user.real_name}</h3>
                             <Badge className={getStatusColor(user.status)}>
                               {getStatusIcon(user.status)}
                               <span className="ml-1">{user.status === "active" ? "活跃" : "非活跃"}</span>
                             </Badge>
                           </div>
-                          <p className="text-sm text-slate-600 mt-1">@{user.username}</p>
-                          <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+                          <p className="text-sm text-muted-foreground mt-1">@{user.username}</p>
+                          <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                             <div className="flex items-center gap-1">
                               <Mail className="w-4 h-4" />
                               {user.email}
@@ -675,7 +675,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                               {user.role}
                             </div>
                           </div>
-                          <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+                          <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                             <div className="flex items-center gap-1">
                               <Shield className="w-4 h-4" />
                               {user.department}
@@ -736,13 +736,13 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <h3 className="font-semibold text-slate-900">{role.name}</h3>
+                          <h3 className="font-semibold text-foreground">{role.name}</h3>
                           {role.isSystem && (
                             <Badge variant="secondary">系统角色</Badge>
                           )}
                         </div>
-                        <p className="text-sm text-slate-600 mt-1">{role.description}</p>
-                        <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+                        <p className="text-sm text-muted-foreground mt-1">{role.description}</p>
+                        <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Users className="w-4 h-4" />
                             {role.userCount} 用户
@@ -776,13 +776,13 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <h3 className="font-semibold text-slate-900">{permission.name}</h3>
+                          <h3 className="font-semibold text-foreground">{permission.name}</h3>
                           {permission.isSystem && (
                             <Badge variant="secondary">系统权限</Badge>
                           )}
                         </div>
-                        <p className="text-sm text-slate-600 mt-1">{permission.description}</p>
-                        <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+                        <p className="text-sm text-muted-foreground mt-1">{permission.description}</p>
+                        <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                           <Badge variant="outline">{permission.category}</Badge>
                           <span>{permission.resource}.{permission.action}</span>
                         </div>

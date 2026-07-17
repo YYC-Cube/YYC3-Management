@@ -154,7 +154,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
 
   const getNotificationIcon = (type: string) => {
     const config = notificationConfig.types[type as keyof typeof notificationConfig.types]
-    if (!config) return <Bell className="w-4 h-4 text-slate-500" />
+    if (!config) return <Bell className="w-4 h-4 text-muted-foreground" />
 
     switch (type) {
       case "deadline":
@@ -168,13 +168,13 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
       case "system":
         return <Settings className={`w-4 h-4 ${config.color}`} />
       default:
-        return <Bell className="w-4 h-4 text-slate-500" />
+        return <Bell className="w-4 h-4 text-muted-foreground" />
     }
   }
 
   const getPriorityStyle = (priority: string) => {
     const config = notificationConfig.priorities[priority as keyof typeof notificationConfig.priorities]
-    if (!config) return "bg-slate-100 text-slate-800 border-slate-200"
+    if (!config) return "bg-muted text-card-foreground border-border"
 
     return config.color
   }
@@ -212,9 +212,9 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
-            <h1 className="text-2xl font-bold text-slate-900">通知提醒中心</h1>
+            <h1 className="text-2xl font-bold text-foreground">通知提醒中心</h1>
           )}
-          <p className="text-slate-600 mt-1">智能提醒系统，确保目标按时完成</p>
+          <p className="text-muted-foreground mt-1">智能提醒系统，确保目标按时完成</p>
         </div>
         <div className="flex items-center space-x-3">
           <Badge variant="outline" className="bg-destructive/10 text-destructive border-destructive/20">
@@ -241,9 +241,9 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">即将到期</p>
+                <p className="text-sm text-muted-foreground">即将到期</p>
                 <p className="text-3xl font-bold text-destructive">3</p>
-                <p className="text-xs text-slate-500 mt-1">7天内到期目标</p>
+                <p className="text-xs text-muted-foreground mt-1">7天内到期目标</p>
               </div>
               <Clock className="w-8 h-8 text-destructive" />
             </div>
@@ -254,9 +254,9 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">进度预警</p>
+                <p className="text-sm text-muted-foreground">进度预警</p>
                 <p className="text-3xl font-bold text-amber-600">2</p>
-                <p className="text-xs text-slate-500 mt-1">低于预期目标</p>
+                <p className="text-xs text-muted-foreground mt-1">低于预期目标</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-amber-400" />
             </div>
@@ -267,9 +267,9 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">里程碑完成</p>
+                <p className="text-sm text-muted-foreground">里程碑完成</p>
                 <p className="text-3xl font-bold text-success">8</p>
-                <p className="text-xs text-slate-500 mt-1">本周完成数量</p>
+                <p className="text-xs text-muted-foreground mt-1">本周完成数量</p>
               </div>
               <Target className="w-8 h-8 text-success" />
             </div>
@@ -280,9 +280,9 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">团队协作</p>
+                <p className="text-sm text-muted-foreground">团队协作</p>
                 <p className="text-3xl font-bold text-blue-600">12</p>
-                <p className="text-xs text-slate-500 mt-1">待处理请求</p>
+                <p className="text-xs text-muted-foreground mt-1">待处理请求</p>
               </div>
               <Users className="w-8 h-8 text-blue-400" />
             </div>
@@ -330,7 +330,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                           <div className="mt-1">{getNotificationIcon(notification.type)}</div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-medium text-slate-800">{notification.title}</h4>
+                              <h4 className="font-medium text-card-foreground">{notification.title}</h4>
                               <Badge className={getPriorityStyle(notification.priority)} variant="outline">
                                 {notification.priority === "high"
                                   ? "紧急"
@@ -342,8 +342,8 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                                 <Badge className="bg-orange-100 text-orange-800 border-orange-200">需要处理</Badge>
                               )}
                             </div>
-                            <p className="text-sm text-slate-600 mb-2">{notification.message}</p>
-                            <div className="flex items-center gap-4 text-xs text-slate-500">
+                            <p className="text-sm text-muted-foreground mb-2">{notification.message}</p>
+                            <div className="flex items-center gap-4 text-xs text-muted-foreground">
                               <span>{notification.timestamp}</span>
                               {notification.relatedOKR && <span>相关目标: {notification.relatedOKR}</span>}
                               {notification.relatedUser && <span>来自: {notification.relatedUser}</span>}
@@ -391,7 +391,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">通知类型</h4>
+                  <h4 className="font-medium text-card-foreground">通知类型</h4>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -447,10 +447,10 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">提醒参数</h4>
+                  <h4 className="font-medium text-card-foreground">提醒参数</h4>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-sm text-slate-600 mb-2 block">提前提醒天数</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">提前提醒天数</label>
                       <Select
                         value={settings.reminderDays.toString()}
                         onValueChange={(value) => updateSettings("reminderDays", Number.parseInt(value))}
@@ -467,7 +467,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                       </Select>
                     </div>
                     <div>
-                      <label className="text-sm text-slate-600 mb-2 block">进度预警阈值</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">进度预警阈值</label>
                       <Select
                         value={settings.alertThreshold.toString()}
                         onValueChange={(value) => updateSettings("alertThreshold", Number.parseInt(value))}
@@ -501,24 +501,24 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">报告类型</h4>
+                  <h4 className="font-medium text-card-foreground">报告类型</h4>
                   <div className="space-y-3">
                     <div className="p-4 border border-border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
-                        <h5 className="font-medium text-slate-800">周进度报告</h5>
+                        <h5 className="font-medium text-card-foreground">周进度报告</h5>
                         <Badge className="bg-success/10 text-success">已启用</Badge>
                       </div>
-                      <p className="text-sm text-slate-600 mb-3">每周一自动发送OKR进度汇总</p>
+                      <p className="text-sm text-muted-foreground mb-3">每周一自动发送OKR进度汇总</p>
                       <Button size="sm" variant="outline" className="bg-transparent">
                         查看示例
                       </Button>
                     </div>
                     <div className="p-4 border border-border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
-                        <h5 className="font-medium text-slate-800">月度总结</h5>
+                        <h5 className="font-medium text-card-foreground">月度总结</h5>
                         <Badge className="bg-success/10 text-success">已启用</Badge>
                       </div>
-                      <p className="text-sm text-slate-600 mb-3">每月末生成详细分析报告</p>
+                      <p className="text-sm text-muted-foreground mb-3">每月末生成详细分析报告</p>
                       <Button size="sm" variant="outline" className="bg-transparent">
                         查看示例
                       </Button>
@@ -527,10 +527,10 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">发送设置</h4>
+                  <h4 className="font-medium text-card-foreground">发送设置</h4>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-sm text-slate-600 mb-2 block">发送时间</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">发送时间</label>
                       <Select defaultValue="monday-9">
                         <SelectTrigger>
                           <SelectValue />
@@ -543,7 +543,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                       </Select>
                     </div>
                     <div>
-                      <label className="text-sm text-slate-600 mb-2 block">接收人员</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">接收人员</label>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <input type="checkbox" defaultChecked className="rounded" />

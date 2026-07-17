@@ -118,8 +118,8 @@ export function ParameterSettings() {
       {/* 页面头部 */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">参数设置</h2>
-          <p className="text-slate-600 mt-1">配置系统运行的各项参数和集成设置</p>
+          <h2 className="text-2xl font-bold text-foreground">参数设置</h2>
+          <p className="text-muted-foreground mt-1">配置系统运行的各项参数和集成设置</p>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline">

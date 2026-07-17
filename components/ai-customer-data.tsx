@@ -205,7 +205,7 @@ export function AiCustomerData() {
       case "info":
         return "text-blue-600 bg-blue-100"
       default:
-        return "text-slate-600 bg-slate-100"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -251,9 +251,9 @@ export function AiCustomerData() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总客户数</p>
+                <p className="text-sm text-muted-foreground">总客户数</p>
                 <p className="text-3xl font-bold text-purple-600">15,847</p>
-                <p className="text-xs text-slate-500 mt-1">活跃客户</p>
+                <p className="text-xs text-muted-foreground mt-1">活跃客户</p>
               </div>
               <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <Users className="w-8 h-8 text-purple-600" />
@@ -265,7 +265,7 @@ export function AiCustomerData() {
                   <ArrowUpRight className="h-3 w-3 text-success" />
                   <span className="text-xs text-success font-medium">+8.2%</span>
                 </div>
-                <span className="text-xs text-slate-500">较上月</span>
+                <span className="text-xs text-muted-foreground">较上月</span>
               </div>
             </div>
           </CardContent>
@@ -276,22 +276,22 @@ export function AiCustomerData() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">转化率</p>
+                <p className="text-sm text-muted-foreground">转化率</p>
                 <p className="text-3xl font-bold text-purple-600">23.5%</p>
-                <p className="text-xs text-slate-500 mt-1">月度转化</p>
+                <p className="text-xs text-muted-foreground mt-1">月度转化</p>
               </div>
               <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <TrendingUp className="w-8 h-8 text-purple-600" />
               </div>
             </div>
             <div className="mt-3">
-              <div className="w-full bg-slate-200 rounded-full h-2">
+              <div className="w-full bg-muted rounded-full h-2">
                 <div
                   className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
                   style={{ width: "78%" }}
                 />
               </div>
-              <p className="text-xs text-slate-500 mt-1">目标: 30%</p>
+              <p className="text-xs text-muted-foreground mt-1">目标: 30%</p>
             </div>
           </CardContent>
         </Card>
@@ -301,9 +301,9 @@ export function AiCustomerData() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">平均客单价</p>
+                <p className="text-sm text-muted-foreground">平均客单价</p>
                 <p className="text-3xl font-bold text-purple-600">¥89,247</p>
-                <p className="text-xs text-slate-500 mt-1">单笔成交</p>
+                <p className="text-xs text-muted-foreground mt-1">单笔成交</p>
               </div>
               <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <DollarSign className="w-8 h-8 text-purple-600" />
@@ -315,7 +315,7 @@ export function AiCustomerData() {
                   <ArrowUpRight className="h-3 w-3 text-success" />
                   <span className="text-xs text-success font-medium">+12.8%</span>
                 </div>
-                <span className="text-xs text-slate-500">较上月</span>
+                <span className="text-xs text-muted-foreground">较上月</span>
               </div>
             </div>
           </CardContent>
@@ -326,22 +326,22 @@ export function AiCustomerData() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">AI预测准确率</p>
+                <p className="text-sm text-muted-foreground">AI预测准确率</p>
                 <p className="text-3xl font-bold text-purple-600">94.2%</p>
-                <p className="text-xs text-slate-500 mt-1">智能分析</p>
+                <p className="text-xs text-muted-foreground mt-1">智能分析</p>
               </div>
               <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl border border-purple-200/50 shadow-sm">
                 <Brain className="w-8 h-8 text-purple-600" />
               </div>
             </div>
             <div className="mt-3">
-              <div className="w-full bg-slate-200 rounded-full h-2">
+              <div className="w-full bg-muted rounded-full h-2">
                 <div
                   className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
                   style={{ width: "94%" }}
                 />
               </div>
-              <p className="text-xs text-slate-500 mt-1">持续优化中</p>
+              <p className="text-xs text-muted-foreground mt-1">持续优化中</p>
             </div>
           </CardContent>
         </Card>
@@ -371,39 +371,39 @@ export function AiCustomerData() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
                       <div className="text-2xl font-bold text-purple-600">45%</div>
-                      <div className="text-sm text-slate-600">大型企业</div>
+                      <div className="text-sm text-muted-foreground">大型企业</div>
                     </div>
                     <div className="text-center p-4 bg-linear-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
                       <div className="text-2xl font-bold text-blue-600">35%</div>
-                      <div className="text-sm text-slate-600">中型企业</div>
+                      <div className="text-sm text-muted-foreground">中型企业</div>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-slate-700">房地产行业</span>
+                      <span className="text-sm text-card-foreground">房地产行业</span>
                       <span className="text-sm font-bold text-purple-600">38%</span>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
+                    <div className="w-full bg-muted rounded-full h-2">
                       <div
                         className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full"
                         style={{ width: "38%" }}
                       />
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-slate-700">制造业</span>
+                      <span className="text-sm text-card-foreground">制造业</span>
                       <span className="text-sm font-bold text-blue-600">28%</span>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
+                    <div className="w-full bg-muted rounded-full h-2">
                       <div
                         className="h-full bg-linear-to-r from-blue-400 to-blue-500 rounded-full"
                         style={{ width: "28%" }}
                       />
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-slate-700">金融服务</span>
+                      <span className="text-sm text-card-foreground">金融服务</span>
                       <span className="text-sm font-bold text-success">22%</span>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
+                    <div className="w-full bg-muted rounded-full h-2">
                       <div
                         className="h-full bg-linear-to-r from-green-400 to-green-500 rounded-full"
                         style={{ width: "22%" }}
@@ -434,18 +434,18 @@ export function AiCustomerData() {
                       <div className="text-lg font-bold text-blue-700">892</div>
                       <div className="text-xs text-blue-600">中价值</div>
                     </div>
-                    <div className="text-center p-3 bg-linear-to-br from-gray-50 to-gray-100 rounded-lg border border-slate-200/50">
-                      <div className="text-lg font-bold text-slate-700">1,247</div>
-                      <div className="text-xs text-slate-600">低价值</div>
+                    <div className="text-center p-3 bg-linear-to-br from-gray-50 to-gray-100 rounded-lg border border-border/50">
+                      <div className="text-lg font-bold text-card-foreground">1,247</div>
+                      <div className="text-xs text-muted-foreground">低价值</div>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-700">高价值客户贡献</span>
+                        <span className="text-card-foreground">高价值客户贡献</span>
                         <span className="font-medium text-success">68%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="h-full bg-linear-to-r from-green-400 to-green-500 rounded-full"
                           style={{ width: "68%" }}
@@ -454,10 +454,10 @@ export function AiCustomerData() {
                     </div>
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-700">客户活跃度</span>
+                        <span className="text-card-foreground">客户活跃度</span>
                         <span className="font-medium text-blue-600">82%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="h-full bg-linear-to-r from-blue-400 to-blue-500 rounded-full"
                           style={{ width: "82%" }}
@@ -466,10 +466,10 @@ export function AiCustomerData() {
                     </div>
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-700">复购率</span>
+                        <span className="text-card-foreground">复购率</span>
                         <span className="font-medium text-purple-600">45%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full"
                           style={{ width: "45%" }}
@@ -498,10 +498,10 @@ export function AiCustomerData() {
                     </div>
                     <div>
                       <h3 className={`text-lg font-bold ${stage.textColor}`}>{stage.name}</h3>
-                      <p className="text-3xl font-bold text-slate-900 mt-2">{stage.count}</p>
-                      <p className="text-sm text-slate-500">占比 {stage.percentage}%</p>
+                      <p className="text-3xl font-bold text-foreground mt-2">{stage.count}</p>
+                      <p className="text-sm text-muted-foreground">占比 {stage.percentage}%</p>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
+                    <div className="w-full bg-muted rounded-full h-2">
                       <div
                         className={`h-full ${stage.color} rounded-full transition-all duration-1000 ease-out`}
                         style={{ width: `${stage.percentage}%` }}
@@ -527,15 +527,15 @@ export function AiCustomerData() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-linear-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200/50">
                     <div className="text-2xl font-bold text-blue-600">78%</div>
-                    <div className="text-sm text-slate-600 mt-1">潜在→意向转化率</div>
+                    <div className="text-sm text-muted-foreground mt-1">潜在→意向转化率</div>
                   </div>
                   <div className="text-center p-4 bg-linear-to-br from-green-50 to-green-100 rounded-xl border border-success/20/50">
                     <div className="text-2xl font-bold text-success">65%</div>
-                    <div className="text-sm text-slate-600 mt-1">意向→成交转化率</div>
+                    <div className="text-sm text-muted-foreground mt-1">意向→成交转化率</div>
                   </div>
                   <div className="text-center p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200/50">
                     <div className="text-2xl font-bold text-purple-600">23.5%</div>
-                    <div className="text-sm text-slate-600 mt-1">整体转化率</div>
+                    <div className="text-sm text-muted-foreground mt-1">整体转化率</div>
                   </div>
                 </div>
               </div>
@@ -557,8 +557,8 @@ export function AiCustomerData() {
                       <insight.icon className={`w-6 h-6 ${insight.textColor}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-slate-900 mb-2">{insight.title}</h3>
-                      <p className="text-sm text-slate-600 mb-4">{insight.description}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-2">{insight.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4">{insight.description}</p>
                       <div className="flex items-center justify-between">
                         <Badge
                           variant="secondary"
@@ -603,10 +603,10 @@ export function AiCustomerData() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-medium text-slate-900">{activity.customer}</h4>
-                        <span className="text-xs text-slate-500">{activity.timestamp.toLocaleString()}</span>
+                        <h4 className="text-sm font-medium text-foreground">{activity.customer}</h4>
+                        <span className="text-xs text-muted-foreground">{activity.timestamp.toLocaleString()}</span>
                       </div>
-                      <p className="text-sm text-slate-600">{activity.action}</p>
+                      <p className="text-sm text-muted-foreground">{activity.action}</p>
                       <p className="text-sm font-medium text-purple-600">{activity.value}</p>
                     </div>
                   </div>
