@@ -283,7 +283,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
 
       {/* 统计卡片 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-blue-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-primary hover:shadow-md transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -296,7 +296,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-success hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-success hover:shadow-md transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -309,7 +309,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-purple-400 hover:shadow-md transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -324,7 +324,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-amber-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-amber-400 hover:shadow-md transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>

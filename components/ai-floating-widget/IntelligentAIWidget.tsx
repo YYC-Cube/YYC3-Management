@@ -650,7 +650,7 @@ export const IntelligentAIWidget: React.FC<{
           className="fixed bottom-4 right-4 z-50 cursor-pointer"
           onClick={toggleMinimize}
         >
-          <Card className="p-3 bg-linear-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-shadow rounded-full">
+          <Card className="p-3 bg-linear-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full">
             <div className="flex items-center gap-2">
               <div className="relative w-10 h-10 rounded-full overflow-hidden animate-spin-slow">
                 <img

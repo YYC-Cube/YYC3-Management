@@ -200,7 +200,7 @@ export function DataIntegration() {
           {/* 数据源列表 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dataSources.map((source) => (
-              <Card key={source.id} className="hover:shadow-md transition-shadow">
+              <Card key={source.id} className="hover:shadow-md transition-all duration-300">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">

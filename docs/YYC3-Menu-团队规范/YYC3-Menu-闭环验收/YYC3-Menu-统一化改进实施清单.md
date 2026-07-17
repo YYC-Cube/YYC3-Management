@@ -20,8 +20,8 @@ complexity: intermediate
 
 | 属性 | 值 |
 |------|-----|
-| **总任务数** | 19 |
-| **已完成** | 14 |
+| **总任务数** | 22 |
+| **已完成** | 17 |
 | **跳过（含理由）** | 5 |
 | **待办** | 0 |
 
@@ -229,13 +229,24 @@ complexity: intermediate
 
 ```
 P0: 5/5   ✅✅✅✅✅  100%
-P1: 8/8   ✅✅✅✅✅✅✅✅  100%（新增 slate→语义化全量清零）
-P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
+P1: 9/9   ✅✅✅✅✅✅✅✅✅  100%（新增 border-r-* 标准化）
+P2: 5/8   ✅✅✅✅✅⏭️⏭️⏭️  63%执行
 ─────────────────────
-最新总计: 15/19  79% 完成
-                 + 4/19  21% 跳过（含理由）
-                 = 19/19 100% 已决策
+最新总计: 17/22  77% 完成
+                 + 5/22  23% 跳过（含理由）
+                 = 22/22 100% 已决策
 ```
+
+---
+
+## 关键变更摘要（新增轮次：border-r标准化 + transition统一 + EnhancedCard语义化）
+
+| 任务 | 替换模式 | 影响文件 | 变更行数 |
+|------|---------|:--------:|:--------:|
+| border-r 标准化 | `border-r-blue-500/400`→`border-r-primary`, `border-r-slate-500`→`border-r-border`, `border-r-emerald-400`→`border-r-success` | ~30 文件 | ~130 |
+| transition 统一 | `transition-shadow`→`transition-all duration-300` | 26 处 | 26 |
+| EnhancedCard 语义化 | `from-white to-sky-50/50`→`from-card to-primary/5`, `border-sky-200`→`border-primary/10`, `text-sky-600`→`text-muted-foreground`, `bg-white/60`→`bg-card/60` | 1 文件 (components/ui/enhanced-card.tsx) | 4 行 |
+| module-cards emerald 清零 | `from-emerald-500 to-teal-600`→`from-success to-success/80`, `text-emerald-600`→`text-success` | 1 文件 | 4 行 |
 
 ---
 

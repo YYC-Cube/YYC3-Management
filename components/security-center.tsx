@@ -529,7 +529,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="border-r-[5px] border-r-primary shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>

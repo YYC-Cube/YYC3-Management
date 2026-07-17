@@ -685,7 +685,7 @@ ${title}不仅改变了我们的日常生活，也正在重塑整个行业生态
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {history.map((item) => (
-                    <Card key={item.id} className="hover:shadow-md transition-shadow">
+                    <Card key={item.id} className="hover:shadow-md transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="text-lg">{item.title}</CardTitle>
                         <CardDescription className="flex justify-between">

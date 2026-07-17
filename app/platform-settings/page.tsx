@@ -472,7 +472,7 @@ export default function PlatformSettingsPage() {
 
         {/* 企业微信配置 */}
         <TabsContent value="enterprise" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-500 shadow-md">
+          <Card className="border-r-[5px] border-r-primary shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -676,7 +676,7 @@ export default function PlatformSettingsPage() {
 
         {/* 钉钉配置 */}
         <TabsContent value="dingtalk" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-600 shadow-md">
+          <Card className="border-r-[5px] border-r-primary shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -876,7 +876,7 @@ export default function PlatformSettingsPage() {
 
         {/* 支付宝配置 */}
         <TabsContent value="alipay" className="space-y-6">
-          <Card className="border-r-[5px] border-r-blue-500 shadow-md">
+          <Card className="border-r-[5px] border-r-primary shadow-md">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">

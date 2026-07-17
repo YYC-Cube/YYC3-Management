@@ -313,7 +313,7 @@ export default function SystemMonitorPage() {
           {systemMetrics.map((metric, index) => (
             <Card
               key={index}
-              className="responsive-card hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
+              className="responsive-card hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary shadow-md"
             >
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
@@ -505,7 +505,7 @@ export default function SystemMonitorPage() {
           {/* 性能监控 */}
           <TabsContent value="performance" className="responsive-spacing">
             <div className="responsive-grid-2">
-              <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-md">
+              <Card className="responsive-card border-r-[5px] border-r-primary shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <Cpu className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
@@ -656,7 +656,7 @@ export default function SystemMonitorPage() {
                 </CardContent>
               </Card>
 
-              <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-md">
+              <Card className="responsive-card border-r-[5px] border-r-primary shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg flex items-center">
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />

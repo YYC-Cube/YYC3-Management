@@ -89,7 +89,7 @@ export function StatisticsDashboard({
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="border-r-[5px] border-r-primary shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">总用户数</CardTitle>
           </CardHeader>

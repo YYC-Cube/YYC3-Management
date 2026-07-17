@@ -138,21 +138,21 @@ export function ModuleCards() {
 
       {/* 多租户管理 - 绿色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-emerald-50 to-teal-50 border-emerald-200 border-r-[5px] border-r-emerald-500 hover:border-r-emerald-600 shadow-md"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-success/10 to-success/5 border-success/30 border-r-[5px] border-r-success hover:border-r-success/80 shadow-md"
         onClick={() => handleModuleClick("tenant-management")}
       >
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-linear-to-r from-emerald-500 to-teal-600 rounded-xl">
+            <div className="p-3 bg-gradient-to-r from-success to-success/80 rounded-xl">
               <Building2 className="w-8 h-8 text-white" />
             </div>
-            <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 border-r-2 border-r-emerald-500">企业级</Badge>
+            <Badge className="bg-success/10 text-success border-success/30 border-r-2 border-r-success">企业级</Badge>
           </div>
           <h3 className="text-xl font-bold text-foreground mb-2">多租户管理</h3>
           <p className="text-muted-foreground text-sm mb-4">多企业组织统一管理</p>
-          <div className="flex items-center text-emerald-600 text-sm font-medium">
+          <div className="flex items-center text-success text-sm font-medium">
             <span>管理租户</span>
-            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-emerald-500" />
+            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-success" />
           </div>
         </CardContent>
       </Card>
