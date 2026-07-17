@@ -1,3 +1,17 @@
+---
+description: YYC3 YYC3 项目文档 - 组件开发指南
+author: YYC3 团队 <admin@0379.email>
+version: v3.0.0
+created: 2026-07-18
+updated: 2026-07-18
+status: stable
+tags: documentation
+category: general
+language: zh-CN
+audience: developers
+complexity: intermediate
+---
+
 # 组件开发指南
 
 ## 1. 组件架构概述

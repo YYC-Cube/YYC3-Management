@@ -1,3 +1,17 @@
+---
+description: YYC3 YYC3 项目文档 - Docker容器化部署技巧
+author: YYC3 团队 <admin@0379.email>
+version: v3.0.0
+created: 2026-07-18
+updated: 2026-07-18
+status: stable
+tags: documentation
+category: general
+language: zh-CN
+audience: developers
+complexity: intermediate
+---
+
 # Docker容器化部署技巧
 ## 文档信息
 - 文档类型：技巧类

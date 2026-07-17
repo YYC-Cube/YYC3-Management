@@ -1,3 +1,17 @@
+---
+description: YYC3 YYC3 项目文档 - YYC³智能AI浮窗系统 - 快速参考手册
+author: YYC3 团队 <admin@0379.email>
+version: v3.0.0
+created: 2026-07-18
+updated: 2026-07-18
+status: stable
+tags: documentation
+category: general
+language: zh-CN
+audience: developers
+complexity: intermediate
+---
+
 # YYC³智能AI浮窗系统 - 快速参考手册
 
 > 5分钟快速了解系统架构、部署和使用

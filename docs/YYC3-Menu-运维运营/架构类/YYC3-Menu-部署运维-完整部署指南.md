@@ -1,3 +1,17 @@
+---
+description: YYC3 YYC3 项目文档 - YYC³智能AI浮窗系统 - 完整部署指南
+author: YYC3 团队 <admin@0379.email>
+version: v3.0.0
+created: 2026-07-18
+updated: 2026-07-18
+status: stable
+tags: documentation
+category: general
+language: zh-CN
+audience: developers
+complexity: intermediate
+---
+
 # YYC³智能AI浮窗系统 - 完整部署指南
 
 > 基于《02-智能插拔式可移动AI执行方案.md》的深度架构实现
