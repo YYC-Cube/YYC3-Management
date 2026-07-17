@@ -515,7 +515,7 @@ export function OKRManagementEnhanced() {
 
       {/* 标签页导航 */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-sky-100">
+        <TabsList className="grid w-full grid-cols-3 bg-primary/10">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <Target className="w-4 h-4" />
             目标概览
@@ -554,12 +554,12 @@ export function OKRManagementEnhanced() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-slate-600">平均完成度</p>
-                    <p className="text-3xl font-bold text-sky-600">
+                    <p className="text-3xl font-bold text-primary">
                       {Math.round(filteredOKRs.reduce((acc, okr) => acc + okr.progress, 0) / filteredOKRs.length)}%
                     </p>
                     <p className="text-xs text-slate-500 mt-1">整体进展情况</p>
                   </div>
-                  <TrendingUp className="w-8 h-8 text-sky-400" />
+                  <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
               </CardContent>
             </Card>
@@ -609,13 +609,13 @@ export function OKRManagementEnhanced() {
             {filteredOKRs.map((okr) => (
               <Card
                 key={okr.id}
-                className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                className="bg-card/80 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
+                <CardHeader className="border-b border-border bg-gradient-to-r from-primary/5 to-primary/3">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <CardTitle className="text-lg text-slate-800 group-hover:text-sky-700 transition-colors">
+                        <CardTitle className="text-lg text-card-foreground group-hover:text-primary transition-colors">
                           {okr.title}
                         </CardTitle>
                         <Badge className={getPriorityColor(okr.priority)}>{getPriorityText(okr.priority)}</Badge>
@@ -634,7 +634,7 @@ export function OKRManagementEnhanced() {
                       </div>
                       <div className="flex items-center gap-2 mt-2">
                         {okr.tags.map((tag, index) => (
-                          <Badge key={index} variant="outline" className="text-xs hover:bg-sky-50 transition-colors">
+                          <Badge key={index} variant="outline" className="text-xs hover:bg-primary/5 transition-colors">
                             {tag}
                           </Badge>
                         ))}
@@ -653,7 +653,7 @@ export function OKRManagementEnhanced() {
                       )}
                     </div>
                     <div className="flex items-center space-x-4">
-                      <Badge variant="outline" className="border-sky-200 text-sky-700">
+                      <Badge variant="outline" className="border-primary/20 text-primary">
                         {okr.quarter}
                       </Badge>
                       <div className="text-right">
@@ -669,7 +669,7 @@ export function OKRManagementEnhanced() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <h4 className="font-medium text-sm text-slate-600 flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-sky-500" />
+                        <Zap className="w-4 h-4 text-primary" />
                         智能协作关键结果
                       </h4>
                       <div className="flex items-center gap-2">
@@ -682,7 +682,7 @@ export function OKRManagementEnhanced() {
                           <Bell className="w-3 h-3 mr-1" />
                           通知设置
                         </Button>
-                        <Button variant="outline" size="sm" className="text-xs bg-transparent hover:bg-sky-50">
+                        <Button variant="outline" size="sm" className="text-xs bg-transparent hover:bg-primary/5">
                           <Plus className="w-3 h-3 mr-1" />
                           添加KR
                         </Button>
@@ -692,7 +692,7 @@ export function OKRManagementEnhanced() {
                       {okr.keyResults.map((kr) => (
                         <div
                           key={kr.id}
-                          className="border border-sky-200 rounded-lg p-4 bg-sky-50/30 hover:bg-sky-50/50 transition-all duration-200"
+                          className="border border-primary/20 rounded-lg p-4 bg-primary/5 hover:bg-primary/10 transition-all duration-200"
                         >
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex-1">
@@ -711,17 +711,17 @@ export function OKRManagementEnhanced() {
                                 <button
                                   key={milestone.id}
                                   onClick={() => handleMilestoneToggle(okr.id, kr.id, milestone.id)}
-                                  className="flex items-center gap-1 px-2 py-1 rounded-md bg-white border border-sky-200 hover:border-sky-300 hover:bg-sky-50 transition-all duration-200 group"
+                                  className="flex items-center gap-1 px-2 py-1 rounded-md bg-card border border-primary/20 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 group"
                                 >
                                   {milestone.completed ? (
                                     <CheckCircle className="w-4 h-4 text-success group-hover:scale-110 transition-transform" />
                                   ) : (
-                                    <Clock className="w-4 h-4 text-slate-400 group-hover:text-sky-500 transition-colors" />
+                                    <Clock className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                                   )}
                                   <span
                                     className={`text-xs ${milestone.completed
                                       ? "text-success line-through"
-                                      : "text-slate-600 group-hover:text-sky-700"
+                                      : "text-muted-foreground group-hover:text-primary"
                                       } transition-colors`}
                                   >
                                     {milestone.title}
@@ -759,12 +759,12 @@ export function OKRManagementEnhanced() {
                         </div>
                       ))}
                     </div>
-                    <div className="flex justify-end space-x-2 pt-4 border-t border-sky-100">
+                    <div className="flex justify-end space-x-2 pt-4 border-t border-border">
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => handleShareOKR(okr.id)}
-                        className="border-sky-200 text-sky-700 hover:bg-sky-50 bg-transparent transition-all duration-200 hover:scale-105"
+                        className="border-primary/20 text-primary hover:bg-primary/5 bg-transparent transition-all duration-200 hover:scale-105"
                       >
                         <Share2 className="w-4 h-4 mr-2" />
                         分享协作
@@ -772,7 +772,7 @@ export function OKRManagementEnhanced() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-sky-200 text-sky-700 hover:bg-sky-50 bg-transparent transition-all duration-200 hover:scale-105"
+                        className="border-primary/20 text-primary hover:bg-primary/5 bg-transparent transition-all duration-200 hover:scale-105"
                       >
                         <MessageSquare className="w-4 h-4 mr-2" />
                         团队讨论
@@ -780,7 +780,7 @@ export function OKRManagementEnhanced() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-sky-200 text-sky-700 hover:bg-sky-50 bg-transparent transition-all duration-200 hover:scale-105"
+                        className="border-primary/20 text-primary hover:bg-primary/5 bg-transparent transition-all duration-200 hover:scale-105"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         查看详情

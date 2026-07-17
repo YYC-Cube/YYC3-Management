@@ -622,7 +622,7 @@ export function OAApproval() {
                   <CardContent>
                     <div className="h-64 flex items-center justify-center text-slate-500">
                       <div className="text-center">
-                        <FileText className="w-16 h-16 mx-auto mb-4 text-sky-300" />
+                        <FileText className="w-16 h-16 mx-auto mb-4 text-primary/30" />
                         <p>类型分布图表区域</p>
                       </div>
                     </div>
