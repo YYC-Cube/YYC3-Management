@@ -11,30 +11,30 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  Search,
-  FileText,
-  Video,
-  HelpCircle,
-  ThumbsUp,
-  ThumbsDown,
-  Eye,
-  Clock,
-  Star,
-  User,
-  ChevronDown,
-  BookOpen,
-  PlayCircle,
-  MessageCircle,
-} from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
+import {
+  BookOpen,
+  ChevronDown,
+  Clock,
+  Eye,
+  FileText,
+  HelpCircle,
+  MessageCircle,
+  PlayCircle,
+  Search,
+  Star,
+  ThumbsDown,
+  ThumbsUp,
+  User,
+  Video,
+} from "lucide-react"
+import { useState } from "react"
 
 interface HelpArticle {
   id: string
@@ -302,21 +302,15 @@ export function HelpCenter() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* 页面头部 */}
-      <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-slate-900 mb-4">帮助中心</h1>
-        <p className="text-slate-600 mb-6">查找常见问题的答案、观看教程视频或阅读详细指南</p>
-
-        <div className="relative max-w-2xl mx-auto">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-          <Input
-            type="text"
-            placeholder="搜索帮助文档、视频教程或常见问题..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-12 pr-4 py-3 text-lg"
-          />
-        </div>
+      <div className="relative max-w-2xl mx-auto">
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+        <Input
+          type="text"
+          placeholder="搜索帮助文档、视频教程或常见问题..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="pl-12 pr-4 py-3 text-lg"
+        />
       </div>
 
       {/* 统计信息 */}
@@ -596,6 +590,6 @@ export function HelpCenter() {
           )}
         </TabsContent>
       </Tabs>
-    </div>
+    </div >
   )
 }

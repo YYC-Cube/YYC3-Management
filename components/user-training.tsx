@@ -264,10 +264,6 @@ export function UserTraining() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">用户培训中心</h1>
-          <p className="text-slate-600 mt-2">系统功能培训和用户指导</p>
-        </div>
         <div className="flex gap-2">
           <Button variant="outline">
             <Download className="w-4 h-4 mr-2" />

@@ -11,32 +11,32 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  Users,
-  DollarSign,
-  ShoppingCart,
-  TrendingUp,
-  Calendar,
-  ArrowUpRight,
-  ArrowDownRight,
-  Activity,
-  Target,
-  CheckCircle,
-  MessageSquare,
-  FileText,
-  BarChart3,
-} from "lucide-react"
-import { SalesChart } from "@/components/charts/sales-chart"
 import { FinanceChart } from "@/components/charts/finance-chart"
 import { PerformanceChart } from "@/components/charts/performance-chart"
-import { usePathname } from "next/navigation"
+import { SalesChart } from "@/components/charts/sales-chart"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 import { getThemeForPath } from "@/lib/theme-colors"
+import {
+  Activity,
+  ArrowDownRight,
+  ArrowUpRight,
+  BarChart3,
+  Calendar,
+  CheckCircle,
+  DollarSign,
+  FileText,
+  MessageSquare,
+  ShoppingCart,
+  Target,
+  TrendingUp,
+  Users,
+} from "lucide-react"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) {
   const [currentTime, setCurrentTime] = useState<Date | null>(null)
@@ -164,11 +164,11 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
           )}
           <p className="text-slate-600 mt-1">欢迎回来，这里是您的企业管理控制台</p>
         </div>
-        <div className="text-right">
-          <div className="text-2xl font-bold text-slate-900">
+        <div className="text-right" suppressHydrationWarning>
+          <div className="text-2xl font-bold text-slate-900" suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleTimeString("zh-CN", { hour12: false }) : "--:--:--"}
           </div>
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-slate-500" suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
@@ -203,9 +203,8 @@ export function DashboardContent({ showTitle = true }: { showTitle?: boolean }) 
                         <ArrowDownRight className="h-4 w-4 text-destructive" />
                       )}
                       <span
-                        className={`text-sm font-medium ml-1 ${
-                          stat.changeType === "increase" ? "text-success" : "text-destructive"
-                        }`}
+                        className={`text-sm font-medium ml-1 ${stat.changeType === "increase" ? "text-success" : "text-destructive"
+                          }`}
                       >
                         {stat.change}
                       </span>

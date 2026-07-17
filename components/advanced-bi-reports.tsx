@@ -198,12 +198,9 @@ export function AdvancedBIReports() {
 
   return (
     <div className="p-6 space-y-6">
+      {/* 页面标题和操作 */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">高级BI分析</h1>
-          <p className="text-slate-600 mt-2">商业智能分析和自定义报表系统</p>
-        </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-3">
           <Button variant="outline">
             <Filter className="w-4 h-4 mr-2" />
             筛选

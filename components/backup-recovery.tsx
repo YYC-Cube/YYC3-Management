@@ -11,32 +11,32 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Switch } from "@/components/ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useToast } from "@/hooks/use-toast"
 import {
+  AlertTriangle,
+  Calendar,
+  CheckCircle,
+  Clock,
   Database,
   Download,
-  RotateCcw,
-  Calendar,
-  Clock,
-  HardDrive,
-  CheckCircle,
-  AlertTriangle,
-  XCircle,
-  Settings,
   FileText,
+  HardDrive,
+  RotateCcw,
+  Settings,
   Shield,
   Trash2,
+  XCircle,
 } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react"
 
 interface BackupRecord {
   id: string
@@ -211,12 +211,7 @@ export function BackupRecovery() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* 页面头部 */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">备份恢复</h1>
-          <p className="text-slate-600 mt-2">管理系统数据备份和恢复操作</p>
-        </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => handleStartBackup("增量")}>
             <Database className="w-4 h-4 mr-2" />
@@ -281,25 +276,27 @@ export function BackupRecovery() {
       </div>
 
       {/* 备份进度 */}
-      {isBackupRunning && (
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-md">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Clock className="w-5 h-5 mr-2 animate-spin" />
-              备份进行中
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <Progress value={backupProgress} className="w-full" />
-              <div className="flex justify-between text-sm text-slate-600">
-                <span>正在备份系统数据...</span>
-                <span>{backupProgress}%</span>
+      {
+        isBackupRunning && (
+          <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-md">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Clock className="w-5 h-5 mr-2 animate-spin" />
+                备份进行中
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Progress value={backupProgress} className="w-full" />
+                <div className="flex justify-between text-sm text-slate-600">
+                  <span>正在备份系统数据...</span>
+                  <span>{backupProgress}%</span>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+            </CardContent>
+          </Card>
+        )
+      }
 
       {/* 主要内容 */}
       <Tabs defaultValue="backups" className="space-y-6">
@@ -577,6 +574,6 @@ export function BackupRecovery() {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+    </div >
   )
 }

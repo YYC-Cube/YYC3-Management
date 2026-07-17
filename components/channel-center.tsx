@@ -438,10 +438,6 @@ export function ChannelCenter() {
     <div className="p-6 space-y-6">
       {/* 页面标题和操作 */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">渠道中心</h1>
-          <p className="text-slate-600 mt-2">管理和监控所有平台渠道连接</p>
-        </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="sm">
             <Download className="w-4 h-4 mr-2" />
