@@ -1,22 +1,54 @@
-import { query } from '../client'
 import { createHash, randomBytes } from 'crypto'
+import { query } from '../client'
 import type {
-  AIModelConfig, CreateModelConfig, UpdateModelConfig,
-  OllamaModel, ModelTestResult,
+  AIModelConfig, CreateModelConfig,
+  ModelTestResult,
+  OllamaModel,
+  UpdateModelConfig,
 } from '../models/ai-model'
 
 /**
  * SSRF 防护: 验证 URL 是否允许被请求
- * 仅允许 http/https 协议
+ * 仅允许 http/https 协议，且禁止内网地址
  */
 function validateUrl(urlStr: string): string {
   try {
     const parsed = new URL(urlStr)
+
+    // 协议白名单
     if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
       throw new Error(`不允许的协议: ${parsed.protocol}`)
     }
+
+    // SSRF: 禁止内网地址
+    const hostname = parsed.hostname.toLowerCase()
+    const blockedPatterns = [
+      /^localhost$/i,
+      /^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+      /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+      /^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/,
+      /^192\.168\.\d{1,3}\.\d{1,3}$/,
+      /^169\.254\.\d{1,3}\.\d{1,3}$/,
+      /^0\.0\.0\.0$/,
+      /^::1$/,
+      /^[fF][cCdD]/,  // IPv6 唯一本地地址 fc00::/7
+      /\.internal$/i,
+      /\.local$/i,
+      /\.lan$/i,
+    ]
+
+    for (const pattern of blockedPatterns) {
+      if (pattern.test(hostname)) {
+        throw new Error(`不允许的 URL: 禁止访问内网地址 (${hostname})`)
+      }
+    }
+
+    // 运行时允许异步 DNS 检查 — 当前保持轻量，依赖 hostname 校验即可
+    // 需要更严格防护时可在 CI/CD 或独立安全层中集成 DNS 二次查询
+
     return parsed.href
-  } catch {
+  } catch (err) {
+    if (err instanceof Error && err.message.startsWith('不允许')) throw err
     throw new Error(`无效的 URL: ${urlStr}`)
   }
 }

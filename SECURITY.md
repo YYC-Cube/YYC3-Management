@@ -1,21 +1,86 @@
-# Security Policy
+# 安全策略
 
-## Supported Versions
+## 支持的版本
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+| 版本 | 支持状态 |
+|:----:|:--------:|
+| 3.x | ✅ 积极维护 |
+| 2.x | ⚠️ 安全修复 |
+| < 2.0 | ❌ 不再支持 |
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## 报告漏洞
 
-## Reporting a Vulnerability
+**请勿在公开 Issue 中报告安全漏洞。** 请通过以下方式私下报告：
 
-Use this section to tell people how to report a vulnerability.
+### 联系邮箱
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+**admin@0379.email**
+
+我们承诺在 **48 小时内**确认收到报告，并在 **14 天内**提供修复计划或修复版本。
+
+### 加密通信
+
+如需加密通信，请使用以下 PGP 公钥：
+
+```
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+请通过邮件联系获取最新公钥。
+
+-----END PGP PUBLIC KEY BLOCK-----
+```
+
+### 报告内容
+
+请包含以下信息：
+
+- 漏洞类型（如 XSS、SQL 注入、CSRF 等）
+- 影响版本
+- 复现步骤
+- 潜在影响评估
+- 建议修复方案（如有）
+
+## 安全措施
+
+本项目已实施的安全措施：
+
+### 应用层
+
+| 措施 | 说明 |
+|------|------|
+| **SQL 注入防护** | 所有数据库查询使用参数化查询 (`pg` 的 `$1, $2` 语法) |
+| **XSS 防护** | `detectXSS()` 正则白名单检测 + React 默认转义 |
+| **CSRF 防护** | `CSRFTokenManager` 双提交 Cookie 模式 |
+| **JWT 认证** | 带过期机制的 Token + Refresh Token 轮换 |
+| **输入验证** | Zod schema 验证（API 路由层） |
+
+### 基础设施
+
+| 措施 | 说明 |
+|------|------|
+| **依赖审计** | GitHub Dependabot + Bun audit |
+| **CI/CD 安全检查** | CodeQL + Snyk (GitHub Actions) |
+| **环境变量** | 敏感信息通过 `.env.local` 注入，不提交仓库 |
+| **容器安全** | Docker 镜像使用最小化基础镜像 |
+
+## 依赖漏洞处理
+
+### 流程
+
+1. 发现高危/严重依赖漏洞
+2. 评估影响范围
+3. 修复（升级或打补丁）
+4. 发布安全更新
+5. 更新 CHANGELOG
+
+### 最近的安全更新
+
+| 日期 | 漏洞 | 影响 | 修复版本 |
+|------|------|------|:--------:|
+| — | — | — | — |
+
+---
+
+<p align="center">
+  <sub>© 2025-2026 YYC³ (YanYuCloudCube) · 言语云立方</sub>
+</p>

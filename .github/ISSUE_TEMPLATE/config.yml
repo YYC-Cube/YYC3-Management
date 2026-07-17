@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: YYC³ 讨论区
+    url: https://github.com/YYC-Cube/YYC3-Management/discussions
+    about: 请在此处提问和讨论
+  - name: 邮件联系我们
+    url: mailto:admin@0379.email
+    about: 安全漏洞或敏感问题请通过邮件报告
