@@ -1034,7 +1034,7 @@ export const IntelligentAIWidget: React.FC<{
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="输入消息... (Enter发送)"
                 disabled={isProcessing}
                 className="flex-1"

@@ -288,7 +288,7 @@ export function AdvancedSearchBar<T>({
                   placeholder="值"
                   value={newFilter.value}
                   onChange={(e) => setNewFilter({ ...newFilter, value: e.target.value })}
-                  onKeyPress={(e) => e.key === "Enter" && handleAddFilter()}
+                  onKeyDown={(e) => e.key === "Enter" && handleAddFilter()}
                 />
 
                 <Button onClick={handleAddFilter} disabled={!newFilter.field || !newFilter.value}>
