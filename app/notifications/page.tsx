@@ -220,7 +220,7 @@ export default function NotificationsPage() {
                   key={notification.id}
                   className={`
                     flex items-start gap-4 p-4 border rounded-lg transition-all hover:shadow-sm
-                    ${!notification.read ? "bg-blue-50 border-blue-200" : "bg-white border-border"}
+                    ${!notification.read ? "bg-blue-50 border-blue-200" : "bg-card border-border"}
                   `}
                 >
                   <div className="shrink-0 mt-1">{getTypeIcon(notification.type)}</div>
