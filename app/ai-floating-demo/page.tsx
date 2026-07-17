@@ -274,7 +274,7 @@ export default function AIFloatingDemoPage() {
             <CardDescription>如何在你的项目中集成AI智能浮窗</CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-slate-900 text-slate-100 p-6 rounded-lg overflow-x-auto text-sm">
+            <pre className="bg-foreground text-background p-6 rounded-lg overflow-x-auto text-sm">
 {`import { AgenticCore, type AgentConfig } from '@/lib/agentic-core/AgenticCore';
 import { IntelligentAIWidget } from '@/components/ai-floating-widget/IntelligentAIWidget';
 
