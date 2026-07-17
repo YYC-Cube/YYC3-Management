@@ -11,28 +11,29 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
-  CheckCircle,
-  XCircle,
-  Clock,
-  Play,
-  Pause,
-  AlertTriangle,
-  FileText,
   Activity,
-  Zap,
-  Smartphone,
-  Shield,
+  AlertTriangle,
   Bot,
-  Building2,
   Brain,
+  Building2,
+  CheckCircle,
+  Clock,
+  FileText,
+  Loader2,
+  Pause,
+  Play,
+  Shield,
+  Smartphone,
+  XCircle,
+  Zap,
 } from "lucide-react"
+import { useState } from "react"
 
 interface TestCase {
   id: string
@@ -417,7 +418,7 @@ export function SystemTesting() {
       {isRunning && currentTest && (
         <Card className="bg-blue-50 border-blue-200 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            <Loader2 className="w-6 h-6 animate-spin text-blue-600"></Loader2>
             <div>
               <h3 className="font-semibold text-blue-900">正在执行测试</h3>
               <p className="text-sm text-blue-700">{currentTest}</p>

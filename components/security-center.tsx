@@ -455,7 +455,7 @@ export function SecurityCenter({ showTitle = true }: { showTitle?: boolean }) {
             <div key={i} className="h-32 bg-slate-200 rounded-xl animate-pulse"></div>
           ))}
         </div>
-        <div className="h-96 bg-slate-200 rounded-xl animate-pulse"></div>
+        <div className="h-96 bg-muted rounded-xl animate-pulse"></div>
       </div>
     )
   }

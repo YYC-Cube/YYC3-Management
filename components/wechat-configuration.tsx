@@ -27,6 +27,7 @@ import {
   Edit,
   Eye,
   EyeOff,
+  Loader2,
   Menu,
   MessageCircle,
   MessageSquare,
@@ -229,7 +230,7 @@ export function WechatConfiguration() {
       case "disconnected":
         return <XCircle className="w-5 h-5 text-destructive" />
       case "testing":
-        return <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        return <Loader2 className="w-5 h-5 animate-spin text-blue-500" />
       default:
         return <XCircle className="w-5 h-5 text-slate-400" />
     }

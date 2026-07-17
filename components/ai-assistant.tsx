@@ -427,7 +427,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       placeholder="输入您的问题或需求..."
-                      onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                      onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendMessage()}
                       className="flex-1 border-purple-200 focus:ring-purple-500 focus:border-purple-500"
                     />
                     <Button
