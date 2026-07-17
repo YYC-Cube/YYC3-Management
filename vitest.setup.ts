@@ -62,7 +62,7 @@ globalThis.fetch = vi.fn(() =>
     json: () => Promise.resolve({ success: true, data: [] }),
     text: () => Promise.resolve('{}'),
     headers: new Headers(),
-    clone: function() { return this; },
+    clone: function () { return this; },
   })
 ) as unknown as typeof fetch;
 
@@ -98,6 +98,69 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
+// ============================================
+// indexedDB Mock — 解决离线支持等模块的环境依赖
+// ============================================
+
+const indexedDBMock = {
+  _db: {} as Record<string, any>,
+  open: vi.fn(() => ({
+    result: null,
+    onerror: null,
+    onsuccess: null,
+    onupgradeneeded: null,
+    readyState: 'pending',
+    error: null,
+    transaction: vi.fn(() => ({
+      objectStore: vi.fn(() => ({
+        getAll: vi.fn(() => ({
+          onerror: null,
+          onsuccess: null,
+          result: [],
+        })),
+        put: vi.fn(() => ({
+          onerror: null,
+          onsuccess: null,
+        })),
+        delete: vi.fn(() => ({
+          onerror: null,
+          onsuccess: null,
+        })),
+      })),
+      oncomplete: null,
+      onerror: null,
+    })),
+    createObjectStore: vi.fn(() => ({
+      createIndex: vi.fn(() => ({
+        get: vi.fn(() => ({
+          onerror: null,
+          onsuccess: null,
+          result: undefined,
+        })),
+        getAll: vi.fn(() => ({
+          onerror: null,
+          onsuccess: null,
+          result: [],
+        })),
+      })),
+    })),
+    close: vi.fn(),
+  })),
+  deleteDatabase: vi.fn(() => ({
+    onerror: null,
+    onsuccess: null,
+  })),
+} as unknown as IDBFactory
+
+Object.defineProperty(globalThis, 'indexedDB', {
+  value: indexedDBMock,
+  writable: true,
+})
+
+// ============================================
+// Existing mocks below
+// ============================================
+
 process.env.NEXT_PUBLIC_APP_URL = 'http://localhost:3223';
 process.env.NEXT_PUBLIC_API_BASE_URL = 'http://localhost:3223';
 process.env.DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
@@ -111,7 +174,7 @@ vi.mock('@/components/ui/tabs', () => {
 
   const TabsContext = React.createContext<{ value: string; setValue: (v: string) => void }>({
     value: '',
-    setValue: () => {},
+    setValue: () => { },
   })
 
   const Tabs = ({ children, defaultValue, value, onValueChange, ...props }: Record<string, unknown>) => {
