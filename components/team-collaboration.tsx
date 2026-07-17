@@ -343,7 +343,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
 
       {/* 主要内容区域 */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-sky-100">
+        <TabsList className="grid w-full grid-cols-3 bg-primary/10">
           <TabsTrigger value="dashboard" className="flex items-center gap-2">
             <Users className="w-4 h-4" />
             团队看板
@@ -360,10 +360,10 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
 
         <TabsContent value="dashboard" className="space-y-6">
           {/* 团队成员看板 */}
-          <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+          <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-sky-500" />
+                <Users className="w-5 h-5 text-primary" />
                 团队成员看板
               </CardTitle>
               <CardDescription>实时查看团队成员的OKR进展情况</CardDescription>
@@ -373,7 +373,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                 {teamMembers.map((member) => (
                   <div
                     key={member.id}
-                    className="p-4 border border-sky-200 rounded-lg bg-sky-50/30 hover:bg-sky-50/50 transition-all duration-200"
+                    className="p-4 border border-border rounded-lg bg-primary/5 hover:bg-primary/10 transition-all duration-200"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="relative">
@@ -404,7 +404,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       </div>
                       <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
-                          className="bg-linear-to-r from-sky-400 to-blue-500 h-2 rounded-full transition-all duration-300"
+                          className="bg-linear-to-r from-primary to-primary/70 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${member.completionRate}%` }}
                         />
                       </div>
@@ -432,7 +432,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
             {sharedOKRs.map((okr) => (
               <Card
                 key={okr.id}
-                className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+                className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
               >
                 <CardHeader>
                   <div className="flex justify-between items-start">
@@ -461,7 +461,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <div className="w-20 mt-1">
                         <div className="w-full bg-slate-200 rounded-full h-2">
                           <div
-                            className="bg-linear-to-r from-sky-400 to-blue-500 h-2 rounded-full"
+                            className="bg-linear-to-r from-primary to-primary/70 h-2 rounded-full"
                             style={{ width: `${okr.progress}%` }}
                           />
                         </div>
@@ -486,7 +486,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                         variant="outline"
                         size="sm"
                         onClick={() => handleShareOKR(okr.id)}
-                        className="border-sky-200 text-sky-700 hover:bg-sky-50 bg-transparent"
+                        className="border-primary/20 text-primary hover:bg-primary/5 bg-transparent"
                       >
                         <Share2 className="w-4 h-4 mr-2" />
                         分享
@@ -494,7 +494,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-sky-200 text-sky-700 hover:bg-sky-50 bg-transparent"
+                        className="border-primary/20 text-primary hover:bg-primary/5 bg-transparent"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         查看详情
@@ -502,7 +502,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <Button
                         size="sm"
                         onClick={() => setSelectedOKR(okr.id)}
-                        className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                        className="bg-linear-to-r from-primary to-primary/70 hover:from-sky-500 hover:to-blue-600 text-white"
                       >
                         <MessageSquare className="w-4 h-4 mr-2" />
                         参与讨论
@@ -517,10 +517,10 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
 
         <TabsContent value="feedback" className="space-y-6">
           {/* 反馈和评论系统 */}
-          <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+          <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-sky-500" />
+                <MessageSquare className="w-5 h-5 text-primary" />
                 团队反馈与协作
               </CardTitle>
               <CardDescription>实时沟通，共同推进目标达成</CardDescription>
@@ -528,7 +528,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
             <CardContent>
               <div className="space-y-6">
                 {sharedOKRs.map((okr) => (
-                  <div key={okr.id} className="border border-sky-200 rounded-lg p-4 bg-sky-50/30">
+                  <div key={okr.id} className="border border-border rounded-lg p-4 bg-primary/5">
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="font-medium text-slate-800">{okr.title}</h4>
                       <Badge className={getStatusColor(okr.status)} variant="outline">
@@ -540,7 +540,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                     <ScrollArea className="h-64 mb-4">
                       <div className="space-y-3">
                         {okr.comments.map((comment) => (
-                          <div key={comment.id} className="bg-white p-3 rounded-lg border border-sky-100">
+                          <div key={comment.id} className="bg-white p-3 rounded-lg border border-border">
                             <div className="flex items-start gap-3">
                               <Avatar className="w-8 h-8">
                                 <AvatarImage src={comment.avatar || "/placeholder.svg"} />
@@ -553,17 +553,17 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                                 </div>
                                 <p className="text-sm text-slate-600 mb-2">{comment.content}</p>
                                 <div className="flex items-center gap-3">
-                                  <button className="flex items-center gap-1 text-xs text-slate-500 hover:text-sky-600">
+                                  <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary">
                                     <ThumbsUp className="w-3 h-3" />
                                     {comment.likes}
                                   </button>
-                                  <button className="text-xs text-slate-500 hover:text-sky-600">回复</button>
+                                  <button className="text-xs text-muted-foreground hover:text-primary">回复</button>
                                 </div>
                                 {/* 回复列表 */}
                                 {comment.replies.length > 0 && (
                                   <div className="mt-3 ml-4 space-y-2">
                                     {comment.replies.map((reply) => (
-                                      <div key={reply.id} className="bg-sky-50 p-2 rounded">
+                                      <div key={reply.id} className="bg-primary/5 p-2 rounded">
                                         <div className="flex items-center gap-2 mb-1">
                                           <span className="font-medium text-xs text-slate-700">{reply.author}</span>
                                           <span className="text-xs text-slate-500">{reply.timestamp}</span>
@@ -591,7 +591,7 @@ export function TeamCollaboration({ showTitle = true }: TeamCollaborationProps) 
                       <Button
                         onClick={() => handleAddComment(okr.id)}
                         disabled={!newComment.trim()}
-                        className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                        className="bg-linear-to-r from-primary to-primary/70 hover:from-sky-500 hover:to-blue-600 text-white"
                       >
                         <Send className="w-4 h-4" />
                       </Button>

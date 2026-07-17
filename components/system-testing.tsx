@@ -365,7 +365,7 @@ export function SystemTesting() {
 
       {/* 测试进度概览 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">总体进度</p>
@@ -381,7 +381,7 @@ export function SystemTesting() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">通过率</p>
@@ -391,7 +391,7 @@ export function SystemTesting() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">已完成</p>
@@ -401,7 +401,7 @@ export function SystemTesting() {
           </div>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600">失败数</p>
@@ -439,7 +439,7 @@ export function SystemTesting() {
             {testSuites.map((suite) => (
               <Card
                 key={suite.id}
-                className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4 group"
+                className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4 group"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -486,7 +486,7 @@ export function SystemTesting() {
               {testResults.map((result) => (
                 <Card
                   key={result.id}
-                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4 group"
+                  className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 p-4 group"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
@@ -529,7 +529,7 @@ export function SystemTesting() {
 
         <TabsContent value="coverage" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
               <h3 className="text-lg font-semibold mb-4">功能覆盖率</h3>
               <div className="space-y-3">
                 {[
@@ -555,7 +555,7 @@ export function SystemTesting() {
               </div>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
               <h3 className="text-lg font-semibold mb-4">代码覆盖率</h3>
               <div className="space-y-3">
                 {[

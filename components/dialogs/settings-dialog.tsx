@@ -52,7 +52,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Settings className="w-5 h-5 text-sky-600" />
+            <Settings className="w-5 h-5 text-primary" />
             系统设置
           </DialogTitle>
           <DialogDescription>自定义您的系统偏好设置</DialogDescription>

@@ -243,12 +243,12 @@ export function OKRManagement() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-600">平均完成度</p>
-                <p className="text-3xl font-bold text-sky-600">
+                <p className="text-3xl font-bold text-primary">
                   {Math.round(filteredOKRs.reduce((acc, okr) => acc + okr.progress, 0) / filteredOKRs.length)}%
                 </p>
                 <p className="text-xs text-slate-500 mt-1">整体进展情况</p>
               </div>
-              <TrendingUp className="w-8 h-8 text-sky-400" />
+              <TrendingUp className="w-8 h-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -285,9 +285,9 @@ export function OKRManagement() {
         {filteredOKRs.map((okr) => (
           <Card
             key={okr.id}
-            className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+            className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
           >
-            <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
+            <CardHeader className="border-b border-border bg-linear-to-r from-primary/5 to-primary/3">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <CardTitle className="text-lg text-slate-800">{okr.title}</CardTitle>
@@ -299,7 +299,7 @@ export function OKRManagement() {
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Badge variant="outline" className="border-sky-200 text-sky-700">
+                  <Badge variant="outline" className="border-primary/20 text-primary">
                     {okr.quarter}
                   </Badge>
                   <div className="text-right">
@@ -316,7 +316,7 @@ export function OKRManagement() {
                 <h4 className="font-medium text-sm text-slate-600">关键结果 (Key Results)</h4>
                 <div className="space-y-3">
                   {okr.keyResults.map((kr) => (
-                    <div key={kr.id} className="border border-sky-200 rounded-lg p-4 bg-sky-50/30">
+                    <div key={kr.id} className="border border-border rounded-lg p-4 bg-primary/5">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex-1">
                           <h5 className="font-medium text-slate-800">{kr.title}</h5>
@@ -342,18 +342,18 @@ export function OKRManagement() {
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-end space-x-2 pt-4 border-t border-sky-100">
-                  <Button variant="outline" size="sm" className="border-sky-200 text-sky-700 hover:bg-sky-50">
+                <div className="flex justify-end space-x-2 pt-4 border-t border-border">
+                  <Button variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary/5">
                     <Eye className="w-4 h-4 mr-2" />
                     查看详情
                   </Button>
-                  <Button variant="outline" size="sm" className="border-sky-200 text-sky-700 hover:bg-sky-50">
+                  <Button variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary/5">
                     <Edit className="w-4 h-4 mr-2" />
                     编辑OKR
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-linear-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
+                    className="bg-linear-to-r from-primary to-primary/70 hover:from-sky-500 hover:to-blue-600 text-white"
                   >
                     <Award className="w-4 h-4 mr-2" />
                     更新进度

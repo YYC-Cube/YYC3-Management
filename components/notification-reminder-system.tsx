@@ -513,7 +513,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                         查看示例
                       </Button>
                     </div>
-                    <div className="p-4 border border-sky-200 rounded-lg">
+                    <div className="p-4 border border-border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
                         <h5 className="font-medium text-slate-800">月度总结</h5>
                         <Badge className="bg-success/10 text-success">已启用</Badge>

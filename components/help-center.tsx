@@ -315,7 +315,7 @@ export function HelpCenter() {
 
       {/* 统计信息 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -327,7 +327,7 @@ export function HelpCenter() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -339,7 +339,7 @@ export function HelpCenter() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -394,7 +394,7 @@ export function HelpCenter() {
               {filteredArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 cursor-pointer"
+                  className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-pointer"
                   onClick={() => handleArticleClick(article.id)}
                 >
                   <CardContent className="p-6">
@@ -442,7 +442,7 @@ export function HelpCenter() {
               ))}
             </div>
           ) : (
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
                 <FileText className="w-16 h-16 text-slate-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的文章</h3>
@@ -462,7 +462,7 @@ export function HelpCenter() {
               {filteredVideos.map((video) => (
                 <Card
                   key={video.id}
-                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 cursor-pointer group"
+                  className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-pointer group"
                   onClick={() => handleVideoClick(video.id)}
                 >
                   <div className="relative">
@@ -515,7 +515,7 @@ export function HelpCenter() {
               ))}
             </div>
           ) : (
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
                 <Video className="w-16 h-16 text-slate-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的视频</h3>
@@ -535,7 +535,7 @@ export function HelpCenter() {
               {filteredFAQs.map((faq) => (
                 <Card
                   key={faq.id}
-                  className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300"
+                  className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
                 >
                   <CardContent className="p-0">
                     <details className="group">
@@ -577,7 +577,7 @@ export function HelpCenter() {
               ))}
             </div>
           ) : (
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
                 <HelpCircle className="w-16 h-16 text-slate-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的常见问题</h3>
