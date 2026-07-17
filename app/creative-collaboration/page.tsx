@@ -140,9 +140,9 @@ export default function CreativeCollaborationPage() {
       case "planning":
         return "bg-blue-100 text-blue-800"
       case "in-progress":
-        return "bg-orange-100 text-orange-800"
+        return "bg-chart-2/10 text-chart-2"
       case "review":
-        return "bg-purple-100 text-purple-800"
+        return "bg-chart-3/10 text-chart-3"
       case "completed":
         return "bg-success/10 text-success"
       default:
@@ -170,7 +170,7 @@ export default function CreativeCollaborationPage() {
       case "high":
         return "text-destructive"
       case "medium":
-        return "text-orange-600"
+        return "text-chart-2"
       case "low":
         return "text-success"
       default:
@@ -205,8 +205,8 @@ export default function CreativeCollaborationPage() {
         {/* 页面标题 */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center">
-              <Lightbulb className="w-8 h-8 mr-3 text-purple-600" />
+            <h1 className="text-3xl font-bold bg-linear-to-r from-chart-3 to-chart-1 bg-clip-text text-transparent flex items-center">
+              <Lightbulb className="w-8 h-8 mr-3 text-chart-3" />
               智创协同
             </h1>
             <p className="text-muted-foreground mt-2">AI驱动的创意协作平台，激发团队无限创造力</p>
@@ -218,7 +218,7 @@ export default function CreativeCollaborationPage() {
             </Button>
             <Button
               onClick={handleCreateProject}
-              className="bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+              className="bg-linear-to-r from-chart-3 to-chart-1 hover:from-chart-3/80 hover:to-chart-1/80"
             >
               <Plus className="w-4 h-4 mr-2" />
               新建项目
@@ -233,9 +233,9 @@ export default function CreativeCollaborationPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-lg font-bold text-foreground">活跃项目</p>
-                  <p className="text-2xl font-bold text-purple-600 mt-1">12</p>
+                  <p className="text-2xl font-bold text-chart-3 mt-1">12</p>
                 </div>
-                <Rocket className="w-8 h-8 text-purple-500" />
+                <Rocket className="w-8 h-8 text-chart-3" />
               </div>
               <div className="mt-4">
                 <div className="flex items-center text-sm text-success">
@@ -246,14 +246,14 @@ export default function CreativeCollaborationPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card/90 backdrop-blur-sm border border-pink-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-pink-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-pink-500 shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 shadow-md">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-lg font-bold text-foreground">创意想法</p>
-                  <p className="text-2xl font-bold text-pink-600 mt-1">156</p>
+                  <p className="text-2xl font-bold text-chart-1 mt-1">156</p>
                 </div>
-                <Lightbulb className="w-8 h-8 text-pink-500" />
+                <Lightbulb className="w-8 h-8 text-chart-1" />
               </div>
               <div className="mt-4">
                 <div className="flex items-center text-sm text-success">
@@ -302,7 +302,7 @@ export default function CreativeCollaborationPage() {
         </div>
 
         {/* 主要内容区域 */}
-        <div className="border-t-4 border-t-purple-400 pt-6">
+        <div className="border-t-4 border-t-chart-3 pt-6">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="projects">创意项目</TabsTrigger>
@@ -341,7 +341,7 @@ export default function CreativeCollaborationPage() {
                     <option value="completed">已完成</option>
                   </select>
                 </div>
-                <Button onClick={handleCreateProject} className="bg-linear-to-r from-purple-600 to-pink-600">
+                <Button onClick={handleCreateProject} className="bg-linear-to-r from-chart-3 to-chart-1">
                   <Plus className="w-4 h-4 mr-2" />
                   新建项目
                 </Button>
@@ -391,7 +391,7 @@ export default function CreativeCollaborationPage() {
                           <div className="flex -space-x-2">
                             {project.team.slice(0, 3).map((member, index) => (
                               <Avatar key={index} className="w-6 h-6 border-2 border-white">
-                                <AvatarFallback className="text-xs bg-purple-100 text-purple-600">
+                                <AvatarFallback className="text-xs bg-chart-3/10 text-chart-3">
                                   {member.charAt(0)}
                                 </AvatarFallback>
                               </Avatar>
@@ -406,7 +406,7 @@ export default function CreativeCollaborationPage() {
 
                         <div className="flex flex-wrap gap-1">
                           {project.tags.map((tag, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs bg-purple-50 text-purple-700">
+                            <Badge key={index} variant="secondary" className="text-xs bg-chart-3/5 text-chart-3">
                               {tag}
                             </Badge>
                           ))}
@@ -438,7 +438,7 @@ export default function CreativeCollaborationPage() {
             <TabsContent value="ideas" className="space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-semibold">创意想法库</h3>
-                <Button onClick={handleCreateIdea} className="bg-linear-to-r from-pink-600 to-purple-600">
+                <Button onClick={handleCreateIdea} className="bg-linear-to-r from-chart-1 to-chart-3">
                   <Plus className="w-4 h-4 mr-2" />
                   提交创意
                 </Button>
@@ -448,7 +448,7 @@ export default function CreativeCollaborationPage() {
                 {ideas.map((idea) => (
                   <Card
                     key={idea.id}
-                    className="bg-card/90 backdrop-blur-sm border border-pink-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-pink-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-pink-500 group"
+                    className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group"
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -456,7 +456,7 @@ export default function CreativeCollaborationPage() {
                           <CardTitle className="text-lg flex items-center gap-2">
                             {idea.title}
                             {idea.aiGenerated && (
-                              <Badge variant="outline" className="bg-pink-100 text-pink-800 border-pink-200">
+                              <Badge variant="outline" className="bg-chart-1/10 text-chart-1 border-chart-1/30">
                                 <Sparkles className="w-3 h-3 mr-1" />
                                 AI生成
                               </Badge>
@@ -471,14 +471,14 @@ export default function CreativeCollaborationPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <Avatar className="w-6 h-6">
-                              <AvatarFallback className="text-xs bg-pink-100 text-pink-600">
+                              <AvatarFallback className="text-xs bg-chart-1/10 text-chart-1">
                                 {idea.author.charAt(0)}
                               </AvatarFallback>
                             </Avatar>
                             <span className="text-sm text-muted-foreground">{idea.author}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Badge variant="secondary" className="bg-pink-50 text-pink-700">
+                            <Badge variant="secondary" className="bg-chart-1/5 text-chart-1">
                               {idea.category}
                             </Badge>
                             <span className="text-xs text-muted-foreground">{idea.timestamp}</span>
@@ -487,7 +487,7 @@ export default function CreativeCollaborationPage() {
 
                         <div className="flex items-center justify-between pt-2 border-t">
                           <div className="flex items-center gap-4">
-                            <Button variant="ghost" size="sm" className="text-pink-600 hover:text-pink-700">
+                            <Button variant="ghost" size="sm" className="text-chart-1 hover:text-chart-1">
                               <ThumbsUp className="w-4 h-4 mr-1" />
                               {idea.likes}
                             </Button>
@@ -610,9 +610,9 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">今日使用次数</span>
-                        <Badge className="bg-purple-100 text-purple-800">15次</Badge>
+                        <Badge className="bg-chart-3/10 text-chart-3">15次</Badge>
                       </div>
-                      <Button className="w-full bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800">
+                      <Button className="w-full bg-linear-to-r from-chart-3 to-chart-3/80 hover:from-chart-3/80 hover:to-chart-3/80">
                         <Sparkles className="w-4 h-4 mr-2" />
                         开始创作
                       </Button>
@@ -620,10 +620,10 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-pink-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-pink-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-pink-500 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Palette className="w-6 h-6 mr-2 text-pink-600" />
+                      <Palette className="w-6 h-6 mr-2 text-chart-1" />
                       智能设计助手
                     </CardTitle>
                     <CardDescription>AI辅助设计，自动生成配色方案和布局建议</CardDescription>
@@ -632,9 +632,9 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">设计模板</span>
-                        <Badge className="bg-pink-100 text-pink-800">200+</Badge>
+                        <Badge className="bg-chart-1/10 text-chart-1">200+</Badge>
                       </div>
-                      <Button className="w-full bg-linear-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800">
+                      <Button className="w-full bg-linear-to-r from-chart-1 to-chart-1/80 hover:from-chart-1/80 hover:to-chart-1/80">
                         <Palette className="w-4 h-4 mr-2" />
                         开始设计
                       </Button>
@@ -686,10 +686,10 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-orange-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-orange-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-2/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-2/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-2 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Zap className="w-6 h-6 mr-2 text-orange-600" />
+                      <Zap className="w-6 h-6 mr-2 text-chart-2" />
                       创意评估器
                     </CardTitle>
                     <CardDescription>AI评估创意可行性，提供改进建议和风险分析</CardDescription>
@@ -698,9 +698,9 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">评估维度</span>
-                        <Badge className="bg-orange-100 text-orange-800">8个</Badge>
+                        <Badge className="bg-chart-2/10 text-chart-2">8个</Badge>
                       </div>
-                      <Button className="w-full bg-linear-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800">
+                      <Button className="w-full bg-linear-to-r from-chart-2 to-chart-2/80 hover:from-chart-2/80 hover:to-chart-2/80">
                         <CheckCircle className="w-4 h-4 mr-2" />
                         开始评估
                       </Button>
@@ -708,10 +708,10 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-indigo-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-indigo-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-indigo-500 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-3/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-3 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Rocket className="w-6 h-6 mr-2 text-indigo-600" />
+                      <Rocket className="w-6 h-6 mr-2 text-chart-3" />
                       项目智能规划
                     </CardTitle>
                     <CardDescription>AI制定项目计划，优化资源配置和时间安排</CardDescription>
@@ -720,9 +720,9 @@ export default function CreativeCollaborationPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">成功率</span>
-                        <Badge className="bg-indigo-100 text-indigo-800">92%</Badge>
+                        <Badge className="bg-chart-3/10 text-chart-3">92%</Badge>
                       </div>
-                      <Button className="w-full bg-linear-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
+                      <Button className="w-full bg-linear-to-r from-chart-3 to-chart-3/80 hover:from-chart-3/80 hover:to-chart-3/80">
                         <Calendar className="w-4 h-4 mr-2" />
                         智能规划
                       </Button>
@@ -806,15 +806,15 @@ export default function CreativeCollaborationPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600 mb-2">40%</div>
+                      <div className="text-3xl font-bold text-chart-3 mb-2">40%</div>
                       <div className="text-sm text-muted-foreground">创意生成效率提升</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600 mb-2">65%</div>
+                      <div className="text-3xl font-bold text-chart-3 mb-2">65%</div>
                       <div className="text-sm text-muted-foreground">设计时间节省</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600 mb-2">85%</div>
+                      <div className="text-3xl font-bold text-chart-3 mb-2">85%</div>
                       <div className="text-sm text-muted-foreground">用户满意度</div>
                     </div>
                   </div>

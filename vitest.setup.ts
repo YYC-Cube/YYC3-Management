@@ -166,7 +166,7 @@ Object.defineProperty(globalThis, 'indexedDB', {
 
 process.env.NEXT_PUBLIC_APP_URL = 'http://localhost:3223';
 process.env.NEXT_PUBLIC_API_BASE_URL = 'http://localhost:3223';
-process.env.DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
+process.env.DATABASE_URL = 'postgresql://yanyu@localhost:5433/yyc3_33';
 process.env.JWT_SECRET = 'test-jwt-secret-for-testing-only-32chars';
 process.env.NODE_ENV = 'test';
 
