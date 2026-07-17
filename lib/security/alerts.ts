@@ -539,8 +539,7 @@ export function detectXSS(input: string): boolean {
     /<script\b[^<]*(?:(?!<\/script\s*>)[^<]*)*<\/script\s*>/gi,
     /<iframe\b[^<]*(?:(?!<\/iframe\s*>)[^<]*)*<\/iframe\s*>/gi,
     /javascript:/gi,
-    /on\w+\s*=/gi,  // 事件处理器
-    /<.*?on\w+.*?>/gi,
+    /(?:on(?:load|unload|click|dblclick|mousedown|mouseup|mousemove|mouseover|mouseout|mouseenter|mouseleave|focus|blur|change|submit|reset|keydown|keypress|keyup|error|scroll|wheel|drag|drop|play|pause|progress|ratechange|resize|seeked|seeking|stalled|suspend|timeupdate|volumechange|waiting|toggle|pointerdown|pointerup|pointermove|pointerover|pointerout|pointerenter|pointerleave|gotpointercapture|lostpointercapture|animationstart|animationend|animationiteration|transitionstart|transitionend|transitionrun|transitioncancel))\s*=/gi,
   ];
 
   return xssPatterns.some(pattern => pattern.test(input));
