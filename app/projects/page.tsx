@@ -430,7 +430,7 @@ export default function ProjectsPage() {
           </div>
         </EnhancedCard>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="responsive-grid-2">
           <EnhancedCard>
             <h3 className="text-lg font-semibold text-slate-800 mb-4">项目状态分布</h3>
             <div className="space-y-3">

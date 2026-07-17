@@ -8,7 +8,7 @@ export default function ChannelCenterPage() {
       description="渠道管理中心"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <ChannelCenter />
       </div>
     </PageContainer>

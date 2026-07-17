@@ -11,7 +11,7 @@ export default function HelpCenterPage() {
       description="系统帮助和支持"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <HelpCenter />
       </div>
       <FloatingNavButtons />

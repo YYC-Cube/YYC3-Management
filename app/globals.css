@@ -33,6 +33,30 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
+    /* Z-index 层级体系 */
+    --z-dropdown: 50;
+    --z-sticky: 60;
+    --z-fixed: 70;
+    --z-modal-backdrop: 80;
+    --z-modal: 90;
+    --z-popover: 100;
+    --z-tooltip: 110;
+    --z-toast: 120;
+
+    /* 动效时长体系 */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+
+    /* 字号体系（作为 Tailwind 的补充） */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+
     /* Sidebar 语义变量（与 tailwind.config.ts 对齐） */
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222.2 84% 4.9%;

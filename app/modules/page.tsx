@@ -11,7 +11,7 @@ export default function ModulesPage() {
       description="选择您需要的功能模块，开始高效管理"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <ModuleCards />
       </div>
       <FloatingNavButtons />

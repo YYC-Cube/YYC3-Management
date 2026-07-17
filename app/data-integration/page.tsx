@@ -11,7 +11,7 @@ export default function DataIntegrationPage() {
       description="数据集成和同步"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <DataIntegration />
       </div>
       <FloatingNavButtons />

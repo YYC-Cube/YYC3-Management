@@ -11,7 +11,7 @@ export default function StoreManagementPage() {
       description="商店和订单管理"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <StoreManagement />
       </div>
       <FloatingNavButtons />

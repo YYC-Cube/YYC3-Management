@@ -1,5 +1,5 @@
-import { TeamCollaboration } from "@/components/team-collaboration"
 import { PageContainer } from "@/components/layout/page-container"
+import { TeamCollaboration } from "@/components/team-collaboration"
 
 export default function CollaborationPage() {
   return (
@@ -8,7 +8,7 @@ export default function CollaborationPage() {
       description="共享目标，协同合作，共同成长"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <TeamCollaboration showTitle={false} />
       </div>
     </PageContainer>

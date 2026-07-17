@@ -11,7 +11,7 @@ export default function SystemTestingPage() {
       description="功能测试和验证"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <SystemTesting />
       </div>
       <FloatingNavButtons />
