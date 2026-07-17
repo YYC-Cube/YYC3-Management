@@ -228,7 +228,7 @@ export default function CreativeCollaborationPage() {
 
         {/* 数据概览卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-md hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -246,7 +246,7 @@ export default function CreativeCollaborationPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-md hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -264,7 +264,7 @@ export default function CreativeCollaborationPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-md hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -282,7 +282,7 @@ export default function CreativeCollaborationPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-md hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -351,7 +351,7 @@ export default function CreativeCollaborationPage() {
                 {projects.map((project) => (
                   <Card
                     key={project.id}
-                    className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group"
+                    className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-md hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group"
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -448,7 +448,7 @@ export default function CreativeCollaborationPage() {
                 {ideas.map((idea) => (
                   <Card
                     key={idea.id}
-                    className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group"
+                    className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-md hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group"
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -515,7 +515,7 @@ export default function CreativeCollaborationPage() {
             {/* 团队协作 */}
             <TabsContent value="collaboration" className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 border-r-[5px] border-r-primary shadow-md">
+                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-md hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 border-r-[5px] border-r-primary">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Users className="w-5 h-5 mr-2 text-blue-600" />
@@ -547,7 +547,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success shadow-md">
+                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-md hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <MessageSquare className="w-5 h-5 mr-2 text-success" />
@@ -598,7 +598,7 @@ export default function CreativeCollaborationPage() {
             {/* AI工具 */}
             <TabsContent value="ai-tools" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-md hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Brain className="w-6 h-6 mr-2 text-chart-1" />
@@ -620,7 +620,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-md hover:shadow-xl hover:border-chart-1/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-1 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Palette className="w-6 h-6 mr-2 text-chart-1" />
@@ -642,7 +642,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-md hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <FileText className="w-6 h-6 mr-2 text-blue-600" />
@@ -664,7 +664,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-md hover:shadow-xl hover:border-success/30/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Target className="w-6 h-6 mr-2 text-success" />
@@ -686,7 +686,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-chart-2/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-2/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-2 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-2/30 rounded-xl shadow-md hover:shadow-xl hover:border-chart-2/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-2 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Zap className="w-6 h-6 mr-2 text-chart-2" />
@@ -708,7 +708,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:border-chart-3/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-3 group cursor-pointer">
+                <Card className="bg-card/90 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-md hover:shadow-xl hover:border-chart-3/40 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-chart-3 group cursor-pointer">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Rocket className="w-6 h-6 mr-2 text-chart-3" />
@@ -735,7 +735,7 @@ export default function CreativeCollaborationPage() {
             {/* 数据分析 */}
             <TabsContent value="analytics" className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 border-r-[5px] border-r-primary shadow-md">
+                <Card className="bg-card/90 backdrop-blur-sm border border-blue-200/60 rounded-xl shadow-md hover:shadow-xl hover:border-blue-300/60 transition-all duration-300 border-r-[5px] border-r-primary">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <TrendingUp className="w-5 h-5 mr-2 text-blue-600" />
@@ -765,7 +765,7 @@ export default function CreativeCollaborationPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-sm hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success shadow-md">
+                <Card className="bg-card/90 backdrop-blur-sm border border-success/20/60 rounded-xl shadow-md hover:shadow-xl hover:border-success/30/60 transition-all duration-300 border-r-[5px] border-r-success">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Users className="w-5 h-5 mr-2 text-success" />
@@ -796,7 +796,7 @@ export default function CreativeCollaborationPage() {
                 </Card>
               </div>
 
-              <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-chart-1 shadow-md">
+              <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-md hover:shadow-xl hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-chart-1">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Brain className="w-5 h-5 mr-2 text-chart-1" />

@@ -347,7 +347,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
         <TabsContent value="chat" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             <div className="lg:col-span-3">
-              <Card className="border-r-[5px] border-r-chart-1 bg-card/80 backdrop-blur-sm border border-chart-1/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 h-[600px] flex flex-col">
+              <Card className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 h-150 flex flex-col">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2">
                     <Bot className="w-5 h-5 text-chart-1" />
