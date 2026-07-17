@@ -197,7 +197,7 @@ export function PermissionManagement() {
 
       {/* 权限统计 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="border-r-[5px] border-r-indigo-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-indigo-400 hover:shadow-md transition-all duration-300">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>

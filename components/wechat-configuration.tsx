@@ -276,7 +276,7 @@ export function WechatConfiguration() {
 
       {/* 状态概览 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -335,7 +335,7 @@ export function WechatConfiguration() {
         </TabsList>
 
         <TabsContent value="basic" className="space-y-6">
-          <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 shadow-md">
+          <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-primary shadow-md">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>

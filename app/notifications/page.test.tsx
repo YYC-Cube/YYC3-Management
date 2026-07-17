@@ -15,7 +15,7 @@ describe('NotificationsPage', () => {
   test('should render all statistics cards', () => {
     // 检查全部通知卡片
     expect(screen.getByText('全部通知')).toBeInTheDocument()
-    const allNotificationsCard = screen.getByText('全部通知').closest('.border-r-blue-400')
+    const allNotificationsCard = screen.getByText('全部通知').closest('.border-r-primary')
     expect(allNotificationsCard?.querySelector('.text-3xl')).toHaveTextContent('5')
 
     // 检查未读消息卡片

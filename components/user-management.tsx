@@ -519,7 +519,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
       </div>
 
       <div className="responsive-grid-4">
-        <Card className="responsive-card border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="responsive-card border-r-[5px] border-r-primary shadow-md">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -629,7 +629,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
               renderItem={(user) => (
                 <Card
                   key={user.id}
-                  className="m-2 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
+                  className="m-2 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-primary shadow-md"
                 >
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start justify-between">

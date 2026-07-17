@@ -269,7 +269,7 @@ export function OAApproval() {
         {stats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <Card key={index} className="border-r-[5px] border-r-primary hover:shadow-md transition-shadow">
+            <Card key={index} className="border-r-[5px] border-r-primary hover:shadow-md transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -430,7 +430,7 @@ export function OAApproval() {
                 const statusStyle = getStatusStyle("approval", item.status)
 
                 return (
-                  <Card key={item.id} className="hover:shadow-md transition-shadow">
+                  <Card key={item.id} className="hover:shadow-md transition-all duration-300">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start space-x-4 flex-1">
@@ -569,7 +569,7 @@ export function OAApproval() {
                         {statusItems.map((item) => {
                           const TypeIcon = getTypeIcon(item.type)
                           return (
-                            <Card key={item.id} className="hover:shadow-md transition-shadow cursor-pointer">
+                            <Card key={item.id} className="hover:shadow-md transition-all duration-300 cursor-pointer">
                               <CardContent className="p-4">
                                 <div className="flex items-start space-x-3">
                                   <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">

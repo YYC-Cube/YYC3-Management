@@ -510,7 +510,7 @@ export function ChannelCenter() {
 
       {/* 总览指标 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <Card className="border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="border-r-[5px] border-r-primary shadow-md">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>

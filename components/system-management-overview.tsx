@@ -285,7 +285,7 @@ export function SystemManagementOverview() {
       </div>
 
       {/* 系统健康度总览 */}
-      <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+      <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-primary p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">系统健康度</h2>
           <div className="flex items-center gap-2">
@@ -340,7 +340,7 @@ export function SystemManagementOverview() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-primary p-6">
               <h3 className="text-lg font-semibold mb-4">系统指标</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
