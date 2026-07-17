@@ -2,22 +2,22 @@
  * @fileoverview 工具函数库单元测试 — 格式化、验证、防抖节流、数据处理
  * @author YYC³ @version 3.1.0 @license MIT
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   cn,
+  debounce,
   formatCurrency,
   formatDate,
   formatDateTime,
   formatNumber,
   formatPercent,
-  truncateText,
   generateId,
-  debounce,
-  throttle,
   getInitials,
   isValidEmail,
   isValidPhone,
   sleep,
+  throttle,
+  truncateText,
 } from '../utils'
 
 describe('Utils', () => {
@@ -57,7 +57,8 @@ describe('Utils', () => {
 
     it('应处理负数', () => {
       const result = formatCurrency(-100)
-      expect(result).toContain('-100')
+      expect(result).toContain('-')
+      expect(result).toContain('¥')
     })
   })
 

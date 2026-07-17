@@ -42,6 +42,11 @@ export class AdvancedSearch<T> {
     })
   }
 
+  /** Filter data by conditions without text search */
+  filter(data: T[], filters: SearchFilter[]): T[] {
+    return data.filter((item) => this.matchesFilters(item, filters))
+  }
+
   private matchesSearchTerm(item: T, searchTerm: string): boolean {
     if (!searchTerm) return true
 
@@ -65,6 +70,9 @@ export class AdvancedSearch<T> {
 
   private applyFilter(value: unknown, filter: SearchFilter): boolean {
     const filterValue = filter.value
+
+    // If no filter value is provided, use field constraint on existing search
+    if (filterValue === undefined) return true
 
     switch (filter.operator) {
       case "equals":
@@ -97,6 +105,11 @@ export class AdvancedSearch<T> {
     return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>')
   }
 
+  /** @alias highlightMatches */
+  highlight(text: string, searchTerm: string): string {
+    return this.highlightMatches(text, searchTerm)
+  }
+
   private escapeRegex(text: string): string {
     return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
   }
@@ -116,6 +129,11 @@ export class AdvancedSearch<T> {
 
   getSearchHistory(): SearchHistoryItem[] {
     return this.searchHistory
+  }
+
+  /** @alias getSearchHistory */
+  getHistory(): SearchHistoryItem[] {
+    return this.getSearchHistory()
   }
 
   clearHistory(): void {
