@@ -39,27 +39,6 @@ export interface SystemMonitorData {
   uptime: number
 }
 
-export interface FinanceRecord {
-  id: number
-  type: 'income' | 'expense'
-  category: string
-  amount: number
-  description?: string
-  reference_id?: string
-  reference_type?: string
-  created_by?: number
-  created_at: Date
-}
-
-export interface CreateFinanceRecordData {
-  type: 'income' | 'expense'
-  category: string
-  amount: number
-  description?: string
-  reference_id?: string
-  reference_type?: string
-}
-
 export interface OKRObjective {
   id: number
   title: string
