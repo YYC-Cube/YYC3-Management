@@ -1,3 +1,6 @@
+/// <reference types="vitest/globals" />
+/// <reference types="node" />
+
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
@@ -170,25 +173,26 @@ process.env.NODE_ENV = 'test';
 // Radix UI Tabs 在 jsdom 中无法可靠渲染非激活面板内容
 // 使用轻量 mock 替代，使所有 TabsContent 始终渲染并保持 role="tabpanel"
 vi.mock('@/components/ui/tabs', () => {
-  const React = require('react')
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const React = require('react') as typeof import('react')
 
   const TabsContext = React.createContext<{ value: string; setValue: (v: string) => void }>({
     value: '',
     setValue: () => { },
   })
 
-  const Tabs = ({ children, defaultValue, value, onValueChange, ...props }: Record<string, unknown>) => {
+  const Tabs = ({ children, defaultValue, value, onValueChange, ...props }: Record<string, unknown> & { children?: React.ReactNode }) => {
     const [internalValue, setInternalValue] = React.useState(value ?? defaultValue ?? '')
     const currentValue = value ?? internalValue
     const setValue = React.useCallback((newValue: string) => {
       if (value === undefined) setInternalValue(newValue)
-      onValueChange?.(newValue)
+        ; (onValueChange as ((v: string) => void) | undefined)?.(newValue)
     }, [value, onValueChange])
 
     return React.createElement(
       TabsContext.Provider,
-      { value: { value: currentValue, setValue } },
-      React.createElement('div', props, children)
+      { value: { value: currentValue, setValue } } as any,
+      React.createElement('div', props as any, children)
     )
   }
 

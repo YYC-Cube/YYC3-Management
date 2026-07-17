@@ -61,11 +61,11 @@ export function truncateText(text: string, maxLength: number): string {
 }
 
 export function generateId(): string {
-  return crypto.randomUUID().slice(0,9)
+  return crypto.randomUUID().slice(0, 9)
 }
 
 export function debounce<T extends (...args: unknown[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout
+  let timeout: ReturnType<typeof setTimeout>
   return (...args: Parameters<T>) => {
     clearTimeout(timeout)
     timeout = setTimeout(() => func(...args), wait)
