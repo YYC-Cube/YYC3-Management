@@ -3,7 +3,7 @@
 import { PageContainer } from "@/components/layout/page-container"
 import { Badge } from "@/components/ui/badge"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { Card } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -30,7 +30,7 @@ export default function CommunicationPage() {
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
+          <Card className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">活跃群组</p>
@@ -41,9 +41,9 @@ export default function CommunicationPage() {
                 <Users className="w-6 h-6 text-purple-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
+          <Card className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">今日消息</p>
@@ -54,9 +54,9 @@ export default function CommunicationPage() {
                 <MessageSquare className="w-6 h-6 text-purple-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
+          <Card className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">在线成员</p>
@@ -67,9 +67,9 @@ export default function CommunicationPage() {
                 <Users className="w-6 h-6 text-purple-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
+          <Card className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">未读消息</p>
@@ -80,13 +80,13 @@ export default function CommunicationPage() {
                 <MessageSquare className="w-6 h-6 text-purple-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
         </div>
 
         {/* 沟通界面 */}
         <div className="responsive-grid-3">
           {/* 群组列表 */}
-          <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md">
+          <Card className="border-r-[5px] border-r-purple-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-card-foreground">群组列表</h2>
               <EnhancedButton size="sm" variant="outline">
@@ -123,11 +123,11 @@ export default function CommunicationPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
 
           {/* 聊天区域 */}
           <div className="lg:col-span-2">
-            <EnhancedCard className="h-[600px] flex flex-col">
+            <Card className="h-[600px] flex flex-col">
               {/* 聊天头部 */}
               <div className="flex items-center justify-between p-4 border-b border-border">
                 <div className="flex items-center gap-3">
@@ -189,7 +189,7 @@ export default function CommunicationPage() {
                   </div>
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
           </div>
         </div>
       </div>

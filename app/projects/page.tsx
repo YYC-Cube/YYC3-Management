@@ -21,7 +21,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { Card } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -284,7 +284,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
+          <Card className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">总项目数</p>
@@ -295,9 +295,9 @@ export default function ProjectsPage() {
                 <Briefcase className="w-6 h-6 text-orange-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
+          <Card className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">已完成</p>
@@ -310,9 +310,9 @@ export default function ProjectsPage() {
                 <CheckCircle className="w-6 h-6 text-success" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
+          <Card className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">进行中</p>
@@ -323,9 +323,9 @@ export default function ProjectsPage() {
                 <Clock className="w-6 h-6 text-orange-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
+          <Card className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">延期项目</p>
@@ -336,10 +336,10 @@ export default function ProjectsPage() {
                 <AlertTriangle className="w-6 h-6 text-destructive" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
         </div>
 
-        <EnhancedCard>
+        <Card>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold text-card-foreground">项目列表</h2>
             <div className="flex gap-2">
@@ -428,10 +428,10 @@ export default function ProjectsPage() {
               </div>
             ))}
           </div>
-        </EnhancedCard>
+        </Card>
 
         <div className="responsive-grid-2">
-          <EnhancedCard>
+          <Card>
             <h3 className="text-lg font-semibold text-card-foreground mb-4">项目状态分布</h3>
             <div className="space-y-3">
               {[
@@ -454,9 +454,9 @@ export default function ProjectsPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard>
+          <Card>
             <h3 className="text-lg font-semibold text-card-foreground mb-4">项目优先级分布</h3>
             <div className="space-y-3">
               {[
@@ -478,7 +478,7 @@ export default function ProjectsPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
         </div>
       </div>
 

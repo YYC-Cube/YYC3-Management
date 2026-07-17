@@ -6,7 +6,7 @@ import { SalesChart } from "@/components/charts/sales-chart"
 import { PageContainer } from "@/components/layout/page-container"
 import { StatisticsDashboard } from "@/components/statistics-dashboard"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { Card } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { useProjects } from "@/hooks/use-projects"
 import { useTasks } from "@/hooks/use-tasks"
@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
         />
 
         <div className="responsive-grid-2">
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
+          <Card className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-card-foreground">销售趋势</h2>
               <EnhancedButton variant="outline" size="sm">
@@ -94,9 +94,9 @@ export default function AnalyticsPage() {
               </EnhancedButton>
             </div>
             <SalesChart />
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
+          <Card className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-card-foreground">财务概览</h2>
               <EnhancedButton variant="outline" size="sm">
@@ -105,10 +105,10 @@ export default function AnalyticsPage() {
               </EnhancedButton>
             </div>
             <FinanceChart />
-          </EnhancedCard>
+          </Card>
         </div>
 
-        <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
+        <Card className="border-r-[5px] border-r-cyan-500 shadow-md">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-card-foreground">性能分析</h2>
             <div className="flex gap-2">
@@ -124,10 +124,10 @@ export default function AnalyticsPage() {
             </div>
           </div>
           <PerformanceChart />
-        </EnhancedCard>
+        </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <EnhancedCard>
+          <Card>
             <h2 className="text-lg font-semibold text-card-foreground mb-4">热门页面</h2>
             <div className="space-y-3">
               {[
@@ -147,9 +147,9 @@ export default function AnalyticsPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard>
+          <Card>
             <h2 className="text-lg font-semibold text-card-foreground mb-4">用户来源</h2>
             <div className="space-y-3">
               {[
@@ -167,7 +167,7 @@ export default function AnalyticsPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
         </div>
       </div>
       <FloatingNavButtons />

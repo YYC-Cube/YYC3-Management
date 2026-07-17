@@ -4,7 +4,7 @@ import { PageContainer } from "@/components/layout/page-container"
 import { OAApproval } from "@/components/oa-approval"
 import { Badge } from "@/components/ui/badge"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { Card } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Calendar, CheckCircle, Clock, FileText, Plus, User, XCircle } from "lucide-react"
 
@@ -28,7 +28,7 @@ export default function ApprovalPage() {
 
           {/* 统计卡片 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <EnhancedCard className="border-r-[5px] border-r-primary shadow-md">
+            <Card className="border-r-[5px] border-r-primary shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">待审批</p>
@@ -39,9 +39,9 @@ export default function ApprovalPage() {
                   <Clock className="w-6 h-6 text-primary" />
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
 
-            <EnhancedCard className="border-r-[5px] border-r-success shadow-md">
+            <Card className="border-r-[5px] border-r-success shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">已通过</p>
@@ -52,9 +52,9 @@ export default function ApprovalPage() {
                   <CheckCircle className="w-6 h-6 text-success" />
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
 
-            <EnhancedCard className="border-r-[5px] border-r-destructive shadow-md">
+            <Card className="border-r-[5px] border-r-destructive shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">已拒绝</p>
@@ -65,9 +65,9 @@ export default function ApprovalPage() {
                   <XCircle className="w-6 h-6 text-destructive" />
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
 
-            <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md">
+            <Card className="border-r-[5px] border-r-purple-500 shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">总申请</p>
@@ -78,11 +78,11 @@ export default function ApprovalPage() {
                   <FileText className="w-6 h-6 text-purple-600" />
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
           </div>
 
           {/* 审批列表 */}
-          <EnhancedCard>
+          <Card>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-card-foreground">待处理审批</h2>
               <div className="flex gap-2">
@@ -205,11 +205,11 @@ export default function ApprovalPage() {
                 </div>
               ))}
             </div>
-          </EnhancedCard>
+          </Card>
 
           {/* 审批统计 */}
           <div className="responsive-grid-2">
-            <EnhancedCard>
+            <Card>
               <h3 className="text-lg font-semibold text-card-foreground mb-4">审批类型分布</h3>
               <div className="space-y-3">
                 {[
@@ -236,9 +236,9 @@ export default function ApprovalPage() {
                   </div>
                 ))}
               </div>
-            </EnhancedCard>
+            </Card>
 
-            <EnhancedCard>
+            <Card>
               <h3 className="text-lg font-semibold text-card-foreground mb-4">审批效率</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
@@ -274,7 +274,7 @@ export default function ApprovalPage() {
                   </div>
                 </div>
               </div>
-            </EnhancedCard>
+            </Card>
           </div>
         </div>
       </PageContainer>
