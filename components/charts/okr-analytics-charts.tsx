@@ -2,27 +2,27 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { useMemo } from "react"
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  LineChart,
-  Line,
   Area,
   AreaChart,
-  RadarChart,
-  PolarGrid,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
   PolarAngleAxis,
+  PolarGrid,
   PolarRadiusAxis,
   Radar,
+  RadarChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
 } from "recharts"
-import { useMemo } from "react"
 
 export function OKRAnalyticsCharts() {
   const departmentProgress = useMemo(() => [
@@ -66,9 +66,9 @@ export function OKRAnalyticsCharts() {
     <div className="space-y-6">
       {/* 第一行：部门进度和季度趋势 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
           <CardHeader>
-            <CardTitle className="text-sky-800">部门OKR完成情况</CardTitle>
+            <CardTitle className="text-primary">部门OKR完成情况</CardTitle>
             <CardDescription>各部门目标达成率对比分析</CardDescription>
           </CardHeader>
           <CardContent>
@@ -109,9 +109,9 @@ export function OKRAnalyticsCharts() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
           <CardHeader>
-            <CardTitle className="text-sky-800">季度OKR趋势</CardTitle>
+            <CardTitle className="text-primary">季度OKR趋势</CardTitle>
             <CardDescription>目标完成状态的时间趋势</CardDescription>
           </CardHeader>
           <CardContent>
@@ -176,9 +176,9 @@ export function OKRAnalyticsCharts() {
 
       {/* 第二行：优先级分布和团队表现 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
           <CardHeader>
-            <CardTitle className="text-sky-800">OKR优先级分布</CardTitle>
+            <CardTitle className="text-primary">OKR优先级分布</CardTitle>
             <CardDescription>目标优先级的分布情况</CardDescription>
           </CardHeader>
           <CardContent>
@@ -213,9 +213,9 @@ export function OKRAnalyticsCharts() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
           <CardHeader>
-            <CardTitle className="text-sky-800">团队成员表现雷达图</CardTitle>
+            <CardTitle className="text-primary">团队成员表现雷达图</CardTitle>
             <CardDescription>多维度评估团队成员能力</CardDescription>
           </CardHeader>
           <CardContent>
@@ -274,9 +274,9 @@ export function OKRAnalyticsCharts() {
       </div>
 
       {/* 第三行：里程碑完成情况 */}
-      <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+      <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm">
         <CardHeader>
-          <CardTitle className="text-sky-800">里程碑完成趋势</CardTitle>
+          <CardTitle className="text-primary">里程碑完成趋势</CardTitle>
           <CardDescription>计划与实际完成里程碑对比</CardDescription>
         </CardHeader>
         <CardContent>

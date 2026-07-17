@@ -629,7 +629,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
               renderItem={(user) => (
                 <Card
                   key={user.id}
-                  className="m-2 hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
+                  className="m-2 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
                 >
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start justify-between">
@@ -726,7 +726,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             {roles.map((role) => (
               <Card
                 key={role.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md"
+                className="responsive-card hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">
@@ -766,7 +766,7 @@ export default function UserManagement({ showTitle = true }: { showTitle?: boole
             {permissions.map((permission) => (
               <Card
                 key={permission.id}
-                className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md"
+                className="responsive-card hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md"
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start justify-between">

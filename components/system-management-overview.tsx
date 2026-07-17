@@ -285,7 +285,7 @@ export function SystemManagementOverview() {
       </div>
 
       {/* 系统健康度总览 */}
-      <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+      <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">系统健康度</h2>
           <div className="flex items-center gap-2">
@@ -307,7 +307,7 @@ export function SystemManagementOverview() {
         {systemStatuses.map((status, index) => (
           <Card
             key={index}
-            className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${status.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
+            className={`bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${status.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
             onClick={() => router.push(status.route)}
           >
             <div className="flex items-center justify-between mb-3">
@@ -340,7 +340,7 @@ export function SystemManagementOverview() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-blue-500 p-6">
               <h3 className="text-lg font-semibold mb-4">系统指标</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -366,7 +366,7 @@ export function SystemManagementOverview() {
               </div>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] border-r-success p-6">
+            <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] border-r-success p-6">
               <h3 className="text-lg font-semibold mb-4">功能状态</h3>
               <div className="space-y-3">
                 {[
@@ -391,7 +391,7 @@ export function SystemManagementOverview() {
             {quickActions.map((action, index) => (
               <Card
                 key={index}
-                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${action.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
+                className={`bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 cursor-pointer border-r-[5px] ${action.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4 group`}
                 onClick={action.action}
               >
                 <div className="flex items-center gap-4">
@@ -415,7 +415,7 @@ export function SystemManagementOverview() {
             {recentActivities.map((activity) => (
               <Card
                 key={activity.id}
-                className={`bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-300/60 transition-all duration-300 border-r-[5px] ${activity.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4`}
+                className={`bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 border-r-[5px] ${activity.borderColor.replace('border-l-', 'border-r-')} shadow-md p-4`}
               >
                 <div className="flex items-center gap-4">
                   <div className={`p-2 rounded-lg ${getActivityColor(activity.status)}`}>

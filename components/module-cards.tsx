@@ -11,11 +11,10 @@
 
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ChevronRight } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { BarChart3, Bot, Brain, Building2, ChevronRight, Settings, Shield, Smartphone, Users } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { BarChart3, Users, Settings, Bot, Building2, Brain, Smartphone, Shield } from "lucide-react"
 
 export function ModuleCards() {
   const router = useRouter()
@@ -47,7 +46,7 @@ export function ModuleCards() {
         router.push("/security")
         break
       default:
-        // console.warn(`Unhandled module: ${moduleName}`)
+      // console.warn(`Unhandled module: ${moduleName}`)
     }
   }
 
@@ -97,7 +96,7 @@ export function ModuleCards() {
 
       {/* 系统设置 - 蓝色系 */}
       <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-linear-to-br from-sky-50 to-blue-50 border-sky-200 border-r-[5px] border-r-sky-500 hover:border-r-sky-600 shadow-md"
+        className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 bg-gradient-to-br from-primary/5 to-primary/3 border-border border-r-[5px] border-r-primary hover:border-r-primary/80 shadow-md"
         onClick={() => handleModuleClick("settings")}
       >
         <CardContent className="p-6">
@@ -105,13 +104,13 @@ export function ModuleCards() {
             <div className="p-3 bg-linear-to-r from-sky-500 to-blue-600 rounded-xl">
               <Settings className="w-8 h-8 text-white" />
             </div>
-            <Badge className="bg-sky-100 text-sky-800 border-sky-300 border-r-2 border-r-sky-500">个性定制</Badge>
+            <Badge className="bg-primary/10 text-primary border-primary/20 border-r-2 border-r-primary">个性定制</Badge>
           </div>
           <h3 className="text-xl font-bold text-slate-900 mb-2">系统设置</h3>
           <p className="text-slate-600 text-sm mb-4">系统偏好设置和账户管理</p>
-          <div className="flex items-center text-sky-600 text-sm font-medium">
+          <div className="flex items-center text-primary text-sm font-medium">
             <span>修改设置</span>
-            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-sky-500" />
+            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-primary" />
           </div>
         </CardContent>
       </Card>

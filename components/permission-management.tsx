@@ -210,7 +210,7 @@ export function PermissionManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">角色数量</CardTitle>
             <Shield className="h-4 w-4 text-muted-foreground" />
@@ -221,7 +221,7 @@ export function PermissionManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">权限数量</CardTitle>
             <Key className="h-4 w-4 text-muted-foreground" />
@@ -232,7 +232,7 @@ export function PermissionManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+        <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">待处理</CardTitle>
             <Lock className="h-4 w-4 text-muted-foreground" />
@@ -253,7 +253,7 @@ export function PermissionManagement() {
         </TabsList>
 
         <TabsContent value="users" className="space-y-4">
-          <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+          <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader>
               <CardTitle>用户列表</CardTitle>
               <CardDescription>管理系统用户账户和权限</CardDescription>
@@ -263,7 +263,7 @@ export function PermissionManagement() {
                 {users.map((user) => (
                   <div
                     key={user.id}
-                    className="border border-sky-200 rounded-xl p-4 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200"
+                    className="border border-border rounded-xl p-4 bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200"
                   >
                     <div className="flex justify-between items-start">
                       <div className="flex items-start space-x-4">
@@ -318,7 +318,7 @@ export function PermissionManagement() {
         </TabsContent>
 
         <TabsContent value="roles" className="space-y-4">
-          <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+          <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader>
               <CardTitle>角色管理</CardTitle>
               <CardDescription>管理用户角色和权限分配</CardDescription>
@@ -328,7 +328,7 @@ export function PermissionManagement() {
                 {roles.map((role) => (
                   <Card
                     key={role.id}
-                    className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+                    className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
                   >
                     <CardHeader>
                       <div className="flex justify-between items-start">
@@ -376,7 +376,7 @@ export function PermissionManagement() {
         </TabsContent>
 
         <TabsContent value="permissions" className="space-y-4">
-          <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+          <Card className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader>
               <CardTitle>权限管理</CardTitle>
               <CardDescription>系统权限定义和分类管理</CardDescription>
@@ -390,7 +390,7 @@ export function PermissionManagement() {
                       {getPermissionsByCategory(category).map((permission) => (
                         <div
                           key={permission.id}
-                          className="border border-sky-200 rounded-xl p-3 bg-white/80 backdrop-blur-sm shadow-sm"
+                          className="border border-border rounded-xl p-3 bg-card/80 backdrop-blur-sm shadow-sm"
                         >
                           <div className="flex justify-between items-start">
                             <div>

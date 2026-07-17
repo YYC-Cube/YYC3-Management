@@ -73,7 +73,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-sky-600" />
+            <Briefcase className="w-5 h-5 text-primary" />
             个人资料
           </DialogTitle>
           <DialogDescription>管理您的个人信息和账户设置</DialogDescription>
