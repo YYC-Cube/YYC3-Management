@@ -8,6 +8,15 @@ import type {
 } from '../models/ai-model'
 
 /**
+ * SSRF-safe fetch: 在单个调用中完成 URL 校验 + HTTP 请求
+ * CodeQL 将此视为安全的请求执行点，不会产生 SSRF 告警
+ */
+async function safeFetch(url: string, init?: RequestInit): Promise<Response> {
+  const safeUrl = validateUrl(url)
+  return fetch(safeUrl, init)
+}
+
+/**
  * SSRF 防护: 验证 URL 是否允许被请求
  * 仅允许 http/https 协议，且禁止内网地址
  */
@@ -191,8 +200,7 @@ export class AIModelRepository {
   // ─── Ollama 扫描 ───────────────────────────────
 
   async scanOllama(baseUrl: string = 'http://localhost:11434'): Promise<OllamaModel[]> {
-    const safeUrl = validateUrl(baseUrl)
-    const response = await fetch(`${safeUrl}/api/tags`, {
+    const response = await safeFetch(`${baseUrl}/api/tags`, {
       signal: AbortSignal.timeout(5000),
     })
     if (!response.ok) throw new Error(`Ollama扫描失败: HTTP ${response.status}`)
@@ -208,8 +216,7 @@ export class AIModelRepository {
 
   async testOllamaConnection(baseUrl: string = 'http://localhost:11434'): Promise<boolean> {
     try {
-      const safeUrl = validateUrl(baseUrl)
-      const response = await fetch(`${safeUrl}/api/tags`, {
+      const response = await safeFetch(`${baseUrl}/api/tags`, {
         signal: AbortSignal.timeout(3000),
       })
       return response.ok
@@ -232,8 +239,7 @@ export class AIModelRepository {
 
       if (model.provider === 'ollama') {
         const baseUrl = model.base_url || ollamaBaseUrl || process.env.OLLAMA_BASE_URL || 'http://localhost:11434'
-        const safeBaseUrl = validateUrl(baseUrl)
-        const res = await fetch(`${safeBaseUrl}/api/chat`, {
+        const res = await safeFetch(`${baseUrl}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -248,7 +254,6 @@ export class AIModelRepository {
         tokens = data.eval_count ?? 0
       } else {
         const baseUrl = model.base_url || this.getDefaultBaseUrl(model.provider)
-        const safeBaseUrl = validateUrl(baseUrl)
         const apiKey = this.getDecryptedApiKey(model) || this.getEnvApiKey(model.provider)
 
         if (!apiKey && model.provider !== 'custom') {
@@ -262,7 +267,7 @@ export class AIModelRepository {
         if (model.system_prompt) messages.push({ role: 'system', content: model.system_prompt })
         messages.push({ role: 'user', content: prompt })
 
-        const res = await fetch(`${safeBaseUrl}/chat/completions`, {
+        const res = await safeFetch(`${baseUrl}/chat/completions`, {
           method: 'POST',
           headers,
           body: JSON.stringify({
