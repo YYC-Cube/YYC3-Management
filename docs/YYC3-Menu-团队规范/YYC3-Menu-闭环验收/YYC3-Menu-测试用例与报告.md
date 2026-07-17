@@ -1,3 +1,17 @@
+---
+description: YYC3 YYC3 项目文档 - YYC³-Menu 测试用例与测试报告
+author: YYC3 团队 <admin@0379.email>
+version: v3.0.0
+created: 2026-07-18
+updated: 2026-07-18
+status: stable
+tags: documentation
+category: general
+language: zh-CN
+audience: developers
+complexity: intermediate
+---
+
 # YYC³-Menu 测试用例与测试报告
 
 > **版本**: 3.1.0 | **日期**: 2026-07-17 | **作者**: YYC³ 测试工程团队
