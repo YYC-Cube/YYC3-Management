@@ -30,7 +30,7 @@ export async function runMigrations(): Promise<void> {
 
   const dir = join(__dirname)
   const files = readdirSync(dir)
-    .filter(f => f.endsWith('.sql'))
+    .filter(f => f.endsWith('.sql') || f.endsWith('.pgsql'))
     .sort()
 
   let total = 0
