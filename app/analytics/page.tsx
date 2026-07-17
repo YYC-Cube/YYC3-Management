@@ -84,7 +84,7 @@ export default function AnalyticsPage() {
           }}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="responsive-grid-2">
           <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-slate-800">销售趋势</h2>

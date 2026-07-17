@@ -90,9 +90,166 @@ complexity: intermediate
 
 ---
 
-## P1 重要改进（本周）
+## P0 严重修复（新增轮次）
 
-### ✅ P1-1 重构 design-system.ts
+### ✅ P0-4 修复 React Error #418 — hydration 不匹配
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | [components/dashboard-content.tsx](file:///Users/yanyu/YYC-Cube/YYC3-Management/components/dashboard-content.tsx) |
+| **预估** | 5 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：`currentTime` SSR 初始化为 `null`，客户端 hydration 后变为 `Date` 对象，导致文本不匹配触发 React #418。
+
+**变更**：在时间显示区域添加 `suppressHydrationWarning`。
+
+**验证**：`next build` 无运行时 hydration 警告。
+
+---
+
+### ✅ P0-5 修复 CI/CD 流水线构建失败
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | 多文件（详见下） |
+| **预估** | 45 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：三条 CI/CD 流水线全部失败（25s/30s/9s），根因为：
+1. 客户端组件误导入服务端 `pg/fs` 模块
+2. GitHub Pages Bun 版本不稳定 + 动态图标路由不兼容 `output: export`
+
+**变更范围**：
+- `lib/ai-service.ts` — 添加 `import 'server-only'` 安全网
+- `components/ai-assistant.tsx` — 值导入改为类型导入，`chat()` 改为 fetch API 路由
+- `app/api/ai/chat/route.ts` — 重构为统一调用 aiService
+- `.github/workflows/deploy-pages.yml` — `BUN_VERSION: "1.2.2"` 固定版本
+- `app/apple-icon.tsx`、`app/icon.tsx` — 删除（不兼容静态导出）
+
+**验证**：所有 6 个 CI/CD 工作流全部绿色通过。
+
+---
+
+## P1 重要改进（新增轮次）
+
+### ✅ P1-6 全局标题重复修复（10 文件）
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | 10 个 page/component 文件 |
+| **预估** | 30 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：`PageContainer` 统一渲染 `<h1>`，但子组件重复渲染各自的 `<h1>`，导致标题重复。
+
+**变更范围**：
+| 文件 | 变更 |
+|------|------|
+| `app/page.tsx` | `DashboardContent showTitle={false}` |
+| `app/collaboration/page.tsx` | `TeamCollaboration showTitle={false}` |
+| `components/dashboard-content.tsx` | 添加 `suppressHydrationWarning` |
+| `components/backup-recovery.tsx` | 移除重复 `<h1>备份恢复</h1>` |
+| `components/help-center.tsx` | 同上 |
+| `components/channel-center.tsx` | 同上 |
+| `components/tenant-management.tsx` | 同上 |
+| `components/user-training.tsx` | 同上 |
+| `components/advanced-bi-reports.tsx` | 同上 |
+
+**验证**：tsc 零错误 + next build 成功。
+
+---
+
+### ✅ P1-7 硬编码 metadata 统一化
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | 3 个 page.tsx |
+| **预估** | 10 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：`app/log-management/page.tsx`、`app/user-management/page.tsx`、`app/system-settings/page.tsx` 使用 `"金兰企业管理系统"` 硬编码。
+
+**变更**：替换为 `createPageMetadata(PAGE_METADATA["..."])`。
+
+**验证**：页面标题显示统一格式 `XXX - YYC³ 企业智能管理系统`。
+
+---
+
+## P2 建议优化（已执行）
+
+### ✅ P2-5 设计令牌体系升级 — CSS 变量补充
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | [app/globals.css](file:///Users/yanyu/YYC-Cube/YYC3-Management/app/globals.css) |
+| **预估** | 10 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：补充 CSS 语义变量体系。`:root` 中新增 3 组变量（z-index、动效时长、字号）。
+
+**变更**：
+```css
+/* Z-index 层级体系 */
+--z-dropdown: 50; --z-sticky: 60; --z-fixed: 70;
+--z-modal-backdrop: 80; --z-modal: 90;
+--z-popover: 100; --z-tooltip: 110; --z-toast: 120;
+
+/* 动效时长体系 */
+--duration-fast: 150ms; --duration-normal: 300ms; --duration-slow: 500ms;
+
+/* 字号体系 */
+--font-size-xs: 0.75rem; ... --font-size-3xl: 1.875rem;
+```
+
+---
+
+### ✅ P2-6 网格布局标准引用 — responsive-grid-*
+
+| 属性 | 值 |
+|------|-----|
+| **文件** | 18 个 page.tsx |
+| **预估** | 15 分钟 |
+| **状态** | ✅ 完成 |
+
+**任务**：页面中 `grid grid-cols-1 lg:grid-cols-2 gap-6` 等硬编码网格 → `responsive-grid-2` 或 `responsive-grid-3` 工具类。
+
+**变更**：18 个 page.tsx 替换网格声明为 `responsive-grid-2`（2 列）或 `responsive-grid-3`（3 列）。
+
+**验证**：tsc 零错误 + next build 成功。
+
+## 最新进度统计
+
+```
+P0: 5/5   ✅✅✅✅✅  100%
+P1: 7/7   ✅✅✅✅✅✅✅  100%
+P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
+─────────────────────
+最新总计: 14/18  77% 完成
+                 + 4/18  22% 跳过（含理由）
+                 = 18/18 100% 已决策
+```
+
+---
+
+## 关键变更摘要（新增轮次）
+
+| 文件 | 类型 | 变更概要 |
+|------|------|----------|
+| `components/dashboard-content.tsx` | 组件 | `suppressHydrationWarning` 修复 React #418 |
+| `lib/ai-service.ts` | 工具 | 添加 `import 'server-only'` 安全网 |
+| `components/ai-assistant.tsx` | 组件 | 值导入→类型导入，chat()→fetch API |
+| `app/api/ai/chat/route.ts` | API | 重构为统一调用 aiService |
+| `.github/workflows/deploy-pages.yml` | CI/CD | BUN_VERSION 固定 1.2.2 |
+| `app/apple-icon.tsx` + `app/icon.tsx` | 路由 | 删除（不兼容静态导出） |
+| `app/globals.css` | 样式 | 新增 z-index/动效/字号 语义变量体系 |
+| 18× `app/**/page.tsx` | 布局 | 硬编码网格→`responsive-grid-*` |
+
+---
+
+<p align="center">
+  <sub>® YYC³（YanYuCloudCube）言语云立方 丨 实施清单 v1.2.0 丨 2026-07-17</sub>
+</p>
 
 | 属性 | 值 |
 |------|-----|

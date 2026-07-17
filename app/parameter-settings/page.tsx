@@ -11,7 +11,7 @@ export default function ParameterSettingsPage() {
       description="系统参数配置"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <ParameterSettings />
       </div>
       <FloatingNavButtons />

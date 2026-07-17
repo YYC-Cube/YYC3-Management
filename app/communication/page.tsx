@@ -84,7 +84,7 @@ export default function CommunicationPage() {
         </div>
 
         {/* 沟通界面 */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="responsive-grid-3">
           {/* 群组列表 */}
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md">
             <div className="flex items-center justify-between mb-4">

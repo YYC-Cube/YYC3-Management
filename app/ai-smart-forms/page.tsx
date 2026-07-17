@@ -11,7 +11,7 @@ export default function AiSmartFormsPage() {
       description="智能表单生成与自动填充系统"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <AiSmartForms />
       </div>
       <FloatingNavButtons />

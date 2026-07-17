@@ -11,7 +11,7 @@ export default function TrainingPage() {
       description="用户培训和教程"
       className="p-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="responsive-grid-2">
         <UserTraining />
       </div>
       <FloatingNavButtons />
