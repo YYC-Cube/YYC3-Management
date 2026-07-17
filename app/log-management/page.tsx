@@ -1,11 +1,8 @@
-import type { Metadata } from "next"
+import { createPageMetadata, PAGE_METADATA } from "@/lib/metadata"
 import LogManagement from "@/components/log-management"
 import { PageContainer } from "@/components/layout/page-container"
 
-export const metadata: Metadata = {
-  title: "日志管理 - 金兰企业管理系统",
-  description: "系统操作日志查看",
-}
+export const metadata = createPageMetadata(PAGE_METADATA["log-management"] || { title: "日志管理" })
 
 export default function LogManagementPage() {
   return (
