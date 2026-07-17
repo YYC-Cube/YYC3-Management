@@ -89,7 +89,7 @@ describe('PerformancePage', () => {
   })
 
   it('应该渲染部门绩效对比', () => {
-    // 先找到"部门绩效对比"文本，然后找到它的父容器（EnhancedCard）
+    // 先找到"部门绩效对比"文本，然后找到它的父容器（Card）
     const deptPerformanceTitle = screen.getByText('部门绩效对比')
     const deptPerformanceCard = deptPerformanceTitle.closest('.rounded-xl')
     

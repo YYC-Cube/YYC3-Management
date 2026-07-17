@@ -40,6 +40,8 @@
     "test:performance": "vitest run lib/performance/",
     "test:fast": "vitest run --no-coverage --reporter=verbose",
     "test:debug": "vitest run --no-coverage --reporter=verbose --logHeapUsage",
+    "test:e2e": "playwright test --project=chromium",
+    "test:e2e:ci": "playwright test --project=chromium --reporter=html,json",
     "security:scan": "./scripts/security-scan.sh",
     "security:audit": "bun audit",
     "security:fix": "bun audit fix",

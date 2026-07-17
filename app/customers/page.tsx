@@ -21,7 +21,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { Card } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -229,7 +229,7 @@ export default function CustomersPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
+          <Card className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">总客户数</p>
@@ -240,9 +240,9 @@ export default function CustomersPage() {
                 <Users className="w-6 h-6 text-success" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
+          <Card className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">活跃客户</p>
@@ -253,9 +253,9 @@ export default function CustomersPage() {
                 <TrendingUp className="w-6 h-6 text-success" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
+          <Card className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">VIP客户</p>
@@ -266,9 +266,9 @@ export default function CustomersPage() {
                 <Star className="w-6 h-6 text-yellow-600" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
 
-          <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
+          <Card className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">新增客户</p>
@@ -279,10 +279,10 @@ export default function CustomersPage() {
                 <UserPlus className="w-6 h-6 text-success" />
               </div>
             </div>
-          </EnhancedCard>
+          </Card>
         </div>
 
-        <EnhancedCard>
+        <Card>
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <div className="flex-1 space-y-2">
@@ -367,7 +367,7 @@ export default function CustomersPage() {
               ))}
             </div>
           </div>
-        </EnhancedCard>
+        </Card>
       </div>
 
       <Dialog open={showCustomerDialog} onOpenChange={setShowCustomerDialog}>
