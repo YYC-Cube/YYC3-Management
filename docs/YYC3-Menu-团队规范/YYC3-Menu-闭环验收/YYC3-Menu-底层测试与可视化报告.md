@@ -31,7 +31,7 @@ complexity: advanced
 │  Next.js 构建     │  ✅  全部 47 页面预渲染成功           │
 │  CI/CD Pipeline   │  ✅  全部 6 个工作流绿色              │
 │  核心库测试       │  ✅  494/956 通过                     │
-│  ESLint           │  ⚠️  运行时错误（TypeScript 版本）    │
+│  ESLint           │  ✅  0 error（`@next/eslint-plugin-next` flat config）  │
 │  真实 Bug 修复    │  ✅  3 处                            │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -259,7 +259,7 @@ XSS检测  ████66%  ████100% ████100%  ✅
 | P1 | 包装 indexedDB 环境兼容层（已添加 mock） | ✅ 已执行 | 离线支持测试环境准备就绪 |
 | P1 | 修复 AdvancedSearch 剩余 12 例失败 | ✅ 已执行 | 搜索 API 36/36 100% 覆盖 |
 | P2 | 为 E2E 测试配置 Playwright | 2h | 浏览器级自动化测试 |
-| P2 | 重构 ESLint 配置 (升级 TypeScript) | 30min | 恢复 lint 能力 |
+| P2 | 重构 ESLint 配置 (TypeScript 7兼容) | ✅ 已执行 | `@next/eslint-plugin-next` flat config，零错误运行 |
 
 ---
 
