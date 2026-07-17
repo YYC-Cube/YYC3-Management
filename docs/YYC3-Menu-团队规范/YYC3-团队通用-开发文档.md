@@ -2,9 +2,9 @@
 file: YYC3-团队通用-开发文档.md
 description: YYC³ AI协同开发通用工作规范 — 五维驱动五高五标五化核心思维落地实施指南
 author: YanYuCloudCube Team <admin@0379.email>
-version: v2.0.0
+version: v2.1.0
 created: 2026-05-03
-updated: 2026-05-30
+updated: 2026-07-18
 status: stable
 tags: [ai-collaboration],[development-standard],[workflow],[documentation]
 category: policy
