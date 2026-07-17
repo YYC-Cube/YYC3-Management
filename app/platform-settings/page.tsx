@@ -352,9 +352,9 @@ export default function PlatformSettingsPage() {
                     className="rounded-lg"
                   />
                   {connectionStatus[platform.id] ? (
-                    <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-success bg-white rounded-full" />
+                    <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-success bg-card rounded-full" />
                   ) : (
-                    <XCircle className="absolute -top-1 -right-1 w-4 h-4 text-destructive bg-white rounded-full" />
+                    <XCircle className="absolute -top-1 -right-1 w-4 h-4 text-destructive bg-card rounded-full" />
                   )}
                 </div>
                 <span className="text-xs font-medium text-center">{platform.name}</span>

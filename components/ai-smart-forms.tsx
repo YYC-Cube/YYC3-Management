@@ -328,7 +328,7 @@ export function AiSmartForms() {
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1">
                   {template.fields.map((field) => (
-                    <span key={field} className="text-xs bg-white/80 text-muted-foreground px-2 py-0.5 rounded-full">
+                    <span key={field} className="text-xs bg-card/80 text-muted-foreground px-2 py-0.5 rounded-full">
                       {field}
                     </span>
                   ))}
