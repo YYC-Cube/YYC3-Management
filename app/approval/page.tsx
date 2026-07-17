@@ -28,7 +28,7 @@ export default function ApprovalPage() {
 
           {/* 统计卡片 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <EnhancedCard className="border-r-[5px] border-r-sky-500 shadow-md">
+            <EnhancedCard className="border-r-[5px] border-r-primary shadow-md">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">待审批</p>

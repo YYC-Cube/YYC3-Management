@@ -238,7 +238,7 @@ export function OKRManagement() {
           </CardContent>
         </Card>
 
-        <Card className="border-r-[5px] border-r-sky-400 hover:shadow-md transition-shadow">
+        <Card className="border-r-[5px] border-r-chart-1 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
