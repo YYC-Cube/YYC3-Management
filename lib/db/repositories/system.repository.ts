@@ -1,10 +1,12 @@
 import { query } from '../client'
 import type {
+  CreateFinanceData,
+  FinanceRecord,
+} from '../models/finance'
+import type {
+  SystemLog,
   SystemSetting,
   UpdateSystemSettingData,
-  SystemLog,
-  FinanceRecord,
-  CreateFinanceRecordData,
 } from '../models/system'
 
 export class SystemRepository {
@@ -149,7 +151,7 @@ export class SystemRepository {
     }
   }
 
-  async createFinanceRecord(data: CreateFinanceRecordData): Promise<FinanceRecord> {
+  async createFinanceRecord(data: CreateFinanceData): Promise<FinanceRecord> {
     const result = await query(
       `INSERT INTO finance_records (
         type, category, amount, description, reference_id, reference_type
