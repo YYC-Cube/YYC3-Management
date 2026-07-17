@@ -329,7 +329,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             <Bot className="w-4 h-4 mr-1" />
             AI驱动
           </Badge>
-          <Badge variant="outline" className="bg-purple-100 text-purple-800 border-purple-200">
+          <Badge variant="outline" className="bg-chart-3/10 text-chart-3 border-chart-3/30">
             <Zap className="w-4 h-4 mr-1" />
             多模型支持
           </Badge>
@@ -375,15 +375,15 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                         >
                           {message.role === "assistant" && (
                             <Avatar className="w-8 h-8">
-                              <AvatarFallback className="bg-purple-100 text-purple-600">
+                              <AvatarFallback className="bg-chart-3/10 text-chart-3">
                                 <Bot className="w-4 h-4" />
                               </AvatarFallback>
                             </Avatar>
                           )}
                           <div
                             className={`max-w-[80%] rounded-lg p-3 ${message.role === "user"
-                              ? "bg-linear-to-r from-purple-500 to-purple-600 text-white"
-                              : "bg-purple-50 text-foreground border border-purple-200"
+                              ? "bg-linear-to-r from-chart-3 to-chart-3/80 text-white"
+                              : "bg-chart-3/5 text-foreground border border-chart-3/30"
                               }`}
                           >
                             <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -391,7 +391,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                           </div>
                           {message.role === "user" && (
                             <Avatar className="w-8 h-8">
-                              <AvatarFallback className="bg-purple-100 text-purple-600">U</AvatarFallback>
+                              <AvatarFallback className="bg-chart-3/10 text-chart-3">U</AvatarFallback>
                             </Avatar>
                           )}
                         </div>
@@ -399,19 +399,19 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       {isTyping && (
                         <div className="flex gap-3 justify-start">
                           <Avatar className="w-8 h-8">
-                            <AvatarFallback className="bg-purple-100 text-purple-600">
+                            <AvatarFallback className="bg-chart-3/10 text-chart-3">
                               <Bot className="w-4 h-4" />
                             </AvatarFallback>
                           </Avatar>
-                          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+                          <div className="bg-chart-3/5 border border-chart-3/30 rounded-lg p-3">
                             <div className="flex gap-1">
-                              <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
+                              <div className="w-2 h-2 bg-chart-3/60 rounded-full animate-bounce"></div>
                               <div
-                                className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+                                className="w-2 h-2 bg-chart-3/60 rounded-full animate-bounce"
                                 style={{ animationDelay: "0.1s" }}
                               ></div>
                               <div
-                                className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+                                className="w-2 h-2 bg-chart-3/60 rounded-full animate-bounce"
                                 style={{ animationDelay: "0.2s" }}
                               ></div>
                             </div>
@@ -428,24 +428,24 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       onChange={(e) => setInputValue(e.target.value)}
                       placeholder="输入您的问题或需求..."
                       onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendMessage()}
-                      className="flex-1 border-purple-200 focus:ring-purple-500 focus:border-purple-500"
+                      className="flex-1 border-chart-3/30 focus:ring-chart-3 focus:border-chart-3"
                     />
                     <Button
                       onClick={toggleVoiceInput}
                       variant="outline"
                       size="icon"
-                      className={`border-purple-200 ${isListening ? "bg-destructive/10 border-destructive/20" : "hover:bg-purple-50"}`}
+                      className={`border-chart-3/30 ${isListening ? "bg-destructive/10 border-destructive/20" : "hover:bg-chart-3/5"}`}
                     >
                       {isListening ? (
                         <MicOff className="w-4 h-4 text-destructive" />
                       ) : (
-                        <Mic className="w-4 h-4 text-purple-600" />
+                        <Mic className="w-4 h-4 text-chart-3" />
                       )}
                     </Button>
                     <Button
                       onClick={handleSendMessage}
                       disabled={!inputValue.trim() || isTyping}
-                      className="bg-linear-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
+                      className="bg-linear-to-r from-chart-3 to-chart-3/80 hover:from-chart-3/80 hover:to-chart-3/70"
                     >
                       <Send className="w-4 h-4" />
                     </Button>
@@ -455,10 +455,10 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             </div>
 
             <div className="space-y-4">
-              <Card className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
+              <Card className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
                 <h3 className="font-semibold text-foreground mb-3">模型选择</h3>
                 <Select value={selectedModel} onValueChange={setSelectedModel}>
-                  <SelectTrigger className="border-purple-200 focus:ring-purple-500">
+                  <SelectTrigger className="border-chart-3/30 focus:ring-chart-3">
                     <SelectValue placeholder="选择AI模型" />
                   </SelectTrigger>
                   <SelectContent>
@@ -482,7 +482,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                 )}
               </Card>
 
-              <Card className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
+              <Card className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
                 <h3 className="font-semibold text-foreground mb-3">快速设置</h3>
                 <div className="space-y-4">
                   <div>
@@ -497,7 +497,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                     <ColoredProgress
                       value={temperature[0] * 100}
-                      color="bg-linear-to-r from-purple-400 to-purple-500"
+                      color="bg-linear-to-r from-chart-3/80 to-chart-3"
                     />
                   </div>
                   <div>
@@ -512,7 +512,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                     <ColoredProgress
                       value={(maxTokens[0] / 8000) * 100}
-                      color="bg-linear-to-r from-purple-400 to-purple-500"
+                      color="bg-linear-to-r from-chart-3/80 to-chart-3"
                     />
                   </div>
                   <div className="flex items-center justify-between">
@@ -530,26 +530,26 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             {insights.map((insight) => (
               <Card
                 key={insight.id}
-                className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 group"
+                className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 group"
               >
                 <div className="flex items-start gap-3">
                   <div
                     className={`p-2 rounded-lg ${insight.type === "warning"
-                      ? "bg-amber-100"
+                      ? "bg-chart-5/10"
                       : insight.type === "success"
                         ? "bg-success/10"
-                        : "bg-purple-100"
+                        : "bg-chart-3/10"
                       }`}
                   >
-                    {insight.type === "warning" && <AlertTriangle className="w-5 h-5 text-amber-600" />}
+                    {insight.type === "warning" && <AlertTriangle className="w-5 h-5 text-chart-5" />}
                     {insight.type === "success" && <CheckCircle className="w-5 h-5 text-success" />}
-                    {insight.type === "info" && <Lightbulb className="w-5 h-5 text-purple-600" />}
+                    {insight.type === "info" && <Lightbulb className="w-5 h-5 text-chart-3" />}
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground">{insight.title}</h3>
                     <p className="text-muted-foreground text-sm mt-1">{insight.description}</p>
                     {insight.action && (
-                      <div className="flex items-center mt-2 text-purple-600 text-sm font-medium">
+                      <div className="flex items-center mt-2 text-chart-3 text-sm font-medium">
                         <span>{insight.action}</span>
                         <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -566,16 +566,16 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             {quickActions.map((action) => (
               <Card
                 key={action.id}
-                className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 cursor-pointer group"
+                className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4 cursor-pointer group"
               >
                 <div className="flex items-start gap-3" onClick={action.action}>
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <action.icon className="w-5 h-5 text-purple-600" />
+                  <div className="p-2 bg-chart-3/10 rounded-lg">
+                    <action.icon className="w-5 h-5 text-chart-3" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground">{action.title}</h3>
                     <p className="text-muted-foreground text-sm mt-1">{action.description}</p>
-                    <div className="flex items-center mt-2 text-purple-600 text-sm font-medium">
+                    <div className="flex items-center mt-2 text-chart-3 text-sm font-medium">
                       <span>立即执行</span>
                       <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -613,24 +613,24 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
               </div>
             </Card>
 
-            <Card className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+            <Card className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
               <h3 className="text-lg font-semibold text-foreground mb-4">云端模型</h3>
               <div className="space-y-4">
                 {getModelsByType("cloud").map((model) => (
                   <div
                     key={model.id}
-                    className="flex items-center justify-between p-3 border border-purple-200 rounded-lg hover:bg-purple-50 transition-all duration-200"
+                    className="flex items-center justify-between p-3 border border-chart-3/30 rounded-lg hover:bg-chart-3/5 transition-all duration-200"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-purple-100 rounded-lg">
-                        <Cloud className="w-5 h-5 text-purple-600" />
+                      <div className="p-2 bg-chart-3/10 rounded-lg">
+                        <Cloud className="w-5 h-5 text-chart-3" />
                       </div>
                       <div>
                         <h4 className="font-medium text-foreground">{model.name}</h4>
                         <p className="text-sm text-muted-foreground">{model.description}</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="bg-purple-100 text-purple-800 border-purple-200">
+                    <Badge variant="outline" className="bg-chart-3/10 text-chart-3 border-chart-3/30">
                       {model.provider}
                     </Badge>
                   </div>
@@ -639,12 +639,12 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             </Card>
           </div>
 
-          <Card className="border-r-[5px] border-r-purple-400 bg-card/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
+          <Card className="border-r-[5px] border-r-chart-3 bg-card/80 backdrop-blur-sm border border-chart-3/30 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
             <h3 className="text-lg font-semibold text-foreground mb-4">模型能力对比</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-purple-200">
+                  <tr className="border-b border-chart-3/30">
                     <th className="text-left p-2">模型名称</th>
                     <th className="text-left p-2">类型</th>
                     <th className="text-left p-2">最大Token</th>
@@ -653,7 +653,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                 </thead>
                 <tbody>
                   {AI_MODELS.map((model) => (
-                    <tr key={model.id} className="border-b border-purple-100 hover:bg-purple-50">
+                    <tr key={model.id} className="border-b border-chart-3/20 hover:bg-chart-3/5">
                       <td className="p-2 font-medium">{model.name}</td>
                       <td className="p-2">
                         <Badge variant="outline" className={getModelBadgeColor(model)}>
@@ -664,12 +664,12 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                       <td className="p-2">
                         <div className="flex flex-wrap gap-1">
                           {model.capabilities.slice(0, 2).map((capability, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs bg-purple-100 text-purple-800">
+                            <Badge key={index} variant="secondary" className="text-xs bg-chart-3/10 text-chart-3">
                               {capability}
                             </Badge>
                           ))}
                           {model.capabilities.length > 2 && (
-                            <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-800">
+                            <Badge variant="secondary" className="text-xs bg-chart-3/10 text-chart-3">
                               +{model.capabilities.length - 2}
                             </Badge>
                           )}
