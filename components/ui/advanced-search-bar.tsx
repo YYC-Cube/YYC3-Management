@@ -101,9 +101,9 @@ export function AdvancedSearchBar<T>({
   }
 
   const handleHistoryClick = (item: SearchHistoryItem) => {
-    setSearchTerm(item.query)
+    setSearchTerm(item.term)
     setFilters(item.filters)
-    const results = advancedSearch.search(data, item.query, item.filters)
+    const results = advancedSearch.search(data, item.term, item.filters)
     onSearch(results)
     setIsOpen(false)
     setShowHistory(false)
@@ -163,7 +163,7 @@ export function AdvancedSearchBar<T>({
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-sm truncate">{item.query || "高级搜索"}</div>
+                      <div className="font-medium text-sm truncate">{item.term || "高级搜索"}</div>
                       {item.filters.length > 0 && (
                         <div className="flex gap-1 mt-1 flex-wrap">
                           {item.filters.slice(0, 3).map((filter, index) => (

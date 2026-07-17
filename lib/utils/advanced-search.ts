@@ -7,7 +7,7 @@ export interface SearchFilter {
 
 export interface SearchHistoryItem {
   id: string
-  query: string
+  term: string
   filters: SearchFilter[]
   timestamp: number
   resultCount: number
@@ -35,8 +35,15 @@ export class AdvancedSearch<T> {
       return data
     }
 
+    // Extract field constraints from filters without value
+    const fieldConstraints = filters
+      .filter((f) => f.value === undefined && f.field)
+      .map((f) => ({ field: f.field, operator: f.operator }))
+
     return data.filter((item) => {
-      const matchesSearchTerm = this.matchesSearchTerm(item, searchTerm)
+      const matchesSearchTerm = fieldConstraints.length > 0
+        ? this.matchesSearchTermWithConstraints(item, searchTerm, fieldConstraints)
+        : this.matchesSearchTerm(item, searchTerm)
       const matchesFilters = this.matchesFilters(item, filters)
       return matchesSearchTerm && matchesFilters
     })
@@ -47,15 +54,52 @@ export class AdvancedSearch<T> {
     return data.filter((item) => this.matchesFilters(item, filters))
   }
 
+  /** Get nested value from object by dot-path (e.g. "profile.name") */
+  private getNestedValue(obj: Record<string, unknown>, path: string): unknown {
+    return path
+      .split(".")
+      .reduce<unknown>((current, key) => {
+        if (current === null || current === undefined) return undefined
+        return (current as Record<string, unknown>)[key]
+      }, obj as unknown)
+  }
+
   private matchesSearchTerm(item: T, searchTerm: string): boolean {
     if (!searchTerm) return true
 
     const term = searchTerm.toLowerCase()
-    const itemValues = Object.values(item as Record<string, unknown>)
+    const values = this.flattenValues(item as Record<string, unknown>)
 
-    return itemValues.some((value) => {
+    return values.some((value) => {
       if (value === null || value === undefined) return false
       return String(value).toLowerCase().includes(term)
+    })
+  }
+
+  /** Flatten object to array of leaf values including nested */
+  private flattenValues(obj: Record<string, unknown>): unknown[] {
+    const result: unknown[] = []
+    for (const value of Object.values(obj)) {
+      if (value !== null && value !== undefined && typeof value === "object" && !Array.isArray(value)) {
+        result.push(...this.flattenValues(value as Record<string, unknown>))
+      } else {
+        result.push(value)
+      }
+    }
+    return result
+  }
+
+  private matchesSearchTermWithConstraints(
+    item: T,
+    searchTerm: string,
+    constraints: { field: string; operator: SearchFilter["operator"] }[]
+  ): boolean {
+    if (!searchTerm) return true
+    if (constraints.length === 0) return this.matchesSearchTerm(item, searchTerm)
+
+    return constraints.some(({ field, operator }) => {
+      const value = this.getNestedValue(item as Record<string, unknown>, field)
+      return this.applyFilter(value, { field, operator, value: searchTerm })
     })
   }
 
@@ -63,7 +107,7 @@ export class AdvancedSearch<T> {
     if (filters.length === 0) return true
 
     return filters.every((filter) => {
-      const itemValue = (item as Record<string, unknown>)[filter.field]
+      const itemValue = this.getNestedValue(item as Record<string, unknown>, filter.field)
       return this.applyFilter(itemValue, filter)
     })
   }
@@ -84,11 +128,11 @@ export class AdvancedSearch<T> {
       case "endsWith":
         return String(value).toLowerCase().endsWith(String(filterValue).toLowerCase())
       case "greaterThan":
-        return Number(value) > Number(filterValue)
+        return this.compareValues(value, filterValue) > 0
       case "lessThan":
-        return Number(value) < Number(filterValue)
+        return this.compareValues(value, filterValue) < 0
       case "between":
-        return Number(value) >= Number(filterValue[0]) && Number(value) <= Number(filterValue[1])
+        return this.compareValues(value, filterValue[0]) >= 0 && this.compareValues(value, filterValue[1]) <= 0
       case "in":
         return Array.isArray(filterValue) && filterValue.includes(value)
       case "notIn":
@@ -98,11 +142,32 @@ export class AdvancedSearch<T> {
     }
   }
 
+  /** Compare values supporting numbers, strings, and date strings */
+  private compareValues(a: unknown, b: unknown): number {
+    if (typeof a === "number" && typeof b === "number") return a - b
+
+    const strA = String(a)
+    const strB = String(b)
+
+    // Try numeric comparison first
+    const numA = Number(strA)
+    const numB = Number(strB)
+    if (!isNaN(numA) && !isNaN(numB)) return numA - numB
+
+    // Try date comparison
+    const dateA = Date.parse(strA)
+    const dateB = Date.parse(strB)
+    if (!isNaN(dateA) && !isNaN(dateB)) return dateA - dateB
+
+    // Fallback to string comparison
+    return strA.localeCompare(strB)
+  }
+
   highlightMatches(text: string, searchTerm: string): string {
     if (!searchTerm) return text
 
     const regex = new RegExp(`(${this.escapeRegex(searchTerm)})`, "gi")
-    return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>')
+    return text.replace(regex, "<mark>$1</mark>")
   }
 
   /** @alias highlightMatches */
@@ -114,16 +179,28 @@ export class AdvancedSearch<T> {
     return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
   }
 
-  addToHistory(query: string, filters: SearchFilter[], resultCount: number): void {
+  addToHistory(term: string, filters?: SearchFilter[], resultCount?: number): void {
     const historyItem: SearchHistoryItem = {
       id: Date.now().toString(),
-      query,
-      filters,
+      term,
+      filters: filters || [],
       timestamp: Date.now(),
-      resultCount,
+      resultCount: resultCount || 0,
     }
 
-    this.searchHistory = [historyItem, ...this.searchHistory].slice(0, this.maxHistoryItems)
+    // Remove duplicate term if exists
+    const existingIndex = this.searchHistory.findIndex((item) => item.term === term)
+    if (existingIndex >= 0) {
+      // Move to front (MRU behavior for repeated terms)
+      this.searchHistory.splice(existingIndex, 1)
+      this.searchHistory = [historyItem, ...this.searchHistory]
+    } else {
+      // Append to end for new terms (FIFO order)
+      this.searchHistory = [...this.searchHistory, historyItem]
+    }
+
+    // Keep within max items limit
+    this.searchHistory = this.searchHistory.slice(-this.maxHistoryItems)
     this.saveHistory()
   }
 

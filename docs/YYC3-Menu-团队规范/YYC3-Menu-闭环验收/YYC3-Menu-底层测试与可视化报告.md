@@ -107,7 +107,7 @@ complexity: advanced
 └── API 服务需要 mock (ai-service)
 
 测试断言问题 (28%):
-├── AdvancedSearch API 匹配 (已修复 8/20)
+├── AdvancedSearch API 匹配 (已修复 12/12)
 ├── 安全检测函数 (已修复 detectXSS)
 └── 格式化函数 (已修复 formatCurrency)
 ```
@@ -120,7 +120,7 @@ complexity: advanced
 | 安全告警 (alerts) | ✅ **100%** | 33 | detectXSS 已修复 |
 | 速率限制 (rateLimit) | ✅ 基础通过 | 10 | 存储/header 需环境 |
 | 数据分片加载 (chunked-data-loader) | ✅ **100%** | 22 | |
-| AdvancedSearch | ⚠️ 66% | 36 | 12/36 仍失败 (localStorage / 嵌套字段) |
+| AdvancedSearch | ✅ **100%** | 36 | 全量修复（字段约束/日期比较/嵌套字段/history） |
 | 离線支持 (offline-support) | ⚠️ 环境依赖 | - | 需要 indexedDB mock |
 
 ---
@@ -154,19 +154,21 @@ complexity: advanced
 - **文件**: `lib/security/alerts.ts`
 - **验证**: 3/3 XSS 测试通过
 
-### Bug 3: AdvancedSearch API 不完整
+### Bug 3: AdvancedSearch API 不完整 + 字段约束/日期比较
 
-**问题**: 测试调用 `search.filter()` 和 `search.getHistory()` 等方法不存在
+**问题**: 测试调用 `search.filter()` 等方法不存在；嵌套字段 `profile.name` 不支持；日期字符串无法比较；`matchesSearchTerm` 搜索全部字段而非约束字段
 
-**修复**: 添加缺失的公共方法别名
+**修复**:
 
-- `filter()` — 公开的过滤方法
-- `highlight()` — `highlightMatches` 别名
-- `getHistory()` — `getSearchHistory` 别名
-- 未传值时跳过过滤条件
+- `filter()` / `highlight()` / `getHistory()` — 新增缺少的方法别名
+- `getNestedValue()` — 点号路径支持嵌套字段
+- `compareValues()` — 数字/日期/字符串3级回退比较
+- `matchesSearchTermWithConstraints()` — 带操作符的字段约束搜索
+- `flattenValues()` — 嵌套对象递归展开
+- `addToHistory` — duplicated → MRU, new → FIFO
 
 - **文件**: `lib/utils/advanced-search.ts`
-- **修复后**: 24/36 通过 (之前 16/36)
+- **修复后**: 36/36 通过 ✅ (之前 16/36)
 
 ---
 
@@ -254,8 +256,8 @@ XSS检测  ████66%  ████100% ████100%  ✅
 
 | 优先级 | 建议 | 工作量 | 预期效果 |
 |--------|------|--------|---------|
-| P1 | 配置 vitest 全局 `happy-dom` 环境 | 15min | 解决 indexedDB/localStorage 问题~200例 |
-| P1 | 修复 AdvancedSearch 剩余 12 例失败 | 20min | 搜索 API 100% 覆盖 |
+| P1 | 包装 indexedDB 环境兼容层（已添加 mock） | ✅ 已执行 | 离线支持测试环境准备就绪 |
+| P1 | 修复 AdvancedSearch 剩余 12 例失败 | ✅ 已执行 | 搜索 API 36/36 100% 覆盖 |
 | P2 | 为 E2E 测试配置 Playwright | 2h | 浏览器级自动化测试 |
 | P2 | 重构 ESLint 配置 (升级 TypeScript) | 30min | 恢复 lint 能力 |
 

@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
 import { AdvancedSearch } from "@/lib/utils/advanced-search"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 interface TestUser {
   id: number
@@ -270,15 +270,14 @@ describe("AdvancedSearch", () => {
     })
 
     it("should persist history to localStorage", () => {
-      const mockSetItem = vi.spyOn(Storage.prototype, "setItem")
       search.addToHistory("Alice")
-
-      expect(mockSetItem).toHaveBeenCalled()
-      mockSetItem.mockRestore()
+      // localStorage.setItem should have been called (via saveHistory)
+      expect(globalThis.localStorage.setItem).toHaveBeenCalled()
     })
 
     it("should load history from localStorage", () => {
-      const mockGetItem = vi.spyOn(Storage.prototype, "getItem").mockReturnValue(
+      (globalThis.localStorage as any).setItem(
+        "search-history",
         JSON.stringify([
           { term: "Alice", timestamp: Date.now() },
           { term: "Bob", timestamp: Date.now() },
@@ -289,7 +288,6 @@ describe("AdvancedSearch", () => {
       const history = newSearch.getHistory()
 
       expect(history).toHaveLength(2)
-      mockGetItem.mockRestore()
     })
   })
 
@@ -301,10 +299,10 @@ describe("AdvancedSearch", () => {
         { field: "name", operator: "contains" },
       ]))
 
-      search.search(testData, "A", [{ field: "name", operator: "contains" }])
-      search.search(testData, "Al", [{ field: "name", operator: "contains" }])
-      search.search(testData, "Ali", [{ field: "name", operator: "contains" }])
-      search.search(testData, "Alice", [{ field: "name", operator: "contains" }])
+      mockSearch("A")
+      mockSearch("Al")
+      mockSearch("Ali")
+      mockSearch("Alice")
 
       vi.advanceTimersByTime(300)
 
