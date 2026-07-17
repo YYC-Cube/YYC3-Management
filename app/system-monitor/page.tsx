@@ -1,43 +1,43 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import { Progress } from "@/components/ui/progress"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { toast } from "@/hooks/use-toast"
 import {
   Activity,
-  Server,
-  Database,
-  Wifi,
-  HardDrive,
-  Cpu,
-  MemoryStick,
-  Shield,
   AlertTriangle,
-  CheckCircle,
-  XCircle,
-  RefreshCw,
-  Download,
-  Share2,
-  Filter,
-  Play,
-  Square,
-  RotateCcw,
-  Eye,
-  Settings,
-  Zap,
-  FileText,
   BarChart3,
+  CheckCircle,
   Clock,
-  Users,
+  Cpu,
+  Database,
+  Download,
+  Eye,
+  FileText,
+  Filter,
   Globe,
+  HardDrive,
+  MemoryStick,
+  Play,
+  RefreshCw,
+  RotateCcw,
+  Server,
+  Settings,
+  Share2,
+  Shield,
+  Square,
+  Users,
+  Wifi,
+  XCircle,
+  Zap,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import { useEffect, useState } from "react"
 
 interface SystemMetric {
   name: string
@@ -313,7 +313,7 @@ export default function SystemMonitorPage() {
           {systemMetrics.map((metric, index) => (
             <Card
               key={index}
-              className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
+              className="responsive-card hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md"
             >
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
@@ -333,17 +333,17 @@ export default function SystemMonitorPage() {
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                     {index < 4
                       ? [
-                          <Cpu key="cpu" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <MemoryStick key="memory" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <HardDrive key="disk" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <Wifi key="network" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                        ][index]
+                        <Cpu key="cpu" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <MemoryStick key="memory" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <HardDrive key="disk" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <Wifi key="network" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                      ][index]
                       : [
-                          <Users key="users" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <Globe key="globe" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <BarChart3 key="chart" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                          <AlertTriangle key="alert" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
-                        ][index - 4]}
+                        <Users key="users" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <Globe key="globe" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <BarChart3 key="chart" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                        <AlertTriangle key="alert" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />,
+                      ][index - 4]}
                   </div>
                 </div>
                 {metric.name.includes("使用率") && (
@@ -417,7 +417,7 @@ export default function SystemMonitorPage() {
               {systemServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="responsive-card hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md"
+                  className="responsive-card hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md"
                 >
                   <CardHeader>
                     <div className="flex items-center justify-between">

@@ -20,12 +20,12 @@ export default function OfflinePage() {
             <span className="text-sm font-medium text-emerald-600">可用</span>
           </div>
 
-          <div className="flex items-center justify-between p-3 bg-sky-50 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-primary/5 rounded-lg">
             <span className="text-sm text-slate-700">基本功能</span>
             <span className="text-sm font-medium text-emerald-600">可用</span>
           </div>
 
-          <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-warning/5 rounded-lg">
             <span className="text-sm text-slate-700">实时同步</span>
             <span className="text-sm font-medium text-orange-600">不可用</span>
           </div>

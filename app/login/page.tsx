@@ -91,7 +91,7 @@ export default function LoginPage() {
           <p className="text-sm text-slate-500 mt-1">YanYuCloudCube Enterprise Management</p>
         </div>
 
-        <Card className="shadow-xl border-sky-100">
+        <Card className="shadow-xl border-border">
           <CardHeader className="space-y-1">
             <CardTitle className="text-xl">登录</CardTitle>
             <CardDescription>输入您的账号密码以访问系统</CardDescription>

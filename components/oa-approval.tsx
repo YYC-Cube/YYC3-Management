@@ -293,7 +293,7 @@ export function OAApproval() {
 
       {/* 主要内容区域 */}
       <Card className={commonStyles.card.base}>
-        <CardHeader className="border-b border-sky-100 bg-linear-to-r from-sky-50/50 to-blue-50/30">
+        <CardHeader className="border-b border-border bg-gradient-to-r from-primary/5 to-primary/3">
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-xl text-slate-800">审批管理</CardTitle>
@@ -377,7 +377,7 @@ export function OAApproval() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="analytics"
-                  className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+                  className="data-[state=active]:bg-background data-[state=active]:text-primary"
                 >
                   数据分析
                 </TabsTrigger>
@@ -385,7 +385,7 @@ export function OAApproval() {
 
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sky-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                   <Input
                     placeholder="搜索申请..."
                     value={searchTerm}
@@ -434,8 +434,8 @@ export function OAApproval() {
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start space-x-4 flex-1">
-                          <div className="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center">
-                            <TypeIcon className="w-6 h-6 text-sky-600" />
+                          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                            <TypeIcon className="w-6 h-6 text-primary" />
                           </div>
 
                           <div className="flex-1 min-w-0">
@@ -572,8 +572,8 @@ export function OAApproval() {
                             <Card key={item.id} className="hover:shadow-md transition-shadow cursor-pointer">
                               <CardContent className="p-4">
                                 <div className="flex items-start space-x-3">
-                                  <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center">
-                                    <TypeIcon className="w-4 h-4 text-sky-600" />
+                                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <TypeIcon className="w-4 h-4 text-primary" />
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <h4 className="font-medium text-slate-800 text-sm leading-tight">{item.title}</h4>
@@ -607,7 +607,7 @@ export function OAApproval() {
                   <CardContent>
                     <div className="h-64 flex items-center justify-center text-slate-500">
                       <div className="text-center">
-                        <TrendingUp className="w-16 h-16 mx-auto mb-4 text-sky-300" />
+                        <TrendingUp className="w-16 h-16 mx-auto mb-4 text-primary/30" />
                         <p>审批趋势图表区域</p>
                       </div>
                     </div>

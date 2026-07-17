@@ -276,7 +276,7 @@ export function WechatConfiguration() {
 
       {/* 状态概览 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-blue-500 shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -288,7 +288,7 @@ export function WechatConfiguration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -300,7 +300,7 @@ export function WechatConfiguration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-orange-500 shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -312,7 +312,7 @@ export function WechatConfiguration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/90 backdrop-blur-sm border border-sky-200/60 rounded-xl shadow-sm hover:shadow-xl hover:border-sky-300/60 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md">
+        <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-purple-500 shadow-md">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
