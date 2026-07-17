@@ -3,5 +3,13 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "markdown.extension.completion.enabled": false,
   "markdown.extension.tableFormatter.enabled": false,
-  "python.analysis.typeCheckingMode": "off"
+  "python.analysis.typeCheckingMode": "off",
+  "files.associations": {
+    "lib/db/migrations/*.sql": "sql"
+  },
+  "[sql]": {
+    "editor.semanticHighlighting.enabled": false,
+    "editor.colorDecorators": false,
+    "problems.decorations.enabled": false
+  }
 }
