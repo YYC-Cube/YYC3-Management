@@ -177,7 +177,7 @@ export function AdvancedBIReports() {
       case "operation":
         return "bg-orange-100 text-orange-800"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -358,8 +358,8 @@ export function AdvancedBIReports() {
                       <BarChart3 className="w-6 h-6 text-indigo-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-900">{template.name}</h3>
-                      <p className="text-sm text-slate-600">{template.description}</p>
+                      <h3 className="font-semibold text-foreground">{template.name}</h3>
+                      <p className="text-sm text-muted-foreground">{template.description}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <Badge className={getTypeColor(template.type)}>{getTypeName(template.type)}</Badge>
                         {template.isCustom && <Badge variant="outline">自定义</Badge>}
@@ -369,7 +369,7 @@ export function AdvancedBIReports() {
 
                   <div className="flex items-center gap-2">
                     <div className="text-right mr-4">
-                      <p className="text-sm text-slate-600">最后更新: {template.lastUpdated.toLocaleDateString()}</p>
+                      <p className="text-sm text-muted-foreground">最后更新: {template.lastUpdated.toLocaleDateString()}</p>
                     </div>
                     <Button variant="outline" size="sm">
                       <Eye className="w-4 h-4 mr-1" />
@@ -397,7 +397,7 @@ export function AdvancedBIReports() {
                   <h3 className="font-semibold">数据源</h3>
                   <div className="space-y-2">
                     {["销售数据", "客户数据", "财务数据", "库存数据"].map((source) => (
-                      <div key={source} className="p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
+                      <div key={source} className="p-3 border rounded-lg cursor-pointer hover:bg-muted">
                         {source}
                       </div>
                     ))}
@@ -415,7 +415,7 @@ export function AdvancedBIReports() {
                     ].map((chart) => (
                       <div
                         key={chart.name}
-                        className="p-3 border rounded-lg cursor-pointer hover:bg-slate-50 text-center"
+                        className="p-3 border rounded-lg cursor-pointer hover:bg-muted text-center"
                       >
                         <chart.icon className="w-6 h-6 mx-auto mb-1" />
                         <p className="text-sm">{chart.name}</p>
@@ -426,8 +426,8 @@ export function AdvancedBIReports() {
 
                 <div className="space-y-4">
                   <h3 className="font-semibold">报表预览</h3>
-                  <div className="border-2 border-dashed border-slate-300 rounded-lg h-64 flex items-center justify-center">
-                    <p className="text-slate-500">拖拽组件到此处构建报表</p>
+                  <div className="border-2 border-dashed border-input rounded-lg h-64 flex items-center justify-center">
+                    <p className="text-muted-foreground">拖拽组件到此处构建报表</p>
                   </div>
                 </div>
               </div>

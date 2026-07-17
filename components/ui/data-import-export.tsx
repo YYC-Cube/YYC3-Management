@@ -188,7 +188,7 @@ export function DataImportExport<T>({
                       accept=".csv,.xlsx,.xls,.json"
                       onChange={handleFileSelect}
                       disabled={isImporting}
-                      className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100"
+                      className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100"
                     />
                   </div>
 
@@ -235,17 +235,17 @@ export function DataImportExport<T>({
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <div className="text-2xl font-bold text-slate-900">{importResult.totalRows}</div>
-                    <div className="text-sm text-slate-600">总行数</div>
+                  <div className="text-center p-4 bg-muted rounded-lg">
+                    <div className="text-2xl font-bold text-foreground">{importResult.totalRows}</div>
+                    <div className="text-sm text-muted-foreground">总行数</div>
                   </div>
                   <div className="text-center p-4 bg-success/10 rounded-lg">
                     <div className="text-2xl font-bold text-success">{importResult.validRows}</div>
-                    <div className="text-sm text-slate-600">成功</div>
+                    <div className="text-sm text-muted-foreground">成功</div>
                   </div>
                   <div className="text-center p-4 bg-destructive/10 rounded-lg">
                     <div className="text-2xl font-bold text-destructive">{importResult.invalidRows}</div>
-                    <div className="text-sm text-slate-600">失败</div>
+                    <div className="text-sm text-muted-foreground">失败</div>
                   </div>
                 </div>
 
@@ -277,7 +277,7 @@ export function DataImportExport<T>({
 
           <TabsContent value="export" className="space-y-4">
             <div className="text-center py-8">
-              <div className="text-sm text-slate-600 mb-4">
+              <div className="text-sm text-muted-foreground mb-4">
                 当前可导出数据: <span className="font-semibold">{data.length}</span> 条
               </div>
 
@@ -289,7 +289,7 @@ export function DataImportExport<T>({
                 >
                   <FileSpreadsheet className="w-8 h-8 text-success" />
                   <div className="text-sm font-medium">CSV 格式</div>
-                  <div className="text-xs text-slate-500">逗号分隔值</div>
+                  <div className="text-xs text-muted-foreground">逗号分隔值</div>
                 </Button>
 
                 <Button
@@ -299,7 +299,7 @@ export function DataImportExport<T>({
                 >
                   <FileSpreadsheet className="w-8 h-8 text-blue-600" />
                   <div className="text-sm font-medium">Excel 格式</div>
-                  <div className="text-xs text-slate-500">.xlsx 文件</div>
+                  <div className="text-xs text-muted-foreground">.xlsx 文件</div>
                 </Button>
 
                 <Button
@@ -309,7 +309,7 @@ export function DataImportExport<T>({
                 >
                   <FileJson className="w-8 h-8 text-purple-600" />
                   <div className="text-sm font-medium">JSON 格式</div>
-                  <div className="text-xs text-slate-500">JavaScript 对象</div>
+                  <div className="text-xs text-muted-foreground">JavaScript 对象</div>
                 </Button>
               </div>
             </div>

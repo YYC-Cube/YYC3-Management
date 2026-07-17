@@ -34,7 +34,7 @@ export function EnhancedCard({
     <Card className={cn(cardVariants[variant], className)}>
       {(title || description) && (
         <CardHeader className={cn(commonStyles.card.header, "rounded-t-xl", headerClassName)}>
-          {title && <CardTitle className="text-slate-800 font-semibold">{title}</CardTitle>}
+          {title && <CardTitle className="text-card-foreground font-semibold">{title}</CardTitle>}
           {description && <CardDescription className="text-sky-600">{description}</CardDescription>}
         </CardHeader>
       )}

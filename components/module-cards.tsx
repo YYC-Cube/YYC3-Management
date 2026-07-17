@@ -64,8 +64,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-success/10 text-success border-success/20 border-r-2 border-r-success">核心功能</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">数据总览</h3>
-          <p className="text-slate-600 text-sm mb-4">核心数据指标监控面板</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">数据总览</h3>
+          <p className="text-muted-foreground text-sm mb-4">核心数据指标监控面板</p>
           <div className="flex items-center text-success text-sm font-medium">
             <span>查看报表</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-success" />
@@ -85,8 +85,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-orange-100 text-orange-800 border-orange-300 border-r-2 border-r-orange-500">权限控制</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">用户管理</h3>
-          <p className="text-slate-600 text-sm mb-4">用户账户和权限管理</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">用户管理</h3>
+          <p className="text-muted-foreground text-sm mb-4">用户账户和权限管理</p>
           <div className="flex items-center text-orange-600 text-sm font-medium">
             <span>管理用户</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-orange-500" />
@@ -106,8 +106,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-primary/10 text-primary border-primary/20 border-r-2 border-r-primary">个性定制</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">系统设置</h3>
-          <p className="text-slate-600 text-sm mb-4">系统偏好设置和账户管理</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">系统设置</h3>
+          <p className="text-muted-foreground text-sm mb-4">系统偏好设置和账户管理</p>
           <div className="flex items-center text-primary text-sm font-medium">
             <span>修改设置</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-primary" />
@@ -127,8 +127,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-purple-100 text-purple-800 border-purple-300 border-r-2 border-r-purple-500">AI驱动</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">AI智能助手</h3>
-          <p className="text-slate-600 text-sm mb-4">智能业务分析和决策支持</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">AI智能助手</h3>
+          <p className="text-muted-foreground text-sm mb-4">智能业务分析和决策支持</p>
           <div className="flex items-center text-purple-600 text-sm font-medium">
             <span>立即体验</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-purple-500" />
@@ -148,8 +148,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 border-r-2 border-r-emerald-500">企业级</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">多租户管理</h3>
-          <p className="text-slate-600 text-sm mb-4">多企业组织统一管理</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">多租户管理</h3>
+          <p className="text-muted-foreground text-sm mb-4">多企业组织统一管理</p>
           <div className="flex items-center text-emerald-600 text-sm font-medium">
             <span>管理租户</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-emerald-500" />
@@ -169,8 +169,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-indigo-100 text-indigo-800 border-indigo-300 border-r-2 border-r-indigo-500">智能分析</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">高级BI分析</h3>
-          <p className="text-slate-600 text-sm mb-4">商业智能和自定义报表</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">高级BI分析</h3>
+          <p className="text-muted-foreground text-sm mb-4">商业智能和自定义报表</p>
           <div className="flex items-center text-indigo-600 text-sm font-medium">
             <span>查看分析</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-indigo-500" />
@@ -190,8 +190,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-rose-100 text-rose-800 border-rose-300 border-r-2 border-r-rose-500">移动优先</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">移动端应用</h3>
-          <p className="text-slate-600 text-sm mb-4">原生移动端体验</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">移动端应用</h3>
+          <p className="text-muted-foreground text-sm mb-4">原生移动端体验</p>
           <div className="flex items-center text-rose-600 text-sm font-medium">
             <span>体验应用</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-rose-500" />
@@ -211,8 +211,8 @@ export function ModuleCards() {
             </div>
             <Badge className="bg-destructive/10 text-destructive border-destructive/20 border-r-2 border-r-destructive">安全防护</Badge>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">安全中心</h3>
-          <p className="text-slate-600 text-sm mb-4">系统安全监控和威胁防护</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">安全中心</h3>
+          <p className="text-muted-foreground text-sm mb-4">系统安全监控和威胁防护</p>
           <div className="flex items-center text-destructive text-sm font-medium">
             <span>安全管理</span>
             <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-destructive" />

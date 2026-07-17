@@ -130,7 +130,7 @@ export function BackupRecovery() {
       case "running":
         return <Clock className="w-4 h-4 text-blue-500 animate-spin" />
       default:
-        return <AlertTriangle className="w-4 h-4 text-slate-500" />
+        return <AlertTriangle className="w-4 h-4 text-muted-foreground" />
     }
   }
 
@@ -230,7 +230,7 @@ export function BackupRecovery() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">总备份数</p>
+                <p className="text-lg font-bold text-foreground">总备份数</p>
                 <p className="text-2xl font-bold text-blue-600 mt-1">{backupStats.total}</p>
               </div>
               <Database className="w-8 h-8 text-blue-500" />
@@ -242,7 +242,7 @@ export function BackupRecovery() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">成功备份</p>
+                <p className="text-lg font-bold text-foreground">成功备份</p>
                 <p className="text-2xl font-bold text-success mt-1">{backupStats.completed}</p>
               </div>
               <CheckCircle className="w-8 h-8 text-success" />
@@ -254,7 +254,7 @@ export function BackupRecovery() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">失败备份</p>
+                <p className="text-lg font-bold text-foreground">失败备份</p>
                 <p className="text-2xl font-bold text-destructive mt-1">{backupStats.failed}</p>
               </div>
               <XCircle className="w-8 h-8 text-destructive" />
@@ -266,7 +266,7 @@ export function BackupRecovery() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">存储占用</p>
+                <p className="text-lg font-bold text-foreground">存储占用</p>
                 <p className="text-2xl font-bold text-purple-600 mt-1">{backupStats.totalSize}</p>
               </div>
               <HardDrive className="w-8 h-8 text-purple-500" />
@@ -288,7 +288,7 @@ export function BackupRecovery() {
             <CardContent>
               <div className="space-y-4">
                 <Progress value={backupProgress} className="w-full" />
-                <div className="flex justify-between text-sm text-slate-600">
+                <div className="flex justify-between text-sm text-muted-foreground">
                   <span>正在备份系统数据...</span>
                   <span>{backupProgress}%</span>
                 </div>
@@ -318,21 +318,21 @@ export function BackupRecovery() {
                 {backupRecords.map((backup) => (
                   <div
                     key={backup.id}
-                    className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+                    className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted transition-colors"
                   >
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
                         {getStatusIcon(backup.status)}
-                        <Database className="w-5 h-5 text-slate-500" />
+                        <Database className="w-5 h-5 text-muted-foreground" />
                       </div>
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
-                          <h3 className="font-semibold text-slate-900">{backup.name}</h3>
+                          <h3 className="font-semibold text-foreground">{backup.name}</h3>
                           {getTypeBadge(backup.type)}
                           {getStatusBadge(backup.status)}
                         </div>
-                        <p className="text-sm text-slate-600 mb-1">{backup.description}</p>
-                        <div className="flex items-center space-x-4 text-xs text-slate-400">
+                        <p className="text-sm text-muted-foreground mb-1">{backup.description}</p>
+                        <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                           <div className="flex items-center space-x-1">
                             <Calendar className="w-3 h-3" />
                             <span>{backup.createdAt.toLocaleString()}</span>

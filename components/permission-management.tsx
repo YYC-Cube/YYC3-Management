@@ -155,7 +155,7 @@ export function PermissionManagement() {
       case "pending":
         return "bg-yellow-100 text-yellow-800"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -180,8 +180,8 @@ export function PermissionManagement() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">权限管理</h1>
-          <p className="text-slate-600 mt-1">用户角色与权限控制系统</p>
+          <h1 className="text-2xl font-bold text-foreground">权限管理</h1>
+          <p className="text-muted-foreground mt-1">用户角色与权限控制系统</p>
         </div>
         <div className="flex items-center space-x-3">
           <Button variant="outline" size="sm">
@@ -201,9 +201,9 @@ export function PermissionManagement() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总用户数</p>
+                <p className="text-sm text-muted-foreground">总用户数</p>
                 <p className="text-2xl font-bold text-indigo-600">{users.length}</p>
-                <p className="text-xs text-slate-500 mt-1">活跃: {users.filter((u) => u.status === "active").length}</p>
+                <p className="text-xs text-muted-foreground mt-1">活跃: {users.filter((u) => u.status === "active").length}</p>
               </div>
               <Users className="w-8 h-8 text-indigo-400" />
             </div>

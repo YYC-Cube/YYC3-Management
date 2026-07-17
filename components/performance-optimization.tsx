@@ -240,7 +240,7 @@ export function PerformanceOptimization() {
       case "critical":
         return "text-destructive"
       default:
-        return "text-slate-600"
+        return "text-muted-foreground"
     }
   }
 
@@ -253,7 +253,7 @@ export function PerformanceOptimization() {
       case "critical":
         return "bg-destructive/10"
       default:
-        return "bg-slate-100"
+        return "bg-muted"
     }
   }
 
@@ -264,7 +264,7 @@ export function PerformanceOptimization() {
       case "down":
         return <TrendingUp className="w-4 h-4 text-success rotate-180" />
       default:
-        return <div className="w-4 h-4 bg-slate-400 rounded-full"></div>
+        return <div className="w-4 h-4 bg-muted-foreground/30 rounded-full"></div>
     }
   }
 
@@ -277,7 +277,7 @@ export function PerformanceOptimization() {
       case "low":
         return "bg-success/10 text-success"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -329,7 +329,7 @@ export function PerformanceOptimization() {
               <h3 className="font-semibold text-success">正在优化系统性能</h3>
               <span className="text-sm text-success">{Math.round(optimizationProgress)}%</span>
             </div>
-            <div className="w-full bg-slate-200 rounded-full h-2">
+            <div className="w-full bg-muted rounded-full h-2">
               <div
                 className="bg-linear-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${optimizationProgress}%` }}
@@ -347,14 +347,14 @@ export function PerformanceOptimization() {
             className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:scale-105 border-r-[5px] border-r-success p-4"
           >
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-medium text-slate-900">{metric.name}</h3>
+              <h3 className="font-medium text-foreground">{metric.name}</h3>
               {getTrendIcon(metric.trend)}
             </div>
             <div className="flex items-end gap-2 mb-2">
               <span className={`text-2xl font-bold ${getMetricStatusColor(metric.status)}`}>{metric.value}</span>
-              <span className="text-sm text-slate-600">{metric.unit}</span>
+              <span className="text-sm text-muted-foreground">{metric.unit}</span>
             </div>
-            <p className="text-xs text-slate-600">{metric.description}</p>
+            <p className="text-xs text-muted-foreground">{metric.description}</p>
             <div className={`mt-2 px-2 py-1 rounded text-xs ${getMetricStatusBg(metric.status)}`}>
               {metric.status === "good" ? "良好" : metric.status === "warning" ? "警告" : "严重"}
             </div>
@@ -449,10 +449,10 @@ export function PerformanceOptimization() {
                   <div className="flex items-center gap-4">
                     <div className="p-2 bg-success/10 rounded-lg">{getCategoryIcon(feature.category)}</div>
                     <div>
-                      <h3 className="font-semibold text-slate-900 group-hover:translate-x-1 transition-transform duration-300">
+                      <h3 className="font-semibold text-foreground group-hover:translate-x-1 transition-transform duration-300">
                         {feature.name}
                       </h3>
-                      <p className="text-sm text-slate-600">{feature.description}</p>
+                      <p className="text-sm text-muted-foreground">{feature.description}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge className={getImpactColor(feature.impact)}>
                           {feature.impact === "high" ? "高影响" : feature.impact === "medium" ? "中影响" : "低影响"}

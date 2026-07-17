@@ -92,12 +92,12 @@ export function InteractiveProgress({
   return (
     <div className={cn("relative group", className)}>
       {title && (
-        <div className="text-xs text-slate-600 mb-1 opacity-0 group-hover:opacity-100 transition-opacity">{title}</div>
+        <div className="text-xs text-muted-foreground mb-1 opacity-0 group-hover:opacity-100 transition-opacity">{title}</div>
       )}
       <div
         ref={progressRef}
         className={cn(
-          "relative bg-slate-200 rounded-full overflow-hidden transition-all duration-200",
+          "relative bg-muted rounded-full overflow-hidden transition-all duration-200",
           sizeClasses[size],
           editable && "cursor-pointer",
           isHovered && "shadow-md",
@@ -127,7 +127,7 @@ export function InteractiveProgress({
       </div>
 
       {editable && isHovered && (
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-card-foreground text-white text-xs px-2 py-1 rounded whitespace-nowrap">
           {currentValue}%
         </div>
       )}

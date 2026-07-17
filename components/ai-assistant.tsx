@@ -306,7 +306,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
   // 彩色进度条组件
   const ColoredProgress = ({ value, color }: { value: number; color: string }) => {
     return (
-      <div className="w-full bg-slate-200 rounded-full h-2">
+      <div className="w-full bg-muted rounded-full h-2">
         <div
           className={`h-2 rounded-full transition-all duration-1000 ease-out ${color}`}
           style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
@@ -316,13 +316,13 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 to-sky-50/30 p-6 space-y-6">
+    <div className="min-h-screen bg-linear-to-br from-muted to-sky-50/30 p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           {showTitle && (
-            <h1 className="text-2xl font-bold text-slate-900">AI智能助手</h1>
+            <h1 className="text-2xl font-bold text-foreground">AI智能助手</h1>
           )}
-          <p className="text-slate-600 mt-2">支持本地和云端多种大模型的智能业务分析系统</p>
+          <p className="text-muted-foreground mt-2">支持本地和云端多种大模型的智能业务分析系统</p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="bg-purple-100 text-purple-800 border-purple-200">
@@ -383,7 +383,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                           <div
                             className={`max-w-[80%] rounded-lg p-3 ${message.role === "user"
                               ? "bg-linear-to-r from-purple-500 to-purple-600 text-white"
-                              : "bg-purple-50 text-slate-900 border border-purple-200"
+                              : "bg-purple-50 text-foreground border border-purple-200"
                               }`}
                           >
                             <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -456,7 +456,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
 
             <div className="space-y-4">
               <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
-                <h3 className="font-semibold text-slate-900 mb-3">模型选择</h3>
+                <h3 className="font-semibold text-foreground mb-3">模型选择</h3>
                 <Select value={selectedModel} onValueChange={setSelectedModel}>
                   <SelectTrigger className="border-purple-200 focus:ring-purple-500">
                     <SelectValue placeholder="选择AI模型" />
@@ -476,17 +476,17 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                   </SelectContent>
                 </Select>
                 {availableModels.find((m) => m.id === selectedModel) && (
-                  <p className="text-xs text-slate-600 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     {availableModels.find((m) => m.id === selectedModel)?.description}
                   </p>
                 )}
               </Card>
 
               <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-4">
-                <h3 className="font-semibold text-slate-900 mb-3">快速设置</h3>
+                <h3 className="font-semibold text-foreground mb-3">快速设置</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm font-medium text-slate-700">创造性 ({temperature[0]})</label>
+                    <label className="text-sm font-medium text-card-foreground">创造性 ({temperature[0]})</label>
                     <Slider
                       value={temperature}
                       onValueChange={setTemperature}
@@ -501,7 +501,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-700">最大长度 ({maxTokens[0]})</label>
+                    <label className="text-sm font-medium text-card-foreground">最大长度 ({maxTokens[0]})</label>
                     <Slider
                       value={maxTokens}
                       onValueChange={setMaxTokens}
@@ -516,7 +516,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium text-slate-700">流式输出</label>
+                    <label className="text-sm font-medium text-card-foreground">流式输出</label>
                     <Switch checked={streamMode} onCheckedChange={setStreamMode} />
                   </div>
                 </div>
@@ -546,8 +546,8 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     {insight.type === "info" && <Lightbulb className="w-5 h-5 text-purple-600" />}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-slate-900">{insight.title}</h3>
-                    <p className="text-slate-600 text-sm mt-1">{insight.description}</p>
+                    <h3 className="font-semibold text-foreground">{insight.title}</h3>
+                    <p className="text-muted-foreground text-sm mt-1">{insight.description}</p>
                     {insight.action && (
                       <div className="flex items-center mt-2 text-purple-600 text-sm font-medium">
                         <span>{insight.action}</span>
@@ -573,8 +573,8 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                     <action.icon className="w-5 h-5 text-purple-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-slate-900">{action.title}</h3>
-                    <p className="text-slate-600 text-sm mt-1">{action.description}</p>
+                    <h3 className="font-semibold text-foreground">{action.title}</h3>
+                    <p className="text-muted-foreground text-sm mt-1">{action.description}</p>
                     <div className="flex items-center mt-2 text-purple-600 text-sm font-medium">
                       <span>立即执行</span>
                       <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -589,7 +589,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
         <TabsContent value="settings" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card className="border-r-[5px] border-r-success bg-white/80 backdrop-blur-sm border border-success/20 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">本地模型</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">本地模型</h3>
               <div className="space-y-4">
                 {getModelsByType("local").map((model) => (
                   <div
@@ -601,8 +601,8 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                         <Server className="w-5 h-5 text-success" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-slate-900">{model.name}</h4>
-                        <p className="text-sm text-slate-600">{model.description}</p>
+                        <h4 className="font-medium text-foreground">{model.name}</h4>
+                        <p className="text-sm text-muted-foreground">{model.description}</p>
                       </div>
                     </div>
                     <Badge variant="outline" className="bg-success/10 text-success border-success/20">
@@ -614,7 +614,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
             </Card>
 
             <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">云端模型</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">云端模型</h3>
               <div className="space-y-4">
                 {getModelsByType("cloud").map((model) => (
                   <div
@@ -626,8 +626,8 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
                         <Cloud className="w-5 h-5 text-purple-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-slate-900">{model.name}</h4>
-                        <p className="text-sm text-slate-600">{model.description}</p>
+                        <h4 className="font-medium text-foreground">{model.name}</h4>
+                        <p className="text-sm text-muted-foreground">{model.description}</p>
                       </div>
                     </div>
                     <Badge variant="outline" className="bg-purple-100 text-purple-800 border-purple-200">
@@ -640,7 +640,7 @@ export function AIAssistant({ showTitle = true }: AIAssistantProps) {
           </div>
 
           <Card className="border-r-[5px] border-r-purple-400 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300 p-6">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">模型能力对比</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">模型能力对比</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>

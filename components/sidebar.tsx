@@ -150,13 +150,13 @@ export function Sidebar() {
     <nav
       aria-label="主导航"
       className={cn(
-        "flex flex-col bg-white border-r border-slate-200 h-full",
+        "flex flex-col bg-white border-r border-border h-full",
         "transition-all duration-300 ease-in-out",
         isCollapsed ? "w-16" : "w-64",
         "max-md:w-72 max-md:border-r",
       )}
     >
-      <div className="flex items-center justify-between p-4 border-b border-slate-200">
+      <div className="flex items-center justify-between p-4 border-b border-border">
         {!isCollapsed && (
           <div className="flex items-center space-x-3">
             <button
@@ -169,8 +169,8 @@ export function Sidebar() {
               <Image src="/yyc3-icons/pwa/icon-96x96.png" alt="YYC³ Logo" width={20} height={20} className="rounded" />
             </button>
             <div>
-              <h1 className="text-lg font-bold text-slate-900">企业管理</h1>
-              <p className="text-xs text-slate-500">Management System</p>
+              <h1 className="text-lg font-bold text-foreground">企业管理</h1>
+              <p className="text-xs text-muted-foreground">Management System</p>
             </div>
           </div>
         )}
@@ -191,7 +191,7 @@ export function Sidebar() {
           size="sm"
           onClick={() => setIsCollapsed(!isCollapsed)}
           aria-label={isCollapsed ? "展开侧边栏" : "收起侧边栏"}
-          className="hidden md:inline-flex h-8 w-8 p-0 hover:bg-slate-100"
+          className="hidden md:inline-flex h-8 w-8 p-0 hover:bg-muted"
         >
           {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
@@ -200,7 +200,7 @@ export function Sidebar() {
           size="sm"
           onClick={closeMobile}
           aria-label="关闭菜单"
-          className="md:hidden h-8 w-8 p-0 hover:bg-slate-100"
+          className="md:hidden h-8 w-8 p-0 hover:bg-muted"
         >
           <X className="h-5 w-5" />
         </Button>
@@ -211,7 +211,7 @@ export function Sidebar() {
           {navigationItems.map((section) => (
             <div key={section.title}>
               {!isCollapsed && (
-                <h3 className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                   {section.title}
                 </h3>
               )}
@@ -231,7 +231,7 @@ export function Sidebar() {
                           `border-r-4 border-r-${colorClass}-500`,
                           isActive
                             ? `text-white hover:opacity-90 border-r-${colorClass}-600 shadow-md`
-                            : `text-slate-700 hover:bg-slate-50 hover:text-slate-900 hover:border-r-${colorClass}-400`,
+                            : `text-card-foreground hover:bg-muted hover:text-foreground hover:border-r-${colorClass}-400`,
                         )}
                         style={
                           isActive
@@ -284,15 +284,15 @@ export function Sidebar() {
         </div>
       </ScrollArea>
 
-      <div className="border-t border-slate-200 p-4">
+      <div className="border-t border-border p-4">
         {!isCollapsed ? (
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-linear-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-medium">管</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-slate-900 truncate">系统管理员</p>
-              <p className="text-xs text-slate-500 truncate">admin@company.com</p>
+              <p className="text-sm font-medium text-foreground truncate">系统管理员</p>
+              <p className="text-xs text-muted-foreground truncate">admin@company.com</p>
             </div>
           </div>
         ) : (
@@ -305,7 +305,7 @@ export function Sidebar() {
             <TooltipContent side="right">
               <div>
                 <p className="font-medium">系统管理员</p>
-                <p className="text-xs text-slate-500">admin@company.com</p>
+                <p className="text-xs text-muted-foreground">admin@company.com</p>
               </div>
             </TooltipContent>
           </Tooltip>
@@ -324,9 +324,9 @@ export function Sidebar() {
         type="button"
         onClick={() => setIsMobileOpen(true)}
         aria-label="打开导航菜单"
-        className="md:hidden fixed top-3 left-3 z-50 h-10 w-10 inline-flex items-center justify-center rounded-lg bg-white border border-slate-200 shadow-sm no-tap-highlight"
+        className="md:hidden fixed top-3 left-3 z-50 h-10 w-10 inline-flex items-center justify-center rounded-lg bg-white border border-border shadow-sm no-tap-highlight"
       >
-        <Menu className="h-5 w-5 text-slate-700" />
+        <Menu className="h-5 w-5 text-card-foreground" />
       </button>
 
       {/* 移动端遮罩 */}

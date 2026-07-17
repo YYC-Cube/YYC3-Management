@@ -232,7 +232,7 @@ export default function RootLayout({
           <PageTitleProvider>
             <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
               <AIWidgetProvider autoInit={true}>
-                <div className="flex h-screen bg-slate-50">
+                <div className="flex h-screen bg-muted">
                   {/* 侧边栏 */}
                   <Sidebar />
 

@@ -95,7 +95,7 @@ describe('PerformancePage', () => {
     
     expect(deptPerformanceCard).toBeInTheDocument()
 
-    const deptItems = deptPerformanceCard!.querySelectorAll('[class*="p-4 border border-slate-200 rounded-lg"]')
+    const deptItems = deptPerformanceCard!.querySelectorAll('[class*="p-4 border border-border rounded-lg"]')
     expect(deptItems.length).toBe(5)
     expect(deptItems[0].textContent).toContain('产品部')
     expect(deptItems[0].textContent).toContain('4.5')
@@ -119,7 +119,7 @@ describe('PerformancePage', () => {
     expect(screen.getByText('< 3.0')).toBeInTheDocument()
 
     // 使用更精确的选择器来查找计数
-    const performanceDistributionCards = document.querySelectorAll('[class*="text-center p-4 border border-slate-200 rounded-lg"]')
+    const performanceDistributionCards = document.querySelectorAll('[class*="text-center p-4 border border-border rounded-lg"]')
     expect(performanceDistributionCards.length).toBe(5)
     expect(performanceDistributionCards[0].textContent).toContain('12')
     expect(performanceDistributionCards[1].textContent).toContain('18')

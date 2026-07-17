@@ -2,7 +2,7 @@
 file: YYC3-Menu-统一化改进实施清单.md
 description: 配套统一化报告的执行清单 — 用于跟踪每项改进的落地
 author: YYC³ 标准化委员会 <admin@0379.email>
-version: v1.1.0
+version: v1.3.0
 created: 2026-07-17
 updated: 2026-07-17
 status: completed
@@ -20,8 +20,8 @@ complexity: intermediate
 
 | 属性 | 值 |
 |------|-----|
-| **总任务数** | 12 |
-| **已完成** | 7 |
+| **总任务数** | 19 |
+| **已完成** | 14 |
 | **跳过（含理由）** | 5 |
 | **待办** | 0 |
 
@@ -41,6 +41,7 @@ complexity: intermediate
 **任务**：在 `:root` 和 `.dark` 中补齐 8 个 sidebar 变量定义。
 
 **变更**：
+
 - `:root` 追加 `--sidebar-background` / `--sidebar-foreground` / `--sidebar-primary` / `--sidebar-primary-foreground` / `--sidebar-accent` / `--sidebar-accent-foreground` / `--sidebar-border` / `--sidebar-ring`
 - `.dark` 同步追加对应的深色模式值
 
@@ -60,6 +61,7 @@ complexity: intermediate
 **任务**：改为基于 `Button` 的浅封装，仅保留 `icon`、`loading`、`iconPosition` 增强属性，variant 委托给 Button。
 
 **变更**：
+
 - 删除全部 `buttonVariants` 硬编码（sky→blue 渐变）
 - 改为透传 `variant` / `size` 给标准 `Button`
 - 保留 `SIZE_MAP`：`sm | md | lg` → `sm | default | lg` 兼容映射
@@ -82,6 +84,7 @@ complexity: intermediate
 **任务**：删除 9 处 `// console.log(...)` 注释残留。
 
 **变更**：
+
 - 删除初始化流程中的 8 处 `// console.log` / `// console.warn` 注释
 - 将本地模型降级提示改为实际 `console.warn`（仅 `NODE_ENV === 'development'` 时输出）
 - 合并冗余空行与重复注释
@@ -117,10 +120,12 @@ complexity: intermediate
 | **状态** | ✅ 完成 |
 
 **任务**：三条 CI/CD 流水线全部失败（25s/30s/9s），根因为：
+
 1. 客户端组件误导入服务端 `pg/fs` 模块
 2. GitHub Pages Bun 版本不稳定 + 动态图标路由不兼容 `output: export`
 
 **变更范围**：
+
 - `lib/ai-service.ts` — 添加 `import 'server-only'` 安全网
 - `components/ai-assistant.tsx` — 值导入改为类型导入，`chat()` 改为 fetch API 路由
 - `app/api/ai/chat/route.ts` — 重构为统一调用 aiService
@@ -144,6 +149,7 @@ complexity: intermediate
 **任务**：`PageContainer` 统一渲染 `<h1>`，但子组件重复渲染各自的 `<h1>`，导致标题重复。
 
 **变更范围**：
+
 | 文件 | 变更 |
 |------|------|
 | `app/page.tsx` | `DashboardContent showTitle={false}` |
@@ -189,6 +195,7 @@ complexity: intermediate
 **任务**：补充 CSS 语义变量体系。`:root` 中新增 3 组变量（z-index、动效时长、字号）。
 
 **变更**：
+
 ```css
 /* Z-index 层级体系 */
 --z-dropdown: 50; --z-sticky: 60; --z-fixed: 70;
@@ -222,13 +229,34 @@ complexity: intermediate
 
 ```
 P0: 5/5   ✅✅✅✅✅  100%
-P1: 7/7   ✅✅✅✅✅✅✅  100%
+P1: 8/8   ✅✅✅✅✅✅✅✅  100%（新增 slate→语义化全量清零）
 P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 ─────────────────────
-最新总计: 14/18  77% 完成
-                 + 4/18  22% 跳过（含理由）
-                 = 18/18 100% 已决策
+最新总计: 15/19  79% 完成
+                 + 4/19  21% 跳过（含理由）
+                 = 19/19 100% 已决策
 ```
+
+---
+
+## 关键变更摘要（新增轮次：slate→语义化全量清零）
+
+| 替换模式 | 源值 → 目标值 | 涉及文件 |
+|----------|--------------|---------|
+| 正文色 | `text-slate-900/800/700` → `text-foreground`/`text-card-foreground` | 全量 |
+| 次要色 | `text-slate-600/500/400/300/200` → `text-muted-foreground` | 全量 |
+| 背景色 | `bg-slate-100/50/200` → `bg-muted` | 全量 |
+| 边框色 | `border-slate-200/300` → `border-border`/`border-input` | 全量 |
+| 悬浮态 | `hover:bg-slate-50` → `hover:bg-muted/50` | 全量 |
+| 暗黑模式 | `dark:text-slate-300/200` → `dark:text-muted-foreground` | EnhancedAIWidget |
+| 装饰色 | `border-slate-100` → `border-border/50` | 全量 |
+| **残留从 ~876 → 0** | **全量清零** | **30+ 文件** |
+
+### 新增审计文档
+
+| 文件 | 用途 |
+|------|------|
+| [YYC3-Menu-统一化全局UI-UX审计报告.md](./YYC3-Menu-统一化全局UI-UX审计报告.md) | 第四轮全维度 UI/UX 审计报告 |
 
 ---
 
@@ -261,6 +289,7 @@ P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 **任务**：将 `commonStyles` 全部改为引用 Tailwind 语义 token。
 
 **变更范围**：
+
 - `commonStyles.layout` — `bg-background` / `text-foreground` / `text-muted-foreground`
 - `commonStyles.card` — `bg-card` / `text-card-foreground` / `border-border`
 - `commonStyles.button` — `bg-primary` / `bg-secondary` / `bg-accent` / `text-accent-foreground`
@@ -303,6 +332,7 @@ P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 **任务**：删除硬编码 `green-100` / `yellow-100` / `red-100` 等，全部使用语义 token。
 
 **变更**：
+
 - 重构 `STATUS_STYLES` 为 `bg-{color}/10 text-{color} border-{color}/20` 软背景模式
 - 变体枚举：`success | warning | danger | info | neutral | primary`
 - 导出 `getStatusVariant(status: string)` 工具函数，支持中英文业务状态字符串推断
@@ -324,11 +354,13 @@ P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 **任务**：sidebar 和 AIWidgetProvider 改用 `useKeyboardShortcuts` Hook。
 
 **跳过理由**：
+
 1. `useKeyboardShortcuts` Hook 的 `useEffect` 依赖 `shortcuts` 数组，数组在每次 render 都会重新创建，会导致监听器频繁绑定/解绑，可能引入性能或竞态问题
 2. 现有两处实现都是简单单快捷键监听（sidebar: `[` 键、AIWidget: `Cmd/Ctrl+K`），代码量小、可读性高
 3. 强行迁移的收益低于风险
 
 **替代措施**（已写入规范文档 4.5）：
+
 - 新快捷键**必须**使用 `useKeyboardShortcuts` Hook
 - 现有两处实现保留，并在代码中添加 `// NOTE: 后续重构时迁移到 useKeyboardShortcuts` 标记
 - 规划在 Hook 本身升级（支持稳定 callback）后再统一迁移
@@ -347,11 +379,13 @@ P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 **任务**：将内联 `<p className="text-red-500">` 全部改为 `FormError` 组件。
 
 **跳过理由**：
+
 1. 涉及面广（需扫描所有表单页面），改动风险高
 2. 当前 `text-red-500` 虽然未使用 `destructive` 语义 token，但视觉上与深色模式兼容
 3. 建议作为独立重构任务，配合下一次表单组件大改时一并完成
 
 **替代措施**（已写入规范文档 4.1）：
+
 - 新表单错误提示**必须**使用 `FormError` 组件或 `text-destructive` token
 - 现有 `text-red-500` 标记为技术债，后续统一替换
 
@@ -386,6 +420,7 @@ P2: 2/6   ✅✅⏭️⏭️⏭️⏭️  33%执行
 **跳过理由**：涉及文档数量多，且许多文档为外部归档资料，改动量大但收益主要为统计层面。
 
 **替代措施**：
+
 - 在规范文档 3.1 中明确「2026-08-01 后新建文档必须含完整 frontmatter」
 - 通过 CI 检查新增文档的 frontmatter 合规性
 - 现有文档按重要性逐步补齐（优先 YYC3-Menu-团队规范/ 下的活跃文档）

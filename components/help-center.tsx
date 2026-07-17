@@ -275,7 +275,7 @@ export function HelpCenter() {
       case "advanced":
         return <Badge className="bg-destructive/10 text-destructive">高级</Badge>
       default:
-        return <Badge className="bg-slate-100 text-slate-800">未知</Badge>
+        return <Badge className="bg-muted text-card-foreground">未知</Badge>
     }
   }
 
@@ -303,7 +303,7 @@ export function HelpCenter() {
   return (
     <div className="p-6 space-y-6">
       <div className="relative max-w-2xl mx-auto">
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
         <Input
           type="text"
           placeholder="搜索帮助文档、视频教程或常见问题..."
@@ -319,7 +319,7 @@ export function HelpCenter() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">帮助文章</p>
+                <p className="text-lg font-bold text-foreground">帮助文章</p>
                 <p className="text-2xl font-bold text-blue-600 mt-1">{articles.length}</p>
               </div>
               <FileText className="w-8 h-8 text-blue-500" />
@@ -331,7 +331,7 @@ export function HelpCenter() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">视频教程</p>
+                <p className="text-lg font-bold text-foreground">视频教程</p>
                 <p className="text-2xl font-bold text-success mt-1">{videos.length}</p>
               </div>
               <Video className="w-8 h-8 text-success" />
@@ -343,7 +343,7 @@ export function HelpCenter() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-lg font-bold text-slate-900">常见问题</p>
+                <p className="text-lg font-bold text-foreground">常见问题</p>
                 <p className="text-2xl font-bold text-purple-600 mt-1">{faqs.length}</p>
               </div>
               <HelpCircle className="w-8 h-8 text-purple-500" />
@@ -400,17 +400,17 @@ export function HelpCenter() {
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-3">
                       {getDifficultyBadge(article.difficulty)}
-                      <div className="flex items-center text-sm text-slate-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         <Clock className="w-4 h-4 mr-1" />
                         {article.lastUpdated.toLocaleDateString()}
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-foreground mb-2 hover:text-blue-600 transition-colors">
                       {article.title}
                     </h3>
 
-                    <p className="text-slate-600 mb-4 line-clamp-2">{article.content}</p>
+                    <p className="text-muted-foreground mb-4 line-clamp-2">{article.content}</p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {article.tags.map((tag) => (
@@ -420,7 +420,7 @@ export function HelpCenter() {
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between text-sm text-slate-500">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center">
                           <Eye className="w-4 h-4 mr-1" />
@@ -444,9 +444,9 @@ export function HelpCenter() {
           ) : (
             <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
-                <FileText className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的文章</h3>
-                <p className="text-slate-500 mb-4">请尝试使用不同的搜索词或选择其他分类</p>
+                <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">没有找到匹配的文章</h3>
+                <p className="text-muted-foreground mb-4">请尝试使用不同的搜索词或选择其他分类</p>
                 <Button variant="outline" onClick={() => setSearchTerm("")}>
                   清除搜索
                 </Button>
@@ -488,13 +488,13 @@ export function HelpCenter() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
                       {video.title}
                     </h3>
 
-                    <p className="text-slate-600 text-sm mb-4 line-clamp-2">{video.description}</p>
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{video.description}</p>
 
-                    <div className="flex items-center justify-between text-sm text-slate-500">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <div className="flex items-center space-x-3">
                         <div className="flex items-center">
                           <Eye className="w-4 h-4 mr-1" />
@@ -517,9 +517,9 @@ export function HelpCenter() {
           ) : (
             <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
-                <Video className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的视频</h3>
-                <p className="text-slate-500 mb-4">请尝试使用不同的搜索词或选择其他分类</p>
+                <Video className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">没有找到匹配的视频</h3>
+                <p className="text-muted-foreground mb-4">请尝试使用不同的搜索词或选择其他分类</p>
                 <Button variant="outline" onClick={() => setSearchTerm("")}>
                   清除搜索
                 </Button>
@@ -540,12 +540,12 @@ export function HelpCenter() {
                   <CardContent className="p-0">
                     <details className="group">
                       <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
-                        <h3 className="text-lg font-medium text-slate-900 pr-4">{faq.question}</h3>
-                        <ChevronDown className="w-5 h-5 text-slate-400 transition-transform duration-300 group-open:rotate-180" />
+                        <h3 className="text-lg font-medium text-foreground pr-4">{faq.question}</h3>
+                        <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
                       </summary>
 
-                      <div className="px-6 pb-6 pt-0 border-t border-slate-100">
-                        <p className="text-slate-600 mb-4 leading-relaxed">{faq.answer}</p>
+                      <div className="px-6 pb-6 pt-0 border-t border-border/50">
+                        <p className="text-muted-foreground mb-4 leading-relaxed">{faq.answer}</p>
 
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-4">
@@ -579,9 +579,9 @@ export function HelpCenter() {
           ) : (
             <Card className="bg-card/90 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
               <CardContent className="p-12 text-center">
-                <HelpCircle className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-slate-900 mb-2">没有找到匹配的常见问题</h3>
-                <p className="text-slate-500 mb-4">请尝试使用不同的搜索词或选择其他分类</p>
+                <HelpCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">没有找到匹配的常见问题</h3>
+                <p className="text-muted-foreground mb-4">请尝试使用不同的搜索词或选择其他分类</p>
                 <Button variant="outline" onClick={() => setSearchTerm("")}>
                   清除搜索
                 </Button>

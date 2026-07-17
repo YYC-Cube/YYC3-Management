@@ -325,7 +325,7 @@ export default function PlatformSettingsPage() {
             <h1 className="text-3xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               国内公共平台对接设置
             </h1>
-            <p className="text-slate-600 mt-1">
+            <p className="text-muted-foreground mt-1">
               配置微信公众号、企业微信、飞书、钉钉等平台的对接参数，实现菜单同步和图文内容一键分发
             </p>
           </div>
@@ -335,8 +335,8 @@ export default function PlatformSettingsPage() {
       {/* 平台配置标签页 */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         {/* 标签页导航 */}
-        <div className="border-b border-slate-200">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-slate-50">
+        <div className="border-b border-border">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-muted">
             {platforms.map((platform) => (
               <TabsTrigger
                 key={platform.id}
@@ -418,10 +418,10 @@ export default function PlatformSettingsPage() {
               <div className="space-y-4">
                 {renderTextField("wechat", "url", formData.wechat.url, "服务器URL", "请输入服务器回调URL", true)}
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用微信公众号对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动同步菜单和接收消息</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动同步菜单和接收消息</p>
                   </div>
                   <Switch
                     checked={formData.wechat.enabled}
@@ -522,10 +522,10 @@ export default function PlatformSettingsPage() {
                   "请输入回调加密密钥",
                 )}
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用企业微信对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动同步通讯录和发送消息</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动同步通讯录和发送消息</p>
                   </div>
                   <Switch
                     checked={formData.enterprise.enabled}
@@ -624,10 +624,10 @@ export default function PlatformSettingsPage() {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用飞书对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动接收事件和发送消息</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动接收事件和发送消息</p>
                   </div>
                   <Switch
                     checked={formData.feishu.enabled}
@@ -720,10 +720,10 @@ export default function PlatformSettingsPage() {
               <div className="space-y-4">
                 {renderPasswordField("dingtalk", "aesKey", formData.dingtalk.aesKey, "AES Key", "请输入回调加密Key")}
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用钉钉对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动同步组织架构和发送工作通知</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动同步组织架构和发送工作通知</p>
                   </div>
                   <Switch
                     checked={formData.dingtalk.enabled}
@@ -822,10 +822,10 @@ export default function PlatformSettingsPage() {
                   "请输入授权回调地址",
                 )}
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用抖音对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动发布内容和获取数据分析</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动发布内容和获取数据分析</p>
                   </div>
                   <Switch
                     checked={formData.douyin.enabled}
@@ -935,10 +935,10 @@ export default function PlatformSettingsPage() {
                   true,
                 )}
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div>
                     <Label className="text-sm font-medium">启用支付宝对接</Label>
-                    <p className="text-sm text-slate-600">开启后将自动处理支付和小程序相关功能</p>
+                    <p className="text-sm text-muted-foreground">开启后将自动处理支付和小程序相关功能</p>
                   </div>
                   <Switch
                     checked={formData.alipay.enabled}

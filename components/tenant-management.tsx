@@ -158,7 +158,7 @@ export function TenantManagement() {
       case "basic":
         return "bg-success/10 text-success border-success/20"
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200"
+        return "bg-muted text-card-foreground border-border"
     }
   }
 
@@ -171,7 +171,7 @@ export function TenantManagement() {
       case "suspended":
         return "bg-destructive/10 text-destructive"
       default:
-        return "bg-slate-100 text-slate-800"
+        return "bg-muted text-card-foreground"
     }
   }
 
@@ -239,7 +239,7 @@ export function TenantManagement() {
         <TabsContent value="tenants" className="space-y-4">
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="搜索租户名称或域名..."
                 value={searchTerm}
@@ -264,8 +264,8 @@ export function TenantManagement() {
                       )}
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold text-slate-900">{tenant.name}</h3>
-                      <p className="text-sm text-slate-600">{tenant.domain}</p>
+                      <h3 className="font-semibold text-foreground">{tenant.name}</h3>
+                      <p className="text-sm text-muted-foreground">{tenant.domain}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge variant="outline" className={getPlanColor(tenant.plan)}>
                           {getPlanIcon(tenant.plan)}
@@ -280,10 +280,10 @@ export function TenantManagement() {
 
                   <div className="flex items-center gap-6">
                     <div className="text-right">
-                      <p className="text-sm font-medium text-slate-900">
+                      <p className="text-sm font-medium text-foreground">
                         {tenant.users}/{tenant.maxUsers} 用户
                       </p>
-                      <p className="text-xs text-slate-600">最后活跃: {tenant.lastActive.toLocaleString()}</p>
+                      <p className="text-xs text-muted-foreground">最后活跃: {tenant.lastActive.toLocaleString()}</p>
                     </div>
 
                     <DropdownMenu>
@@ -316,15 +316,15 @@ export function TenantManagement() {
                       <AvatarFallback className="bg-blue-100 text-blue-600">{user.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold text-slate-900">{user.name}</h3>
-                      <p className="text-sm text-slate-600">{user.email}</p>
+                      <h3 className="font-semibold text-foreground">{user.name}</h3>
+                      <p className="text-sm text-muted-foreground">{user.email}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge variant="outline">
                           {user.role === "admin" ? "管理员" : user.role === "manager" ? "经理" : "用户"}
                         </Badge>
                         <Badge
                           className={
-                            user.status === "active" ? "bg-success/10 text-success" : "bg-slate-100 text-slate-800"
+                            user.status === "active" ? "bg-success/10 text-success" : "bg-muted text-card-foreground"
                           }
                         >
                           {user.status === "active" ? "活跃" : "非活跃"}
@@ -334,8 +334,8 @@ export function TenantManagement() {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-sm text-slate-600">最后登录: {user.lastLogin.toLocaleString()}</p>
-                    <p className="text-xs text-slate-500">租户: {tenants.find((t) => t.id === user.tenantId)?.name}</p>
+                    <p className="text-sm text-muted-foreground">最后登录: {user.lastLogin.toLocaleString()}</p>
+                    <p className="text-xs text-muted-foreground">租户: {tenants.find((t) => t.id === user.tenantId)?.name}</p>
                   </div>
                 </div>
               </Card>
@@ -351,21 +351,21 @@ export function TenantManagement() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">自动备份</h4>
-                    <p className="text-sm text-slate-600">每日自动备份所有租户数据</p>
+                    <p className="text-sm text-muted-foreground">每日自动备份所有租户数据</p>
                   </div>
                   <Button variant="outline">配置</Button>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">安全策略</h4>
-                    <p className="text-sm text-slate-600">配置密码策略和登录限制</p>
+                    <p className="text-sm text-muted-foreground">配置密码策略和登录限制</p>
                   </div>
                   <Button variant="outline">设置</Button>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">监控告警</h4>
-                    <p className="text-sm text-slate-600">系统性能和异常监控</p>
+                    <p className="text-sm text-muted-foreground">系统性能和异常监控</p>
                   </div>
                   <Button variant="outline">管理</Button>
                 </div>

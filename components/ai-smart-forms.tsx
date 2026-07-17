@@ -223,7 +223,7 @@ export function AiSmartForms() {
       case "处理中":
         return "bg-blue-100 text-blue-700 border-blue-300"
       default:
-        return "bg-slate-100 text-slate-700 border-slate-300"
+        return "bg-muted text-card-foreground border-input"
     }
   }
 
@@ -242,13 +242,13 @@ export function AiSmartForms() {
       {/* 页面标题 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
             <div className="p-3 bg-linear-to-br from-purple-100 to-purple-200 rounded-xl">
               <FileText className="w-8 h-8 text-purple-600" />
             </div>
             AI智能表单
           </h1>
-          <p className="text-slate-600 mt-2">智能表单系统，支持语音输入、NFC触发和自动填充</p>
+          <p className="text-muted-foreground mt-2">智能表单系统，支持语音输入、NFC触发和自动填充</p>
         </div>
       </div>
 
@@ -294,8 +294,8 @@ export function AiSmartForms() {
       </div>
 
       {/* 表单模板选择 */}
-      <div className="bg-white rounded-xl shadow-sm p-4 border border-slate-100">
-        <h3 className="text-lg font-medium text-slate-800 mb-4">选择表单模板</h3>
+      <div className="bg-white rounded-xl shadow-sm p-4 border border-border/50">
+        <h3 className="text-lg font-medium text-card-foreground mb-4">选择表单模板</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {formTemplates.map((template) => {
             const IconComponent = template.icon
@@ -322,13 +322,13 @@ export function AiSmartForms() {
                     <IconComponent className="w-5 h-5" />
                   </div>
                   <div className="ml-3">
-                    <h4 className="font-medium text-slate-800">{template.name}</h4>
-                    <p className="text-sm text-slate-500 mt-1">{template.description}</p>
+                    <h4 className="font-medium text-card-foreground">{template.name}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{template.description}</p>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1">
                   {template.fields.map((field) => (
-                    <span key={field} className="text-xs bg-white/80 text-slate-600 px-2 py-0.5 rounded-full">
+                    <span key={field} className="text-xs bg-white/80 text-muted-foreground px-2 py-0.5 rounded-full">
                       {field}
                     </span>
                   ))}
@@ -340,9 +340,9 @@ export function AiSmartForms() {
       </div>
 
       {/* 表单内容 */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-slate-100">
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-border/50">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-medium text-slate-800">
+          <h3 className="text-lg font-medium text-card-foreground">
             {formTemplates.find((t) => t.id === selectedTemplate)?.name || "销售日报表"}
           </h3>
           {isProcessing && (
@@ -355,81 +355,81 @@ export function AiSmartForms() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">客户名称 *</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">客户名称 *</label>
             <input
               type="text"
               value={formData.customerName}
               onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入客户名称"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">联系人 *</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">联系人 *</label>
             <input
               type="text"
               value={formData.contactPerson}
               onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入联系人"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">电话</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">电话</label>
             <input
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入联系电话"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">邮箱</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">邮箱</label>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入邮箱地址"
             />
           </div>
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-slate-700 mb-1">跟进内容</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">跟进内容</label>
             <textarea
               value={formData.followUpContent}
               onChange={(e) => setFormData({ ...formData, followUpContent: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入跟进内容"
             />
           </div>
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-slate-700 mb-1">下步行动</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">下步行动</label>
             <textarea
               value={formData.nextAction}
               onChange={(e) => setFormData({ ...formData, nextAction: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入下步行动"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">成交金额</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">成交金额</label>
             <input
               type="number"
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="输入成交金额"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">客户阶段</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1">客户阶段</label>
             <select
               value={formData.stage}
               onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">请选择客户阶段</option>
               <option value="初步接触">初步接触</option>
@@ -471,9 +471,9 @@ export function AiSmartForms() {
       </div>
 
       {/* 最近表单 */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-slate-100">
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-border/50">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-medium text-slate-800">最近表单</h3>
+          <h3 className="text-lg font-medium text-card-foreground">最近表单</h3>
           <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
             查看全部
           </Button>
@@ -483,25 +483,25 @@ export function AiSmartForms() {
           {recentForms.map((form) => (
             <div
               key={form.id}
-              className="p-3 rounded-lg border border-slate-100 hover:border-slate-200 hover:bg-slate-50 transition-colors"
+              className="p-3 rounded-lg border border-border/50 hover:border-border hover:bg-muted transition-colors"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <DocumentText className="w-5 h-5 text-slate-400 mr-3" />
+                  <DocumentText className="w-5 h-5 text-muted-foreground mr-3" />
                   <div>
-                    <h4 className="font-medium text-slate-800">{form.template}</h4>
-                    <p className="text-sm text-slate-500 mt-0.5">{form.customer}</p>
+                    <h4 className="font-medium text-card-foreground">{form.template}</h4>
+                    <p className="text-sm text-muted-foreground mt-0.5">{form.customer}</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <span className={`px-2 py-0.5 text-xs rounded-full border ${getStatusColor(form.status)}`}>
                     {form.status}
                   </span>
-                  <span className="ml-3 text-sm text-slate-500">{form.timestamp.toLocaleTimeString()}</span>
+                  <span className="ml-3 text-sm text-muted-foreground">{form.timestamp.toLocaleTimeString()}</span>
                 </div>
               </div>
               <div className="mt-2 flex items-center justify-between">
-                <div className="text-sm text-slate-600">
+                <div className="text-sm text-muted-foreground">
                   <span className="font-medium">{form.amount}</span>
                 </div>
                 <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">

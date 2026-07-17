@@ -275,7 +275,7 @@ export default function LogManagement() {
   const getLevelColor = (level: string) => {
     switch (level) {
       case "debug":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       case "info":
         return "text-blue-600 bg-blue-50"
       case "warn":
@@ -283,7 +283,7 @@ export default function LogManagement() {
       case "error":
         return "text-destructive bg-destructive/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -296,7 +296,7 @@ export default function LogManagement() {
       case "user":
         return "text-success bg-success/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 

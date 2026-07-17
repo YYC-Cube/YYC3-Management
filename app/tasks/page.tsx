@@ -205,7 +205,7 @@ export default function TasksPage() {
       case "low":
         return "text-success bg-success/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -216,11 +216,11 @@ export default function TasksPage() {
       case "in_progress":
         return "text-blue-600 bg-blue-50"
       case "pending":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       case "cancelled":
         return "text-destructive bg-destructive/10"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -290,8 +290,8 @@ export default function TasksPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总任务数</p>
-                <p className="text-2xl font-bold text-slate-800">{taskStats.totalTasks}</p>
+                <p className="text-sm text-muted-foreground">总任务数</p>
+                <p className="text-2xl font-bold text-card-foreground">{taskStats.totalTasks}</p>
                 <p className="text-xs text-orange-600 mt-1">本月任务</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -303,8 +303,8 @@ export default function TasksPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">已完成</p>
-                <p className="text-2xl font-bold text-slate-800">{taskStats.completedTasks}</p>
+                <p className="text-sm text-muted-foreground">已完成</p>
+                <p className="text-2xl font-bold text-card-foreground">{taskStats.completedTasks}</p>
                 <p className="text-xs text-success mt-1">
                   完成率 {taskStats.totalTasks > 0 ? Math.round((taskStats.completedTasks / taskStats.totalTasks) * 100) : 0}%
                 </p>
@@ -318,8 +318,8 @@ export default function TasksPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">进行中</p>
-                <p className="text-2xl font-bold text-slate-800">{taskStats.inProgressTasks}</p>
+                <p className="text-sm text-muted-foreground">进行中</p>
+                <p className="text-2xl font-bold text-card-foreground">{taskStats.inProgressTasks}</p>
                 <p className="text-xs text-orange-600 mt-1">正在处理</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -331,8 +331,8 @@ export default function TasksPage() {
           <EnhancedCard className="border-r-[5px] border-r-orange-500 shadow-md hover:border-r-orange-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">逾期任务</p>
-                <p className="text-2xl font-bold text-slate-800">{taskStats.overdueTasks}</p>
+                <p className="text-sm text-muted-foreground">逾期任务</p>
+                <p className="text-2xl font-bold text-card-foreground">{taskStats.overdueTasks}</p>
                 <p className="text-xs text-destructive mt-1">需要关注</p>
               </div>
               <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
@@ -344,10 +344,10 @@ export default function TasksPage() {
 
         <EnhancedCard>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-slate-800">任务列表</h2>
+            <h2 className="text-lg font-semibold text-card-foreground">任务列表</h2>
             <div className="flex gap-2">
               <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                 <Input
                   placeholder="搜索任务..."
                   value={searchTerm}
@@ -358,7 +358,7 @@ export default function TasksPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-3 py-2 border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">全部任务</option>
                 <option value="pending">待处理</option>
@@ -374,10 +374,10 @@ export default function TasksPage() {
 
           <div className="space-y-4">
             {filteredTasks.map((task) => (
-              <div key={task.id} className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-orange-500 shadow-md">
+              <div key={task.id} className="p-4 border border-border rounded-lg hover:bg-muted transition-colors border-r-4 border-r-orange-500 shadow-md">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-medium text-slate-800">{task.title}</h3>
+                    <h3 className="font-medium text-card-foreground">{task.title}</h3>
                     <Badge className={getPriorityColor(task.priority)}>
                       {getPriorityLabel(task.priority)}
                     </Badge>
@@ -400,7 +400,7 @@ export default function TasksPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6 text-sm text-slate-600 mb-3">
+                <div className="flex items-center gap-6 text-sm text-muted-foreground mb-3">
                   <div className="flex items-center gap-1">
                     <User className="w-4 h-4" />
                     {task.assignee_name}
@@ -420,8 +420,8 @@ export default function TasksPage() {
                 <div className="flex items-center gap-3">
                   <div className="flex-1">
                     <div className="flex items-center justify-between text-sm mb-1">
-                      <span className="text-slate-600">进度</span>
-                      <span className="text-slate-800 font-medium">{task.progress}%</span>
+                      <span className="text-muted-foreground">进度</span>
+                      <span className="text-card-foreground font-medium">{task.progress}%</span>
                     </div>
                     <Progress value={task.progress} className="h-2" />
                   </div>

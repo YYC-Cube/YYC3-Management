@@ -91,16 +91,16 @@ export function StatisticsDashboard({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="border-r-[5px] border-r-blue-500 shadow-md">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">总用户数</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">总用户数</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-slate-900">{finalStats.totalUsers}</p>
+                <p className="text-3xl font-bold text-foreground">{finalStats.totalUsers}</p>
                 <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+12.5%</span>
-                  <span className="text-slate-500 ml-1">较上月</span>
+                  <span className="text-muted-foreground ml-1">较上月</span>
                 </div>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -112,16 +112,16 @@ export function StatisticsDashboard({
 
         <Card className="border-r-[5px] border-r-success shadow-md">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">活跃用户</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">活跃用户</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-slate-900">{finalStats.activeUsers}</p>
+                <p className="text-3xl font-bold text-foreground">{finalStats.activeUsers}</p>
                 <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+8.3%</span>
-                  <span className="text-slate-500 ml-1">较上月</span>
+                  <span className="text-muted-foreground ml-1">较上月</span>
                 </div>
               </div>
               <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
@@ -133,16 +133,16 @@ export function StatisticsDashboard({
 
         <Card className="border-r-[5px] border-r-orange-500 shadow-md">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">项目总数</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">项目总数</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-slate-900">{finalStats.totalProjects}</p>
+                <p className="text-3xl font-bold text-foreground">{finalStats.totalProjects}</p>
                 <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+15.2%</span>
-                  <span className="text-slate-500 ml-1">较上月</span>
+                  <span className="text-muted-foreground ml-1">较上月</span>
                 </div>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -154,18 +154,18 @@ export function StatisticsDashboard({
 
         <Card className="border-r-[5px] border-r-purple-500 shadow-md">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">任务完成率</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">任务完成率</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-3xl font-bold text-slate-900">
+                <p className="text-3xl font-bold text-foreground">
                   {(finalStats.totalTasks || 0) > 0 ? Math.round(((finalStats.completedTasks || 0) / (finalStats.totalTasks || 1)) * 100) : 0}%
                 </p>
                 <div className="flex items-center mt-2 text-sm text-success">
                   <TrendingUp className="w-4 h-4 mr-1" />
                   <span>+5.7%</span>
-                  <span className="text-slate-500 ml-1">较上月</span>
+                  <span className="text-muted-foreground ml-1">较上月</span>
                 </div>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
