@@ -533,13 +533,19 @@ export function detectSQLInjection(input: string): boolean {
 
 /**
  * 便捷函数：检测XSS攻击
+ * 注意: 服务器端预检查，不能替代 React 默认转义输出编码
  */
 export function detectXSS(input: string): boolean {
-  const xssPatterns = [
-    /<script\b[^<]*(?:(?!<\/script\s*>)[^<]*)*<\/script\s*>/gi,
-    /<iframe\b[^<]*(?:(?!<\/iframe\s*>)[^<]*)*<\/iframe\s*>/gi,
-    /javascript:/gi,
-    /(?:on(?:load|unload|click|dblclick|mousedown|mouseup|mousemove|mouseover|mouseout|mouseenter|mouseleave|focus|blur|change|submit|reset|keydown|keypress|keyup|error|scroll|wheel|drag|drop|play|pause|progress|ratechange|resize|seeked|seeking|stalled|suspend|timeupdate|volumechange|waiting|toggle|pointerdown|pointerup|pointermove|pointerover|pointerout|pointerenter|pointerleave|gotpointercapture|lostpointercapture|animationstart|animationend|animationiteration|transitionstart|transitionend|transitionrun|transitioncancel))\s*=/gi,
+  const xssPatterns: RegExp[] = [
+    // 完整 script/iframe 标签
+    /<script[\s>]/i,
+    /<\/script>/i,
+    /<iframe[\s>]/i,
+    /<\/iframe>/i,
+    // javascript: 伪协议
+    /javascript\s*:/i,
+    // HTML 事件处理器 (on* 属性)
+    /\bon\w+\s*=\s*['"]?[^'"]*['"]?/i,
   ];
 
   return xssPatterns.some(pattern => pattern.test(input));
