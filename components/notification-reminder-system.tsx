@@ -322,7 +322,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                   {notifications.map((notification) => (
                     <div
                       key={notification.id}
-                      className={`p-4 border rounded-lg transition-all duration-200 hover:shadow-md ${notification.read ? "bg-slate-50 opacity-75" : "bg-white border-sky-200"
+                      className={`p-4 border rounded-lg transition-all duration-200 hover:shadow-md ${notification.read ? "bg-muted opacity-75" : "bg-card border-border"
                         }`}
                     >
                       <div className="flex items-start justify-between">
@@ -503,7 +503,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                 <div className="space-y-4">
                   <h4 className="font-medium text-slate-800">报告类型</h4>
                   <div className="space-y-3">
-                    <div className="p-4 border border-sky-200 rounded-lg">
+                    <div className="p-4 border border-border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
                         <h5 className="font-medium text-slate-800">周进度报告</h5>
                         <Badge className="bg-success/10 text-success">已启用</Badge>

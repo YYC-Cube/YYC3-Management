@@ -213,8 +213,8 @@ export default function ApprovalPage() {
               <h3 className="text-lg font-semibold text-slate-800 mb-4">审批类型分布</h3>
               <div className="space-y-3">
                 {[
-                  { type: "请假申请", count: 23, percentage: 35, color: "bg-sky-500" },
-                  { type: "报销申请", count: 18, percentage: 28, color: "bg-success/10" },
+                  { type: "请假申请", count: 23, percentage: 35, color: "bg-chart-1" },
+                  { type: "报销申请", count: 18, percentage: 28, color: "bg-chart-2" },
                   { type: "采购申请", count: 12, percentage: 18, color: "bg-yellow-500" },
                   { type: "培训申请", count: 8, percentage: 12, color: "bg-purple-500" },
                   { type: "其他申请", count: 5, percentage: 7, color: "bg-slate-500" },
@@ -225,7 +225,7 @@ export default function ApprovalPage() {
                       <span className="text-slate-800">{item.type}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-20 bg-slate-200 rounded-full h-2">
+                      <div className="w-20 bg-muted rounded-full h-2">
                         <div
                           className={`h-2 rounded-full ${item.color}`}
                           style={{ width: `${item.percentage}%` }}
@@ -247,7 +247,7 @@ export default function ApprovalPage() {
                     <p className="text-sm text-slate-600">从申请到审批完成</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-sky-600">2.3</p>
+                    <p className="text-2xl font-bold text-primary">2.3</p>
                     <p className="text-sm text-slate-600">天</p>
                   </div>
                 </div>

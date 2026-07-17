@@ -22,7 +22,7 @@ export function PageContainer({ title, description, children, className = "" }: 
   return (
     <div className={`${commonStyles.layout.container} ${className}`}>
       <div className="space-y-6">
-        <div className="border-b border-sky-100 pb-6">
+        <div className="border-b border-border pb-6">
           <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
           {description && <p className="text-slate-600 mt-2">{description}</p>}
         </div>
