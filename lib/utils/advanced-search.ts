@@ -1,7 +1,7 @@
 export interface SearchFilter {
   field: string
   operator: "equals" | "contains" | "startsWith" | "endsWith" | "greaterThan" | "lessThan" | "between" | "in" | "notIn"
-  value: any
+  value?: any
   label?: string
 }
 

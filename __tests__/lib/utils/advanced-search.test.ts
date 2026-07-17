@@ -1,5 +1,5 @@
-import { AdvancedSearch } from "@/lib/utils/advanced-search"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { AdvancedSearch } from "../../../lib/utils/advanced-search"
 
 interface TestUser {
   id: number
@@ -71,7 +71,7 @@ describe("AdvancedSearch", () => {
       ])
 
       expect(results).toHaveLength(3)
-      results.forEach((result) => {
+      results.forEach((result: { status: string }) => {
         expect(result.status).toBe("active")
       })
     })
@@ -82,7 +82,7 @@ describe("AdvancedSearch", () => {
       ])
 
       expect(results).toHaveLength(2)
-      results.forEach((result) => {
+      results.forEach((result: { age: number }) => {
         expect(result.age).toBeGreaterThan(30)
       })
     })
@@ -94,7 +94,7 @@ describe("AdvancedSearch", () => {
       ])
 
       expect(results).toHaveLength(2)
-      results.forEach((result) => {
+      results.forEach((result: { status: string; age: number }) => {
         expect(result.status).toBe("active")
         expect(result.age).toBeGreaterThan(28)
       })
@@ -132,7 +132,7 @@ describe("AdvancedSearch", () => {
       ])
 
       expect(results).toHaveLength(3)
-      results.forEach((result) => {
+      results.forEach((result: { status: string }) => {
         expect(result.status).toBe("active")
       })
     })
