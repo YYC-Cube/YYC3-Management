@@ -1,12 +1,12 @@
 "use client"
 
 import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { Badge } from "@/components/ui/badge"
-import { FileText, Clock, CheckCircle, XCircle, User, Calendar, Plus } from "lucide-react"
 import { OAApproval } from "@/components/oa-approval"
+import { Badge } from "@/components/ui/badge"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
+import { Calendar, CheckCircle, Clock, FileText, Plus, User, XCircle } from "lucide-react"
 
 export default function ApprovalPage() {
   return (
@@ -17,10 +17,10 @@ export default function ApprovalPage() {
           {/* 页面标题 */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-slate-800">OA审批</h1>
-              <p className="text-slate-600 mt-1">处理和跟踪审批流程</p>
+              <h1 className="text-2xl font-bold text-card-foreground">OA审批</h1>
+              <p className="text-muted-foreground mt-1">处理和跟踪审批流程</p>
             </div>
-            <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
+            <EnhancedButton className="bg-primary hover:bg-primary/90">
               <Plus className="w-4 h-4 mr-2" />
               发起审批
             </EnhancedButton>
@@ -31,12 +31,12 @@ export default function ApprovalPage() {
             <EnhancedCard className="border-r-[5px] border-r-sky-500 shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">待审批</p>
-                  <p className="text-2xl font-bold text-slate-800">8</p>
-                  <p className="text-xs text-sky-600 mt-1">需要处理</p>
+                  <p className="text-sm text-muted-foreground">待审批</p>
+                  <p className="text-2xl font-bold text-card-foreground">8</p>
+                  <p className="text-xs text-primary mt-1">需要处理</p>
                 </div>
-                <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-sky-600" />
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
                 </div>
               </div>
             </EnhancedCard>
@@ -44,8 +44,8 @@ export default function ApprovalPage() {
             <EnhancedCard className="border-r-[5px] border-r-success shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">已通过</p>
-                  <p className="text-2xl font-bold text-slate-800">45</p>
+                  <p className="text-sm text-muted-foreground">已通过</p>
+                  <p className="text-2xl font-bold text-card-foreground">45</p>
                   <p className="text-xs text-success mt-1">本月通过</p>
                 </div>
                 <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">

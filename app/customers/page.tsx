@@ -177,9 +177,9 @@ export default function CustomersPage() {
       case "普通":
         return "text-success bg-success/10"
       case "潜在":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -188,9 +188,9 @@ export default function CustomersPage() {
       case "active":
         return "text-success bg-success/10"
       case "inactive":
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
       default:
-        return "text-slate-600 bg-slate-50"
+        return "text-muted-foreground bg-muted"
     }
   }
 
@@ -232,8 +232,8 @@ export default function CustomersPage() {
           <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">总客户数</p>
-                <p className="text-2xl font-bold text-slate-800">{customerStats.totalCustomers}</p>
+                <p className="text-sm text-muted-foreground">总客户数</p>
+                <p className="text-2xl font-bold text-foreground">{customerStats.totalCustomers}</p>
                 <p className="text-xs text-success mt-1">系统注册客户</p>
               </div>
               <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
@@ -245,8 +245,8 @@ export default function CustomersPage() {
           <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">活跃客户</p>
-                <p className="text-2xl font-bold text-slate-800">{customerStats.activeCustomers}</p>
+                <p className="text-sm text-muted-foreground">活跃客户</p>
+                <p className="text-2xl font-bold text-foreground">{customerStats.activeCustomers}</p>
                 <p className="text-xs text-success mt-1">当前活跃</p>
               </div>
               <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
@@ -258,8 +258,8 @@ export default function CustomersPage() {
           <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">VIP客户</p>
-                <p className="text-2xl font-bold text-slate-800">{customerStats.vipCustomers}</p>
+                <p className="text-sm text-muted-foreground">VIP客户</p>
+                <p className="text-2xl font-bold text-foreground">{customerStats.vipCustomers}</p>
                 <p className="text-xs text-yellow-600 mt-1">重要客户</p>
               </div>
               <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
@@ -271,8 +271,8 @@ export default function CustomersPage() {
           <EnhancedCard className="border-r-[5px] border-r-success shadow-md hover:border-r-success">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">新增客户</p>
-                <p className="text-2xl font-bold text-slate-800">{customerStats.newCustomers}</p>
+                <p className="text-sm text-muted-foreground">新增客户</p>
+                <p className="text-2xl font-bold text-foreground">{customerStats.newCustomers}</p>
                 <p className="text-xs text-success mt-1">今日新增</p>
               </div>
               <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
@@ -288,7 +288,7 @@ export default function CustomersPage() {
               <div className="flex-1 space-y-2">
                 <Label htmlFor="customer-search" className="sr-only">搜索客户</Label>
                 <div className="relative">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="customer-search"
                     placeholder="搜索客户姓名、公司或联系方式..."
@@ -301,7 +301,7 @@ export default function CustomersPage() {
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-success"
+                className="px-3 py-2 border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-success"
               >
                 <option value="all">全部客户</option>
                 <option value="active">活跃客户</option>
@@ -319,15 +319,15 @@ export default function CustomersPage() {
               {filteredCustomers.map((customer) => (
                 <div
                   key={customer.id}
-                  className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors border-r-4 border-r-success shadow-md"
+                  className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors border-r-4 border-r-success shadow-md"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center text-primary-foreground font-medium">
                       {customer.name.charAt(0)}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-medium text-slate-800">{customer.name}</h3>
+                        <h3 className="font-medium text-card-foreground">{customer.name}</h3>
                         <Badge className={getLevelColor(customer.level)}>
                           {customer.level}
                         </Badge>
@@ -335,11 +335,11 @@ export default function CustomersPage() {
                           {customer.status === "活跃" ? "活跃" : "非活跃"}
                         </Badge>
                       </div>
-                      <p className="text-sm text-slate-600">{customer.company}</p>
+                      <p className="text-sm text-muted-foreground">{customer.company}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-6">
-                    <div className="text-sm text-slate-600">
+                    <div className="text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Phone className="w-3 h-3" />
                         {customer.phone}

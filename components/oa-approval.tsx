@@ -11,14 +11,9 @@
 
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -27,27 +22,32 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { commonStyles, getStatusStyle } from "@/lib/design-system"
 import {
-  FileText,
-  Clock,
+  AlertTriangle,
+  Building,
+  Calendar,
   CheckCircle,
-  XCircle,
+  Clock,
+  DollarSign,
+  Eye,
+  FileText,
+  Filter,
+  MessageSquare,
   Plus,
   Search,
-  Filter,
-  Eye,
-  MessageSquare,
-  Calendar,
-  User,
-  Building,
-  DollarSign,
   ShoppingCart,
-  Users,
-  AlertTriangle,
   TrendingUp,
+  User,
+  Users,
+  XCircle,
 } from "lucide-react"
+import { useState } from "react"
 
 interface ApprovalItem {
   id: string
@@ -368,11 +368,11 @@ export function OAApproval() {
         <CardContent className="p-6">
           <Tabs defaultValue="list" className="w-full">
             <div className="flex items-center justify-between mb-6">
-              <TabsList className="bg-sky-100/50 border border-sky-200">
-                <TabsTrigger value="list" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsList className="bg-primary/5 border border-primary/20">
+                <TabsTrigger value="list" className="data-[state=active]:bg-background data-[state=active]:text-primary">
                   列表视图
                 </TabsTrigger>
-                <TabsTrigger value="board" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+                <TabsTrigger value="board" className="data-[state=active]:bg-background data-[state=active]:text-primary">
                   看板视图
                 </TabsTrigger>
                 <TabsTrigger

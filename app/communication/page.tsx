@@ -1,13 +1,13 @@
 "use client"
 
 import { PageContainer } from "@/components/layout/page-container"
-import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
 import { Badge } from "@/components/ui/badge"
+import { EnhancedButton } from "@/components/ui/enhanced-button"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import { FloatingNavButtons } from "@/components/ui/floating-nav-buttons"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { MessageSquare, Users, Send, Phone, Video, Plus, Search, Paperclip } from "lucide-react"
+import { MessageSquare, Paperclip, Phone, Plus, Search, Send, Users, Video } from "lucide-react"
 
 export default function CommunicationPage() {
   return (
@@ -33,8 +33,8 @@ export default function CommunicationPage() {
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">活跃群组</p>
-                <p className="text-2xl font-bold text-slate-800">12</p>
+                <p className="text-sm text-muted-foreground">活跃群组</p>
+                <p className="text-2xl font-bold text-foreground">12</p>
                 <p className="text-xs text-purple-600 mt-1">正在使用</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -46,8 +46,8 @@ export default function CommunicationPage() {
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">今日消息</p>
-                <p className="text-2xl font-bold text-slate-800">156</p>
+                <p className="text-sm text-muted-foreground">今日消息</p>
+                <p className="text-2xl font-bold text-foreground">156</p>
                 <p className="text-xs text-purple-600 mt-1">↑ 23% 较昨日</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -59,8 +59,8 @@ export default function CommunicationPage() {
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">在线成员</p>
-                <p className="text-2xl font-bold text-slate-800">28</p>
+                <p className="text-sm text-muted-foreground">在线成员</p>
+                <p className="text-2xl font-bold text-foreground">28</p>
                 <p className="text-xs text-purple-600 mt-1">当前在线</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -72,8 +72,8 @@ export default function CommunicationPage() {
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md hover:border-r-purple-600">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600">未读消息</p>
-                <p className="text-2xl font-bold text-slate-800">5</p>
+                <p className="text-sm text-muted-foreground">未读消息</p>
+                <p className="text-2xl font-bold text-foreground">5</p>
                 <p className="text-xs text-purple-600 mt-1">需要处理</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -88,7 +88,7 @@ export default function CommunicationPage() {
           {/* 群组列表 */}
           <EnhancedCard className="border-r-[5px] border-r-purple-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-800">群组列表</h2>
+              <h2 className="text-lg font-semibold text-card-foreground">群组列表</h2>
               <EnhancedButton size="sm" variant="outline">
                 <Search className="w-4 h-4" />
               </EnhancedButton>
@@ -103,11 +103,11 @@ export default function CommunicationPage() {
               ].map((group, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <div className="relative">
-                      <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center text-primary-foreground font-medium">
                         {group.name.charAt(0)}
                       </div>
                       {group.online && (
@@ -115,8 +115,8 @@ export default function CommunicationPage() {
                       )}
                     </div>
                     <div>
-                      <p className="font-medium text-slate-800">{group.name}</p>
-                      <p className="text-sm text-slate-600">{group.members} 成员</p>
+                      <p className="font-medium text-card-foreground">{group.name}</p>
+                      <p className="text-sm text-muted-foreground">{group.members} 成员</p>
                     </div>
                   </div>
                   {group.unread > 0 && <Badge className="bg-destructive/10 text-white">{group.unread}</Badge>}
@@ -129,14 +129,14 @@ export default function CommunicationPage() {
           <div className="lg:col-span-2">
             <EnhancedCard className="h-[600px] flex flex-col">
               {/* 聊天头部 */}
-              <div className="flex items-center justify-between p-4 border-b border-slate-200">
+              <div className="flex items-center justify-between p-4 border-b border-border">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center text-primary-foreground font-medium">
                     产
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-800">产品开发团队</h3>
-                    <p className="text-sm text-slate-600">8 名成员，5 人在线</p>
+                    <h3 className="font-medium text-card-foreground">产品开发团队</h3>
+                    <p className="text-sm text-muted-foreground">8 名成员，5 人在线</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
@@ -159,20 +159,19 @@ export default function CommunicationPage() {
                 ].map((msg, index) => (
                   <div key={index} className={`flex ${msg.isMe ? "justify-end" : "justify-start"}`}>
                     <div
-                      className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                        msg.isMe ? "bg-sky-500 text-white" : "bg-slate-100 text-slate-800"
-                      }`}
+                      className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${msg.isMe ? "bg-primary text-primary-foreground" : "bg-muted text-card-foreground"
+                        }`}
                     >
                       {!msg.isMe && <p className="text-xs font-medium mb-1">{msg.sender}</p>}
                       <p className="text-sm">{msg.message}</p>
-                      <p className={`text-xs mt-1 ${msg.isMe ? "text-sky-100" : "text-slate-500"}`}>{msg.time}</p>
+                      <p className={`text-xs mt-1 ${msg.isMe ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{msg.time}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* 输入区域 */}
-              <div className="p-4 border-t border-slate-200">
+              <div className="p-4 border-t border-border">
                 <div className="space-y-2">
                   <Label htmlFor="message-input" className="sr-only">输入消息</Label>
                   <div className="flex items-center gap-2">
@@ -184,7 +183,7 @@ export default function CommunicationPage() {
                       placeholder="输入消息..."
                       className="flex-1"
                     />
-                    <EnhancedButton className="bg-sky-600 hover:bg-sky-700">
+                    <EnhancedButton className="bg-primary hover:bg-primary/90">
                       <Send className="w-4 h-4" />
                     </EnhancedButton>
                   </div>

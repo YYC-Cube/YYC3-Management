@@ -11,30 +11,30 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Switch } from "@/components/ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
 import { commonStyles, notificationConfig } from "@/lib/design-system"
 import {
-  Bell,
-  Clock,
   AlertTriangle,
+  Bell,
   Calendar,
-  TrendingDown,
-  Target,
-  Users,
+  CheckCircle,
+  Clock,
   Mail,
   Settings,
-  CheckCircle,
+  Target,
+  TrendingDown,
+  Users,
   XCircle,
   Zap,
 } from "lucide-react"
+import { useEffect, useState } from "react"
 
 interface Notification {
   id: string
@@ -292,7 +292,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
 
       {/* 主要内容区域 */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-sky-100">
+        <TabsList className="grid w-full grid-cols-3 bg-primary/10">
           <TabsTrigger value="notifications" className="flex items-center gap-2">
             <Bell className="w-4 h-4" />
             通知列表
@@ -311,7 +311,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <Card className={commonStyles.card.base}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-sky-500" />
+                <Zap className="w-5 h-5 text-primary" />
                 实时通知
               </CardTitle>
               <CardDescription>系统自动监控并发送重要提醒</CardDescription>
@@ -322,9 +322,8 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                   {notifications.map((notification) => (
                     <div
                       key={notification.id}
-                      className={`p-4 border rounded-lg transition-all duration-200 hover:shadow-md ${
-                        notification.read ? "bg-slate-50 opacity-75" : "bg-white border-sky-200"
-                      }`}
+                      className={`p-4 border rounded-lg transition-all duration-200 hover:shadow-md ${notification.read ? "bg-slate-50 opacity-75" : "bg-white border-sky-200"
+                        }`}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-3 flex-1">
@@ -357,7 +356,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
                               variant="ghost"
                               size="sm"
                               onClick={() => markAsRead(notification.id)}
-                              className="text-sky-600 hover:text-sky-700 hover:bg-sky-50"
+                              className="text-primary hover:text-primary/80 hover:bg-primary/5"
                             >
                               <CheckCircle className="w-4 h-4" />
                             </Button>
@@ -384,7 +383,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <Card className={commonStyles.card.base}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Settings className="w-5 h-5 text-sky-500" />
+                <Settings className="w-5 h-5 text-primary" />
                 提醒设置
               </CardTitle>
               <CardDescription>自定义通知和提醒规则</CardDescription>
@@ -494,7 +493,7 @@ export function NotificationReminderSystem({ showTitle = true }: NotificationRem
           <Card className={commonStyles.card.base}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-sky-500" />
+                <Mail className="w-5 h-5 text-primary" />
                 定期报告
               </CardTitle>
               <CardDescription>自动生成和发送进度报告</CardDescription>

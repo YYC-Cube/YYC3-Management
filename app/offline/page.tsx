@@ -15,7 +15,7 @@ export default function OfflinePage() {
         </p>
 
         <div className="space-y-3">
-          <div className="flex items-center justify-between p-3 bg-sky-50 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-primary/5 rounded-lg">
             <span className="text-sm text-slate-700">缓存数据</span>
             <span className="text-sm font-medium text-emerald-600">可用</span>
           </div>

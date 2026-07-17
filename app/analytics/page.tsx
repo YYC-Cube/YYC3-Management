@@ -87,7 +87,7 @@ export default function AnalyticsPage() {
         <div className="responsive-grid-2">
           <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-800">销售趋势</h2>
+              <h2 className="text-lg font-semibold text-card-foreground">销售趋势</h2>
               <EnhancedButton variant="outline" size="sm">
                 <BarChart3 className="w-4 h-4 mr-2" />
                 详细分析
@@ -98,7 +98,7 @@ export default function AnalyticsPage() {
 
           <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-800">财务概览</h2>
+              <h2 className="text-lg font-semibold text-card-foreground">财务概览</h2>
               <EnhancedButton variant="outline" size="sm">
                 <DollarSign className="w-4 h-4 mr-2" />
                 财务报表
@@ -110,7 +110,7 @@ export default function AnalyticsPage() {
 
         <EnhancedCard className="border-r-[5px] border-r-cyan-500 shadow-md">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-800">性能分析</h2>
+            <h2 className="text-lg font-semibold text-card-foreground">性能分析</h2>
             <div className="flex gap-2">
               <EnhancedButton variant="outline" size="sm">
                 日
@@ -128,7 +128,7 @@ export default function AnalyticsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <EnhancedCard>
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">热门页面</h3>
+            <h2 className="text-lg font-semibold text-card-foreground mb-4">热门页面</h2>
             <div className="space-y-3">
               {[
                 { page: "/dashboard", views: "12,345", percentage: 85 },
@@ -138,11 +138,11 @@ export default function AnalyticsPage() {
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-slate-800">{item.page}</p>
-                    <p className="text-sm text-slate-600">{item.views} 次访问</p>
+                    <p className="font-medium text-card-foreground">{item.page}</p>
+                    <p className="text-sm text-muted-foreground">{item.views} 次访问</p>
                   </div>
-                  <div className="w-20 bg-slate-200 rounded-full h-2">
-                    <div className="bg-sky-500 h-2 rounded-full" style={{ width: `${item.percentage}%` }}></div>
+                  <div className="w-20 bg-muted rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: `${item.percentage}%` }}></div>
                   </div>
                 </div>
               ))}
@@ -150,11 +150,11 @@ export default function AnalyticsPage() {
           </EnhancedCard>
 
           <EnhancedCard>
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">用户来源</h3>
+            <h2 className="text-lg font-semibold text-card-foreground mb-4">用户来源</h2>
             <div className="space-y-3">
               {[
-                { source: "直接访问", users: "5,234", color: "bg-sky-500" },
-                { source: "搜索引擎", users: "3,456", color: "bg-success/10" },
+                { source: "直接访问", users: "5,234", color: "bg-primary" },
+                { source: "搜索引擎", users: "3,456", color: "bg-primary/50" },
                 { source: "社交媒体", users: "2,345", color: "bg-yellow-500" },
                 { source: "邮件营销", users: "1,234", color: "bg-purple-500" },
               ].map((item, index) => (
