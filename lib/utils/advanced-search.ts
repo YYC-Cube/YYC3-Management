@@ -1,7 +1,7 @@
 export interface SearchFilter {
   field: string
   operator: "equals" | "contains" | "startsWith" | "endsWith" | "greaterThan" | "lessThan" | "between" | "in" | "notIn"
-  value?: any
+  value?: unknown
   label?: string
 }
 
@@ -131,8 +131,10 @@ export class AdvancedSearch<T> {
         return this.compareValues(value, filterValue) > 0
       case "lessThan":
         return this.compareValues(value, filterValue) < 0
-      case "between":
-        return this.compareValues(value, filterValue[0]) >= 0 && this.compareValues(value, filterValue[1]) <= 0
+      case "between": {
+        const arr = filterValue as [unknown, unknown]
+        return this.compareValues(value, arr[0]) >= 0 && this.compareValues(value, arr[1]) <= 0
+      }
       case "in":
         return Array.isArray(filterValue) && filterValue.includes(value)
       case "notIn":

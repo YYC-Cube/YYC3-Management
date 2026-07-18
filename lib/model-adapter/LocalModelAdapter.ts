@@ -61,7 +61,7 @@ export class LocalModelAdapter extends BaseModelAdapter {
     return response.json();
   }
 
-  protected async *callModelStream(request: any): AsyncIterable<any> {
+  protected async *callModelStream(request: CompletionRequest): AsyncIterable<Record<string, unknown>> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     };
@@ -121,32 +121,34 @@ export class LocalModelAdapter extends BaseModelAdapter {
     }
   }
 
-  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
-    const choice = rawResponse.choices[0];
+  protected override async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+    const response = rawResponse as { choices: Array<{ message?: { content: string }; text?: string; finish_reason?: string | null }>; id?: string; model?: string; usage?: { prompt_tokens: number; completion_tokens: number; total_tokens: number } }
+    const choice = response.choices[0];
 
     return {
-      id: rawResponse.id || `local-${Date.now()}`,
+      id: response.id || `local-${Date.now()}`,
       text: choice.message?.content || choice.text || '',
       finishReason: choice.finish_reason === 'stop' ? 'stop' : 'length',
       usage: {
-        promptTokens: rawResponse.usage?.prompt_tokens || 0,
-        completionTokens: rawResponse.usage?.completion_tokens || 0,
-        totalTokens: rawResponse.usage?.total_tokens || 0
+        promptTokens: response.usage?.prompt_tokens || 0,
+        completionTokens: response.usage?.completion_tokens || 0,
+        totalTokens: response.usage?.total_tokens || 0
       },
       metadata: {
-        modelId: rawResponse.model || this.config.modelName,
+        modelId: response.model || this.config.modelName,
         processingTime: 0,
         timestamp: new Date()
       }
     };
   }
 
-  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
-    if (!chunk.choices || chunk.choices.length === 0) {
+  protected override parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+    const data = chunk as { choices?: Array<{ delta?: { content?: string }; text?: string; finish_reason?: string | null }> }
+    if (!data.choices || data.choices.length === 0) {
       return { text: '', finished: false };
     }
 
-    const choice = chunk.choices[0];
+    const choice = data.choices[0];
     const content = choice.delta?.content || choice.text || '';
     const finished = choice.finish_reason !== null && choice.finish_reason !== undefined;
 

@@ -286,7 +286,7 @@ export function AdvancedSearchBar<T>({
 
                 <Input
                   placeholder="值"
-                  value={newFilter.value}
+                  value={newFilter.value as string ?? ''}
                   onChange={(e) => setNewFilter({ ...newFilter, value: e.target.value })}
                   onKeyDown={(e) => e.key === "Enter" && handleAddFilter()}
                 />

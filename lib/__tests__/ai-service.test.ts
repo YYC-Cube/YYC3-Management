@@ -3,6 +3,10 @@
  * @author YYC³ @version 3.1.0 @license MIT
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+// Mock server-only to allow import in vitest
+vi.mock('server-only', () => ({}))
+
 import { AIService } from '../ai-service'
 
 // Mock fetch
