@@ -183,7 +183,7 @@ export class ZhipuAdapter extends BaseModelAdapter {
       const data = await response.json();
 
       return {
-        embeddings: data.data.map((item: any) => item.embedding),
+        embeddings: data.data.map((item: { embedding: number[] }) => item.embedding),
         usage: {
           totalTokens: data.usage?.total_tokens || 0
         },
@@ -392,20 +392,21 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 后处理响应
    */
-  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
-    const choice = rawResponse.choices?.[0];
+  protected override async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+    const data = rawResponse as { choices?: Array<{ message?: { content: string }; text?: string; finish_reason?: string | null }>; id?: string; model?: string; usage?: { prompt_tokens: number; completion_tokens: number; total_tokens: number } }
+    const choice = data.choices?.[0];
 
     return {
-      id: rawResponse.id || `zhipu-${Date.now()}`,
+      id: data.id || `zhipu-${Date.now()}`,
       text: choice?.message?.content || choice?.text || '',
       finishReason: choice?.finish_reason === 'stop' ? 'stop' : 'length',
       usage: {
-        promptTokens: rawResponse.usage?.prompt_tokens || 0,
-        completionTokens: rawResponse.usage?.completion_tokens || 0,
-        totalTokens: rawResponse.usage?.total_tokens || 0
+        promptTokens: data.usage?.prompt_tokens || 0,
+        completionTokens: data.usage?.completion_tokens || 0,
+        totalTokens: data.usage?.total_tokens || 0
       },
       metadata: {
-        modelId: rawResponse.model || this.modelId,
+        modelId: data.model || this.modelId,
         processingTime: 0,
         timestamp: new Date()
       }
@@ -415,12 +416,13 @@ export class ZhipuAdapter extends BaseModelAdapter {
   /**
    * 解析流式数据块
    */
-  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
-    if (!chunk.choices || chunk.choices.length === 0) {
+  protected override parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+    const data = chunk as { choices?: Array<{ delta?: { content?: string }; text?: string; finish_reason?: string | null }> }
+    if (!data.choices || data.choices.length === 0) {
       return { text: '', finished: false };
     }
 
-    const choice = chunk.choices[0];
+    const choice = data.choices[0];
     const content = choice.delta?.content || choice.text || '';
     const finished = choice.finish_reason !== null && choice.finish_reason !== undefined;
 

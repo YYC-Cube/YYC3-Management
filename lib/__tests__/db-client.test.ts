@@ -6,25 +6,23 @@
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-// Mock pg Pool
-const mockQuery = vi.fn()
-const mockConnect = vi.fn()
-const mockRelease = vi.fn()
-const mockEnd = vi.fn()
+const mockQuery = vi.hoisted(() => vi.fn())
+const mockConnect = vi.hoisted(() => vi.fn())
+const mockRelease = vi.hoisted(() => vi.fn())
+const mockEnd = vi.hoisted(() => vi.fn())
+const mockOn = vi.hoisted(() => vi.fn())
 
-const mockPoolInstance = {
-  query: mockQuery,
-  connect: mockConnect,
-  end: mockEnd,
-  on: vi.fn(),
-}
+vi.mock('pg', () => {
+  class Pool {
+    query = mockQuery
+    connect = mockConnect
+    end = mockEnd
+    on = mockOn
+  }
+  return { Pool }
+})
 
-vi.mock('pg', () => ({
-  Pool: vi.fn(() => mockPoolInstance),
-}))
-
-// 动态导入以确保 mock 先生效
-const clientModule = await import('../db/client')
+import * as clientModule from '../db/client'
 
 describe('Database Client', () => {
   beforeEach(() => {
@@ -125,7 +123,6 @@ describe('Database Client', () => {
       const client = await clientModule.getClient()
       client.release()
 
-      // setImmediate 延迟释放
       await new Promise((resolve) => setImmediate(resolve))
       expect(mockRelease).toHaveBeenCalled()
     })
@@ -137,13 +134,11 @@ describe('Database Client', () => {
     it('不应在错误时调用 process.exit', () => {
       const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
-      // 模拟 pool.on('error', ...) 注册
-      const poolOnCalls = mockPoolInstance.on.mock.calls
+      const poolOnCalls = mockOn.mock.calls
       const errorHandler = poolOnCalls.find((c: string[]) => c[0] === 'error')?.[1]
 
       if (errorHandler) {
         errorHandler(new Error('idle client error'))
-        // 不应调用 process.exit
         expect(exitSpy).not.toHaveBeenCalled()
       }
 

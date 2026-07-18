@@ -564,8 +564,8 @@ export class AutonomousAIEngine extends EventEmitter {
       uptime,
       status: this.status,
       taskCount: tasks.length,
-      activeTasks: tasks.filter((t: any) => t.status === 'running').length,
-      queuedTasks: tasks.filter((t: any) => t.status === 'queued').length,
+      activeTasks: tasks.filter((t) => t.status === 'running').length,
+      queuedTasks: tasks.filter((t) => t.status === 'queued').length,
       completedTasks: 0, // 从状态管理器获取
       failedTasks: 0, // 从状态管理器获取
       averageProcessingTime: 0,

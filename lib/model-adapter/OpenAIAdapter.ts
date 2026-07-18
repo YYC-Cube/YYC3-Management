@@ -78,7 +78,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
     return response.json();
   }
 
-  protected async *callModelStream(request: any): AsyncIterable<any> {
+  protected async *callModelStream(request: CompletionRequest): AsyncIterable<Record<string, unknown>> {
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -134,32 +134,34 @@ export class OpenAIAdapter extends BaseModelAdapter {
     }
   }
 
-  protected override async postprocess(rawResponse: any): Promise<CompletionResponse> {
-    const choice = rawResponse.choices[0];
+  protected override async postprocess(rawResponse: unknown): Promise<CompletionResponse> {
+    const response = rawResponse as { choices: Array<{ message?: { content: string }; text?: string; finish_reason?: string | null }>; id?: string; model?: string; usage?: { prompt_tokens: number; completion_tokens: number; total_tokens: number } }
+    const choice = response.choices[0];
 
     return {
-      id: rawResponse.id,
-      text: choice.message.content,
-      finishReason: choice.finish_reason === 'stop' ? 'stop' : 'length',
+      id: response.id ?? '',
+      text: choice.message?.content ?? '',
+      finishReason: (choice.finish_reason === 'stop' ? 'stop' : 'length') as 'stop' | 'length',
       usage: {
-        promptTokens: rawResponse.usage.prompt_tokens,
-        completionTokens: rawResponse.usage.completion_tokens,
-        totalTokens: rawResponse.usage.total_tokens
+        promptTokens: response.usage?.prompt_tokens ?? 0,
+        completionTokens: response.usage?.completion_tokens ?? 0,
+        totalTokens: response.usage?.total_tokens ?? 0
       },
       metadata: {
-        modelId: rawResponse.model,
+        modelId: response.model ?? '',
         processingTime: 0,
         timestamp: new Date()
       }
     };
   }
 
-  protected override parseStreamChunk(chunk: any): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
-    if (!chunk.choices || chunk.choices.length === 0) {
+  protected override parseStreamChunk(chunk: unknown): { text: string; finished: boolean; metadata?: Record<string, unknown> } {
+    const data = chunk as { choices?: Array<{ delta?: { content?: string }; text?: string; finish_reason?: string | null }> }
+    if (!data.choices || data.choices.length === 0) {
       return { text: '', finished: false };
     }
 
-    const choice = chunk.choices[0];
+    const choice = data.choices[0];
     const content = choice.delta?.content || '';
     const finished = choice.finish_reason !== null;
 
@@ -191,7 +193,7 @@ export class OpenAIAdapter extends BaseModelAdapter {
     const data = await response.json();
 
     return {
-      embeddings: data.data.map((item: any) => item.embedding),
+      embeddings: data.data.map((item: { embedding: number[] }) => item.embedding),
       usage: {
         totalTokens: data.usage.total_tokens
       },

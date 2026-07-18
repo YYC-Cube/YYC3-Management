@@ -3,13 +3,13 @@
  * @description 基于 pub/sub 模式，支持 on/off/once/emit
  */
 
-type Handler = (...args: any[]) => void
+type Handler = (...args: unknown[]) => void
 
 export class EventBus {
   private listeners = new Map<string, Set<Handler>>()
 
   /** 发送事件 */
-  emit(event: string, ...args: any[]): void {
+  emit(event: string, ...args: unknown[]): void {
     this.listeners.get(event)?.forEach((fn) => fn(...args))
   }
 
@@ -24,7 +24,7 @@ export class EventBus {
 
   /** 一次性监听 */
   once(event: string, fn: Handler): () => void {
-    const wrapper = (...args: any[]) => {
+    const wrapper = (...args: unknown[]) => {
       fn(...args)
       this.off(event, wrapper)
     }
