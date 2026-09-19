@@ -75,3 +75,8 @@ public/uploads/
 # IDE plugins
 .crossnote/
 .crush/
+
+# security(P0 安审 2026-09-20): 禁止跟踪 env 文件
+.env*
+!.env.example
+!.env.template
